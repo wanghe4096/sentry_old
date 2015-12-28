@@ -1,6 +1,6 @@
 .coverage
 .tox
-.DS_Store
+**/.DS_Store
 *.egg-info
 *.pyc
 *.log
