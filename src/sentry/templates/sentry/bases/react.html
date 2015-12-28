@@ -1,8 +1,49 @@
 {% extends "sentry/layout.html" %}
 
 {% load sentry_api %}
+{% load sentry_assets %}
 
 {% block body %}
+  <div class="leftbar clearfix">
+    <div class="op-info-left-panel clearfix">
+      <!-- 左侧工具栏的个人头像 & 点击头像后，弹出的菜单 -->
+      <div class="op-thumb" data-toggle="profile" data-class="dynamic-class">
+        <nav id="bt-menu" class="bt-menu bt-menu-close">
+          <a class="bt-menu-trigger">
+            <img src="{% asset_url "sentry" "images/avatar.jpg" %}" class="op-avatar">
+          </a>
+          <ul>
+            <li><a href="#">定义抽取规则</a></li>
+            <li><a href="#">事件类型管理</a></li>
+            <li><a href="#">项目管理/我参与的项目</a></li>
+            <li><a href="#">Tag管理</a></li>
+            <li><a href="#">账号设置</a></li>
+            <li><a href="#">告警规则管理</a></li>
+            <li><a href="#">主页设置</a></li>
+            <li><a href="#">数据源管理（个人）</a></li>
+          </ul>
+          <ul>
+            <li><a href="#" class="fa fa-dashboard">Twitter</a></li>
+            <li><a href="#" class="fa fa-refresh">Google+</a></li>
+            <li><a href="#" class="fa fa-lock">Facebook</a></li>
+            <li><a href="#" class="fa fa-sign-out">icon-github</a></li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+    <div class="left-nav clearfix">
+      <!-- 左侧工具栏 -->
+      <div class="left-primary-nav">
+        <ul id="myTab">
+          <li class="active"><a href="index" class="icon-search" title="上传日志"></a></li>
+          <li><a href="filelist" class="icon-search" title="搜索"></a></li>
+          <li><a href="task" class="icon-th-large" title="仪表板"></a></li>
+          <li><a href="task" class="fa fa-check" title="告警"></a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
   <div id="blk_router">
     <div class="loading triangle">
       <div class="loading-mask"></div>

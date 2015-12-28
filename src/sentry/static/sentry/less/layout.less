@@ -65,7 +65,10 @@ body.auth {
 
 header {
   background-color: @header-bg-color;
-  color: #fff;
+  -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
+  border-bottom: 1px solid #ccc;
+  color: @gray-darker;
   .clearfix();
   font-size: 15px;
   margin-bottom: 30px;
@@ -75,10 +78,12 @@ header {
   }
 
   a {
-    color: #CBD4E1;
+    //color: #CBD4E1;
+    color: @gray-dark;
 
     &:hover, &:focus, &:active {
-      color: #fff;
+      //color: #fff;
+      color: #25A6F7;
     }
   }
 
@@ -87,7 +92,7 @@ header {
     float: left;
     text-align: center;
     font-size: 18px;
-    color: #fff;
+    //color: #fff;
     margin: 2px 0 0 1px;
   }
 
@@ -330,7 +335,9 @@ footer {
 
 @media (min-width: 1300px) {
   .container {
-    width: 1250px !important;
+    //width: 1250px !important;
+    width: 100%;
+    padding-left: 90px;
   }
 }
 
