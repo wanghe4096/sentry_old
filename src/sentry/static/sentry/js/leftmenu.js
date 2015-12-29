@@ -102,10 +102,6 @@
     }
 
     function init() {
-<<<<<<< HEAD
-
-=======
->>>>>>> 42653dd9eb1202361d90d20239610d0653cb7bc2
         var menu = document.getElementById( 'bt-menu' ),
             trigger = document.querySelector( 'a.bt-menu-trigger' ),
         // triggerPlay only for demo 6
