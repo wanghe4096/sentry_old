@@ -56,6 +56,9 @@ const StreamGroup = React.createClass({
     if (!valueIsEqual(this.state.data, nextState.data)) {
       return true;
     }
+    if (nextProps.active !== this.props.active) {
+      return true;
+    }
     return false;
   },
 
@@ -70,16 +73,12 @@ const StreamGroup = React.createClass({
     });
   },
 
-  toggleSelect(evt) {
-    if (evt.target.tagName === 'A')
-      return;
-    if (evt.target.tagName === 'INPUT')
-      return;
-    if (jQuery(evt.target).parents('a').length !== 0)
-      return;
+  onClickHandler(evt) {
 
-    SelectedGroupStore.toggleSelect(this.state.data.id);
-    if (typeof this.props.onSelectect === 'function') {
+    let clickedInLabel = !!$(evt.target).closest('label.checkbox').length;
+    let clickedInA = !!$(evt.target).closest('a').length;
+
+    if (!clickedInLabel && !clickedInA) {
       this.props.onSelectect(this.state.data.id);
     }
   },
@@ -102,17 +101,21 @@ const StreamGroup = React.createClass({
       className += ' isMuted';
     }
 
+    if (this.props.active) {
+      className += ' active';
+    }
+
     className += ' level-' + data.level;
 
     let {id, orgId, projectId} = this.props;
 
     return (
-      <li className={className} onClick={this.toggleSelect}>
+      <li className={className} onClick={this.onClickHandler}>
         <div className="col-md-7 col-xs-8 event-details">
           {this.props.canSelect &&
-            <div className="checkbox">
+            <label className="checkbox">
               <GroupCheckBox id={data.id} />
-            </div>
+            </label>
           }
           <h3 className="truncate">
             <Link to={`/${orgId}/${projectId}/issues/${data.id}/`}>

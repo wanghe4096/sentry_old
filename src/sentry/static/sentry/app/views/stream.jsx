@@ -21,6 +21,8 @@ import StreamSidebar from './stream/sidebar';
 import GroupOverlay from './stream/groupOverlay';
 import utils from '../utils';
 import parseLinkHeader from '../utils/parseLinkHeader';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+
 import {t} from '../locale';
 
 const Stream = React.createClass({
@@ -39,7 +41,6 @@ const Stream = React.createClass({
     return {
       // intentional trailing whitespace / better UX for when uesrs focus on search input
       defaultQuery: 'is:unresolved ',
-
       defaultSort: 'date',
       defaultStatsPeriod: '24h',
       maxItems: 25
@@ -358,6 +359,7 @@ const Stream = React.createClass({
           id={id}
           orgId={orgId}
           projectId={projectId}
+          active={this.state.overlayId === id}
           onSelectect={this.selectGroup}
           statsPeriod={statsPeriod} />
       );
@@ -406,10 +408,20 @@ const Stream = React.createClass({
     return body;
   },
 
+  closeHandler() {
+    this.setState({
+      overlayId:null
+    });
+  },
+
   renderOverlay() {
     if(this.state.overlayId){
       return (
-        <GroupOverlay groupId={this.state.overlayId} params={this.props.params}></GroupOverlay>
+        <GroupOverlay
+          closeHandler={this.closeHandler}
+          groupId={this.state.overlayId}
+          params={this.props.params}>
+        </GroupOverlay>
       );
     }
   },
@@ -454,7 +466,15 @@ const Stream = React.createClass({
             </Sticky>
           </div>
           {this.renderStreamBody()}
+          <ReactCSSTransitionGroup
+            transitionName="streamOverlay"
+            component="div"
+            className="streamOverlay-ani"
+            transitionEnterTimeout={400}
+            transitionLeaveTimeout={300}
+          >
           {this.renderOverlay()}
+          </ReactCSSTransitionGroup>
           <Pagination pageLinks={this.state.pageLinks}/>
         </div>
         <StreamSidebar

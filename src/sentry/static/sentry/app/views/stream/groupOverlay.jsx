@@ -5,7 +5,11 @@
  * Description: 。
  */
 
-
+// todo:点击非overlay区域时关闭
+// todo:需要关闭按钮
+// todo:需要进入详情页面按钮
+// todo:单页面实现左右切换按钮
+// todo:支持键盘左右切换
 
 import React from 'react';
 import Reflux from 'reflux';
@@ -53,25 +57,27 @@ const GroupEventDetails = React.createClass({
     this.fetchData();
   },
 
-  componentWillReceiveProps(x) {
-    //this.setState({
-    //  loading: true
-    //})
-  },
-
-  componentWillUpdate() {
-    //this.fetchData();
-  },
-
   componentDidUpdate(prevProps) {
-    console.log(prevProps);
     if (prevProps.groupId !== this.props.groupId) {
       this.fetchData();
     }
   },
 
+  keyDownHandler(evt){
+    if (evt.keyCode === 27) {
+      this.props.closeHandler();
+    }
+  },
+
+  componentDidMount() {
+    $(document).on('keydown', this.keyDownHandler);
+  },
+
+  componentWillUnmount() {
+    $(document).off('keydown', this.keyDownHandler);
+  },
+
   fetchData() {
-    // todo: 搞清楚什么是 group,什么是 event
     let url = '/issues/' + this.props.groupId + '/events/oldest/';
 
     this.setState({
@@ -80,52 +86,37 @@ const GroupEventDetails = React.createClass({
     });
 
     this.api.request(url, {
-        success: (data, _, jqXHR) => {
+      success: (data, _, jqXHR) => {
         this.setState({
-        event: data,
-        error: false,
-        loading: false
-      });
-          window.sss = this.state;
+          event: data,
+          error: false,
+          loading: false
+        });
 
-    this.api.bulkUpdate({
-      orgId: this.props.params.orgId,
-      projectId: this.props.params.projectId,
-      itemIds: [this.props.groupId],
-      failSilently: true,
-      data: {hasSeen: true}
+        this.api.bulkUpdate({
+          orgId: this.props.params.orgId,
+          projectId: this.props.params.projectId,
+          itemIds: [this.props.groupId],
+          failSilently: true,
+          data: {hasSeen: true}
+        });
+      },
+      error: () => {
+        this.setState({
+          error: true,
+          loading: false
+        });
+      }
     });
-  },
-    error: () => {
-      this.setState({
-        error: true,
-        loading: false
-      });
-    }
-  });
   },
 
   render() {
     let group = this.state.group;
     let evt = this.state.event;
     let params = this.props.params;
-    let css = {
-      position: 'fixed',
-      top:'200px',
-      right:0,
-      bottom:0,
-      width:'600px',
-      backgroundColor:'#fff',
-      borderTop:'1px solid #ccc',
-      borderLeft:'1px solid #ccc',
-      boxShadow:'-3px -3px 10px #ccc',
-      overflowY:'auto',
-      padding:'20px',
-      zIndex:8888
-    };
 
     return (
-      <div className="group-overlay" style={css}>
+      <div className="group-overlay">
         <div className="row event">
           <div className="col-md-12">
           {evt &&
