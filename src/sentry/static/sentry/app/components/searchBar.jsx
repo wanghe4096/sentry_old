@@ -60,7 +60,7 @@ const SearchBar = React.createClass({
             <input type="text" className="search-input form-control"
               placeholder={this.props.placeholder}
               name="query"
-              ref="searchTextInput"
+              ref="searchInput"
               autoComplete="off"
               value={this.state.query}
               onBlur={this.onQueryBlur}

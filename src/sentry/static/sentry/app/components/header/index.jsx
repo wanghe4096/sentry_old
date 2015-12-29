@@ -32,7 +32,6 @@ const Header = React.createClass({
           </div>
           <UserNav className="pull-right" />
           <Broadcasts className="pull-right" />
-          {/*          */}
 
           {this.props.orgId ?
             <Link to={`/${this.props.orgId}/`} className="logo pull-right">{logo}</Link>

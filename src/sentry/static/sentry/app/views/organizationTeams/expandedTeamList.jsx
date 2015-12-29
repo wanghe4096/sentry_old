@@ -112,11 +112,11 @@ const ExpandedTeamList = React.createClass({
           </h5>
           <ul className="project-message">
             <li>
-              <span>时间</span>
+              <span>time</span>
               <span>2015/10/12</span>
             </li>
             <li>
-              <span>机数</span>
+              <span>host</span>
               <span>2</span>
             </li>
             <li>
