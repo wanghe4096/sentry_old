@@ -10,6 +10,8 @@ export const translations = (function() {
   let rv = {};
   ctx.keys().forEach((translation) => {
     let langCode = translation.match(/([a-zA-Z_]+)/)[1];
+
+    langCode = langCode.replace(/\_/g,'-').toLocaleLowerCase();
     if (_.contains(catalogs, langCode)) {
       rv[langCode] = ctx(translation);
     }
