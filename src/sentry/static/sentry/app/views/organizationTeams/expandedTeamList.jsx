@@ -110,6 +110,20 @@ const ExpandedTeamList = React.createClass({
               {project.name}
             </Link>
           </h5>
+          <ul className="project-message">
+            <li>
+              <span>时间</span>
+              <span>2015/10/12</span>
+            </li>
+            <li>
+              <span>机数</span>
+              <span>2</span>
+            </li>
+            <li>
+              <span>stream</span>
+              <span>10</span>
+            </li>
+          </ul>
         </td>
         <td className="align-right project-chart">
           {chartData && <LazyLoad><BarChart points={chartData} className="sparkline" /></LazyLoad> }

@@ -56,7 +56,7 @@
   }
   li.active{
     a{
-      background: #25A6F7;
+      background: #15d473;
     }
   }
 }
@@ -219,4 +219,85 @@
 .bt-menu ul li a:hover:before,
 .bt-menu ul li a:focus:before {
   color: #51A032;
+}
+
+.search .search-text-input{
+  height: 26px;
+  margin-top: 8px;
+  padding-left: 26px;
+  border-radius: 12px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  -webkit-transition: width 0.2s ease-in-out;
+  -moz-transition: width 0.2s ease-in-out;
+  -ms-transition: width 0.2s ease-in-out;
+  -o-transition: width 0.2s ease-in-out;
+}
+
+.search .search-text-input:focus{
+  border-radius: 12px;
+  width: 240px;
+  border: 1px solid #2EB5E5;
+  outline: none;
+  -webkit-box-shadow: rgba(46, 181, 229, 0.5) 0 0px 5px 0;
+  -moz-box-shadow: rgba(46, 181, 229, 0.5) 0 0px 5px 0;
+  box-shadow: rgba(46, 181, 229, 0.5) 0 0px 5px 0;
+}
+
+.search .search-text-icon{
+  top: 6px;
+  left: 8px;
+}
+
+
+.no-p-l-r{
+  padding-left: 0;
+  padding-right: 0;
+}
+
+//alert badge
+
+.bg-danger {
+  color: #ffffff;
+  background-color: #f05050;
+}
+
+.alert-nav{
+  line-height: 40px;
+  padding: 0 15px;
+  .badge.up {
+    position: relative;
+    top: -10px;
+    padding: 3px 6px;
+    margin-left: -10px;
+  }
+  .badge {
+    display: inline-block;
+    min-width: 10px;
+    font-weight: bold;
+    line-height: 1;
+    color: #fff;
+    white-space: nowrap;
+    border-radius: 10px;
+    height: auto;
+  }
+  .badge-sm {
+    padding: 2px 5px !important;
+    font-size: 85%;
+  }
+}
+
+header{
+  .container{
+    >a{
+      height: 40px;
+      line-height: 44px;
+      margin: 0;
+      font-size: 18px;
+      padding: 0 15px;
+    }
+    a.nodes-nav{
+      font-size: 16px;
+    }
+  }
 }

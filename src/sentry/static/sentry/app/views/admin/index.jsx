@@ -6,6 +6,7 @@ import Footer from '../../components/footer';
 import Header from '../../components/header';
 import ListLink from '../../components/listLink';
 
+
 const Admin = React.createClass({
   getTitle() {
     return 'Sentry Admin';

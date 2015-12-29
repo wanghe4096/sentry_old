@@ -108,52 +108,57 @@ const ProjectDashboard = React.createClass({
 
     return (
       <div>
-        <div>
-          <div className="pull-right">
-            <div className="btn-group">
-              <Link
-                to={url}
-                query={{...routeQuery, statsPeriod: PERIOD_HOUR}}
-                active={statsPeriod === PERIOD_HOUR}
-                className={
-                  'btn btn-sm btn-default' + (
-                    statsPeriod === PERIOD_HOUR ? ' active' : '')}>
-                {t('1 hour')}
-              </Link>
-              <Link
-                to={url}
-                query={{...routeQuery, statsPeriod: PERIOD_DAY}}
-                active={statsPeriod === PERIOD_DAY}
-                className={
-                  'btn btn-sm btn-default' + (
-                    statsPeriod === PERIOD_DAY ? ' active' : '')}>
-                {t('1 day')}
-              </Link>
-              <Link
-                to={url}
-                query={{...routeQuery, statsPeriod: PERIOD_WEEK}}
-                className={
-                  'btn btn-sm btn-default' + (
-                    statsPeriod === PERIOD_WEEK ? ' active' : '')}>
-                    {t('1 week')}
-              </Link>
-            </div>
-          </div>
-          <h3>{t('Overview')}</h3>
-        </div>
-        <ProjectChart
-            dateSince={dateSince}
-            resolution={resolution} />
         <div className="row">
-          <div className="col-md-6">
+          <div className="col-md-12">
+            <div className="pull-right">
+              <div className="btn-group">
+                <Link
+                    to={url}
+                    query={{...routeQuery, statsPeriod: PERIOD_HOUR}}
+                    active={statsPeriod === PERIOD_HOUR}
+                    className={
+                'btn btn-sm btn-default' + (
+                  statsPeriod === PERIOD_HOUR ? ' active' : '')}>
+                  {t('1 hour')}
+                </Link>
+                <Link
+                    to={url}
+                    query={{...routeQuery, statsPeriod: PERIOD_DAY}}
+                    active={statsPeriod === PERIOD_DAY}
+                    className={
+                'btn btn-sm btn-default' + (
+                  statsPeriod === PERIOD_DAY ? ' active' : '')}>
+                  {t('1 day')}
+                </Link>
+                <Link
+                    to={url}
+                    query={{...routeQuery, statsPeriod: PERIOD_WEEK}}
+                    className={
+                'btn btn-sm btn-default' + (
+                  statsPeriod === PERIOD_WEEK ? ' active' : '')}>
+                  {t('1 week')}
+                </Link>
+              </div>
+            </div>
+            <h3>{t('Overview')}</h3>
+          </div>
+
+          <div className="col-md-4">
             <EventList
                 title={t('Trending Issues')}
                 endpoint={this.getTrendingIssuesEndpoint(dateSince)} />
           </div>
-          <div className="col-md-6">
-            <EventList
-                title={t('New Issues')}
-                endpoint={this.getNewIssuesEndpoint(dateSince)} />
+          <div className="col-md-8">
+            <div className="col-md-12 no-p-l-r">
+              <ProjectChart
+                  dateSince={dateSince}
+                  resolution={resolution} />
+            </div>
+            <div className="col-md-12 no-p-l-r">
+              <EventList
+                  title={t('New Issues')}
+                  endpoint={this.getNewIssuesEndpoint(dateSince)} />
+            </div>
           </div>
         </div>
       </div>

@@ -27,7 +27,9 @@ const RouteNotFound = React.createClass({
               </section>
             </div>
           </div>
+          {/*
           <Footer />
+          */}
         </div>
       </DocumentTitle>
     );

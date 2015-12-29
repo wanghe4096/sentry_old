@@ -5,6 +5,9 @@ import {Link} from 'react-router';
 
 import Broadcasts from './broadcasts';
 import UserNav from './userNav';
+import NodeNav from './nodeNav';
+import AlertNav from './alertNav';
+import SearchTextInput from './searchTextInput';
 import OrganizationSelector from './organizationSelector';
 
 const Header = React.createClass({
@@ -15,7 +18,7 @@ const Header = React.createClass({
     let logo;
 
     if (user) {
-      logo = <span className="icon-sentry-logo"/>;
+      logo = <span className="glyphicon glyphicon-home icon-sentry-logo"/>;
     } else {
       logo = <span className="icon-sentry-logo-full"/>;
     }
@@ -24,13 +27,20 @@ const Header = React.createClass({
     return (
       <header>
         <div className="container">
+          <div className="col-md-2">
+            <SearchTextInput />
+          </div>
           <UserNav className="pull-right" />
           <Broadcasts className="pull-right" />
+          {/*          */}
+
           {this.props.orgId ?
-            <Link to={`/${this.props.orgId}/`} className="logo">{logo}</Link>
+            <Link to={`/${this.props.orgId}/`} className="logo pull-right">{logo}</Link>
             :
-            <a href="/" className="logo">{logo}</a>
+            <a href="/" className="logo pull-right">{logo}</a>
           }
+          <AlertNav className="pull-right"/>
+          <NodeNav className="pull-right"/>
           <OrganizationSelector organization={this.getOrganization()} className="pull-right" />
         </div>
       </header>

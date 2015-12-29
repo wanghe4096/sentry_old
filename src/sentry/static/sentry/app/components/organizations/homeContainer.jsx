@@ -10,10 +10,12 @@ const HomeContainer = React.createClass({
       <div className="organization-home">
         <div className="container">
           <div className="content row">
+            {/*
             <div className="col-md-2 org-sidebar">
               <OrganizationHomeSidebar />
             </div>
-            <div className="col-md-10">
+            */}
+            <div className="col-md-12">
               {this.props.children}
             </div>
           </div>

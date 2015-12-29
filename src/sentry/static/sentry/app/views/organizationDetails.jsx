@@ -131,7 +131,9 @@ const OrganizationDetails = React.createClass({
           {this.state.hooks}
           <Header orgId={params.orgId}/>
           {this.props.children}
+          {/*
           <Footer />
+          */}
         </div>
       </DocumentTitle>
     );
