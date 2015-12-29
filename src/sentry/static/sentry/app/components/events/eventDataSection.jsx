@@ -10,6 +10,10 @@ const GroupEventDataSection = React.createClass({
     wrapTitle: React.PropTypes.bool
   },
 
+  contextTypes: {
+    inOverlay: React.PropTypes.bool
+  },
+
   getDefaultProps() {
     return {
       wrapTitle: true
@@ -21,9 +25,9 @@ const GroupEventDataSection = React.createClass({
       <div className={(this.props.className || '') + ' box'}>
         {this.props.title &&
           <div className="box-header">
-            <a name={this.props.type} href={'#' + this.props.type} className="permalink">
+            {!this.context.inOverlay && <a name={this.props.type} href={`#${this.props.type}`} className="permalink">
               <em className="icon-anchor" />
-            </a>
+            </a>}
             {this.props.wrapTitle ?
               <h3>{this.props.title}</h3>
             :

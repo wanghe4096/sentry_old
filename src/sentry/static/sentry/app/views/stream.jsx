@@ -18,6 +18,7 @@ import StreamTagActions from '../actions/streamTagActions';
 import StreamTagStore from '../stores/streamTagStore';
 import StreamFilters from './stream/filters';
 import StreamSidebar from './stream/sidebar';
+import GroupOverlay from './stream/groupOverlay';
 import utils from '../utils';
 import parseLinkHeader from '../utils/parseLinkHeader';
 import {t} from '../locale';
@@ -63,6 +64,7 @@ const Stream = React.createClass({
       tagsLoading: true,
       isSidebarVisible: false,
       isStickyHeader: false,
+      overlayId: null,
       ...this.getQueryStringState()
     };
   },
@@ -356,11 +358,19 @@ const Stream = React.createClass({
           id={id}
           orgId={orgId}
           projectId={projectId}
+          onSelectect={this.selectGroup}
           statsPeriod={statsPeriod} />
       );
     });
 
     return (<ul className="group-list" ref="groupList">{groupNodes}</ul>);
+  },
+
+  selectGroup(groupId) {
+    console.log('groupId:',groupId);
+    this.setState({
+      overlayId: this.state.overlayId === groupId ? null : groupId
+    });
   },
 
   renderEmpty() {
@@ -394,6 +404,14 @@ const Stream = React.createClass({
     }
 
     return body;
+  },
+
+  renderOverlay() {
+    if(this.state.overlayId){
+      return (
+        <GroupOverlay groupId={this.state.overlayId} params={this.props.params}></GroupOverlay>
+      );
+    }
   },
 
   render() {
@@ -436,6 +454,7 @@ const Stream = React.createClass({
             </Sticky>
           </div>
           {this.renderStreamBody()}
+          {this.renderOverlay()}
           <Pagination pageLinks={this.state.pageLinks}/>
         </div>
         <StreamSidebar

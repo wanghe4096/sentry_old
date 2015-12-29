@@ -1,7 +1,12 @@
 .coverage
 .tox
+<<<<<<< HEAD
 .idea
 *DS_Store*
+=======
+**/.DS_Store
+**/.idea
+>>>>>>> 42653dd9eb1202361d90d20239610d0653cb7bc2
 *.egg-info
 *.pyc
 *.log

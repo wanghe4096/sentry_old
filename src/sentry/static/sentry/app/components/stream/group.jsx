@@ -79,6 +79,9 @@ const StreamGroup = React.createClass({
       return;
 
     SelectedGroupStore.toggleSelect(this.state.data.id);
+    if (typeof this.props.onSelectect === 'function') {
+      this.props.onSelectect(this.state.data.id);
+    }
   },
 
   render() {
