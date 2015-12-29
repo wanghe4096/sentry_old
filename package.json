@@ -28,6 +28,7 @@
     "query-string": "2.4.2",
     "raven-js": "git+https://github.com/getsentry/raven-js.git#e276b98c240a41189a74342b2ca86bc4528c322f",
     "react": "0.14.0",
+    "react-addons-css-transition-group": "^0.14.3",
     "react-addons-pure-render-mixin": "0.14.0",
     "react-addons-test-utils": "0.14.0",
     "react-bootstrap": "0.27.3",
