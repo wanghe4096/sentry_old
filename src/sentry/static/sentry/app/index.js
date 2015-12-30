@@ -40,14 +40,13 @@ export default {
   React: require('react'),
   ReactDOM: require('react-dom'),
   Router: require('react-router'),
-
   Sentry: {
     api: require('./api'),
     routes: require('./routes'),
     createHistory: require('history/lib/createBrowserHistory'),
     Alerts: require('./components/alerts'),
     mixins: {
-      ApiMixin: require('./mixins/apiMixin'),
+      ApiMixin: require('./mixins/apiMixin')
     },
     BarChart: require('./components/barChart'),
     i18n: require('./locale'),

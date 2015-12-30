@@ -3,6 +3,7 @@ import ApiMixin from '../mixins/apiMixin';
 import DocumentTitle from 'react-document-title';
 import Footer from '../components/footer';
 import Header from '../components/header';
+import BorderMenu from '../components/borderMenu';
 import HookStore from '../stores/hookStore';
 import LoadingError from '../components/loadingError';
 import LoadingIndicator from '../components/loadingIndicator';
@@ -128,6 +129,7 @@ const OrganizationDetails = React.createClass({
     return (
       <DocumentTitle title={this.getTitle()}>
         <div className="app">
+          <BorderMenu/>
           {this.state.hooks}
           <Header orgId={params.orgId}/>
           {this.props.children}
