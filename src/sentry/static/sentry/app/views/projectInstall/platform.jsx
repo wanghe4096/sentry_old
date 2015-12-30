@@ -83,6 +83,17 @@ const ProjectInstallPlatform = React.createClass({
 
     return (
       <div className="install row">
+        <div className="install-sidebar col-md-2">
+          {this.props.platformData.platforms.map((p_item) => {
+            return (
+              <LanguageNav name={p_item.name} active={platform.id === p_item.id}>
+                {p_item.integrations.map((i_item) => {
+                  return this.getPlatformLink(i_item.id, (i_item.id === p_item.id ? t('Generic') : i_item.name));
+                })}
+              </LanguageNav>
+            );
+          })}
+        </div>
         <div className="install-content col-md-10">
           <div className="box">
             <div className="box-header">
@@ -114,17 +125,6 @@ const ProjectInstallPlatform = React.createClass({
 
             </div>
           </div>
-        </div>
-        <div className="install-sidebar col-md-2">
-          {this.props.platformData.platforms.map((p_item) => {
-            return (
-              <LanguageNav name={p_item.name} active={platform.id === p_item.id}>
-                {p_item.integrations.map((i_item) => {
-                  return this.getPlatformLink(i_item.id, (i_item.id === p_item.id ? t('Generic') : i_item.name));
-                })}
-              </LanguageNav>
-            );
-          })}
         </div>
       </div>
     );
