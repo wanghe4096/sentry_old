@@ -39,7 +39,7 @@ const Gravatar = React.createClass({
 
     return (
       //<img src={this.buildGravatarUrl()} className={this.props.className} title={this.props.title}/>
-        <span className="glyphicon glyphicon-user"></span>
+        <span className="fa fa-lg fa-user"></span>
     );
   }
 });
