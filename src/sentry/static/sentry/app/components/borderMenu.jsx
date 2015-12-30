@@ -33,7 +33,7 @@ const BorderMenu = createClass({
           <div className="op-thumb">
             <nav id="bt-menu" className="bt-menu" ref="menu">
               <a className="bt-menu-trigger" onClick={this.foldHandler}>
-                <img src="images/avatar.jpg" className="op-avatar" />
+                <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/org-logo-normal.png`} className="op-avatar" />
               </a>
               <ul>
                 <li><a href="#">定义抽取规则</a></li>
