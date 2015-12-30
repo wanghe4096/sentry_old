@@ -65,6 +65,7 @@ let routes = (
 
       <Route path=":projectId/" component={ProjectDetails}>
         <IndexRoute component={Stream} />
+
         <Route path="dashboard/" component={ProjectDashboard} />
         <Route path="releases/" component={ProjectReleases} />
         <Route name="releaseDetails" path="releases/:version/" component={ReleaseDetails}>
@@ -72,17 +73,18 @@ let routes = (
           <Route path="all-events/" component={ReleaseAllEvents} />
           <Route path="artifacts/" component={ReleaseArtifacts} />
         </Route>
+
         <Route path="settings/" component={ProjectSettings}>
           <Route path="install/" component={ProjectInstall}>
             <IndexRoute component={ProjectInstallOverview}/>
             <Route path=":platform/" component={ProjectInstallPlatform}/>
           </Route>
         </Route>
-        <Redirect from="group/:groupId/" to="issues/:groupId/" />
-        <Route path="issues/:groupId/" component={GroupDetails}
-               ignoreScrollBehavior>
-          <IndexRoute component={GroupEventDetails} />
 
+        <Redirect from="group/:groupId/" to="issues/:groupId/" />
+
+        <Route path="issues/:groupId/" component={GroupDetails} ignoreScrollBehavior>
+          <IndexRoute component={GroupEventDetails} />
           <Route path="activity/" component={GroupActivity} />
           <Route path="events/:eventId/" component={GroupEventDetails} />
           <Route path="events/" component={GroupEvents} />
