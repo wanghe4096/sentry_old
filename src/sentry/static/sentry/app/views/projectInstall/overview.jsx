@@ -21,14 +21,6 @@ const ProjectInstallOverview = React.createClass({
         <div className="icon-text">{display}</div>
       </Link>
     );
-    //return (
-    //  <li className={`${root} ${platform}`} key={platform}>
-    //    <span className={`platformicon platformicon-${platform}`}/>
-    //    <Link to={`/${orgId}/${projectId}/settings/install/${platform}/`}>
-    //      {display}
-    //    </Link>
-    //  </li>
-    //);
   },
 
   toggleDsn() {
