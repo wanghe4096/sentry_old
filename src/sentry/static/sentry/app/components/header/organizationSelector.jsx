@@ -1,3 +1,9 @@
+/**
+ *
+ * [DEPRECATED] by bold
+ *
+ */
+
 import React from 'react';
 import {Link} from 'react-router';
 import MenuItem from '../menuItem';

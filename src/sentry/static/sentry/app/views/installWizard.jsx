@@ -1,3 +1,8 @@
+/**
+ *
+ * [DEPRECATED] by bold
+ *
+ */
 import React from 'react';
 import DocumentTitle from 'react-document-title';
 import _ from 'underscore';
@@ -190,7 +195,7 @@ const InstallWizard = React.createClass({
     let {error, loading, options, submitError, submitErrorMessage, submitInProgress} = this.state;
     let version = ConfigStore.get('version');
     return (
-      <DocumentTitle title="Sentry Setup">
+      <DocumentTitle title="LogInsight Setup">
         <div className="app">
           <div className="pattern" />
           <div className="setup-wizard">

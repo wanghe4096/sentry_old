@@ -9,7 +9,7 @@ import ListLink from '../../components/listLink';
 
 const Admin = React.createClass({
   getTitle() {
-    return 'Sentry Admin';
+    return 'LogInsight Admin';
   },
 
   render() {

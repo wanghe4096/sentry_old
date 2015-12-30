@@ -103,7 +103,7 @@ const GroupActivity = React.createClass({
         <div className="avatar sentry"><span className="icon-sentry-logo"></span></div>);
 
       let author = {
-        name: item.user ? item.user.name : 'Sentry',
+        name: item.user ? item.user.name : 'LogInsight',
         avatar: avatar,
       };
 

@@ -8,22 +8,13 @@ import UserNav from './userNav';
 import NodeNav from './nodeNav';
 import AlertNav from './alertNav';
 import SearchTextInput from './searchTextInput';
-import OrganizationSelector from './organizationSelector';
 
 const Header = React.createClass({
   mixins: [OrganizationState],
 
   render() {
     let user = ConfigStore.get('user');
-    let logo;
-
-    if (user) {
-      logo = <span className="fa fa-home icon-sentry-logo"/>;
-    } else {
-      logo = <span className="fa fa-home icon-sentry-logo-full"/>;
-    }
-
-    // NOTE: this.props.orgId not guaranteed to be specified
+    let org = this.getOrganization();
     return (
       <header>
         <div className="container">
@@ -32,16 +23,9 @@ const Header = React.createClass({
           </div>
           <UserNav className="pull-right" />
           <Broadcasts className="pull-right" />
-          {/*
-          {this.props.orgId ?
-            <Link to={`/${this.props.orgId}/`} className="logo pull-right">{logo}</Link>
-            :
-            <a href="/" className="logo pull-right">{logo}</a>
-          }
-           */}
           <AlertNav className="pull-right"/>
           <NodeNav className="pull-right"/>
-          <OrganizationSelector organization={this.getOrganization()} className="pull-right" />
+          <Link to={`/${org.slug}/`} className="pull-right" style={{fontSize:15}}>{org.name}</Link>
         </div>
       </header>
     );

@@ -71,7 +71,7 @@ const OrganizationDetails = React.createClass({
           loading: false,
           error: false,
           errorType: null,
-          hooks: hooks,
+          hooks: hooks
         });
 
         TeamStore.loadInitialData(data.teams);
@@ -86,7 +86,7 @@ const OrganizationDetails = React.createClass({
         this.setState({
           loading: false,
           error: true,
-          errorType: errorType,
+          errorType: errorType
         });
       }
     });
@@ -97,16 +97,14 @@ const OrganizationDetails = React.createClass({
   },
 
   getTitle() {
-    if (this.state.organization)
-      return this.state.organization.name;
-    return 'Sentry';
+    return this.state.organization ? this.state.organization.name : 'LogInsight';
   },
 
   render() {
     if (this.state.loading) {
         return (
           <LoadingIndicator triangle={true}>
-            Loading data for your organization.
+            {t('Loading data for your organization.')}
           </LoadingIndicator>
         );
     } else if (this.state.error) {
