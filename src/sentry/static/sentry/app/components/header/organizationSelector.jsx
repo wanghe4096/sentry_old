@@ -1,5 +1,5 @@
 import React from 'react';
-
+import {Link} from 'react-router';
 import MenuItem from '../menuItem';
 import DropdownLink from '../dropdownLink';
 import AppState from '../../mixins/appState';
@@ -28,6 +28,11 @@ const OrganizationSelector = React.createClass({
     let features = ConfigStore.get('features');
 
     return (
+      <Link to={`/${activeOrg.slug}`} className="pull-right" style={{fontSize:14}}>{activeOrg.name}</Link>
+    );
+
+    /*
+    return (
       <DropdownLink
           menuClasses="dropdown-menu-right"
           topLevelClasses={(this.props.className || '') + ' org-selector'}
@@ -40,14 +45,15 @@ const OrganizationSelector = React.createClass({
             </MenuItem>
           );
         })}
-        {features.has('organizations:create') && OrganizationStore.getAll().length && 
+        {features.has('organizations:create') && OrganizationStore.getAll().length &&
           <MenuItem divider={true} />
         }
-        {/* {features.has('organizations:create') &&
+        {{features.has('organizations:create') &&
           <MenuItem href={urlPrefix + '/organizations/new/'}>{t('New Organization')}</MenuItem>
-        } */}
+        }}
       </DropdownLink>
     );
+    */
   }
 });
 
