@@ -18,9 +18,9 @@ const Header = React.createClass({
     let logo;
 
     if (user) {
-      logo = <span className="fa fa-lg fa-home icon-sentry-logo"/>;
+      logo = <span className="fa fa-home icon-sentry-logo"/>;
     } else {
-      logo = <span className="icon-sentry-logo-full"/>;
+      logo = <span className="fa fa-home icon-sentry-logo-full"/>;
     }
 
     // NOTE: this.props.orgId not guaranteed to be specified
