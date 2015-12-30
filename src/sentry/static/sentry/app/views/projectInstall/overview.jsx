@@ -14,13 +14,21 @@ const ProjectInstallOverview = React.createClass({
   getIntegrationLink(root, platform, display) {
     let {orgId, projectId} = this.props.params;
     return (
-      <li className={`${root} ${platform}`} key={platform}>
-        <span className={`platformicon platformicon-${platform}`}/>
-        <Link to={`/${orgId}/${projectId}/settings/install/${platform}/`}>
-          {display}
-        </Link>
-      </li>
+      <Link to={`/${orgId}/${projectId}/settings/install/${platform}/`} key={platform}>
+        <div className="icon-circle-setup">
+          <i className="fa fa-rslog"></i>
+        </div>
+        <div className="icon-text">{display}</div>
+      </Link>
     );
+    //return (
+    //  <li className={`${root} ${platform}`} key={platform}>
+    //    <span className={`platformicon platformicon-${platform}`}/>
+    //    <Link to={`/${orgId}/${projectId}/settings/install/${platform}/`}>
+    //      {display}
+    //    </Link>
+    //  </li>
+    //);
   },
 
   toggleDsn() {
@@ -31,6 +39,7 @@ const ProjectInstallOverview = React.createClass({
     let data = this.state.data;
     let frameworkList = [];
     let languageList = [];
+
     data.platforms.forEach((platform) => {
       platform.integrations.forEach((integration) => {
         if (integration.type === 'framework')
@@ -41,61 +50,111 @@ const ProjectInstallOverview = React.createClass({
     });
 
     return (
-      <div>
-        <h1>{t('Configure your application')}</h1>
-
-        <p>{t('Get started by selecting the platform or language that powers your application.')}</p>
-
-        {this.state.showDsn ?
-          <div>
-            <h3>{t('DSN')}</h3>
-
-            <div className="control-group">
-              <label>{t('DSN')}</label>
-              <AutoSelectText className="form-control disabled">{data.dsn}</AutoSelectText>
-            </div>
-
-            <div className="control-group">
-              <label>{t('Public DSN')}</label>
-              <AutoSelectText className="form-control disabled">{data.dsnPublic}</AutoSelectText>
-              <div className="help-block">{t('Your public DSN should be used with JavaScript and ActionScript.')}</div>
-            </div>
+      <div className="add-log clearfix">
+        <div className="col-md-6 select-log-type">
+          <div className="select-type-text">
+            <h3 className="select-type-name">Agent方式</h3>
+            <ul>
+              <li>实时采集</li>
+              <li>无数据丢失</li>
+              <li>一键安装，自动接入</li>
+            </ul>
           </div>
-        :
-          <p><small>{tct('Already have things setup? [link:Get your DSN].', {
-            link: <a onClick={this.toggleDsn} />
-          })}</small></p>
-        }
+          <div className="select-type-icon">
+            <a href="#" cate="linux">
+              <div className="icon-circle-setup">
+                <i className="fa fa-linux"></i>
+              </div>
+              <div className="icon-text">Linux</div>
+            </a>
+            <a href="#" cate="windows">
+              <div className="icon-circle-setup">
+                <i className="fa fa-windows"></i>
+              </div>
+              <div className="icon-text">windows</div>
+            </a>
+          </div>
+        </div>
 
-        <h3>Popular</h3>
+        <div className="col-md-6 select-log-type">
+          <div className="select-type-text">
+            <h3 className="select-type-name">Syslog无代理方式</h3>
+            <ul>
+              <li>无需安装任何应用</li>
+              <li>容易配置</li>
+            </ul>
+          </div>
+          <div className="select-type-icon">
+            <a href="#">
+              <div className="icon-circle-setup">
+                <i className="fa fa-rslog"></i>
+              </div>
+              <div className="icon-text">Rslog</div>
+            </a>
+            <a href="#">
+              <div className="icon-circle-setup">
+                <i className="fa fa-syslog"></i>
+              </div>
+              <div className="icon-text">Syslog-Ng</div>
+            </a>
+            <a href="#">
+              <div className="icon-circle-setup">
+                <i className="fa fa-syslogd"></i>
+              </div>
+              <div className="icon-text">Syslogd</div>
+            </a>
 
-        <ul className="client-platform-list">
-          {this.getIntegrationLink('javascript', 'javascript', 'JavaScript')}
-          {this.getIntegrationLink('python', 'python-django', 'Django')}
-          {this.getIntegrationLink('ruby', 'ruby-rails', 'Rails')}
-          {this.getIntegrationLink('node', 'node-express', 'Express')}
-          {this.getIntegrationLink('php', 'php-laravel', 'Laravel')}
-          {this.getIntegrationLink('php', 'php-symfony2', 'Symfony2')}
-          {this.getIntegrationLink('java', 'java-log4j', 'Log4j')}
-        </ul>
+          </div>
+        </div>
 
-        <h3>{t('Frameworks')}</h3>
-        <ul className="client-platform-list">
-          {frameworkList.map((item) => {
-            let [platform, integration] = item;
-            return this.getIntegrationLink(platform.id, integration.id, integration.name);
-          })}
-        </ul>
+        <div className="col-md-12 select-log-type border-t-b">
+          <div className="select-type-text">
+            <h3 className="select-type-name">编程语言支持</h3>
+            <ul>
+              <li>直接从应用内部发送日志</li>
+              <li>无需担心日志存储</li>
+            </ul>
+          </div>
+          <div className="select-type-icon">
+            {languageList.map((item) => {
+              let [platform, integration] = item;
+              return this.getIntegrationLink(platform.id, integration.id, integration.name);
+            })}
+          </div>
+          <ul className="hide">
+            {frameworkList.map((item) => {
+              let [platform, integration] = item;
+              return this.getIntegrationLink(platform.id, integration.id, integration.name);
+            })}
+          </ul>
+        </div>
 
-        <h3>Languages</h3>
-        <ul className="client-platform-list">
-          {languageList.map((item) => {
-            let [platform, integration] = item;
-            return this.getIntegrationLink(platform.id, integration.id, integration.name);
-          })}
-        </ul>
+        <div className="col-md-6 select-log-type">
+          <div className="select-type-text">
+            <h3 className="select-type-name">手工方法</h3>
+            <ul>
+              <li>手工上传测试体验</li>
+              <li>HTTP</li>
+            </ul>
+          </div>
+          <div className="select-type-icon">
+            <a href="#" cate="upload">
+              <div className="icon-circle-setup">
+                <i className="fa fa-upload"></i>
+              </div>
+              <div className="icon-text">上传</div>
+            </a>
+            <a href="#">
+              <div className="icon-circle-setup">
+                <i className="fa fa-http"></i>
+              </div>
+              <div className="icon-text">Http</div>
+            </a>
 
-        <p>
+          </div>
+        </div>
+        <div className="col-md-12">
+          <p>
           {tct(`
              [em:Don\'t see your platform listed here?] For a complete list of
              client integrations, please visit see [docLink:our in-depth documentation].
@@ -103,7 +162,8 @@ const ProjectInstallOverview = React.createClass({
             em: <em />,
             docLink: <a href="https://docs.getsentry.com" />
           })}
-        </p>
+          </p>
+        </div>
       </div>
     );
   }
