@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"> 
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+		<title>上传数据页面</title>
+	    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/addlog.css" />
+		<script src="http://dreamsky.github.io/main/blog/common/jquery.min.js"></script>
+        <script src="js/step.js" type="text/javascript" charset="utf-8"></script>
+	</head>
+	<body>
+        <div class="container">
+            <div class="page-header">
+                <div class="content card row no-p-t">
+                    <h2 class="card-heading simple no-p-l">
+                        <div class="container-alligment">
+                    <span class="selected-step">
+                       1
+                    </span>
+                    <span class="selected-step-text">
+                        选择日志接入方式
+                    </span>
+                        </div>
+                        <div class="container-alligment">
+                    <span class="unselected-step">
+                       2
+                    </span>
+                    <span class="unselected-step-text">
+                        配置
+                    </span>
+                        </div>
+                    </h2>
+                    <div class="card-body clearfix">
+
+                        <div class="add-log clearfix">
+                            <div class="col-md-6 select-log-type">
+                                <div class="select-type-text">
+                                    <h3 class="select-type-name">Agent方式</h3>
+                                    <ul>
+                                        <li>实时采集</li>
+                                        <li>无数据丢失</li>
+                                        <li>一键安装，自动接入</li>
+                                    </ul>
+                                </div>
+                                <div class="select-type-icon">
+                                    <a href="javascript:;" cate="linux">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-linux"></i>
+                                        </div>
+                                        <div class="icon-text">Linux</div>
+                                    </a>
+                                    <a href="javascript:;" cate="windows">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-windows"></i>
+                                        </div>
+                                        <div class="icon-text">windows</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 select-log-type">
+                                <div class="select-type-text">
+                                    <h3 class="select-type-name">Syslog无代理方式</h3>
+                                    <ul>
+                                        <li>无需安装任何应用</li>
+                                        <li>容易配置</li>
+                                    </ul>
+                                </div>
+                                <div class="select-type-icon">
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-rslog"></i>
+                                        </div>
+                                        <div class="icon-text">Rslog</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslog"></i>
+                                        </div>
+                                        <div class="icon-text">Syslog-Ng</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">Syslogd</div>
+                                    </a>
+
+                                </div>
+                            </div>
+
+                            <div class="col-md-12 select-log-type border-t-b">
+                                <div class="select-type-text">
+                                    <h3 class="select-type-name">编程语言支持</h3>
+                                    <ul>
+                                        <li>直接从应用内部发送日志</li>
+                                        <li>无需担心日志存储</li>
+                                    </ul>
+                                </div>
+                                <div class="select-type-icon">
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-rslog"></i>
+                                        </div>
+                                        <div class="icon-text">Nodejs</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslog"></i>
+                                        </div>
+                                        <div class="icon-text">PHP</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">Python</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">Ruby</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">java</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">GO</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">javascript</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">C#</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-syslogd"></i>
+                                        </div>
+                                        <div class="icon-text">object-c</div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            <div class="col-md-6 select-log-type">
+                                <div class="select-type-text">
+                                    <h3 class="select-type-name">手工方法</h3>
+                                    <ul>
+                                        <li>手工上传测试体验</li>
+                                        <li>HTTP</li>
+                                    </ul>
+                                </div>
+                                <div class="select-type-icon">
+                                    <a href="javascript:;" cate="upload">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-upload"></i>
+                                        </div>
+                                        <div class="icon-text">上传</div>
+                                    </a>
+                                    <a href="javascript:;">
+                                        <div class="icon-circle-setup">
+                                            <i class="fa fa-http"></i>
+                                        </div>
+                                        <div class="icon-text">Http</div>
+                                    </a>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="hide" style="margin-bottom: 100px;" id="linux">
+                          <ul id="addlog-steps">
+                              <li cate="linux">
+                                <div class="card card-small" >
+                                  <h2 class="card-heading simple">
+                                    <i class="fa fa-linux"></i>
+                                    Linux
+                                  </h2>
+
+                                  <div class="card-body">
+                                    <br>
+                                     <div class="row-fluid">
+                                      <div id="properties" class="section">
+                                        <ul class="nav nav-tabs" style="margin-bottom: -1px;">
+                                          <li part="step1" class="active"><a onclick="showStep('step1')"  class="step">第1步: <i class="fa fa-cogs"></i> 开始配置</a></li>
+                                          <li part="step2" ><a onclick="showStep('step2')"  class="step">第2步: <i class="fa fa-flag"></i> 完成</a></li>
+                                        </ul>
+
+                                        <div class="steps">
+                                            <div part="step1" class="stepDetails">
+
+                                              <div class="card card-tab  card-listcontent">
+                                                <h2 class="card-heading simple">安装LogInsight Linux的代理程序</h2>
+
+                                                <div class="card-body">
+                                                  <p>
+                                                    复制并粘贴下面的代码片段到你的终端上安装代理
+                                                  </p>
+                                                  <span class="code">
+                                                     wget http://loginsight.cn/loginsight/
+                                                  </span>
+                                                </div>
+                                              </div>
+
+
+                                            </div>
+
+                                          <div part="step2" class="stepDetails hide">
+
+                                          <div class="card card-home card-tab card-listcontent">
+                                            <h2 class="card-heading simple">配置结果</h2>
+                                            <div class="card-body">
+                                                  <div class="success-container">
+                                                    <i class="fa fa-check"></i>
+                                                    <div class="success-header">
+                                                        <h3>已成功配置。</h3>
+                                                    </div>
+                                                    <div class="success-option copy-token" style="display: none;">
+                                                        <label for="token" class="token-label">Token Value</label>
+                                                        <input id="token" type="text" onclick="this.focus();this.select()" readonly="readonly" value="false">
+                                                    </div>
+                                                    <div class="success-option start-searching">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-search"></i>
+                                                        </a>
+                                                        <p>
+                                                            <span>开始搜索</span>
+                                                            <a href="javascript:;" class="external" target="_blank"> 查看搜索教程。</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="success-option add-more-data">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                        <p> 添加更多数据
+                                                            <a href="javascript:;" class="external" target="_blank"> 查看添加数据教程。</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="success-option build-dashboards">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-th-large"></i>
+                                                        </a>
+                                                        <p> 构建仪表板
+                                                            <a href="/zh-CN/help?location=learnmore.dashboards" class="external" target="_blank"> 查看构建仪表板教程。</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          </div>
+
+
+                                          </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-actions">
+                                    <a act="back" onclick="showStep('step1')" class="btn btn-default disabled">返回</a>
+                                    <a act="next" onclick="showStep('step2')" class="btn btn-primary disable-feedback">下一步</a>
+                                  </div>
+
+                                </div>
+                              </li>
+                              <li cate="windows">
+                                <div class="card card-small">
+                                  <h2 class="card-heading simple">
+                                    <i class="fa fa-windows"></i>
+                                    windows
+                                  </h2>
+
+                                  <div class="card-body">
+                                    <br>
+                                     <div class="row-fluid">
+                                      <div id="properties" class="section">
+                                        <ul class="nav nav-tabs" style="margin-bottom: -1px;">
+                                          <li part="step1" class="active"><a onclick="showStep('step1')"  class="step">第1步: <i class="fa fa-cogs"></i> 开始配置</a></li>
+                                          <li part="step2" ><a onclick="showStep('step2')"  class="step">第2步: <i class="fa fa-flag"></i> 完成</a></li>
+                                        </ul>
+
+                                        <div class="steps">
+                                            <div part="step1" class="stepDetails">
+
+                                              <div class="card card-tab  card-listcontent">
+                                                <h2 class="card-heading simple">安装LogInsight Linux的代理程序</h2>
+
+                                                <div class="card-body">
+                                                  <p>
+                                                    复制并粘贴下面的代码片段到你的终端上安装代理
+                                                  </p>
+                                                  <span class="code">
+                                                     wget http://loginsight.cn/loginsight/
+                                                  </span>
+                                                </div>
+                                              </div>
+
+
+                                            </div>
+
+                                          <div part="step2" class="stepDetails hide">
+
+                                          <div class="card card-home card-tab card-listcontent">
+                                            <h2 class="card-heading simple">配置结果</h2>
+                                            <div class="card-body">
+                                                  <div class="success-container">
+                                                    <i class="fa fa-check"></i>
+                                                    <div class="success-header">
+                                                        <h3>已成功配置。</h3>
+                                                    </div>
+                                                    <div class="success-option copy-token" style="display: none;">
+                                                        <label for="token" class="token-label">Token Value</label>
+                                                        <input id="token" type="text" onclick="this.focus();this.select()" readonly="readonly" value="false">
+                                                    </div>
+                                                    <div class="success-option start-searching">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-search"></i>
+                                                        </a>
+                                                        <p>
+                                                            <span>开始搜索</span>
+                                                            <a href="javascript:;" class="external" target="_blank"> 查看搜索教程。</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="success-option add-more-data">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                        <p> 添加更多数据
+                                                            <a href="javascript:;" class="external" target="_blank"> 查看添加数据教程。</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="success-option build-dashboards">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-th-large"></i>
+                                                        </a>
+                                                        <p> 构建仪表板
+                                                            <a href="/zh-CN/help?location=learnmore.dashboards" class="external" target="_blank"> 查看构建仪表板教程。</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                          </div>
+                                          </div>
+
+
+                                          </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-actions">
+                                    <a act="back" onclick="showStep('step1')" class="btn btn-default disabled">返回</a>
+                                    <a act="next" onclick="showStep('step2')"  class="btn btn-primary disable-feedback">下一步</a>
+                                  </div>
+
+                                </div>
+                              </li>
+                              <li cate="upload">
+                                <div class="card card-small">
+                                  <h2 class="card-heading simple">
+                                    <i class="fa fa-upload"></i>
+                                    上传
+                                  </h2>
+
+                                  <div class="card-body">
+                                    <br>
+                                     <div class="row-fluid">
+                                      <div id="properties" class="section">
+                                        <ul class="nav nav-tabs" style="margin-bottom: -1px">
+                                          <li part="step1" class="active"><a onclick="showStep('step1')" class="step">第1步: <i class="fa fa-cogs"></i> 选择来源</a></li>
+                                          <li part="step2"><a id="lastStep" onclick="showStep('step2')" class="step">第2步: <i class="fa fa-flag"></i> 完成</a></li>
+                                        </ul>
+
+                                        <div class="steps">
+                                            <div part="step1" class="stepDetails">
+
+                                              <div class="card card-tab  card-listcontent">
+                                                <h2 class="card-heading simple">选择来源</h2>
+
+                                                <div class="card-body fileUpload">
+                                                  <p>
+                                                    选定的文件
+                                                  </p>
+                                                  <a href="javascript:;" class="btn dropz">选择文件</a>
+                                                  <div class="dropzone">
+                                                  <i class="fa fa-upload dropzone-icon" style="font-size: 74px;color: rgba(82,160,51,0.8);"></i>
+                                                            <svg class="dropzone-icon" width="72px" height="88px" viewBox="0 0 72 88" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                                <g class="fill">
+                                                                    <path d="M50,27 L68.0005854,27 C70.2022516,27 72,28.7919267 72,31.0023804 L72,83.9976196 C72,86.2074215 70.2094011,88 68.0005854,88 L3.99941455,88 C1.79774843,88 0,86.2080733 0,83.9976196 L0,31.0023804 C0,28.7925785 1.79059889,27 3.99941455,27 L21,27 L21,32 L5.99898406,32 C5.4472604,32 5,32.4408979 5,32.9958767 L5,82.0041233 C5,82.5541308 5.44605521,83 5.99898406,83 L66.0010159,83 C66.5527396,83 67,82.5591021 67,82.0041233 L67,32.9958767 C67,32.4458692 66.5539448,32 66.0010159,32 L50,32 L50,27 Z"></path>
+                                                                    <path d="M41.9634682,10 L41.9634682,28 L46.9634682,28 L46.9634682,5 L44.4634682,5 L23.9634682,5 L23.9634682,10 L41.9634682,10 Z" transform="translate(35.463468, 16.500000) rotate(-45.000000) translate(-35.463468, -16.500000) "></path>
+                                                                     <rect x="33" y="3" width="5" height="51"></rect>
+                                                                </g>
+                                                            </svg>
+                                                            <svg class="dropzone-box" width="580px" height="170px" viewBox="0 0 580 170" version="1.1" xmlns="http://www.w3.org/2000/svg">
+                                                                 <rect class="dashed" x="1" y="1" rx="10" ry="10" width="578" height="168"></rect>
+                                                            </svg>
+                                                            <div class="dropzone-text"><h2> 将您的数据文件拖到这儿 </h2></div>
+                                                        </div>
+                                                  <span class="max-filesize">最大文件上载大小为500 Mb</span>
+                                                </div>
+                                              </div>
+
+
+                                            </div>
+
+                                          <div part="step2" class="stepDetails hide">
+
+                                          <div class="card card-home card-tab card-listcontent">
+                                            <h2 class="card-heading simple">配置结果</h2>
+                                            <div class="card-body">
+                                                  <div class="success-container">
+                                                    <i class="fa fa-check"></i>
+                                                    <div class="success-header">
+                                                        <h3>文件 已成功上载。</h3>
+                                                        <p>文件名： index.json
+                                                        </p>
+                                                    </div>
+                                                    <div class="success-option copy-token" style="display: none;">
+                                                        <label for="token" class="token-label">Token Value</label>
+                                                        <input id="token" type="text" onclick="this.focus();this.select()" readonly="readonly" value="false">
+                                                    </div>
+                                                    <div class="success-option start-searching">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-search"></i>
+                                                        </a>
+                                                        <p>
+                                                            <span>开始搜索</span>
+                                                            <a href="javascript:;" class="external" target="_blank"> 查看搜索教程。</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="success-option add-more-data">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-plus"></i>
+                                                        </a>
+                                                        <p> 添加更多数据
+                                                            <a href="javascript:;" class="external" target="_blank"> 查看添加数据教程。</a>
+                                                        </p>
+                                                    </div>
+                                                    <div class="success-option build-dashboards">
+                                                        <a class="btn btn-success-page success-option-icon" href="javascript:;">
+                                                            <i class="fa fa-th-large"></i>
+                                                        </a>
+                                                        <p> 构建仪表板
+                                                            <a href="/zh-CN/help?location=learnmore.dashboards" class="external" target="_blank"> 查看构建仪表板教程。</a>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                              </div>
+                                            </div>
+                                          </div>
+
+
+                                          </div>
+
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  <div class="form-actions">
+                                    <a act="back" onclick="showStep('step1')" class="btn btn-default disabled">返回</a>
+                                    <a act="next" onclick="showStep('step2')"  class="btn btn-primary disable-feedback">下一步</a>
+                                  </div>
+                                </div>
+                              </li>
+                          </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</body>
+</html>
