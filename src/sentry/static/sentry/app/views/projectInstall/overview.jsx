@@ -16,7 +16,7 @@ const ProjectInstallOverview = React.createClass({
     return (
       <Link to={`/${orgId}/${projectId}/settings/install/${platform}/`} key={platform}>
         <div className="icon-circle-setup">
-          <i className="fa fa-rslog"></i>
+          <i className={`platformicon platformicon-${platform}`} />
         </div>
         <div className="icon-text">{display}</div>
       </Link>
@@ -51,7 +51,7 @@ const ProjectInstallOverview = React.createClass({
 
     return (
       <div className="add-log clearfix">
-        <div className="col-md-12 select-log-type border-t-b">
+        <div className="col-md-12 select-log-type">
           <div className="select-type-text">
             <h3 className="select-type-name">编程语言支持</h3>
             <ul>
@@ -73,7 +73,7 @@ const ProjectInstallOverview = React.createClass({
           </ul>
         </div>
 
-        <div className="col-md-12">
+        <div className="col-md-12 hide">
           <p>
           {tct(`
              [em:Don\'t see your platform listed here?] For a complete list of
