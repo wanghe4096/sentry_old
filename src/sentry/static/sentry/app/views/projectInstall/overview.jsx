@@ -51,62 +51,6 @@ const ProjectInstallOverview = React.createClass({
 
     return (
       <div className="add-log clearfix">
-        <div className="col-md-6 select-log-type">
-          <div className="select-type-text">
-            <h3 className="select-type-name">Agent方式</h3>
-            <ul>
-              <li>实时采集</li>
-              <li>无数据丢失</li>
-              <li>一键安装，自动接入</li>
-            </ul>
-          </div>
-          <div className="select-type-icon">
-            <a href="#" cate="linux">
-              <div className="icon-circle-setup">
-                <i className="fa fa-linux"></i>
-              </div>
-              <div className="icon-text">Linux</div>
-            </a>
-            <a href="#" cate="windows">
-              <div className="icon-circle-setup">
-                <i className="fa fa-windows"></i>
-              </div>
-              <div className="icon-text">windows</div>
-            </a>
-          </div>
-        </div>
-
-        <div className="col-md-6 select-log-type">
-          <div className="select-type-text">
-            <h3 className="select-type-name">Syslog无代理方式</h3>
-            <ul>
-              <li>无需安装任何应用</li>
-              <li>容易配置</li>
-            </ul>
-          </div>
-          <div className="select-type-icon">
-            <a href="#">
-              <div className="icon-circle-setup">
-                <i className="fa fa-rslog"></i>
-              </div>
-              <div className="icon-text">Rslog</div>
-            </a>
-            <a href="#">
-              <div className="icon-circle-setup">
-                <i className="fa fa-syslog"></i>
-              </div>
-              <div className="icon-text">Syslog-Ng</div>
-            </a>
-            <a href="#">
-              <div className="icon-circle-setup">
-                <i className="fa fa-syslogd"></i>
-              </div>
-              <div className="icon-text">Syslogd</div>
-            </a>
-
-          </div>
-        </div>
-
         <div className="col-md-12 select-log-type border-t-b">
           <div className="select-type-text">
             <h3 className="select-type-name">编程语言支持</h3>
@@ -129,30 +73,6 @@ const ProjectInstallOverview = React.createClass({
           </ul>
         </div>
 
-        <div className="col-md-6 select-log-type">
-          <div className="select-type-text">
-            <h3 className="select-type-name">手工方法</h3>
-            <ul>
-              <li>手工上传测试体验</li>
-              <li>HTTP</li>
-            </ul>
-          </div>
-          <div className="select-type-icon">
-            <a href="#" cate="upload">
-              <div className="icon-circle-setup">
-                <i className="fa fa-upload"></i>
-              </div>
-              <div className="icon-text">上传</div>
-            </a>
-            <a href="#">
-              <div className="icon-circle-setup">
-                <i className="fa fa-http"></i>
-              </div>
-              <div className="icon-text">Http</div>
-            </a>
-
-          </div>
-        </div>
         <div className="col-md-12">
           <p>
           {tct(`
