@@ -118,7 +118,7 @@ const GroupEventDetails = React.createClass({
     return (
       <div className="group-overlay">
         <div className="row event">
-          <div className="col-md-9">
+          <div className="col-md-12">
             {evt &&
               <GroupEventToolbar group={group} event={evt} orgId={params.orgId} projectId={params.projectId} />
             }
@@ -147,9 +147,6 @@ const GroupEventDetails = React.createClass({
                 orgId={params.orgId}
                 projectId={params.projectId} />
             )}
-          </div>
-          <div className="col-md-3">
-            
           </div>
         </div>
       </div>
