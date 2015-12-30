@@ -104,7 +104,7 @@ const Broadcasts = React.createClass({
       return !item.hasSeen;
     }).length;
 
-    let title = <span className="icon-globe" />;
+    let title = <span className="fa fa-lg fa-globe" />;
     return (
       <DropdownLink
           topLevelClasses={`broadcasts ${this.props.className || ''} ${unseenCount && 'unseen'}`}

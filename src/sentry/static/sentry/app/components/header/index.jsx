@@ -18,7 +18,7 @@ const Header = React.createClass({
     let logo;
 
     if (user) {
-      logo = <span className="glyphicon glyphicon-home icon-sentry-logo"/>;
+      logo = <span className="fa fa-lg fa-home icon-sentry-logo"/>;
     } else {
       logo = <span className="icon-sentry-logo-full"/>;
     }

@@ -107,7 +107,7 @@ const NodeNav = React.createClass({
     let title = <span className="glyphicon glyphicon-import" />;
     return (
         <a href="javascript:;" className="pull-right alert-nav">
-          <span className="glyphicon glyphicon-bell"></span>
+          <span className="fa fa-lg fa-bell"></span>
           <span className="badge badge-sm up bg-danger pull-right-xs">2</span>
         </a>
     );
