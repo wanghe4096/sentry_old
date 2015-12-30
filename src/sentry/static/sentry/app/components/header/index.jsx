@@ -7,7 +7,7 @@ import Broadcasts from './broadcasts';
 import UserNav from './userNav';
 import NodeNav from './nodeNav';
 import AlertNav from './alertNav';
-import SearchTextInput from './searchTextInput';
+import SearchTextInput from './SearchTextInput';
 
 const Header = React.createClass({
   mixins: [OrganizationState],
