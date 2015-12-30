@@ -71,6 +71,7 @@ const ProjectInstallPlatform = React.createClass({
     let {orgId, projectId} = this.props.params;
     return (
       <Link
+        key={platform}
         to={`/${orgId}/${projectId}/settings/install/${platform}/`}
         className="list-group-item">
           {display || platform}
@@ -86,7 +87,7 @@ const ProjectInstallPlatform = React.createClass({
         <div className="install-sidebar col-md-2">
           {this.props.platformData.platforms.map((p_item) => {
             return (
-              <LanguageNav name={p_item.name} active={platform.id === p_item.id}>
+              <LanguageNav key={p_item.id} name={p_item.name} active={platform.id === p_item.id}>
                 {p_item.integrations.map((i_item) => {
                   return this.getPlatformLink(i_item.id, (i_item.id === p_item.id ? t('Generic') : i_item.name));
                 })}
