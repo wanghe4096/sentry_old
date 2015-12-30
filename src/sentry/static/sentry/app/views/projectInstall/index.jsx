@@ -10,7 +10,8 @@ const ProjectInstall = React.createClass({
   },
 
   mixins: [
-    ApiMixin
+    ApiMixin,
+    History
   ],
 
   getInitialState() {
@@ -47,17 +48,20 @@ const ProjectInstall = React.createClass({
       return <LoadingError onRetry={this.fetchData} />;
 
     let data = this.state.data;
+    let {orgId, projectId} = this.props.params;
+    let isFirstSteP = this.history.isActive(`/${orgId}/${projectId}/settings/install/`,null,true);
+
     return (
       <div className="row">
         <div className="project-install">
           <h2 className="card-heading simple no-p-l">
             <div className="container-alligment">
-              <span className="selected-step">1</span>
-              <span className="selected-step-text">选择日志接入方式</span>
+              <span className={isFirstSteP?`selected-step`:`unselected-step`}>1</span>
+              <span className={isFirstSteP?`selected-step-text`:`unselected-step-text`}>选择日志接入方式</span>
             </div>
             <div className="container-alligment">
-              <span className="unselected-step">2</span>
-              <span className="unselected-step-text">配置</span>
+              <span className={isFirstSteP?`unselected-step`:`selected-step`}>2</span>
+              <span className={isFirstSteP?`unselected-step-text`:`selected-step-text`}>配置</span>
             </div>
           </h2>
           <div className="card-body clearfix">
