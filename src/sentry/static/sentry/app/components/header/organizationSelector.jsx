@@ -43,9 +43,9 @@ const OrganizationSelector = React.createClass({
         {features.has('organizations:create') && OrganizationStore.getAll().length && 
           <MenuItem divider={true} />
         }
-        {features.has('organizations:create') &&
+        {/* {features.has('organizations:create') &&
           <MenuItem href={urlPrefix + '/organizations/new/'}>{t('New Organization')}</MenuItem>
-        }
+        } */}
       </DropdownLink>
     );
   }

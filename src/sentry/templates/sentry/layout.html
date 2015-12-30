@@ -114,10 +114,10 @@
               {% for org in request.user|list_organizations %}
                 <li><a href="{% url 'sentry-organization-home' org.slug %}">{{ org.name }}</a></li>
               {% endfor %}
-              {% feature organizations:create %}
-                <li class="divider"></li>
-                <li><a href="{% url 'sentry-create-organization' %}">New Organization</a></li>
-              {% endfeature %}
+              <!--{% feature organizations:create %}-->
+                <!--<li class="divider"></li>-->
+                <!--<li><a href="{% url 'sentry-create-organization' %}">New Organization</a></li>-->
+              <!--{% endfeature %}-->
             </ul>
           </div>
         </div>
