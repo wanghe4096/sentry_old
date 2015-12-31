@@ -25,7 +25,7 @@ const Header = React.createClass({
           <Broadcasts className="pull-right" />
           <AlertNav className="pull-right"/>
           <NodeNav className="pull-right"/>
-          <Link to={`/${org.slug}/`} className="pull-right" style={{fontSize:15}}>{org.name}</Link>
+          {org && <Link to={`/${org.slug}/`} className="pull-right" style={{fontSize:15}}>{org.name}</Link>}
         </div>
       </header>
     );
