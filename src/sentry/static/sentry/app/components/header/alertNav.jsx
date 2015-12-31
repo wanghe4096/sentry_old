@@ -5,7 +5,9 @@ import DropdownLink from '../dropdownLink';
 import LoadingIndicator from '../loadingIndicator';
 import {t} from '../../locale';
 
-const NodeNav = React.createClass({
+// todo alterNav 和 boardcast 功能是否冲突?
+
+const AlertNav = React.createClass({
   mixins: [
     ApiMixin
   ],
@@ -114,4 +116,4 @@ const NodeNav = React.createClass({
   }
 });
 
-export default NodeNav;
+export default AlertNav;

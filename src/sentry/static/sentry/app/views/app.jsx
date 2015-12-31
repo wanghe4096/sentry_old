@@ -4,9 +4,10 @@ import Alerts from '../components/alerts';
 import AlertActions from '../actions/alertActions.jsx';
 import ConfigStore from '../stores/configStore';
 import Indicators from '../components/indicators';
-import InstallWizard from './installWizard';
+//import InstallWizard from './installWizard';
 import LoadingIndicator from '../components/loadingIndicator';
 import OrganizationStore from '../stores/organizationStore';
+import {t} from '../locale';
 
 const App = React.createClass({
   mixins: [
@@ -15,9 +16,8 @@ const App = React.createClass({
 
   getInitialState() {
     return {
-      loading: false,
-      error: false,
-      needsUpgrade: ConfigStore.get('needsUpgrade'),
+      loading: true,
+      error: false
     };
   },
 
@@ -29,7 +29,7 @@ const App = React.createClass({
       success: (data) => {
         OrganizationStore.load(data);
         this.setState({
-          loading: false,
+          loading: false
         });
       },
       error: () => {
@@ -60,27 +60,13 @@ const App = React.createClass({
     OrganizationStore.load([]);
   },
 
-  onConfigured() {
-    this.setState({needsUpgrade: false});
-  },
-
   render() {
     let user = ConfigStore.get('user');
-    let needsUpgrade = this.state.needsUpgrade;
-
-    if (user && user.isSuperuser && needsUpgrade) {
-      return (
-        <div>
-          <Indicators className="indicators-container" />
-          <InstallWizard onConfigured={this.onConfigured} />
-        </div>
-      );
-    }
 
     if (this.state.loading) {
       return (
         <LoadingIndicator triangle={true}>
-          Getting a list of all of your organizations.
+          {t('Getting a list of all of your organizations.')}
         </LoadingIndicator>
       );
     }

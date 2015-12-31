@@ -3,7 +3,8 @@
 
 <script>
 Raven.config('{% public_dsn %}', {
-  release: '{{ sentry_version.build }}',
+  // release: '{{ sentry_version.build }}',
+  release:'custom-8.0.0rc1',
   whitelistUrls: {% convert_to_json ALLOWED_HOSTS %}
 }).install();
 

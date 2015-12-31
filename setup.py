@@ -244,6 +244,7 @@ class BuildJavascriptCommand(Command):
             log.info("pulled version information from 'sentry' module".format(
                      sentry.__file__))
             version = VERSION
+            sentry.__build__ = 'v8.0.0-rc1'
             build = sentry.__build__
         finally:
             sys.path.pop(0)
