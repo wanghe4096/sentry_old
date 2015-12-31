@@ -84,7 +84,7 @@ if 'DATABASE_URL' in os.environ:
     if url.scheme == 'mysql':
         DATABASES['default']['ENGINE'] = 'django.db.backends.mysql'
 
-EMAIL_SUBJECT_PREFIX = '[Sentry] '
+EMAIL_SUBJECT_PREFIX = '[LogInsight] '
 
 # This should always be UTC.
 TIME_ZONE = 'UTC'
