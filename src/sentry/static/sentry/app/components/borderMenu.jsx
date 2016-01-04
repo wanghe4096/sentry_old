@@ -46,10 +46,10 @@ const BorderMenu = createClass({
                 <li><a href="#">数据源管理（个人）</a></li>
               </ul>
               <ul>
-                <li><a href="#" className="fa fa-dashboard"></a></li>
+                <li><a href="#" className="fa fa-dashboard" /></li>
                 <li><a href="#" className="fa fa-refresh">+</a></li>
-                <li><a href="#" className="fa fa-lock"></a></li>
-                <li><a href="#" className="fa fa-sign-out"></a></li>
+                <li><a href="#" className="fa fa-lock" /></li>
+                <li><a href="#" className="fa fa-sign-out" /></li>
               </ul>
             </nav>
           </div>
@@ -59,30 +59,25 @@ const BorderMenu = createClass({
           <div className="left-primary-nav">
             <ul id="myTab">
               <li>
-                <IndexLink
-                  to={`/${org.slug}/`}
+                <Link
+                  to={`/`}
                   activeClassName="active"
                   className="fa fa-home"
-                  title="主页"></IndexLink>
-              </li>
-              <li>
-                <Link
-                  to={`/organizations/${org.slug}/stats/`}
-                  activeClassName="active"
-                  className="fa fa-th-large"
-                  title="仪表板"></Link>
-              </li>
-              <li>
-                <a
-                  onClick={() => window.location = `/account/settings/`}
-                  className="fa fa-user"
-                  title="用户设置"></a>
+                  onClick={this.onClickHandler}
+                  title="主页"/>
               </li>
             </ul>
           </div>
         </div>
       </div>
     );
+  },
+  onClickHandler(e) {
+    //fix staticpage
+    //if (window.STATIC_PAGE) {
+      e.preventDefault();
+      window.location = $(e.target).attr('href');
+    //}
   }
 });
 

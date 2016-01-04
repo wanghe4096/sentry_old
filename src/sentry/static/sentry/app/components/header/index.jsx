@@ -8,6 +8,7 @@ import UserNav from './userNav';
 import NodeNav from './nodeNav';
 import AlertNav from './alertNav';
 import SearchTextInput from './SearchTextInput';
+import AddBtn from './AddBtn';
 
 const Header = React.createClass({
   mixins: [OrganizationState],
@@ -26,10 +27,13 @@ const Header = React.createClass({
           */}
           <UserNav className="pull-right" />
           <Broadcasts className="pull-right" />
+          <AddBtn className="pull-right" />
           {/*
           <AlertNav className="pull-right"/>
           */}
-          <NodeNav className="pull-right"/>
+          {
+            // <NodeNav className="pull-right"/>
+          }
           {org && <Link to={`/${org.slug}/`} className="pull-right" style={{fontSize:15}}>{org.name}</Link>}
         </div>
       </header>

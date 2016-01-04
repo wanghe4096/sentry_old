@@ -79,6 +79,9 @@ let routes = (
             <IndexRoute component={ProjectInstallOverview}/>
             <Route path=":platform/" component={ProjectInstallPlatform}/>
           </Route>
+
+          <Route path="*" component={RouteNotFound}/>
+
         </Route>
 
         <Redirect from="group/:groupId/" to="issues/:groupId/" />

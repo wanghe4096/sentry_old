@@ -59,6 +59,7 @@
 <body class="{% block wrapperclass %}{% endblock %}">
   {% block body %}
   <div class="app">
+    <div id="border-menu-container"></div>
     {% if request.is_superuser %}
         {% show_system_status %}
     {% endif %}
@@ -137,7 +138,7 @@
         <div id="blk_projectselect"></div>
         <script>
         $(function(){
-          React.render(React.createFactory(Sentry.ProjectSelector)({
+          ReactDOM.render(React.createFactory(Sentry.ProjectSelector)({
             organization: {% serialize_detailed_org organization %},
             projectId: '{{ project.slug }}'
           }), document.getElementById('blk_projectselect'));
@@ -305,6 +306,18 @@
 
     slideShow();
   });
+  </script>
+
+  <script>
+    window.STATIC_PAGE = true;
+    $(function(){
+      // border-menu-container
+      ReactDOM.render(
+        React.createElement(Router.Router, {history:Sentry.createHistory()}, Sentry.routes),
+        document.getElementById('border-menu-container')
+      );
+      Sentry.BorderMenu
+    });
   </script>
   {% endblock %}
 
