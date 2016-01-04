@@ -18,9 +18,12 @@ const Header = React.createClass({
     return (
       <header>
         <div className="container">
+          <SearchTextInput />
+          {/*
           <div className="col-md-2">
             <SearchTextInput />
           </div>
+          */}
           <UserNav className="pull-right" />
           <Broadcasts className="pull-right" />
           {/*
