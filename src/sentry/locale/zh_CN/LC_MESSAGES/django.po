@@ -1,7 +1,7 @@
 # SOME DESCRIPTIVE TITLE.
 # Copyright (C) 2015 THE PACKAGE'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the PACKAGE package.
-# 
+#
 # Translators:
 # Hanai <alpsmeihanai@gmail.com>, 2014
 # jik1992 <chinajik@gmail.com>, 2015
@@ -1388,7 +1388,7 @@ msgstr "用户"
 #: web/forms/accounts.py:257 web/forms/add_project.py:14
 #: web/forms/add_team.py:13
 msgid "Name"
-msgstr "姓名"
+msgstr "名称"
 
 #: templates/sentry/admin/users/list.html:31
 msgid "Joined"
@@ -2083,25 +2083,25 @@ msgstr "为这个项目选择一个自定义的邮件前缀"
 
 #: web/forms/projects.py:26
 msgid "Minimum delivery frequency"
-msgstr ""
+msgstr "最小发送频率"
 
 #: web/forms/projects.py:27
 msgid "Notifications will be delivered at most this often."
-msgstr ""
+msgstr "通知以此处设置的最大频率发送"
 
 #: web/forms/projects.py:32
 msgid "Maximum delivery frequency"
-msgstr ""
+msgstr "最大发送频率"
 
 #: web/forms/projects.py:33
 msgid "Notifications will be delivered at least this often."
-msgstr ""
+msgstr "通知以此处设置的最小频繁发送"
 
 #: web/forms/projects.py:41
 msgid ""
 "Maximum delivery frequency must be equal to or greater than the minimum "
 "delivery frequency."
-msgstr ""
+msgstr "最大发送通知频率必须等于或大于最小发送频率"
 
 #: web/forms/projects.py:47
 msgid "Maximum events per minute"
@@ -2465,19 +2465,19 @@ msgstr "正在保存更改..."
 
 #: static/sentry/app/views/adminSettings.jsx:127
 msgid "Your changes were saved, and will propagate to services shortly."
-msgstr ""
+msgstr "您的设置已被保存，将很快在其他服务生效"
 
 #: static/sentry/app/views/installWizard.jsx:208
 msgid ""
 "We were unable to load the required configuration from the Sentry server. "
 "Please take a look at the service logs."
-msgstr ""
+msgstr "无法从服务器端加载必须的配置，请查看服务日志"
 
 #: static/sentry/app/views/adminSettings.jsx:160
 msgid ""
 "We were unable to submit your changes to the Sentry server. Please take a "
 "look at the service logs."
-msgstr ""
+msgstr "无法提交服务器设置，请查看服务日志"
 
 #: static/sentry/app/views/adminOrganizations.jsx:103
 msgid "Sorry, no results match your filters."
@@ -2522,7 +2522,7 @@ msgstr "了解如何集成用户事故报告"
 
 #: static/sentry/app/views/myIssues/assignedToMe.jsx:12
 msgid "Assigned to me"
-msgstr ""
+msgstr "指派给我"
 
 #: static/sentry/app/views/organizationDetails.jsx:117
 msgid "The organization you were looking for was not found."
@@ -2779,30 +2779,30 @@ msgstr ""
 #: static/sentry/app/options.jsx:10
 msgid ""
 "The root web address which is used to communicate with the Sentry backend."
-msgstr ""
+msgstr "root web地址被用来与后台进行通信"
 
 #: static/sentry/app/options.jsx:14
 msgid "Admin Email"
-msgstr ""
+msgstr "管理员邮箱"
 
 #: static/sentry/app/options.jsx:16
-msgid "The technical contact for this Sentry installation."
-msgstr ""
+msgid "The technical contact for this LogInsight installation."
+msgstr "LogInsight 技术联系"
 
 #: static/sentry/app/views/installWizard.jsx:169
 #, python-format
 msgid ""
 "An invalid option (%s) was passed to the server. Please report this issue to"
 " the Sentry team."
-msgstr ""
+msgstr "无效的选项被发送给服务器. 请报告给LogInsight团队"
 
 #: static/sentry/app/views/installWizard.jsx:173
 msgid "An unknown error occurred. Please take a look at the service logs."
-msgstr ""
+msgstr "发生一个未知的错误。 请查看服务日志"
 
 #: static/sentry/app/views/installWizard.jsx:198
 msgid "Welcome to Sentry"
-msgstr ""
+msgstr "欢迎访问LogInsight"
 
 #: static/sentry/app/stores/groupStore.jsx:215
 msgid "Unable to change assignee. Please try again."
@@ -2940,17 +2940,17 @@ msgstr "解决"
 #: static/sentry/app/views/stream/actions.jsx:158
 msgid ""
 "Are you sure you want to resolve all issues matching this search query?"
-msgstr ""
+msgstr "你确定要解决所有搜索查询匹配的问题吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:160
 #, python-format
 msgid "Are you sure you want to resolve this %d issue?"
 msgid_plural "Are you sure you want to resolve these %d issues?"
-msgstr[0] ""
+msgstr[0] "你确定想要解决%d 个问题吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:166
 msgid "Resolve all issues"
-msgstr ""
+msgstr "解决所有问题"
 
 #: static/sentry/app/views/stream/actions.jsx:168
 #, python-format
@@ -2969,17 +2969,17 @@ msgstr "书签"
 #: static/sentry/app/views/stream/actions.jsx:184
 msgid ""
 "Are you sure you want to bookmark all issues matching this search query?"
-msgstr ""
+msgstr "你确定要给所有搜查查询匹配的问题设置标记吗？"
 
 #: static/sentry/app/views/stream/actions.jsx:186
 #, python-format
 msgid "Are you sure you want to bookmark this %d issue?"
 msgid_plural "Are you sure you want to bookmark these %d issues?"
-msgstr[0] ""
+msgstr[0] "你确定要给%d 个问题标记为书签吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:192
 msgid "Bookmark all issues"
-msgstr ""
+msgstr "标记全部问题"
 
 #: static/sentry/app/views/stream/actions.jsx:194
 #, python-format
@@ -3011,7 +3011,7 @@ msgstr "合并事件"
 msgid ""
 "Are you sure you want to remove all issues matching this search query from "
 "your bookmarks?"
-msgstr ""
+msgstr "你确定要移除搜索匹配的全部问题吗？"
 
 #: static/sentry/app/views/stream/actions.jsx:240
 #, python-format
@@ -3022,13 +3022,13 @@ msgstr[0] "确定要从您的书签移除这 %d 个问题？"
 
 #: static/sentry/app/views/stream/actions.jsx:246
 msgid "Remove all issues from bookmarks"
-msgstr ""
+msgstr "从书签中移除全部问题"
 
 #: static/sentry/app/views/stream/actions.jsx:248
 #, python-format
 msgid "Remove %d selected issue from bookmarks"
 msgid_plural "Remove %d selected issues from bookmarks"
-msgstr[0] ""
+msgstr[0] "从书签中移除 %d 个被选择问题"
 
 #: static/sentry/app/views/stream/actions.jsx:254
 msgid "Remove from Bookmarks"
@@ -3037,17 +3037,17 @@ msgstr "从书签移除"
 #: static/sentry/app/views/stream/actions.jsx:265
 msgid ""
 "Are you sure you want to unresolve all issues matching this search query?"
-msgstr ""
+msgstr "你确定不想要想解决全部搜索查询匹配的全部问题？"
 
 #: static/sentry/app/views/stream/actions.jsx:267
 #, python-format
 msgid "Are you sure you want to unresolve this %d issue?"
 msgid_plural "Are you sure you want to unresolve these %d issues?"
-msgstr[0] ""
+msgstr[0] "你确定未解决 %d 个问题?"
 
 #: static/sentry/app/views/stream/actions.jsx:273
 msgid "Unresolve all issues"
-msgstr ""
+msgstr "未解决全部问题"
 
 #: static/sentry/app/views/stream/actions.jsx:275
 #, python-format
@@ -3061,13 +3061,13 @@ msgstr "设置状态为：未解决"
 
 #: static/sentry/app/views/stream/actions.jsx:292
 msgid "Are you sure you want to mute all issues matching this search query?"
-msgstr ""
+msgstr "你确定要静默全部查询匹配的问题吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:294
 #, python-format
 msgid "Are you sure you want to mute this %d issue?"
 msgid_plural "Are you sure you want to mute these %d issues?"
-msgstr[0] ""
+msgstr[0] "你确定想要静默 %d 问题吗 ?"
 
 #: static/sentry/app/views/stream/actions.jsx:300
 msgid "Mute all issues"
