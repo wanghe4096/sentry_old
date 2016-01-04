@@ -115,7 +115,7 @@ const Broadcasts = React.createClass({
         {loading ?
           <li><LoadingIndicator /></li>
         : (broadcasts.length === 0 ?
-          <li className="empty">{t('No recent broadcasts from the Loginsight team.')}</li>
+          <li className="empty">{t('No recent broadcasts from the LogInsight team.')}</li>
         :
           broadcasts.map((item) => {
             return (
