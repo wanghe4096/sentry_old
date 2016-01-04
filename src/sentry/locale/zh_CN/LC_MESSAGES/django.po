@@ -2738,11 +2738,11 @@ msgstr "事件（按项目）"
 
 #: static/sentry/app/views/organizationTeams/index.jsx:106
 msgid "You do not have enough permission to create new projects"
-msgstr "您没有足够的创建新项目权限"
+msgstr "您没有足够权限的创建新项目"
 
 #: static/sentry/app/views/organizationTeams/index.jsx:117
 msgid "You do not have enough permission to create new teams"
-msgstr "您没有足够的创建新团队权限"
+msgstr "您没有足够的权限创建新团队"
 
 #: static/sentry/app/views/organizationTeams/index.jsx:124
 msgid "Your Teams"
@@ -2758,7 +2758,7 @@ msgstr "抱歉，没有满足您过滤条件的版本。"
 
 #: static/sentry/app/views/projectReleases/index.jsx:146
 msgid "There don't seem to be any releases yet."
-msgstr "应该不存在任何版本。"
+msgstr "还没有新版本。"
 
 #: static/sentry/app/views/projectReleases/index.jsx:148
 msgid "Learn how to integrate Release Tracking"
@@ -2774,12 +2774,12 @@ msgstr "版本"
 
 #: static/sentry/app/options.jsx:8
 msgid "Root URL"
-msgstr ""
+msgstr "根 URL"
 
 #: static/sentry/app/options.jsx:10
 msgid ""
 "The root web address which is used to communicate with the LogInsight backend."
-msgstr "root web地址被用来与后台进行通信"
+msgstr "根web地址被用来与后台进行通信"
 
 #: static/sentry/app/options.jsx:14
 msgid "Admin Email"
