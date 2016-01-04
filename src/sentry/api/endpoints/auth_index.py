@@ -27,8 +27,8 @@ class AuthIndexEndpoint(Endpoint):
     # doc_section = DocSection.ACCOUNTS
 
     def get(self, request):
-        if not request.user.is_authenticated():
-            return Response(status=400)
+        # if not request.user.is_authenticated():
+        #     return Response(status=400)
 
         data = serialize(request.user, request.user)
         data['isSuperuser'] = request.is_superuser()

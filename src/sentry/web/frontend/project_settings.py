@@ -170,7 +170,6 @@ class ProjectSettingsView(ProjectView):
 
     def handle(self, request, organization, team, project):
         form = self.get_form(request, project)
-
         if form.is_valid():
             project = form.save()
             for opt in ('origins', 'resolve_age', 'scrub_data', 'sensitive_fields',
@@ -202,5 +201,5 @@ class ProjectSettingsView(ProjectView):
             'form': form,
             'page': 'details',
         }
-
+        print 'context=', context
         return self.respond('sentry/projects/manage.html', context)
