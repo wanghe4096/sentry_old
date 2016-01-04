@@ -8,14 +8,14 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2015-12-29 08:59+0000\n"
+"POT-Creation-Date: 2016-01-04 08:33+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.1.1\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: admin.py:170
 msgid "Personal info"
@@ -573,7 +573,7 @@ msgid "If you're continually seeing this issue, try the following:"
 msgstr ""
 
 #: templates/sentry/403-csrf-failure.html:18
-msgid "Clear cookies (at least for Sentry's domain)."
+msgid "Clear cookies (at least for Loginsight's domain)."
 msgstr ""
 
 #: templates/sentry/403-csrf-failure.html:19
@@ -612,7 +612,7 @@ msgstr ""
 
 #: templates/sentry/accept-organization-invite.html:19
 #, python-format
-msgid "<strong>%(org_name)s</strong> is using Sentry to aggregate errors."
+msgid "<strong>%(org_name)s</strong> is using Loginsight to aggregate errors."
 msgstr ""
 
 #: templates/sentry/accept-organization-invite.html:22
@@ -653,8 +653,7 @@ msgstr ""
 #: templates/sentry/auth-confirm-identity.html:33
 #: templates/sentry/auth-link-login.html:7
 #: templates/sentry/auth-link-login.html:31 templates/sentry/login.html:6
-#: templates/sentry/login.html.py:11 templates/sentry/login.html:37
-#: templates/sentry/organization-login.html:7
+#: templates/sentry/login.html.py:25 templates/sentry/organization-login.html:7
 #: templates/sentry/organization-login.html:31
 #: templates/sentry/organization-login.html:54
 #: templates/sentry/bases/organization-login.html:7
@@ -664,7 +663,7 @@ msgid "Login"
 msgstr ""
 
 #: templates/sentry/auth-confirm-identity.html:34
-#: templates/sentry/auth-link-login.html:31 templates/sentry/login.html:37
+#: templates/sentry/auth-link-login.html:31 templates/sentry/login.html:25
 #: templates/sentry/organization-login.html:54
 #: templates/sentry/bases/organization-login.html:54
 msgid "Lost your password?"
@@ -695,7 +694,6 @@ msgid "Add Member"
 msgstr ""
 
 #: templates/sentry/create-organization.html:6
-#: static/sentry/app/components/header/organizationSelector.jsx:47
 msgid "New Organization"
 msgstr ""
 
@@ -776,18 +774,6 @@ msgstr ""
 msgid "Contribute"
 msgstr ""
 
-#: templates/sentry/login.html:15 templates/sentry/login.html.py:54
-#: templates/sentry/organization-login.html:35
-#: templates/sentry/organization-login.html:71
-#: templates/sentry/bases/organization-login.html:35
-#: templates/sentry/bases/organization-login.html:71
-msgid "Register"
-msgstr ""
-
-#: templates/sentry/login.html:19
-msgid "Single Sign-On"
-msgstr ""
-
 #: templates/sentry/missing_permissions.html:5
 #: templates/sentry/missing_permissions.html:8
 msgid "Forbidden"
@@ -804,8 +790,8 @@ msgstr ""
 
 #: templates/sentry/no-organization-access.html:14
 msgid ""
-"You don't have access to any organizations within Sentry. Talk to a "
-"Sentry administrator about getting access."
+"You don't have access to any organizations within Loginsight. Talk to a "
+"Loginsight administrator about getting access."
 msgstr ""
 
 #: templates/sentry/organization-api-key-settings.html:7
@@ -857,13 +843,20 @@ msgid "Audit Log"
 msgstr ""
 
 #: templates/sentry/organization-audit-log.html:17
-msgid "Sentry keeps track of important events within your organization."
+msgid "Loginsight keeps track of important events within your organization."
 msgstr ""
 
 #: templates/sentry/organization-auth-settings.html:5
 #: templates/sentry/bases/organization.html:56
 #: static/sentry/app/components/organizations/homeSidebar.jsx:70
 msgid "Auth"
+msgstr ""
+
+#: templates/sentry/organization-login.html:35
+#: templates/sentry/organization-login.html:71
+#: templates/sentry/bases/organization-login.html:35
+#: templates/sentry/bases/organization-login.html:71
+msgid "Register"
 msgstr ""
 
 #: templates/sentry/organization-member-details.html:7
@@ -946,7 +939,7 @@ msgid "Your account has been deactivated and scheduled for removal."
 msgstr ""
 
 #: templates/sentry/post-remove-account.html:14
-msgid "Thanks for using Sentry! We hope to see you again soon!"
+msgid "Thanks for using Loginsight! We hope to see you again soon!"
 msgstr ""
 
 #: templates/sentry/project-issue-tracking.html:7
@@ -980,8 +973,8 @@ msgstr ""
 #: templates/sentry/project-notifications.html:22
 #, python-format
 msgid ""
-"Sentry will notify you based on the <a href=\"%(link)s\">rules configured"
-" for this project</a>."
+"Loginsight will notify you based on the <a href=\"%(link)s\">rules "
+"configured for this project</a>."
 msgstr ""
 
 #: templates/sentry/project-notifications.html:28
@@ -1137,7 +1130,6 @@ msgid "Your password was not valid."
 msgstr ""
 
 #: templates/sentry/account/sudo.html:52
-#: static/sentry/app/views/installWizard.jsx:78
 msgid "Continue"
 msgstr ""
 
@@ -1220,7 +1212,7 @@ msgid "Date Added"
 msgstr ""
 
 #: templates/sentry/admin/projects/list.html:64
-msgid "There are no active projects in Sentry."
+msgid "There are no active projects in Loginsight."
 msgstr ""
 
 #: templates/sentry/admin/status/env.html:9
@@ -1250,7 +1242,7 @@ msgid "Uptime"
 msgstr ""
 
 #: templates/sentry/admin/status/env.html:37
-msgid "Environment not found (are you using the builtin Sentry webserver?)."
+msgid "Environment not found (are you using the builtin Loginsight webserver?)."
 msgstr ""
 
 #: templates/sentry/admin/status/env.html:40
@@ -1343,7 +1335,7 @@ msgid "Team"
 msgstr ""
 
 #: templates/sentry/admin/teams/list.html:53
-msgid "There are no active teams in Sentry."
+msgid "There are no active teams in Loginsight."
 msgstr ""
 
 #: templates/sentry/admin/users/edit.html:8
@@ -1389,7 +1381,7 @@ msgid "Last Login"
 msgstr ""
 
 #: templates/sentry/admin/users/list.html:66
-msgid "There are no users matching your query in Sentry."
+msgid "There are no users matching your query in Loginsight."
 msgstr ""
 
 #: templates/sentry/admin/users/list.html:70
@@ -1608,7 +1600,6 @@ msgid ""
 msgstr ""
 
 #: templates/sentry/projects/edit_key.html:40
-#: static/sentry/app/views/projectInstall/overview.jsx:54
 msgid "DSN"
 msgstr ""
 
@@ -1678,8 +1669,8 @@ msgstr ""
 #: templates/sentry/projects/manage.html:64
 #, python-format
 msgid ""
-"Configure origin URLs which Sentry should accept events from. This is "
-"used for communication with clients like <a href=\"%(link)s\">raven-"
+"Configure origin URLs which Loginsight should accept events from. This is"
+" used for communication with clients like <a href=\"%(link)s\">raven-"
 "js</a>."
 msgstr ""
 
@@ -1703,7 +1694,7 @@ msgstr ""
 
 #: templates/sentry/projects/manage.html:83
 msgid ""
-"This project cannot be removed. It is used internally by the Sentry "
+"This project cannot be removed. It is used internally by the Loginsight "
 "server."
 msgstr ""
 
@@ -1744,8 +1735,8 @@ msgstr ""
 
 #: templates/sentry/projects/manage_tags.html:13
 msgid ""
-"Each event in Sentry may be annotated with various tags (key and value "
-"pairs). For more information on how send additional tags, see your "
+"Each event in Loginsight may be annotated with various tags (key and "
+"value pairs). For more information on how send additional tags, see your "
 "client's documentation."
 msgstr ""
 
@@ -1755,9 +1746,10 @@ msgstr ""
 
 #: templates/sentry/projects/quotas.html:13
 msgid ""
-"With the nature of Sentry, sometimes the amount of data collected can be "
-"overwhelming. You can set rate limits per-project to ensure that a single"
-" flood of errors won't affect any other projects utilizing Sentry."
+"With the nature of Loginsight, sometimes the amount of data collected can"
+" be overwhelming. You can set rate limits per-project to ensure that a "
+"single flood of errors won't affect any other projects utilizing "
+"Loginsight."
 msgstr ""
 
 #: templates/sentry/projects/quotas.html:15
@@ -1769,7 +1761,7 @@ msgid ""
 msgstr ""
 
 #: templates/sentry/projects/quotas.html:18
-msgid "Note: The Sentry application is not configured to manage rate limits."
+msgid "Note: The Loginsight application is not configured to manage rate limits."
 msgstr ""
 
 #: templates/sentry/projects/quotas.html:20
@@ -1782,8 +1774,8 @@ msgstr ""
 #: templates/sentry/projects/quotas.html:22
 #, python-format
 msgid ""
-"The Sentry system has <strong>%(system_quota)s events per minute</strong>"
-" allocated collectively among projects."
+"The Loginsight system has <strong>%(system_quota)s events per "
+"minute</strong> allocated collectively among projects."
 msgstr ""
 
 #: templates/sentry/projects/remove.html:18
@@ -2020,7 +2012,7 @@ msgid "Stacktrace order"
 msgstr ""
 
 #: web/forms/accounts.py:329
-msgid "Default (let Sentry decide)"
+msgid "Default (let Loginsight decide)"
 msgstr ""
 
 #: web/forms/accounts.py:330
@@ -2296,7 +2288,7 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Outbound requests matching Allowed Domains will have the header \"X"
-"-Sentry-Token: {token}\" appended."
+"-Loginsight-Token: {token}\" appended."
 msgstr ""
 
 #: web/frontend/project_settings.py:35
@@ -2344,7 +2336,9 @@ msgid "Enable JavaScript source fetching"
 msgstr ""
 
 #: web/frontend/project_settings.py:60
-msgid "Allow Sentry to scrape missing JavaScript source context when possible."
+msgid ""
+"Allow Loginsight to scrape missing JavaScript source context when "
+"possible."
 msgstr ""
 
 #: web/frontend/project_settings.py:63
@@ -2441,6 +2435,26 @@ msgstr ""
 msgid "Save Rule"
 msgstr ""
 
+#: static/sentry/app/components/compactIssue.jsx:119
+msgid "Saving changes.."
+msgstr ""
+
+#: static/sentry/app/views/adminSettings.jsx:127
+msgid "Your changes were saved, and will propagate to services shortly."
+msgstr ""
+
+#: static/sentry/app/views/adminSettings.jsx:155
+msgid ""
+"We were unable to load the required configuration from the Sentry server."
+" Please take a look at the service logs."
+msgstr ""
+
+#: static/sentry/app/views/adminSettings.jsx:160
+msgid ""
+"We were unable to submit your changes to the Loginsight server. Please "
+"take a look at the service logs."
+msgstr ""
+
 #: static/sentry/app/views/adminOrganizations.jsx:103
 msgid "Sorry, no results match your filters."
 msgstr ""
@@ -2457,24 +2471,8 @@ msgstr ""
 msgid "Organization"
 msgstr ""
 
-#: static/sentry/app/components/compactIssue.jsx:119
-msgid "Saving changes.."
-msgstr ""
-
-#: static/sentry/app/views/adminSettings.jsx:127
-msgid "Your changes were saved, and will propagate to services shortly."
-msgstr ""
-
-#: static/sentry/app/views/installWizard.jsx:208
-msgid ""
-"We were unable to load the required configuration from the Sentry server."
-" Please take a look at the service logs."
-msgstr ""
-
-#: static/sentry/app/views/adminSettings.jsx:160
-msgid ""
-"We were unable to submit your changes to the Sentry server. Please take a"
-" look at the service logs."
+#: static/sentry/app/views/app.jsx:69
+msgid "Getting a list of all of your organizations."
 msgstr ""
 
 #: static/sentry/app/views/groupDetails.jsx:107
@@ -2507,7 +2505,11 @@ msgstr ""
 msgid "Assigned to me"
 msgstr ""
 
-#: static/sentry/app/views/organizationDetails.jsx:117
+#: static/sentry/app/views/organizationDetails.jsx:107
+msgid "Loading data for your organization."
+msgstr ""
+
+#: static/sentry/app/views/organizationDetails.jsx:116
 msgid "The organization you were looking for was not found."
 msgstr ""
 
@@ -2531,43 +2533,17 @@ msgstr ""
 msgid "The project you were looking for was not found."
 msgstr ""
 
-#: static/sentry/app/views/projectInstall/overview.jsx:45
-msgid "Configure your application"
+#: static/sentry/app/views/projectInstall/platform.jsx:92
+msgid "Generic"
 msgstr ""
 
-#: static/sentry/app/views/projectInstall/overview.jsx:47
-msgid ""
-"Get started by selecting the platform or language that powers your "
-"application."
-msgstr ""
-
-#: static/sentry/app/views/projectInstall/overview.jsx:59
-msgid "Public DSN"
-msgstr ""
-
-#: static/sentry/app/views/projectInstall/overview.jsx:61
-msgid "Your public DSN should be used with JavaScript and ActionScript."
-msgstr ""
-
-#: static/sentry/app/views/projectInstall/overview.jsx:65
-msgid "Already have things setup? [link:Get your DSN]."
-msgstr ""
-
-#: static/sentry/app/views/projectInstall/overview.jsx:82
-msgid "Frameworks"
-msgstr ""
-
-#: static/sentry/app/views/projectInstall/platform.jsx:90
+#: static/sentry/app/views/projectInstall/platform.jsx:102
 msgid "Full Documentation"
 msgstr ""
 
-#: static/sentry/app/views/projectInstall/platform.jsx:93
+#: static/sentry/app/views/projectInstall/platform.jsx:105
 #, python-format
 msgid "Configure %(integration)s"
-msgstr ""
-
-#: static/sentry/app/views/projectInstall/platform.jsx:123
-msgid "Generic"
 msgstr ""
 
 #: static/sentry/app/views/releaseAllEvents.jsx:20
@@ -2602,7 +2578,7 @@ msgstr ""
 msgid "View new events seen in this release in the stream"
 msgstr ""
 
-#: static/sentry/app/views/stream.jsx:380
+#: static/sentry/app/views/stream.jsx:382
 msgid "Sorry, no events match your filters."
 msgstr ""
 
@@ -2699,6 +2675,22 @@ msgstr ""
 msgid "Saving.."
 msgstr ""
 
+#: static/sentry/app/views/organizationTeams/index.jsx:106
+msgid "You do not have enough permission to create new projects"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/index.jsx:117
+msgid "You do not have enough permission to create new teams"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/index.jsx:124
+msgid "Your Teams"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/index.jsx:127
+msgid "All Teams"
+msgstr ""
+
 #: static/sentry/app/views/organizationStats/projectTable.jsx:41
 msgid "Accepted"
 msgstr ""
@@ -2717,22 +2709,6 @@ msgstr ""
 
 #: static/sentry/app/views/organizationStats/index.jsx:311
 msgid "Events by Project"
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/index.jsx:106
-msgid "You do not have enough permission to create new projects"
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/index.jsx:117
-msgid "You do not have enough permission to create new teams"
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/index.jsx:124
-msgid "Your Teams"
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/index.jsx:127
-msgid "All Teams"
 msgstr ""
 
 #: static/sentry/app/views/projectReleases/index.jsx:137
@@ -2764,7 +2740,9 @@ msgid "Root URL"
 msgstr ""
 
 #: static/sentry/app/options.jsx:10
-msgid "The root web address which is used to communicate with the Sentry backend."
+msgid ""
+"The root web address which is used to communicate with the Loginsight "
+"backend."
 msgstr ""
 
 #: static/sentry/app/options.jsx:14
@@ -2772,22 +2750,7 @@ msgid "Admin Email"
 msgstr ""
 
 #: static/sentry/app/options.jsx:16
-msgid "The technical contact for this Sentry installation."
-msgstr ""
-
-#: static/sentry/app/views/installWizard.jsx:169
-#, python-format
-msgid ""
-"An invalid option (%s) was passed to the server. Please report this issue"
-" to the Sentry team."
-msgstr ""
-
-#: static/sentry/app/views/installWizard.jsx:173
-msgid "An unknown error occurred. Please take a look at the service logs."
-msgstr ""
-
-#: static/sentry/app/views/installWizard.jsx:198
-msgid "Welcome to Sentry"
+msgid "The technical contact for this Loginsight installation."
 msgstr ""
 
 #: static/sentry/app/views/stream/searchBar.jsx:73
@@ -3142,10 +3105,6 @@ msgstr ""
 msgid "Search title and culprit text body"
 msgstr ""
 
-#: static/sentry/app/views/groupActivity/noteContainer.jsx:38
-msgid "Removing comment.."
-msgstr ""
-
 #: static/sentry/app/views/groupActivity/noteInput.jsx:14
 msgid "Unknown error. Please try again."
 msgstr ""
@@ -3178,20 +3137,8 @@ msgstr ""
 msgid "Markdown supported"
 msgstr ""
 
-#: static/sentry/app/views/organizationStats/projectTable.jsx:43
-msgid "Dropped"
-msgstr ""
-
-#: static/sentry/app/views/organizationStats/projectTable.jsx:42
-msgid "(Rate Limit)"
-msgstr ""
-
-#: static/sentry/app/views/organizationStats/projectTable.jsx:43
-msgid "(Blacklist)"
-msgstr ""
-
-#: static/sentry/app/views/organizationStats/projectTable.jsx:44
-msgid "Total"
+#: static/sentry/app/views/groupActivity/noteContainer.jsx:38
+msgid "Removing comment.."
 msgstr ""
 
 #: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:89
@@ -3202,6 +3149,18 @@ msgstr ""
 msgid ""
 "There are no projects in this team. Get started by [link:creating your "
 "first project]."
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:115
+msgid "time"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:119
+msgid "host"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:123
+msgid "stream"
 msgstr ""
 
 #: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:144
@@ -3232,6 +3191,22 @@ msgstr ""
 
 #: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:93
 msgid "View all stats"
+msgstr ""
+
+#: static/sentry/app/views/organizationStats/projectTable.jsx:43
+msgid "Dropped"
+msgstr ""
+
+#: static/sentry/app/views/organizationStats/projectTable.jsx:42
+msgid "(Rate Limit)"
+msgstr ""
+
+#: static/sentry/app/views/organizationStats/projectTable.jsx:43
+msgid "(Blacklist)"
+msgstr ""
+
+#: static/sentry/app/views/organizationStats/projectTable.jsx:44
+msgid "Total"
 msgstr ""
 
 #: static/sentry/app/components/projectHeader/index.jsx:24
@@ -3308,10 +3283,6 @@ msgstr ""
 msgid "More"
 msgstr ""
 
-#: static/sentry/app/components/events/extraData.jsx:27
-msgid "Additional Data"
-msgstr ""
-
 #: static/sentry/app/components/events/errors.jsx:42
 msgid "Hide"
 msgstr ""
@@ -3326,6 +3297,10 @@ msgid "There was %d error encountered while processing this event"
 msgid_plural "There were %d errors encountered while processing this event"
 msgstr[0] ""
 msgstr[1] ""
+
+#: static/sentry/app/components/events/extraData.jsx:27
+msgid "Additional Data"
+msgstr ""
 
 #: static/sentry/app/components/events/message.jsx:13
 msgid "Message"
@@ -3404,6 +3379,10 @@ msgstr ""
 msgid "This action cannot be undone."
 msgstr ""
 
+#: static/sentry/app/views/stream/sortOptions.jsx:48
+msgid "Sort by"
+msgstr ""
+
 #: static/sentry/app/views/stream/searchBar.jsx:59
 msgid "Tag"
 msgstr ""
@@ -3424,10 +3403,6 @@ msgstr ""
 msgid "or paste an event id to jump straight to it"
 msgstr ""
 
-#: static/sentry/app/views/stream/sortOptions.jsx:48
-msgid "Sort by"
-msgstr ""
-
 #: static/sentry/app/views/groupActivity/note.jsx:32
 msgid "Are you sure you wish to delete this comment?"
 msgstr ""
@@ -3437,7 +3412,7 @@ msgid "Remove"
 msgstr ""
 
 #: static/sentry/app/components/header/broadcasts.jsx:118
-msgid "No recent broadcasts from the Sentry team."
+msgid "No recent broadcasts from the Loginsight team."
 msgstr ""
 
 #: static/sentry/app/components/header/broadcasts.jsx:128

@@ -10,6 +10,8 @@
     "ja", 
     "ru", 
     "zh-cn", 
-    "zh-tw"
+    "zh-tw", 
+    "zh_CN", 
+    "zh_TW"
   ]
 }

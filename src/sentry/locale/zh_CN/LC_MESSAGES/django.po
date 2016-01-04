@@ -2791,10 +2791,8 @@ msgstr "LogInsight 技术联系"
 
 #: static/sentry/app/views/installWizard.jsx:169
 #, python-format
-msgid ""
-"An invalid option (%s) was passed to the server. Please report this issue to"
-" the Loginsight team."
-msgstr "发送给服务器的选项无效, 请告知 LogInsight 团队"
+msgid "An invalid option (%s) was passed to the server. Please report this issue to the Loginsight team."
+msgstr "发送给服务器的选项无效(%s), 请告知 LogInsight 团队"
 
 #: static/sentry/app/views/installWizard.jsx:173
 msgid "An unknown error occurred. Please take a look at the service logs."
