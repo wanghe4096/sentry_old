@@ -54,7 +54,7 @@ const SearchBar = React.createClass({
 
   render() {
     return (
-        <div className="search">
+        <div className="search pull-left">
           <form className="form-horizontal" ref="searchForm" onSubmit={this.onSubmit}>
             <div>
               <input type="text" className="search-input form-control search-text-input"
@@ -69,7 +69,7 @@ const SearchBar = React.createClass({
               <span className="icon-search search-text-icon" />
               {this.state.query !== this.props.defaultQuery &&
               <div>
-                <a className="search-clear-form" onClick={this.clearSearch}>
+                <a className="search-clear-form search-text-clear-form" onClick={this.clearSearch}>
                   <span className="icon-circle-cross" />
                 </a>
               </div>

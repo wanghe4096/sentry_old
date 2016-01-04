@@ -1,7 +1,7 @@
 .coverage
 .tox
 **/.DS_Store
-**/.idea
+.idea
 *.egg-info
 *.pyc
 *.log

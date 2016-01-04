@@ -31,7 +31,7 @@ class EditProjectForm(forms.ModelForm):
     origins = OriginsField(label=_('Allowed Domains'), required=False,
         help_text=_('Separate multiple entries with a newline.'))
     token = forms.CharField(label=_('Security token'), required=True,
-        help_text=_('Outbound requests matching Allowed Domains will have the header "X-Sentry-Token: {token}" appended.'))
+        help_text=_('Outbound requests matching Allowed Domains will have the header "X-LogInsight-Token: {token}" appended.'))
     resolve_age = RangeField(label=_('Auto resolve'), required=False,
         min_value=0, max_value=168, step_value=1,
         help_text=_('Treat an event as resolved if it hasn\'t been seen for this amount of time.'))
@@ -57,7 +57,7 @@ class EditProjectForm(forms.ModelForm):
     )
     scrape_javascript = forms.BooleanField(
         label=_('Enable JavaScript source fetching'),
-        help_text=_('Allow Sentry to scrape missing JavaScript source context when possible.'),
+        help_text=_('Allow LogInsight to scrape missing JavaScript source context when possible.'),
         required=False,
     )
     blacklisted_ips = IPNetworksField(label=_('Blacklisted IP Addresses'), required=False,

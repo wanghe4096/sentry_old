@@ -6,14 +6,14 @@ import {EmailField, TextField} from './components/forms';
 const definitions = {
   'system.url-prefix': {
     label: t('Root URL'),
-    placeholder: 'https://sentry.example.com',
-    help: t('The root web address which is used to communicate with the Sentry backend.'),
+    placeholder: 'https://loginsight.example.com',
+    help: t('The root web address which is used to communicate with the LogInsight backend.'),
     defaultValue: () => `${document.location.protocol}//${document.location.host}`
   },
   'system.admin-email': {
     label: t('Admin Email'),
     placeholder: 'admin@example.com',
-    help: t('The technical contact for this Sentry installation.'),
+    help: t('The technical contact for this LogInsight installation.'),
     // TODO(dcramer): this shoudl not be hardcoded to a component
     component: EmailField,
     defaultValue: () => ConfigStore.get('user').email

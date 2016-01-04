@@ -142,7 +142,7 @@ const ProjectDetails = React.createClass({
     if (this.state.project) {
       return this.state.team.name + ' / ' + this.state.project.name;
     }
-    return 'Loginsight';
+    return 'LogInsight';
   },
 
   render() {

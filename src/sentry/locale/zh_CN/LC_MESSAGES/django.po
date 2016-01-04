@@ -411,7 +411,7 @@ msgstr "简体中文"
 
 #: conf/server.py:169
 msgid "Traditional Chinese"
-msgstr "正体中文"
+msgstr "繁体中文"
 
 #: db/models/fields/bounded.py:54 db/models/fields/bounded.py:68
 msgid "Big Integer"
@@ -471,7 +471,7 @@ msgstr "已解决"
 
 #: models/group.py:111
 msgid "Muted"
-msgstr "静音中"
+msgstr "不再提醒"
 
 #: models/group.py:131
 msgid "grouped messages"
@@ -592,8 +592,8 @@ msgid "If you're continually seeing this issue, try the following:"
 msgstr "如果您不断看到此问题，可尝试以下步骤："
 
 #: templates/sentry/403-csrf-failure.html:18
-msgid "Clear cookies (at least for Sentry's domain)."
-msgstr "清除 cookies（至少是 Sentry 域名下的 cookies）。"
+msgid "Clear cookies (at least for LogInsight's domain)."
+msgstr "清除 cookies（至少是 LogInsight 域名下的 cookies）。"
 
 #: templates/sentry/403-csrf-failure.html:19
 msgid "Reload the page you're trying to submit (don't re-submit data)."
@@ -631,8 +631,8 @@ msgstr "组织邀请"
 
 #: templates/sentry/accept-organization-invite.html:19
 #, python-format
-msgid "<strong>%(org_name)s</strong> is using Sentry to aggregate errors."
-msgstr "<strong>%(org_name)s</strong>在使用Sentry聚合处理错误信息。"
+msgid "<strong>%(org_name)s</strong> is using LogInsight to aggregate errors."
+msgstr "<strong>%(org_name)s</strong> 正在使用 LogInsight 聚合处理错误信息。"
 
 #: templates/sentry/accept-organization-invite.html:22
 #, python-format
@@ -816,9 +816,9 @@ msgstr "没有组织权限"
 
 #: templates/sentry/no-organization-access.html:14
 msgid ""
-"You don't have access to any organizations within Sentry. Talk to a Sentry "
-"administrator about getting access."
-msgstr "你在 sentry 内没有任何组织权限。请与管理员沟通获得权限。"
+"You don't have access to any organizations within LogInsight. Talk to a "
+"LogInsight administrator about getting access."
+msgstr "你在 LogInsight 内没有任何组织权限。请与管理员沟通获得权限。"
 
 #: templates/sentry/organization-api-key-settings.html:7
 #: templates/sentry/organization-api-key-settings.html:12
@@ -869,8 +869,8 @@ msgid "Audit Log"
 msgstr "审计日志"
 
 #: templates/sentry/organization-audit-log.html:17
-msgid "Sentry keeps track of important events within your organization."
-msgstr "Sentry 保持跟踪您组织内发生的重要事件。"
+msgid "LogInsight keeps track of important events within your organization."
+msgstr "LogInsight 保持跟踪您组织内发生的重要事件。"
 
 #: templates/sentry/organization-auth-settings.html:5
 #: templates/sentry/bases/organization.html:56
@@ -958,8 +958,8 @@ msgid "Your account has been deactivated and scheduled for removal."
 msgstr "您的账户无效，而且已列入移除计划。"
 
 #: templates/sentry/post-remove-account.html:14
-msgid "Thanks for using Sentry! We hope to see you again soon!"
-msgstr "感谢使用 Sentry！希望很快能再次见到您！"
+msgid "Thanks for using LogInsight! We hope to see you again soon!"
+msgstr "感谢使用 LogInsight！希望很快能再次见到您！"
 
 #: templates/sentry/project-issue-tracking.html:7
 #: templates/sentry/project-issue-tracking.html:10
@@ -992,9 +992,9 @@ msgstr "规则"
 #: templates/sentry/project-notifications.html:22
 #, python-format
 msgid ""
-"Sentry will notify you based on the <a href=\"%(link)s\">rules configured "
+"LogInsight will notify you based on the <a href=\"%(link)s\">rules configured "
 "for this project</a>."
-msgstr "Sentry 将会按照<a href=\"%(link)s\">本项目设置的规则</a>通知你。"
+msgstr "LogInsight 将会按照<a href=\"%(link)s\">本项目设置的规则</a>通知你。"
 
 #: templates/sentry/project-notifications.html:28
 #: templates/sentry/account/notifications.html:31
@@ -1230,8 +1230,8 @@ msgid "Date Added"
 msgstr "被添加的日期"
 
 #: templates/sentry/admin/projects/list.html:64
-msgid "There are no active projects in Sentry."
-msgstr "Sentry中没有生效的项目。"
+msgid "There are no active projects in LogInsight."
+msgstr "LogInsight 中没有生效的项目。"
 
 #: templates/sentry/admin/status/env.html:9
 msgid "Server Status"
@@ -1260,8 +1260,8 @@ msgid "Uptime"
 msgstr "运行时间"
 
 #: templates/sentry/admin/status/env.html:38
-msgid "Environment not found (are you using the builtin Sentry webserver?)."
-msgstr "找不到环境变量(您是在使用内置的Sentry web服务器吗？)"
+msgid "Environment not found (are you using the builtin LogInsight webserver?)."
+msgstr "找不到环境变量(您是在使用内置的 LogInsight Web服务器吗？)"
 
 #: templates/sentry/admin/status/env.html:41
 #: templates/sentry/projects/manage.html:153
@@ -1353,8 +1353,8 @@ msgid "Team"
 msgstr "团队"
 
 #: templates/sentry/admin/teams/list.html:53
-msgid "There are no active teams in Sentry."
-msgstr "Sentry 中没有有效的团队。"
+msgid "There are no active teams in LogInsight."
+msgstr "LogInsight 中没有有效的团队。"
 
 #: templates/sentry/admin/users/edit.html:8
 msgid "Change User"
@@ -1399,7 +1399,7 @@ msgid "Last Login"
 msgstr "上次登录时间"
 
 #: templates/sentry/admin/users/list.html:66
-msgid "There are no users matching your query in Sentry."
+msgid "There are no users matching your query in LogInsight."
 msgstr "没有您所查找的用户"
 
 #: templates/sentry/admin/users/list.html:70
@@ -1454,12 +1454,12 @@ msgstr "统计"
 
 #: templates/sentry/bases/organization.html:32
 msgid "My Issues"
-msgstr ""
+msgstr "我的问题"
 
 #: templates/sentry/bases/organization.html:34
 #: static/sentry/app/components/organizations/homeSidebar.jsx:43
 msgid "Assigned to Me"
-msgstr ""
+msgstr "指派给我的"
 
 #: templates/sentry/bases/organization.html:35
 #: static/sentry/app/components/organizations/homeSidebar.jsx:44
@@ -1469,7 +1469,7 @@ msgstr "书签"
 #: templates/sentry/bases/organization.html:36
 #: static/sentry/app/components/organizations/homeSidebar.jsx:45
 msgid "History"
-msgstr ""
+msgstr "历史记录"
 
 #: templates/sentry/events/replay_request.html:6
 #: static/sentry/app/components/events/interfaces/requestActions.jsx:18
@@ -1687,9 +1687,9 @@ msgstr "客户端安全性"
 #: templates/sentry/projects/manage.html:64
 #, python-format
 msgid ""
-"Configure origin URLs which Sentry should accept events from. This is used "
+"Configure origin URLs which LogInsight should accept events from. This is used "
 "for communication with clients like <a href=\"%(link)s\">raven-js</a>."
-msgstr "配置 Sentry 接受事件用的的源 URL。这是为了同像 <a href=\"%(link)s\">raven-js</a> 这样的的客户端通信需要。"
+msgstr "配置 LogInsight 接受事件用的的源 URL。这是为了同像 <a href=\"%(link)s\">raven-js</a> 这样的的客户端通信需要。"
 
 #: templates/sentry/projects/manage.html:66
 msgid ""
@@ -1711,8 +1711,8 @@ msgstr "你没有删除该项目的权限。"
 
 #: templates/sentry/projects/manage.html:83
 msgid ""
-"This project cannot be removed. It is used internally by the Sentry server."
-msgstr "该项目由 Sentry 服务器内部使用，无法删除。"
+"This project cannot be removed. It is used internally by the LogInsight server."
+msgstr "该项目由 LogInsight 服务器内部使用，无法删除。"
 
 #: templates/sentry/projects/manage.html:163
 #: templates/sentry/projects/quotas.html:7
@@ -1751,10 +1751,10 @@ msgstr "所有集成"
 
 #: templates/sentry/projects/manage_tags.html:13
 msgid ""
-"Each event in Sentry may be annotated with various tags (key and value "
+"Each event in LogInsight may be annotated with various tags (key and value "
 "pairs). For more information on how send additional tags, see your client's "
 "documentation."
-msgstr "Sentry 中的每个事件都可被贴上多个标签（标签的形式为键值对）。查阅你的客户端文档，以获取更多关于如何发送额外标签的信息。"
+msgstr "LogInsight 中的每个事件都可被贴上多个标签（标签的形式为键值对）。查阅你的客户端文档，以获取更多关于如何发送额外标签的信息。"
 
 #: templates/sentry/projects/manage_tags.html:45
 msgid "We have not yet recorded any tags for this project."
@@ -1762,10 +1762,10 @@ msgstr "没有标签被记录在这个项目中。"
 
 #: templates/sentry/projects/quotas.html:13
 msgid ""
-"With the nature of Sentry, sometimes the amount of data collected can be "
+"With the nature of LogInsight, sometimes the amount of data collected can be "
 "overwhelming. You can set rate limits per-project to ensure that a single "
-"flood of errors won't affect any other projects utilizing Sentry."
-msgstr "作为Sentry生来就有的特性，有时大量的数据会被收集。你可以为每个项目设置速度限制以防止某一潮水般涌入的错误影响其他使用Sentry的项目。"
+"flood of errors won't affect any other projects utilizing LogInsight."
+msgstr "作为 LogInsight 生来就有的特性，有时大量的数据会被收集。你可以为每个项目设置速度限制以防止某一潮水般涌入的错误影响其他使用 LogInsight 的项目。"
 
 #: templates/sentry/projects/quotas.html:15
 msgid ""
@@ -1776,8 +1776,8 @@ msgid ""
 msgstr "速率限制是以分钟为单位的，这意味着它将在新的一分钟里会滚存计算。当你试图发送一个事件并且该项目超出限额时，客户端会收到HTTP 429（过多请求）的回复。"
 
 #: templates/sentry/projects/quotas.html:18
-msgid "Note: The Sentry application is not configured to manage rate limits."
-msgstr "注意：Sentry没有做速率限制的配置。"
+msgid "Note: The LogInsight application is not configured to manage rate limits."
+msgstr "注意：LogInsight 没有做速率限制的配置。"
 
 #: templates/sentry/projects/quotas.html:20
 #, python-format
@@ -1789,9 +1789,9 @@ msgstr "你的团队被分配到的限额为<strong>%(team_quota)s 事件/分</s
 #: templates/sentry/projects/quotas.html:22
 #, python-format
 msgid ""
-"The Sentry system has <strong>%(system_quota)s events per minute</strong> "
+"The LogInsight system has <strong>%(system_quota)s events per minute</strong> "
 "allocated collectively among projects."
-msgstr "Sentry 系统被分配到的限额为<strong>%(system_quota)s 事件/分</strong> ，系统中的所有项目的事件总和不能超过以上限额。"
+msgstr "LogInsight 系统被分配到的限额为<strong>%(system_quota)s 事件/分</strong> ，系统中的所有项目的事件总和不能超过以上限额。"
 
 #: templates/sentry/projects/remove.html:18
 msgid "Removing this project is permanent and cannot be undone!"
@@ -2026,8 +2026,8 @@ msgid "Stacktrace order"
 msgstr "Stacktrace显示顺序"
 
 #: web/forms/accounts.py:329
-msgid "Default (let Sentry decide)"
-msgstr "默认 (由 Sentry 为您决定)"
+msgid "Default (let LogInsight decide)"
+msgstr "默认 (由 LogInsight 为您决定)"
 
 #: web/forms/accounts.py:330
 msgid "Most recent call last"
@@ -2302,9 +2302,9 @@ msgstr "安全令牌"
 #: web/frontend/project_settings.py:34
 #, python-brace-format
 msgid ""
-"Outbound requests matching Allowed Domains will have the header \"X-Sentry-"
+"Outbound requests matching Allowed Domains will have the header \"X-LogInsight-"
 "Token: {token}\" appended."
-msgstr "所有发向已获许可域名的请求，头文件中都会被加上\"X-Sentry-Token: {token}\"。"
+msgstr "所有发向已获许可域名的请求，头文件中都会被加上\"X-LogInsight-Token: {token}\"。"
 
 #: web/frontend/project_settings.py:35
 msgid "Auto resolve"
@@ -2353,8 +2353,8 @@ msgstr "启用 JavaScript 源读取"
 
 #: web/frontend/project_settings.py:60
 msgid ""
-"Allow Sentry to scrape missing JavaScript source context when possible."
-msgstr "如果可能，允许 Sentry 获取缺失的 JavaScript 源上下文。"
+"Allow LogInsight to scrape missing JavaScript source context when possible."
+msgstr "如果可能，允许 LogInsight 获取缺失的 JavaScript 源代码上下文。"
 
 #: web/frontend/project_settings.py:63
 msgid "Blacklisted IP Addresses"
@@ -2469,13 +2469,13 @@ msgstr "您的设置已被保存，将很快在其他服务生效"
 
 #: static/sentry/app/views/installWizard.jsx:208
 msgid ""
-"We were unable to load the required configuration from the Sentry server. "
+"We were unable to load the required configuration from the LogInsight server. "
 "Please take a look at the service logs."
 msgstr "无法从服务器端加载必须的配置，请查看服务日志"
 
 #: static/sentry/app/views/adminSettings.jsx:160
 msgid ""
-"We were unable to submit your changes to the Sentry server. Please take a "
+"We were unable to submit your changes to the LogInsight server. Please take a "
 "look at the service logs."
 msgstr "无法提交服务器设置，请查看服务日志"
 
@@ -2660,7 +2660,7 @@ msgstr "%(author)s 将该问题设为冻结 %(duration)s"
 #: static/sentry/app/views/groupActivity/index.jsx:48
 #, python-format
 msgid "%s muted this issue"
-msgstr "%s 将该问题设置静音"
+msgstr "%s 不再提醒该问题"
 
 #: static/sentry/app/views/groupActivity/index.jsx:50
 #, python-format
@@ -2722,11 +2722,11 @@ msgstr "已接受"
 
 #: static/sentry/app/views/organizationStats/index.jsx:252
 msgid "Dropped (Rate Limit)"
-msgstr "减少（速率限制）"
+msgstr "丢弃（速率限制）"
 
 #: static/sentry/app/views/organizationStats/index.jsx:264
 msgid "Dropped (Blacklist)"
-msgstr "减少（黑名单）"
+msgstr "丢弃（黑名单）"
 
 #: static/sentry/app/views/organizationStats/index.jsx:290
 msgid "Events per minute"
@@ -2738,11 +2738,11 @@ msgstr "事件（按项目）"
 
 #: static/sentry/app/views/organizationTeams/index.jsx:106
 msgid "You do not have enough permission to create new projects"
-msgstr "您没有足够的创建新项目权限"
+msgstr "您没有足够权限的创建新项目"
 
 #: static/sentry/app/views/organizationTeams/index.jsx:117
 msgid "You do not have enough permission to create new teams"
-msgstr "您没有足够的创建新团队权限"
+msgstr "您没有足够的权限创建新团队"
 
 #: static/sentry/app/views/organizationTeams/index.jsx:124
 msgid "Your Teams"
@@ -2758,7 +2758,7 @@ msgstr "抱歉，没有满足您过滤条件的版本。"
 
 #: static/sentry/app/views/projectReleases/index.jsx:146
 msgid "There don't seem to be any releases yet."
-msgstr "应该不存在任何版本。"
+msgstr "还没有新版本。"
 
 #: static/sentry/app/views/projectReleases/index.jsx:148
 msgid "Learn how to integrate Release Tracking"
@@ -2774,12 +2774,12 @@ msgstr "版本"
 
 #: static/sentry/app/options.jsx:8
 msgid "Root URL"
-msgstr ""
+msgstr "根 URL"
 
 #: static/sentry/app/options.jsx:10
 msgid ""
-"The root web address which is used to communicate with the Sentry backend."
-msgstr "root web地址被用来与后台进行通信"
+"The root web address which is used to communicate with the LogInsight backend."
+msgstr "根web地址被用来与后台进行通信"
 
 #: static/sentry/app/options.jsx:14
 msgid "Admin Email"
@@ -2787,22 +2787,20 @@ msgstr "管理员邮箱"
 
 #: static/sentry/app/options.jsx:16
 msgid "The technical contact for this LogInsight installation."
-msgstr "LogInsight 技术联系"
+msgstr "联系 LogInsight 技术中心"
 
 #: static/sentry/app/views/installWizard.jsx:169
 #, python-format
-msgid ""
-"An invalid option (%s) was passed to the server. Please report this issue to"
-" the Sentry team."
-msgstr "无效的选项被发送给服务器. 请报告给LogInsight团队"
+msgid "An invalid option (%s) was passed to the server. Please report this issue to the LogInsight team."
+msgstr "发送给服务器的选项无效(%s), 请告知 LogInsight 团队"
 
 #: static/sentry/app/views/installWizard.jsx:173
 msgid "An unknown error occurred. Please take a look at the service logs."
 msgstr "发生一个未知的错误。 请查看服务日志"
 
 #: static/sentry/app/views/installWizard.jsx:198
-msgid "Welcome to Sentry"
-msgstr "欢迎访问LogInsight"
+msgid "Welcome to LogInsight"
+msgstr "欢迎访问 LogInsight"
 
 #: static/sentry/app/stores/groupStore.jsx:215
 msgid "Unable to change assignee. Please try again."
@@ -2891,7 +2889,7 @@ msgstr "该事件已设为冻结，直至 %s"
 
 #: static/sentry/app/components/mutedBox.jsx:20
 msgid "This issue has been muted"
-msgstr "该事件已保持静音"
+msgstr "该事件已被设置为不再提醒"
 
 #: static/sentry/app/components/mutedBox.jsx:22
 msgid ""
@@ -2956,7 +2954,7 @@ msgstr "解决所有问题"
 #, python-format
 msgid "Resolve %d selected issue"
 msgid_plural "Resolve %d selected issues"
-msgstr[0] "解决  %d 个选定问题"
+msgstr[0] "解决 %d 个选定问题"
 
 #: static/sentry/app/views/stream/actions.jsx:172
 msgid "Set Status to Resolved"
@@ -3061,27 +3059,27 @@ msgstr "设置状态为：未解决"
 
 #: static/sentry/app/views/stream/actions.jsx:292
 msgid "Are you sure you want to mute all issues matching this search query?"
-msgstr "你确定要静默全部查询匹配的问题吗?"
+msgstr "你确定要不再提醒这个查询的所有结果吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:294
 #, python-format
 msgid "Are you sure you want to mute this %d issue?"
 msgid_plural "Are you sure you want to mute these %d issues?"
-msgstr[0] "你确定想要静默 %d 问题吗 ?"
+msgstr[0] "你确定不再提醒 %d 个问题吗 ?"
 
 #: static/sentry/app/views/stream/actions.jsx:300
 msgid "Mute all issues"
-msgstr ""
+msgstr "对所有问题都不提醒"
 
 #: static/sentry/app/views/stream/actions.jsx:302
 #, python-format
 msgid "Mute %d selected issue"
 msgid_plural "Mute %d selected issues"
-msgstr[0] "将 %d 个选定问题设为静音"
+msgstr[0] "不提醒第 %d 个选定问题"
 
 #: static/sentry/app/views/stream/actions.jsx:308
 msgid "Set status to: Muted"
-msgstr "设置状态为：静音"
+msgstr "设置状态为：不再提醒"
 
 #: static/sentry/app/views/stream/actions.jsx:319
 #, python-format
@@ -3179,7 +3177,7 @@ msgstr "编写"
 
 #: static/sentry/app/views/groupActivity/noteInput.jsx:226
 msgid "Markdown supported"
-msgstr "支持 Markdown"
+msgstr "Markdown支持"
 
 #: static/sentry/app/views/organizationStats/projectTable.jsx:43
 msgid "Dropped"
@@ -3439,8 +3437,8 @@ msgid "Remove"
 msgstr "移除"
 
 #: static/sentry/app/components/header/broadcasts.jsx:118
-msgid "No recent broadcasts from the Sentry team."
-msgstr "没有来自 Sentry 团队的最近广播。"
+msgid "No recent broadcasts from the LogInsight team."
+msgstr "最近没有来自 LogInsight 团队的广播。"
 
 #: static/sentry/app/components/header/broadcasts.jsx:128
 msgid "Read more"
