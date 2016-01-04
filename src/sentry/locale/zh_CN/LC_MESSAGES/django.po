@@ -2787,7 +2787,7 @@ msgstr "管理员邮箱"
 
 #: static/sentry/app/options.jsx:16
 msgid "The technical contact for this LogInsight installation."
-msgstr "LogInsight 技术联系"
+msgstr "联系 LogInsight 技术中心"
 
 #: static/sentry/app/views/installWizard.jsx:169
 #, python-format
