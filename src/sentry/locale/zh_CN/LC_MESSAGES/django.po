@@ -2722,11 +2722,11 @@ msgstr "已接受"
 
 #: static/sentry/app/views/organizationStats/index.jsx:252
 msgid "Dropped (Rate Limit)"
-msgstr "减少（速率限制）"
+msgstr "丢弃（速率限制）"
 
 #: static/sentry/app/views/organizationStats/index.jsx:264
 msgid "Dropped (Blacklist)"
-msgstr "减少（黑名单）"
+msgstr "丢弃（黑名单）"
 
 #: static/sentry/app/views/organizationStats/index.jsx:290
 msgid "Events per minute"

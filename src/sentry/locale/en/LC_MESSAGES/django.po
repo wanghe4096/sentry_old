@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-04 09:11+0000\n"
+"POT-Creation-Date: 2016-01-04 10:55+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2513,6 +2513,10 @@ msgstr ""
 msgid "The organization you were looking for was not found."
 msgstr ""
 
+#: static/sentry/app/views/projectDetails.jsx:157
+msgid "The project you were looking for was not found."
+msgstr ""
+
 #: static/sentry/app/views/projectDashboard.jsx:122
 msgid "1 hour"
 msgstr ""
@@ -2527,10 +2531,6 @@ msgstr ""
 
 #: static/sentry/app/views/releaseDetails.jsx:139
 msgid "New Issues"
-msgstr ""
-
-#: static/sentry/app/views/projectDetails.jsx:157
-msgid "The project you were looking for was not found."
 msgstr ""
 
 #: static/sentry/app/views/projectInstall/platform.jsx:92
@@ -2848,10 +2848,6 @@ msgid ""
 "default in feeds."
 msgstr ""
 
-#: static/sentry/app/views/projectDashboard/eventList.jsx:108
-msgid "No data available."
-msgstr ""
-
 #: static/sentry/app/components/missingProjectMembership.jsx:56
 #, python-format
 msgid "To view this data you must first join the %s team."
@@ -2874,16 +2870,12 @@ msgstr ""
 msgid "Request Access"
 msgstr ""
 
+#: static/sentry/app/views/projectDashboard/eventList.jsx:108
+msgid "No data available."
+msgstr ""
+
 #: static/sentry/app/components/groupList.jsx:123
 msgid "There don't seem to be any events fitting the query."
-msgstr ""
-
-#: static/sentry/app/views/stream/filters.jsx:55
-msgid "All Events"
-msgstr ""
-
-#: static/sentry/app/views/stream/filters.jsx:83
-msgid "Search for events, users, tags, and everything else."
 msgstr ""
 
 #: static/sentry/app/views/stream/actions.jsx:91
@@ -3097,12 +3089,24 @@ msgstr[1] ""
 msgid "Select all issues matching this search query."
 msgstr ""
 
+#: static/sentry/app/views/stream/filters.jsx:55
+msgid "All Events"
+msgstr ""
+
+#: static/sentry/app/views/stream/filters.jsx:83
+msgid "Search for events, users, tags, and everything else."
+msgstr ""
+
 #: static/sentry/app/views/stream/sidebar.jsx:104
 msgid "Text"
 msgstr ""
 
 #: static/sentry/app/views/stream/sidebar.jsx:108
 msgid "Search title and culprit text body"
+msgstr ""
+
+#: static/sentry/app/views/groupActivity/noteContainer.jsx:38
+msgid "Removing comment.."
 msgstr ""
 
 #: static/sentry/app/views/groupActivity/noteInput.jsx:14
@@ -3135,10 +3139,6 @@ msgstr ""
 
 #: static/sentry/app/views/groupActivity/noteInput.jsx:226
 msgid "Markdown supported"
-msgstr ""
-
-#: static/sentry/app/views/groupActivity/noteContainer.jsx:38
-msgid "Removing comment.."
 msgstr ""
 
 #: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:89
@@ -3181,18 +3181,6 @@ msgid ""
 "[link:creating your first team]."
 msgstr ""
 
-#: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:87
-msgid "Events Per Minute"
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:89
-msgid "Rejected in last 24h"
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:93
-msgid "View all stats"
-msgstr ""
-
 #: static/sentry/app/views/organizationStats/projectTable.jsx:43
 msgid "Dropped"
 msgstr ""
@@ -3207,6 +3195,18 @@ msgstr ""
 
 #: static/sentry/app/views/organizationStats/projectTable.jsx:44
 msgid "Total"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:87
+msgid "Events Per Minute"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:89
+msgid "Rejected in last 24h"
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:93
+msgid "View all stats"
 msgstr ""
 
 #: static/sentry/app/components/projectHeader/index.jsx:24
@@ -3379,6 +3379,10 @@ msgstr ""
 msgid "This action cannot be undone."
 msgstr ""
 
+#: static/sentry/app/views/stream/sortOptions.jsx:48
+msgid "Sort by"
+msgstr ""
+
 #: static/sentry/app/views/stream/searchBar.jsx:59
 msgid "Tag"
 msgstr ""
@@ -3397,10 +3401,6 @@ msgstr ""
 
 #: static/sentry/app/views/stream/searchBar.jsx:80
 msgid "or paste an event id to jump straight to it"
-msgstr ""
-
-#: static/sentry/app/views/stream/sortOptions.jsx:48
-msgid "Sort by"
 msgstr ""
 
 #: static/sentry/app/views/groupActivity/note.jsx:32
