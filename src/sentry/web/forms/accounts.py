@@ -326,7 +326,7 @@ class AppearanceSettingsForm(forms.Form):
         widget=forms.Select(attrs={'class': 'input-xlarge'}))
     stacktrace_order = forms.ChoiceField(
         label=_('Stacktrace order'), choices=(
-            ('-1', _('Default (let Sentry decide)')),
+            ('-1', _('Default (let Loginsight decide)')),
             ('1', _('Most recent call last')),
             ('2', _('Most recent call first')),
         ), help_text=_('Choose the default ordering of frames in stacktraces.'),

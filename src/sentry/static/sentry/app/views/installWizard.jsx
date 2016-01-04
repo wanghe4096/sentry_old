@@ -70,7 +70,7 @@ const InstallWizardSettings = React.createClass({
 
     return (
       <form onSubmit={this.onSubmit}>
-        <p>Welcome to Sentry, yo! Complete setup by filling out the required
+        <p>Welcome to Loginsight, yo! Complete setup by filling out the required
           configuration.</p>
 
         {fields.length ? fields :
@@ -171,7 +171,7 @@ const InstallWizard = React.createClass({
         } else {
           switch (err.error) {
             case 'unknown_option':
-              errorMessage = t('An invalid option (%s) was passed to the server. Please report this issue to the Sentry team.',
+              errorMessage = t('An invalid option (%s) was passed to the server. Please report this issue to the Loginsight team.',
                                err.errorDetail.option);
               break;
             default:
@@ -200,7 +200,7 @@ const InstallWizard = React.createClass({
           <div className="pattern" />
           <div className="setup-wizard">
             <h1>
-              <span>{t('Welcome to Sentry')}</span>
+              <span>{t('Welcome to Loginsight')}</span>
               <small>{version.current}</small>
             </h1>
             {loading ?
@@ -210,7 +210,7 @@ const InstallWizard = React.createClass({
             : (error ?
               <div className="loading-error">
                 <span className="icon" />
-                {t('We were unable to load the required configuration from the Sentry server. Please take a look at the service logs.')}
+                {t('We were unable to load the required configuration from the Loginsight server. Please take a look at the service logs.')}
               </div>
             :
               <div>
