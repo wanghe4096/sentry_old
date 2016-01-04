@@ -61,7 +61,7 @@
       </div>
       <div class="box-content with-padding">
         {% with form.origins as field %}
-        <p>{% blocktrans with 'https://github.com/getsentry/raven-js' as link %}Configure origin URLs which Loginsight should accept events from. This is used for communication with clients like <a href="{{ link }}">raven-js</a>.{% endblocktrans %}
+        <p>{% blocktrans with 'https://github.com/getsentry/raven-js' as link %}Configure origin URLs which LogInsight should accept events from. This is used for communication with clients like <a href="{{ link }}">raven-js</a>.{% endblocktrans %}
         <br>
         {% blocktrans %}This will restrict requests based on the <code>Origin</code> and <code>Referer</code> headers.{% endblocktrans %}</p>
         {{ field|as_crispy_field }}
@@ -80,7 +80,7 @@
         {% if not ACCESS.project_delete %}
         <p>{% trans "You do not have the required permission to remove this project." %}</p>
         {% elif project.is_internal_project %}
-        <p>{% trans "This project cannot be removed. It is used internally by the Loginsight server." %}</p>
+        <p>{% trans "This project cannot be removed. It is used internally by the LogInsight server." %}</p>
         {% else %}
         <p class="clearfix">
           <a href="{% url 'sentry-remove-project' project.organization.slug project.slug %}" class="btn btn-danger pull-right">{% trans "Remove Project" %}</a>

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-04 08:33+0000\n"
+"POT-Creation-Date: 2016-01-04 09:09+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -573,7 +573,7 @@ msgid "If you're continually seeing this issue, try the following:"
 msgstr ""
 
 #: templates/sentry/403-csrf-failure.html:18
-msgid "Clear cookies (at least for Loginsight's domain)."
+msgid "Clear cookies (at least for LogInsight's domain)."
 msgstr ""
 
 #: templates/sentry/403-csrf-failure.html:19
@@ -612,7 +612,7 @@ msgstr ""
 
 #: templates/sentry/accept-organization-invite.html:19
 #, python-format
-msgid "<strong>%(org_name)s</strong> is using Loginsight to aggregate errors."
+msgid "<strong>%(org_name)s</strong> is using LogInsight to aggregate errors."
 msgstr ""
 
 #: templates/sentry/accept-organization-invite.html:22
@@ -790,8 +790,8 @@ msgstr ""
 
 #: templates/sentry/no-organization-access.html:14
 msgid ""
-"You don't have access to any organizations within Loginsight. Talk to a "
-"Loginsight administrator about getting access."
+"You don't have access to any organizations within LogInsight. Talk to a "
+"LogInsight administrator about getting access."
 msgstr ""
 
 #: templates/sentry/organization-api-key-settings.html:7
@@ -843,7 +843,7 @@ msgid "Audit Log"
 msgstr ""
 
 #: templates/sentry/organization-audit-log.html:17
-msgid "Loginsight keeps track of important events within your organization."
+msgid "LogInsight keeps track of important events within your organization."
 msgstr ""
 
 #: templates/sentry/organization-auth-settings.html:5
@@ -939,7 +939,7 @@ msgid "Your account has been deactivated and scheduled for removal."
 msgstr ""
 
 #: templates/sentry/post-remove-account.html:14
-msgid "Thanks for using Loginsight! We hope to see you again soon!"
+msgid "Thanks for using LogInsight! We hope to see you again soon!"
 msgstr ""
 
 #: templates/sentry/project-issue-tracking.html:7
@@ -973,7 +973,7 @@ msgstr ""
 #: templates/sentry/project-notifications.html:22
 #, python-format
 msgid ""
-"Loginsight will notify you based on the <a href=\"%(link)s\">rules "
+"LogInsight will notify you based on the <a href=\"%(link)s\">rules "
 "configured for this project</a>."
 msgstr ""
 
@@ -1212,7 +1212,7 @@ msgid "Date Added"
 msgstr ""
 
 #: templates/sentry/admin/projects/list.html:64
-msgid "There are no active projects in Loginsight."
+msgid "There are no active projects in LogInsight."
 msgstr ""
 
 #: templates/sentry/admin/status/env.html:9
@@ -1242,7 +1242,7 @@ msgid "Uptime"
 msgstr ""
 
 #: templates/sentry/admin/status/env.html:37
-msgid "Environment not found (are you using the builtin Loginsight webserver?)."
+msgid "Environment not found (are you using the builtin LogInsight webserver?)."
 msgstr ""
 
 #: templates/sentry/admin/status/env.html:40
@@ -1335,7 +1335,7 @@ msgid "Team"
 msgstr ""
 
 #: templates/sentry/admin/teams/list.html:53
-msgid "There are no active teams in Loginsight."
+msgid "There are no active teams in LogInsight."
 msgstr ""
 
 #: templates/sentry/admin/users/edit.html:8
@@ -1381,7 +1381,7 @@ msgid "Last Login"
 msgstr ""
 
 #: templates/sentry/admin/users/list.html:66
-msgid "There are no users matching your query in Loginsight."
+msgid "There are no users matching your query in LogInsight."
 msgstr ""
 
 #: templates/sentry/admin/users/list.html:70
@@ -1669,7 +1669,7 @@ msgstr ""
 #: templates/sentry/projects/manage.html:64
 #, python-format
 msgid ""
-"Configure origin URLs which Loginsight should accept events from. This is"
+"Configure origin URLs which LogInsight should accept events from. This is"
 " used for communication with clients like <a href=\"%(link)s\">raven-"
 "js</a>."
 msgstr ""
@@ -1694,7 +1694,7 @@ msgstr ""
 
 #: templates/sentry/projects/manage.html:83
 msgid ""
-"This project cannot be removed. It is used internally by the Loginsight "
+"This project cannot be removed. It is used internally by the LogInsight "
 "server."
 msgstr ""
 
@@ -1735,7 +1735,7 @@ msgstr ""
 
 #: templates/sentry/projects/manage_tags.html:13
 msgid ""
-"Each event in Loginsight may be annotated with various tags (key and "
+"Each event in LogInsight may be annotated with various tags (key and "
 "value pairs). For more information on how send additional tags, see your "
 "client's documentation."
 msgstr ""
@@ -1746,10 +1746,10 @@ msgstr ""
 
 #: templates/sentry/projects/quotas.html:13
 msgid ""
-"With the nature of Loginsight, sometimes the amount of data collected can"
+"With the nature of LogInsight, sometimes the amount of data collected can"
 " be overwhelming. You can set rate limits per-project to ensure that a "
 "single flood of errors won't affect any other projects utilizing "
-"Loginsight."
+"LogInsight."
 msgstr ""
 
 #: templates/sentry/projects/quotas.html:15
@@ -1761,7 +1761,7 @@ msgid ""
 msgstr ""
 
 #: templates/sentry/projects/quotas.html:18
-msgid "Note: The Loginsight application is not configured to manage rate limits."
+msgid "Note: The LogInsight application is not configured to manage rate limits."
 msgstr ""
 
 #: templates/sentry/projects/quotas.html:20
@@ -1774,7 +1774,7 @@ msgstr ""
 #: templates/sentry/projects/quotas.html:22
 #, python-format
 msgid ""
-"The Loginsight system has <strong>%(system_quota)s events per "
+"The LogInsight system has <strong>%(system_quota)s events per "
 "minute</strong> allocated collectively among projects."
 msgstr ""
 
@@ -2012,7 +2012,7 @@ msgid "Stacktrace order"
 msgstr ""
 
 #: web/forms/accounts.py:329
-msgid "Default (let Loginsight decide)"
+msgid "Default (let LogInsight decide)"
 msgstr ""
 
 #: web/forms/accounts.py:330
@@ -2288,7 +2288,7 @@ msgstr ""
 #, python-brace-format
 msgid ""
 "Outbound requests matching Allowed Domains will have the header \"X"
-"-Loginsight-Token: {token}\" appended."
+"-LogInsight-Token: {token}\" appended."
 msgstr ""
 
 #: web/frontend/project_settings.py:35
@@ -2337,7 +2337,7 @@ msgstr ""
 
 #: web/frontend/project_settings.py:60
 msgid ""
-"Allow Loginsight to scrape missing JavaScript source context when "
+"Allow LogInsight to scrape missing JavaScript source context when "
 "possible."
 msgstr ""
 
@@ -2435,24 +2435,8 @@ msgstr ""
 msgid "Save Rule"
 msgstr ""
 
-#: static/sentry/app/components/compactIssue.jsx:119
-msgid "Saving changes.."
-msgstr ""
-
-#: static/sentry/app/views/adminSettings.jsx:127
-msgid "Your changes were saved, and will propagate to services shortly."
-msgstr ""
-
-#: static/sentry/app/views/adminSettings.jsx:155
-msgid ""
-"We were unable to load the required configuration from the Sentry server."
-" Please take a look at the service logs."
-msgstr ""
-
-#: static/sentry/app/views/adminSettings.jsx:160
-msgid ""
-"We were unable to submit your changes to the Loginsight server. Please "
-"take a look at the service logs."
+#: static/sentry/app/components/alertMessage.jsx:27
+msgid "Close"
 msgstr ""
 
 #: static/sentry/app/views/adminOrganizations.jsx:103
@@ -2469,6 +2453,26 @@ msgstr ""
 
 #: static/sentry/app/components/organizations/homeSidebar.jsx:37
 msgid "Organization"
+msgstr ""
+
+#: static/sentry/app/components/compactIssue.jsx:119
+msgid "Saving changes.."
+msgstr ""
+
+#: static/sentry/app/views/adminSettings.jsx:127
+msgid "Your changes were saved, and will propagate to services shortly."
+msgstr ""
+
+#: static/sentry/app/views/adminSettings.jsx:155
+msgid ""
+"We were unable to load the required configuration from the Sentry server."
+" Please take a look at the service logs."
+msgstr ""
+
+#: static/sentry/app/views/adminSettings.jsx:160
+msgid ""
+"We were unable to submit your changes to the LogInsight server. Please "
+"take a look at the service logs."
 msgstr ""
 
 #: static/sentry/app/views/app.jsx:69
@@ -2580,10 +2584,6 @@ msgstr ""
 
 #: static/sentry/app/views/stream.jsx:382
 msgid "Sorry, no events match your filters."
-msgstr ""
-
-#: static/sentry/app/components/alertMessage.jsx:27
-msgid "Close"
 msgstr ""
 
 #: static/sentry/app/views/groupActivity/index.jsx:27
@@ -2741,7 +2741,7 @@ msgstr ""
 
 #: static/sentry/app/options.jsx:10
 msgid ""
-"The root web address which is used to communicate with the Loginsight "
+"The root web address which is used to communicate with the LogInsight "
 "backend."
 msgstr ""
 
@@ -2750,7 +2750,7 @@ msgid "Admin Email"
 msgstr ""
 
 #: static/sentry/app/options.jsx:16
-msgid "The technical contact for this Loginsight installation."
+msgid "The technical contact for this LogInsight installation."
 msgstr ""
 
 #: static/sentry/app/views/stream/searchBar.jsx:73
@@ -3105,6 +3105,10 @@ msgstr ""
 msgid "Search title and culprit text body"
 msgstr ""
 
+#: static/sentry/app/views/groupActivity/noteContainer.jsx:38
+msgid "Removing comment.."
+msgstr ""
+
 #: static/sentry/app/views/groupActivity/noteInput.jsx:14
 msgid "Unknown error. Please try again."
 msgstr ""
@@ -3135,10 +3139,6 @@ msgstr ""
 
 #: static/sentry/app/views/groupActivity/noteInput.jsx:226
 msgid "Markdown supported"
-msgstr ""
-
-#: static/sentry/app/views/groupActivity/noteContainer.jsx:38
-msgid "Removing comment.."
 msgstr ""
 
 #: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:89
@@ -3379,10 +3379,6 @@ msgstr ""
 msgid "This action cannot be undone."
 msgstr ""
 
-#: static/sentry/app/views/stream/sortOptions.jsx:48
-msgid "Sort by"
-msgstr ""
-
 #: static/sentry/app/views/stream/searchBar.jsx:59
 msgid "Tag"
 msgstr ""
@@ -3403,6 +3399,10 @@ msgstr ""
 msgid "or paste an event id to jump straight to it"
 msgstr ""
 
+#: static/sentry/app/views/stream/sortOptions.jsx:48
+msgid "Sort by"
+msgstr ""
+
 #: static/sentry/app/views/groupActivity/note.jsx:32
 msgid "Are you sure you wish to delete this comment?"
 msgstr ""
@@ -3412,7 +3412,7 @@ msgid "Remove"
 msgstr ""
 
 #: static/sentry/app/components/header/broadcasts.jsx:118
-msgid "No recent broadcasts from the Loginsight team."
+msgid "No recent broadcasts from the LogInsight team."
 msgstr ""
 
 #: static/sentry/app/components/header/broadcasts.jsx:128
