@@ -65,11 +65,12 @@ from .endpoints.team_groups_trending import TeamGroupsTrendingEndpoint
 from .endpoints.team_project_index import TeamProjectIndexEndpoint
 from .endpoints.team_stats import TeamStatsEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
-
+from .endpoints.register import RegisterEndpoint
 
 urlpatterns = patterns(
     '',
-
+    # Register User
+    url(r'register', RegisterEndpoint.as_view(), name='sentry-api-0-register'),
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),
