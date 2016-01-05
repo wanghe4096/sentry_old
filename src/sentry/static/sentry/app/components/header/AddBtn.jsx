@@ -11,28 +11,37 @@ import {render} from 'react-dom'
 import {t} from '../../locale';
 import DropdownLink from '../dropdownLink';
 import MenuItem from '../menuItem';
-import AddTeamModal from '../addTeamModal';
-
+import TeamModal from '../addTeamModal';
+import ProjectModal from '../addProjectModal';
 const AddBtn = React.createClass({
   getInitialState() {
     return {
-      showAddTeamModal:false
+      showTeamModal: false,
+      showProjectModal: false
     };
   },
 
   addNewTeam() {
     this.setState({
-      showAddTeamModal:true
+      showTeamModal: true
     });
   },
 
   addNewProject() {
-    console.log('project');
+    this.setState({
+      showProjectModal: true
+    });
   },
 
   closeTeamModal() {
     this.setState({
-      showAddTeamModal:false
+      showTeamModal: false
+    });
+  },
+
+  closeProjectModal() {
+    this.setState({
+      showProjectModal: false
     });
   },
 
@@ -48,10 +57,15 @@ const AddBtn = React.createClass({
         <MenuItem onSelect={this.addNewTeam}>{t('New team')}</MenuItem>
         <MenuItem onSelect={this.addNewProject}>{t('New project')}</MenuItem>
 
-        <AddTeamModal
-          show={this.state.showAddTeamModal}
+        <TeamModal
+          show={this.state.showTeamModal}
           keyboard={true}
           onHide={this.closeTeamModal}
+        />
+        <ProjectModal
+          show={this.state.showProjectModal}
+          keyboard={true}
+          onHide={this.closeProjectModal}
         />
       </DropdownLink>
     )

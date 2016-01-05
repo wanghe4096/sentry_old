@@ -13,7 +13,7 @@ import ApiMixin from '../mixins/apiMixin';
 import {t} from '../locale';
 import AlertActions from '../actions/alertActions.jsx';
 
-const AddTeamModal = React.createClass({
+const TeamModal = React.createClass({
   mixins: [
     OrganizationState,
     ApiMixin
@@ -132,4 +132,4 @@ const AddTeamModal = React.createClass({
   }
 });
 
-export default AddTeamModal;
+export default TeamModal;
