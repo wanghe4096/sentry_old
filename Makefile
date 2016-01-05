@@ -125,7 +125,7 @@ coverage: develop
 	coverage html
 
 run-uwsgi:
-	uwsgi --http 127.0.0.1:8000 --need-app --disable-logging --wsgi-file src/sentry/wsgi.py --processes 1 --threads 5
+	uwsgi --http 127.0.0.1:9000 --need-app --disable-logging --wsgi-file src/sentry/wsgi.py --processes 1 --threads 5
 
 publish:
 	python setup.py sdist bdist_wheel upload
