@@ -59,6 +59,8 @@ const ExpandedTeamList = React.createClass({
         </div>
       );
     } else {
+      // todo: 离开团队需要confirm
+      // todo: 每个 peoject 后面带引导页面的链接
       return (
         <div className="box" key={team.slug}>
           <div className="box-header">
@@ -78,9 +80,8 @@ const ExpandedTeamList = React.createClass({
                 <tr>
                   <td>
                     <p className="project-list-empty">
-                      {tct('There are no projects in this team. Get started by [link:creating your first project].', {
-                        link: <a href={this.urlPrefix() + '/projects/new/?team=' + team.slug} />
-                      })}
+                      {t('There are no projects in this team. Get started by creating your first project.')}
+                      <a href={this.urlPrefix() + '/projects/new/?team=' + team.slug} > 创建项目 ></a>
                     </p>
                   </td>
                 </tr>
