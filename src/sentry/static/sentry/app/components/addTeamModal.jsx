@@ -101,13 +101,15 @@ const AddTeamModal = React.createClass({
         </Modal.Header>
         <Modal.Body>
           <form onSubmit={this.submitHandler}>
+            <p>
+              群组成员可访问特定重点内容，例如，拥有子项目的主打产品或应用。
+            </p>
             <Input
               type="text"
               value={this.state.teamName}
-              placeholder={t('enter team name')}
+              placeholder={t('E.g. Operations, Web, Desktop, ...')}
               label={t('team name')}
-              bsStyle={stateClass}
-              help={error || t('* At least two characters')}
+              help={t('* At least two characters,The team name has no significant impact and can be changed later.')}
               hasFeedback
               autoFocus
               ref="input"
@@ -116,6 +118,7 @@ const AddTeamModal = React.createClass({
               labelClassName="label-class"
               onChange={this.handleChange}
             />
+            {error}
             <Modal.Footer>
               <Button type="reset" disabled={inSaving}>{t('Reset')}</Button>
               <Button type="submit" disabled={!!stateClass || inSaving} bsStyle="primary">
