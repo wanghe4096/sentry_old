@@ -19,29 +19,20 @@ import {sortArray} from '../utils';
 const ProjectModal = React.createClass({
   mixins: [
     OrganizationState,
-    ApiMixin,
-    Reflux.listenTo(TeamStore, 'onTeamListChange')
+    ApiMixin
   ],
 
   getInitialState() {
-    return {
-      projectName: '',
-      team: null,
-      inSaving: false,
-      error: false,
-      teamList:[]
-    }
-  },
-
-  onTeamListChange() {
     let newTeamList = sortArray(TeamStore.getAll(), function(o) {
       return o.name;
     });
-
-    this.setState({
-      teamList: newTeamList,
-      team:newTeamList[0].slug
-    });
+    return {
+      projectName: '',
+      team: newTeamList[0].slug,
+      inSaving: false,
+      error: false,
+      teamList:newTeamList
+    }
   },
 
   submitHandler(e) {
@@ -108,7 +99,6 @@ const ProjectModal = React.createClass({
         TeamStore.loadInitialData(newTeamList);
         AlertActions.addAlert(t('Creating Success'), 'success', 3000);
         this.props.onHide();
-        this.setState({projectName:'',inSaving:false});
       },
       error: () => {
         // todo : 错误详情提示
@@ -121,7 +111,9 @@ const ProjectModal = React.createClass({
   },
 
   renderTeamList() {
-    return this.state.teamList.map((team) => (<option key={team.slug} value={team.slug}>{team.name}</option>));
+    return this.state.teamList.map((team) => (
+      <option key={team.slug} value={team.slug}>{team.name}</option>
+    ));
   },
 
   render() {
@@ -135,7 +127,7 @@ const ProjectModal = React.createClass({
       </div>;
 
     return (
-      <Modal {...this.props}>
+      <Modal show={true} keyboard={true} onHide={this.props.onHide}>
         <Modal.Header closeButton={true}>
           <Modal.Title>{t('add project')}</Modal.Title>
         </Modal.Header>

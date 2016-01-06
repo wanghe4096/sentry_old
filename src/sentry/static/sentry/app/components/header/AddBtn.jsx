@@ -57,16 +57,17 @@ const AddBtn = React.createClass({
         <MenuItem onSelect={this.addNewTeam}>{t('New team')}</MenuItem>
         <MenuItem onSelect={this.addNewProject}>{t('New project')}</MenuItem>
 
-        <TeamModal
-          show={this.state.showTeamModal}
-          keyboard={true}
-          onHide={this.closeTeamModal}
-        />
-        <ProjectModal
-          show={this.state.showProjectModal}
-          keyboard={true}
-          onHide={this.closeProjectModal}
-        />
+        {this.state.showTeamModal && (
+          <TeamModal
+            onHide={this.closeTeamModal}
+          />
+        )}
+
+        {this.state.showProjectModal && (
+          <ProjectModal
+            onHide={this.closeProjectModal}
+          />
+        )}
       </DropdownLink>
     )
   }

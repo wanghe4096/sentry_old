@@ -53,7 +53,6 @@ const TeamModal = React.createClass({
         TeamStore.loadInitialData(Array.concat(...TeamStore.items,data));
         AlertActions.addAlert(t('Creating Success'), 'success', 3000);
         this.props.onHide();
-        this.setState(this.getInitialState());
       },
       error: () => {
         // todo : 错误详情提示
@@ -95,7 +94,7 @@ const TeamModal = React.createClass({
       </div>;
 
     return (
-      <Modal {...this.props}>
+      <Modal show={true} keyboard={true} onHide={this.props.onHide}>
         <Modal.Header closeButton={true}>
           <Modal.Title>{t('add team')}</Modal.Title>
         </Modal.Header>
