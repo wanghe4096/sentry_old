@@ -51,7 +51,7 @@ const AddBtn = React.createClass({
   },
 
   render (){
-    if(window.location.pathname === '/manage/'){
+    if(/^\/manage\/*/.test(window.location.pathname)){
       return false;
     }
     let access = this.getAccess();
