@@ -13,7 +13,12 @@ import DropdownLink from '../dropdownLink';
 import MenuItem from '../menuItem';
 import TeamModal from '../addTeamModal';
 import ProjectModal from '../addProjectModal';
+import OrganizationState from '../../mixins/organizationState';
 const AddBtn = React.createClass({
+  mixins: [
+    OrganizationState
+  ],
+
   getInitialState() {
     return {
       showTeamModal: false,
@@ -47,6 +52,11 @@ const AddBtn = React.createClass({
 
   render (){
 
+    let access = this.getAccess();
+    if(!access.has('project:write') && !access.has('team:write')){
+      return false;
+    }
+
     const title = <span className="fa fa-lg fa-plus"></span>;
 
     return (
@@ -54,8 +64,17 @@ const AddBtn = React.createClass({
         topLevelClasses={this.props.className}
         menuClasses="dropdown-menu-right"
         title={title}>
-        <MenuItem onSelect={this.addNewTeam}>{t('New team')}</MenuItem>
-        <MenuItem onSelect={this.addNewProject}>{t('New project')}</MenuItem>
+
+        {
+          access.has('project:write') && (
+            <MenuItem onSelect={this.addNewTeam}>{t('New team')}</MenuItem>
+          )
+        }
+        {
+          access.has('team:write') && (
+            <MenuItem onSelect={this.addNewProject}>{t('New project')}</MenuItem>
+          )
+        }
 
         {this.state.showTeamModal && (
           <TeamModal

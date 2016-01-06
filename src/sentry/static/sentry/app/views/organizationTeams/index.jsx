@@ -9,10 +9,11 @@ import OrganizationState from '../../mixins/organizationState';
 import TeamStore from '../../stores/teamStore';
 import TooltipMixin from '../../mixins/tooltip';
 import {sortArray} from '../../utils';
-
+import {Link} from 'react-router';
 import ExpandedTeamList from './expandedTeamList';
 import AllTeamsList from './allTeamsList';
 import OrganizationStatOverview from './organizationStatOverview';
+import SDKInstallWizard from '../../components/sdkInstallWizard';
 
 const OrganizationTeams = React.createClass({
   mixins: [
@@ -30,7 +31,8 @@ const OrganizationTeams = React.createClass({
       teamList: sortArray(TeamStore.getAll(), function(o) {
         return o.name;
       }),
-      projectStats: {},
+      showWizard:false,
+      projectStats: {}
     };
   },
 
@@ -77,6 +79,12 @@ const OrganizationTeams = React.createClass({
     });
   },
 
+  showWizardHandler() {
+    this.setState({
+      showWizard: true
+    });
+  },
+
   render() {
     if (!this.context.organization)
       return null;
@@ -96,28 +104,17 @@ const OrganizationTeams = React.createClass({
           <div className="col-md-9">
             <div className="team-list">
               <div className="pull-right">
-                {access.has('project:write') ?
-                  <a href={urlPrefix + '/projects/new/'} className="btn btn-primary btn-sm"
-                     style={{marginRight: 5}}>
-                    <span className="icon-plus" /> {t('Project')}
-                  </a>
-                :
-                  <a className="btn btn-primary btn-sm btn-disabled tip"
-                     title={t('You do not have enough permission to create new projects')}
-                     style={{marginRight: 5}}>
-                    <span className="icon-plus" /> {t('Project')}
-                  </a>
-                }
-                {access.has('team:write') ?
-                  <a href={urlPrefix + '/teams/new/'} className="btn btn-primary btn-sm">
-                    <span className="icon-plus" /> {t('Team')}
-                  </a>
-                :
-                  <a className="btn btn-primary btn-sm btn-disabled tip"
-                     title={t('You do not have enough permission to create new teams')}>
-                    <span className="icon-plus" /> {t('Team')}
-                  </a>
-                }
+                <div className="btn-toolbar">
+                  <a className="hide btn btn-sm btn-primary tip" onClick={this.showWizardHandler} title="在项目内介入数据">{t('SDK install wizard')} >></a>
+                  { this.state.showWizard && (
+                    <SDKInstallWizard
+                      onHide={() => this.setState({showWizard:false})}
+                      org={org.id}/>
+                  ) }
+                  <Link
+                    className="btn btn-sm btn-default tip"
+                    to={`organizations/${org.slug}/stats/`}>{t('Stats')}</Link>
+                </div>
               </div>
               <ul className="nav nav-tabs border-bottom">
                 <li className={activeNav === 'your-teams' && 'active'}>

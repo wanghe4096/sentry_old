@@ -5,9 +5,7 @@ import Cookies from 'js-cookie';
 import Sticky from 'react-sticky';
 import classNames from 'classnames';
 import _ from 'underscore';
-
 import ApiMixin from '../mixins/apiMixin';
-
 import GroupStore from '../stores/groupStore';
 import LoadingError from '../components/loadingError';
 import LoadingIndicator from '../components/loadingIndicator';
@@ -22,6 +20,7 @@ import GroupOverlay from './stream/groupOverlay';
 import utils from '../utils';
 import parseLinkHeader from '../utils/parseLinkHeader';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import SDKInstallWizard from '../components/sdkInstallWizard';
 
 import {t} from '../locale';
 
@@ -66,6 +65,7 @@ const Stream = React.createClass({
       isSidebarVisible: false,
       isStickyHeader: false,
       overlayId: null,
+      showWizard: this.props.location.state && this.props.location.state.isNew,
       ...this.getQueryStringState()
     };
   },
@@ -108,6 +108,13 @@ const Stream = React.createClass({
       } else {
         this._poller.disable();
       }
+    }
+  },
+
+  componentDidMount() {
+    // 只需isNew 时只需一次提示
+    if (this.props.location.state && this.props.location.state.isNew) {
+      this.history.replaceState(null, window.location.pathname);
     }
   },
 
@@ -427,15 +434,34 @@ const Stream = React.createClass({
   },
 
   render() {
-    let params = this.props.params;
 
+    let params = this.props.params;
     let classes = ['stream-row'];
+    let {orgId, projectId} = this.props.params;
     if (this.state.isSidebarVisible)
       classes.push('show-sidebar');
 
-    let {orgId, projectId} = this.props.params;
+    // todo: 需要支持<下次不提醒>
+    let showWizard = this.state.showWizard;
+
+    //todo:临时调试用
+    if(!!(this.props.location.query && typeof this.props.location.query.wizard === 'string')){
+      showWizard = true;
+    }
+
+    // todo: wizard 任务往后推移
+    showWizard = false;
+
     return (
       <div className={classNames(classes)}>
+
+        { showWizard && (
+          <SDKInstallWizard
+            projectId={projectId}
+            onHide={() => this.setState({isNew:false})}
+            org={orgId}/>
+        ) }
+
         <div className="stream-content">
           <StreamFilters
             orgId={orgId}

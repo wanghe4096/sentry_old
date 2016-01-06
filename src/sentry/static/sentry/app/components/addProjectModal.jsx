@@ -8,6 +8,7 @@
 
 import React from 'react';
 import Reflux from 'reflux';
+import {History} from 'react-router';
 import {Modal,Button,Input} from 'react-bootstrap';
 import OrganizationState from '../mixins/organizationState';
 import TeamStore from '../stores/teamStore';
@@ -19,11 +20,12 @@ import {sortArray} from '../utils';
 const ProjectModal = React.createClass({
   mixins: [
     OrganizationState,
-    ApiMixin
+    ApiMixin,
+    History
   ],
 
   getInitialState() {
-    let newTeamList = sortArray(TeamStore.getAll(), function(o) {
+    let newTeamList = sortArray(TeamStore.getAll(), function (o) {
       return o.name;
     });
     return {
@@ -31,7 +33,7 @@ const ProjectModal = React.createClass({
       team: newTeamList[0].slug,
       inSaving: false,
       error: false,
-      teamList:newTeamList
+      teamList: newTeamList
     }
   },
 
@@ -55,7 +57,7 @@ const ProjectModal = React.createClass({
       stateClass = 'error';
     }
 
-    if(!this.state.team) {
+    if (!this.state.team) {
       stateClass = 'error';
     }
 
@@ -89,9 +91,9 @@ const ProjectModal = React.createClass({
         name: data.name
       },
       success: (result) => {
-        const newTeamList = TeamStore.items.map((item) =>{
-          if(item.slug === data.team){
-            item.projects = [...item.projects,result];
+        const newTeamList = TeamStore.items.map((item) => {
+          if (item.slug === data.team) {
+            item.projects = [...item.projects, result];
           }
           return item;
         });
@@ -99,6 +101,7 @@ const ProjectModal = React.createClass({
         TeamStore.loadInitialData(newTeamList);
         AlertActions.addAlert(t('Creating Success'), 'success', 3000);
         this.props.onHide();
+        this.history.pushState({isNew: true}, `/${org.slug}/${result.slug}/`);
       },
       error: () => {
         // todo : 错误详情提示
