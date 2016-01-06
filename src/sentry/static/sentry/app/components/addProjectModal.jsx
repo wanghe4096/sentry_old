@@ -158,7 +158,7 @@ const ProjectModal = React.createClass({
               </label>
               <div className="col-xs-9">
                 <select
-                  className="form-control"
+                  className="form-control select-height"
                   value={this.state.team}
                   onChange={this.handleTeam}>
                   {this.renderTeamList()}

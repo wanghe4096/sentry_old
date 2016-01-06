@@ -3063,8 +3063,8 @@ ul.tag-list {
     position: absolute;
     top: 50%;
     left: 50%;
-    margin-left: -300px;
-    margin-top: -91px;
+    //margin-left: -300px;
+    //margin-top: -91px;
 
     &.modal-sm {
       top: 50%;
@@ -3083,3 +3083,23 @@ ul.tag-list {
     }
   }
 }
+
+.modal.fade .modal-dialog {
+  -webkit-transition: -webkit-transform .3s ease-out;
+  -o-transition:      -o-transform .3s ease-out;
+  transition:         transform .3s ease-out;
+  -webkit-transform: translate(-50%, 0);
+  -ms-transform: translate(-50%, 0);
+  -o-transform: translate(-50%, 0);
+  transform: translate(-50%, 0);
+}
+
+.modal.in .modal-dialog {
+  -webkit-transform: translate(-50%, -50%);
+  
+  -ms-transform: translate(-50%, -50%);
+  -o-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+
