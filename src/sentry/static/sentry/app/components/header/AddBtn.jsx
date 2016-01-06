@@ -51,7 +51,9 @@ const AddBtn = React.createClass({
   },
 
   render (){
-
+    if(window.location.pathname === '/manage/'){
+      return false;
+    }
     let access = this.getAccess();
     if(!access.has('project:write') && !access.has('team:write')){
       return false;
