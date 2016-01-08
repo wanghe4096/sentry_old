@@ -12,16 +12,23 @@ from sentry.models.host_stream import (
 from rest_framework.response import Response
 from rest_framework import mixins
 from rest_framework import generics
+from rest_framework import permissions
+from sentry.api.base import Endpoint
+from sentry.api.authentication import QuietBasicAuthentication
 
 
-class HostView(mixins.ListModelMixin,
-                mixins.CreateModelMixin,
-                generics.GenericAPIView):
+class HostView(Endpoint,
+               mixins.ListModelMixin,
+               mixins.CreateModelMixin,
+               generics.GenericAPIView):
     """
       GET /hosts
     """
     serializer_class = HostSerializer
     queryset = Host.objects.all()
+
+    authentication_classes = [QuietBasicAuthentication]
+    permission_classes = ()
 
     def get(self, request, *args, **kwargs):
         self.queryset = Host.objects.filter(user=request.user)
@@ -38,6 +45,8 @@ class HostTypeView(mixins.ListModelMixin,
     GET /host-type
     parm: none
     """
+    authentication_classes = [QuietBasicAuthentication]
+    permission_classes = ()
     serializer_class = HostTypeSerializer
     queryset = HostType.objects.all()
 
@@ -56,6 +65,8 @@ class TagView(mixins.ListModelMixin,
     GET /tags
     param: none
     """
+    authentication_classes = [QuietBasicAuthentication]
+    permission_classes = ()
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
 
@@ -74,6 +85,8 @@ class StreamTypeView(mixins.ListModelMixin,
     GET /stream-type
     PARAM: none
     """
+    authentication_classes = [QuietBasicAuthentication]
+    permission_classes = ()
     serializer_class = StreamTypeSerializer
     queryset = StreamType.objects.all()
 
@@ -92,6 +105,8 @@ class StreamView(mixins.ListModelMixin,
     GET /streams
     param:  host_name=hostA,hostB,hostC,hostD
     """
+    authentication_classes = [QuietBasicAuthentication]
+    permission_classes = ()
     serializer_class = StreamSerializer
     queryset = Stream.objects.all()
 
@@ -141,6 +156,8 @@ class LogEventView(mixins.ListModelMixin,
         event_offset  = 0
         event_count = 0
     """
+    authentication_classes = [QuietBasicAuthentication]
+    permission_classes = ()
     serializer_class = LogEventSerializer
     queryset = LogEvent.objects.all()[:20]
 
@@ -150,6 +167,8 @@ class LogEventView(mixins.ListModelMixin,
         event_count_param = request.GET.get('event_count', '20')
         event_offset = int(event_offset_param)
         event_count = int(event_count_param)
+        if len(self.queryset) == 0:
+            return Response([])
         self.queryset = LogEvent.objects.filter(user=request.user, host = Host.objects.filter(host_name=host_name)[0])[event_offset: event_offset + event_count]
         return self.list(request, *args, **kwargs)
 

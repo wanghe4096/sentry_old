@@ -46,14 +46,14 @@ class LogEventSerializer(serializers.ModelSerializer):
         model = LogEvent
         fields = ('id', 'payload', 'offset', 'stream', 'host', 'user',)
 
-
-class HostStreamSerializer(serializers.Serializer):
-    host_types = HostTypeSerializer(required=False)
-    host = HostSerializer(required=False)
-    streams = StreamSerializer(required=False)
-    tags = TagSerializer(required=False)
-
-
+#
+# class HostStreamSerializer(serializers.Serializer):
+#     host_types = HostTypeSerializer(required=False)
+#     host = HostSerializer(required=False)
+#     streams = StreamSerializer(required=False)
+#     tags = TagSerializer(required=False)
+#
+#
 
 
 
