@@ -18,11 +18,11 @@ const AlertMessage = React.createClass({
   render: function() {
     let className = this.props.className || 'alert';
     if (this.props.type !== '') {
-      className += ' alert-' + this.props.type;
+      className += ' alert-' + this.props.type + ' message-notice';
     }
 
     return (
-      <div className={className}>
+      <div className={className} >
         <div className="container">
           <button type="button" className="close" aria-label={t('Close')}
                   onClick={this.closeAlert}>
