@@ -25,7 +25,7 @@ const BorderMenu = createClass({
 
   render() {
 
-    let org = this.context.organization;
+    let org = this.context.organization || OrganizationStore.items[0];
 
     return (
       <div className="leftbar clearfix">
@@ -60,10 +60,15 @@ const BorderMenu = createClass({
             <ul id="myTab">
               <li>
                 <Link
-                  to={`/`}
+                  to={`/${org.slug}/error`}
                   activeClassName="active"
                   className="fa fa-home"
-                  onClick={this.onClickHandler}
+                  title="主页"/>
+
+                <Link
+                  to={`/${org.slug}/storage`}
+                  activeClassName="active"
+                  className="fa fa-th-large"
                   title="主页"/>
               </li>
             </ul>
@@ -71,13 +76,6 @@ const BorderMenu = createClass({
         </div>
       </div>
     );
-  },
-  onClickHandler(e) {
-    //fix staticpage
-    //if (window.STATIC_PAGE) {
-      e.preventDefault();
-      window.location = $(e.target).attr('href');
-    //}
   }
 });
 
