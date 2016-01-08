@@ -1,5 +1,5 @@
 import React from 'react';
-import {Redirect, Route, IndexRoute} from 'react-router';
+import {Redirect, Route, IndexRoute, IndexRedirect} from 'react-router';
 
 import Admin from './views/admin';
 import AdminOrganizations from './views/adminOrganizations';
@@ -33,7 +33,10 @@ import ReleaseDetails from './views/releaseDetails';
 import ReleaseNewEvents from './views/releaseNewEvents';
 import RouteNotFound from './views/routeNotFound';
 import SharedGroupDetails from './views/sharedGroupDetails';
+import StorageIndex from './views/storageIndex';
 import Stream from './views/stream';
+
+import OrganizationStore from './stores/organizationStore';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -45,6 +48,8 @@ function appendTrailingSlash(nextState, replaceState) {
 let routes = (
   <Route path="/" component={App}>
 
+    <IndexRedirect to={OrganizationStore.items[0].slug} />
+
     <Route path="/manage/" component={Admin}>
       <IndexRoute component={AdminOverview} />
       <Route path="organizations/" component={AdminOrganizations} />
@@ -54,15 +59,22 @@ let routes = (
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/" />
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails} />
 
+
+
     <Route path="/:orgId/" component={OrganizationDetails}>
-      <IndexRoute component={OrganizationTeams} />
 
-      <Route path="/organizations/:orgId/issues/assigned/" component={MyIssuesAssignedToMe} />
-      <Route path="/organizations/:orgId/issues/bookmarks/" component={MyIssuesBookmarked} />
-      <Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
-      <Route path="/organizations/:orgId/stats/" component={OrganizationStats} />
-      <Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
+      //<IndexRoute component={OrganizationTeams} />
+      //<Route path="/organizations/:orgId/issues/assigned/" component={MyIssuesAssignedToMe} />
+      //<Route path="/organizations/:orgId/issues/bookmarks/" component={MyIssuesBookmarked} />
+      //<Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
+      //<Route path="/organizations/:orgId/stats/" component={OrganizationStats} />
+      //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
 
+      <IndexRedirect to="error" />
+
+      <Route path="storage" component={StorageIndex}></Route>
+
+      <Route path="error" component={OrganizationTeams} />
       <Route path=":projectId/" component={ProjectDetails}>
         <IndexRoute component={Stream} />
 
