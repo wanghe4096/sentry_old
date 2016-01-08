@@ -113,7 +113,7 @@ const OrganizationTeams = React.createClass({
                   ) }
                   <Link
                     className="btn btn-sm btn-default tip"
-                    to={`organizations/${org.slug}/stats/`}>{t('Stats')}</Link>
+                    to={`/organizations/${org.slug}/stats/`}>{t('Stats')}</Link>
                 </div>
               </div>
               <ul className="nav nav-tabs border-bottom">
