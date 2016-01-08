@@ -8,6 +8,7 @@
 import React from 'react';
 import {Modal} from 'react-bootstrap';
 import {t} from '../../locale';
+import TabsToggle from './tabsToggle';
 
 const SDKInstallWizard = React.createClass({
   propsType:{
@@ -22,6 +23,7 @@ const SDKInstallWizard = React.createClass({
         </Modal.Header>
         <Modal.Body>
           wizard
+            <TabsToggle />
         </Modal.Body>
       </Modal>
     )
