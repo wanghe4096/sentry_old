@@ -35,9 +35,5 @@ class StreamTypeSerializer(serializers.ModelSerializer):
 class LogEventSerializer(serializers.ModelSerializer):
     class Meta:
         model = LogEvent
-        fields = ('id', 'payload', 'offset', 'stream', 'host', 'user',)
-
-
-
-
+        fields = ('id', 'payload', 'offset', 'stream', 'host', 'user', )
 
