@@ -4,6 +4,7 @@ import LazyLoad from 'react-lazy-load';
 
 import ApiMixin from '../../mixins/apiMixin';
 import BarChart from '../../components/barChart';
+import ProjectModal from '../../components/addProjectModal';
 import ConfigStore from '../../stores/configStore';
 import PropTypes from '../../proptypes';
 import {sortArray} from '../../utils';
@@ -19,6 +20,25 @@ const ExpandedTeamList = React.createClass({
   mixins: [
     ApiMixin
   ],
+
+  getInitialState() {
+    return {
+      showTeamModal: false,
+      showProjectModal: false
+    };
+  },
+
+  addNewProject() {
+    this.setState({
+      showProjectModal: true
+    });
+  },
+
+  closeProjectModal() {
+    this.setState({
+      showProjectModal: false
+    });
+  },
 
   leaveTeam(team) {
     // TODO(dcramer): handle loading indicator
@@ -81,7 +101,17 @@ const ExpandedTeamList = React.createClass({
                   <td>
                     <p className="project-list-empty">
                       {t('There are no projects in this team. Get started by creating your first project.')}
+
+                      <a onClick={this.addNewProject} > 创建项目 ></a>
+                      {this.state.showProjectModal && (
+                          <ProjectModal
+                              onHide={this.closeProjectModal}
+                          />
+                      )}
+
+                      {/*
                       <a href={this.urlPrefix() + '/projects/new/?team=' + team.slug} > 创建项目 ></a>
+                      */}
                     </p>
                   </td>
                 </tr>
