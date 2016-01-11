@@ -11,7 +11,16 @@ from sentry.api.serializers import serialize
 from sentry.api.serializers.models.user import UserSerializer
 from sentry.models.user import User
 from django.http.response import HttpResponse
+from rest_framework import mixins
+from rest_framework import generics
 import simplejson as json
+import hashlib
+
+
+def generate_user_key(username, email, password):
+    data = username + email + password
+    hash_md5 = hashlib.md5(data)
+    return hash_md5.hexdigest()
 
 
 class RegisterEndpoint(Endpoint):
@@ -21,6 +30,18 @@ class RegisterEndpoint(Endpoint):
     Intended to be used by the internal Sentry application to handle
     authentication methods from JS endpoints by relying on internal sessions
     and simple HTTP authentication.
+
+    GET /register
+    response userkey
+
+    POST /register
+    request:
+            {
+              'username':
+              'password':
+              'email':
+              }
+    response success/fail
     """
 
     authentication_classes = [QuietBasicAuthentication]
@@ -30,23 +51,27 @@ class RegisterEndpoint(Endpoint):
     # XXX: it's not quite clear if this should be documented or not at
     # this time.
     # doc_section = DocSection.ACCOUNTS
+    queryset = User.objects.all()
 
     def get(self, request):
-        return HttpResponse(request.user)
-        print request.DATA
+        print 'user=', request.user
+        user = User.objects.filter(username=request.user)[0]
+        return Response(user.userkey)
 
     def post(self, request):
-        print request.DATA
         print request.POST.get('username')
 
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')
+        user_key = generate_user_key(username, email, password)
         user = User(username=username, email=email)
+        user.userkey = user_key
         user.set_password(password)
         user.is_active = True
         user.is_managed = True
         user.is_staff = True
+
         if not User.objects.filter(username=username):
             if not User.objects.filter(email=email):
                 user.save()
