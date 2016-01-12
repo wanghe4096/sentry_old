@@ -15,6 +15,7 @@ import {t} from '../locale';
 import HostStore from '../stores/storage/hostStore';
 import HostAction from '../actions/storage/hostAction';
 
+
 const StorageIndex = React.createClass({
   getInitialState(){
     return {
