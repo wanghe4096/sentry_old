@@ -60,7 +60,7 @@ const BorderMenu = createClass({
             <ul id="myTab">
               <li>
                 <Link
-                  to={`/${org.slug}/error`}
+                  to={`/${org.slug}/issues`}
                   activeClassName="active"
                   className="fa fa-home"
                   title="主页"/>
