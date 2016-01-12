@@ -11,25 +11,23 @@ from sentry.api.base import Endpoint
 from sentry.api.authentication import QuietBasicAuthentication
 from sentry.utils import load_demo
 
-class DemoExceptionView(Endpoint,
-               mixins.ListModelMixin,
-               mixins.CreateModelMixin,
-               generics.GenericAPIView):
+
+class DemoExceptionView(Endpoint):
     """
       POST /demo_exception
     """
     # serializer_class = HostSerializer
     # queryset = Host.objects.all()
 
-    authentication_classes = [QuietBasicAuthentication]
+
     permission_classes = ()
 
-    def get(self, request, *args, **kwargs):
+    def get(self, request):
         # self.queryset = Host.objects.filter(user=request.user)
         # return self.list(request, *args, **kwargs)
         pass
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
         org_member = OrganizationMember.objects.get(user_id=request.user.id)
         org = Organization.objects.get(id=org_member.organization_id)
         load_demo.create_demo_sample(num_events=1, org_name=org.name, user_name=request.user.username)

@@ -16,8 +16,9 @@ from sentry import roles
 from sentry.app import tsdb, buffer
 from sentry.models import (
     Activity, Broadcast, File, GroupMeta, Organization, OrganizationAccessRequest,
-    OrganizationMember, Project, Release, ReleaseFile, Team, User, UserReport
+    OrganizationMember, Project, Release, ReleaseFile, Team, User, UserReport, OrganizationMemberTeam
 )
+import time
 from sentry.utils.samples import create_sample_event
 
 PLATFORMS = itertools.cycle([
@@ -107,21 +108,21 @@ def create_sample_time_series(event):
         now = now - timedelta(hours=1)
 
 
-def main(num_events=1):
-    user = User.objects.filter(is_superuser=True)[0]
+def main(num_events=1, user_name="dummy@example.com", org_name='default'):
 
     dummy_user, _ = User.objects.get_or_create(
-        username='dummy@example.com',
+        username=user_name,
         defaults={
-            'email': 'dummy@example.com',
+            'email': user_name,
         }
     )
-    dummy_user.set_password('dummy')
+    dummy_user.set_password('123')
     dummy_user.save()
 
+
     mocks = (
-        ('Massive Dynamic', ('Ludic Science',)),
-        ('Captain Planet', ('Earth', 'Fire', 'Wind', 'Water', 'Heart')),
+        ('Massive Dynamic' + str(datetime.now()), ('Ludic Science',)),
+        ('Captain Planet'  + str(datetime.now()), ('Earth',)),
     )
 
     Broadcast.objects.create(
@@ -135,11 +136,11 @@ def main(num_events=1):
     else:
         print('Mocking org {}'.format('Default'))
         org, _ = Organization.objects.get_or_create(
-            name='Default',
+            name=org_name,
         )
 
     OrganizationMember.objects.get_or_create(
-        user=user,
+        user=dummy_user,
         organization=org,
         role=roles.get_top_dog().id,
     )
@@ -158,8 +159,15 @@ def main(num_events=1):
             name=team_name,
             defaults={
                 'organization': org,
-            },
+            }
         )
+
+        print('create organizationmemberteam ')
+        OrganizationMemberTeam.objects.create(
+                team=team,
+                organizationmember=dummy_member,
+                is_active=True,
+            )
 
         for project_name in project_names:
             print('  > Mocking project {}'.format(project_name))
@@ -192,7 +200,7 @@ def main(num_events=1):
                 type=Activity.RELEASE,
                 project=project,
                 ident=release.version,
-                user=user,
+                user=dummy_user,
                 data={'version': release.version},
             )
 
@@ -275,7 +283,7 @@ def main(num_events=1):
         type=Activity.RELEASE,
         project=project,
         ident='4f38b65c62c4565aa94bba391ff8946922a8eed4',
-        user=user,
+        user=dummy_user,
         data={'version': '4f38b65c62c4565aa94bba391ff8946922a8eed4'},
     )
 
@@ -289,7 +297,8 @@ if __name__ == '__main__':
 
     parser = OptionParser()
     parser.add_option('--events', dest='num_events', default=1, type=int)
-
+    parser.add_option('--username', dest='user_name', type=str)
+    parser.add_option('--orgname', dest='org_name', type=str)
     (options, args) = parser.parse_args()
 
-    main(num_events=options.num_events)
+    main(num_events=options.num_events, user_name=options.user_name, org_name=options.org_name)
