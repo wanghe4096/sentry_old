@@ -14,9 +14,11 @@ import MenuItem from '../menuItem';
 import TeamModal from '../addTeamModal';
 import ProjectModal from '../addProjectModal';
 import OrganizationState from '../../mixins/organizationState';
+import ApiMixin from '../../mixins/apiMixin';
 const AddBtn = React.createClass({
   mixins: [
-    OrganizationState
+    OrganizationState,
+    ApiMixin
   ],
 
   getInitialState() {
@@ -25,7 +27,28 @@ const AddBtn = React.createClass({
       showProjectModal: false
     };
   },
+  addDemo() {
+    this.fetchData()
+    //this.fetchData()
+    //this.setState({
+    //  showTeamModal: true
+    //});
+  },
+  fetchData() {
+    this.api.request('/api/0/create_demo', {
+      method: 'post',
+      success:function(msg){
+        alert(msg)
+      },
+      error:function(){
 
+      }
+    });
+
+    //$.post("/api/0/create_demo", function(data){
+    //  console.log('msg=', data)
+    //})
+  },
   addNewTeam() {
     this.setState({
       showTeamModal: true
@@ -66,7 +89,11 @@ const AddBtn = React.createClass({
         topLevelClasses={this.props.className}
         menuClasses="dropdown-menu-right"
         title={title}>
-
+         {
+          access.has('project:write') && (
+        <MenuItem onSelect={this.addDemo } >{t('New demo')}</MenuItem>
+         )
+        }
         {
           access.has('project:write') && (
             <MenuItem onSelect={this.addNewTeam}>{t('New team')}</MenuItem>

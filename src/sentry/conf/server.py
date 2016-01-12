@@ -41,6 +41,8 @@ APPEND_SLASH = True
 
 PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), os.pardir))
 
+CREATE_DEMO_EXCEPTION_SAMPLE = 0
+
 # XXX(dcramer): handle case when we've installed from source vs just running
 # this straight out of the repository
 if 'site-packages' in __file__:
