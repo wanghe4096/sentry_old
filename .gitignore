@@ -1,3 +1,4 @@
+*.rdb
 .coverage
 .tox
 **/.DS_Store

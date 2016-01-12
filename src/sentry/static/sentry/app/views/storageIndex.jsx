@@ -9,12 +9,20 @@ import React from 'react';
 import DocumentTitle from 'react-document-title';
 import HostManage from './storage/hostManage';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import HostList from '../components/storage/hostList';
+import {t} from '../locale';
+
+import HostStore from '../stores/storage/hostStore';
+import HostAction from '../actions/storage/hostAction';
 
 const StorageIndex = React.createClass({
   getInitialState(){
     return {
-      showManageOverlay: true
+      showManageOverlay: false
     }
+  },
+  componentDidMount(){
+    HostAction.fetch();
   },
   render() {
     return (
@@ -35,25 +43,20 @@ const StorageIndex = React.createClass({
           </ReactCSSTransitionGroup>
           <div className="container">
             <div className="row content">
-              <div className="sa-filter col-md-12">
-
+              <div className="col-md-12 sub-header">
+                <h5>{t('Log Storage')}</h5>
               </div>
-              <div className="col-md-12">
-                <div className="stream-result">
+              <div className="col-md-8">
 
-                  <div className="pull-left">
-                    <button
-                      type="button"
-                      onClick={() => (this.setState({showManageOverlay:!this.state.showManageOverlay})) }>
-                      show overlay
-                    </button>
-                    stream list
-                  </div>
-                  <div className="" style={{marginLeft:'200px'}}>
-                    222222222222222222222222222222222222222222222222
-                  </div>
-
-                </div>
+                <button
+                  type="button"
+                  onClick={() => (this.setState({showManageOverlay:!this.state.showManageOverlay})) }>
+                  show overlay
+                </button>
+                <HostList />
+              </div>
+              <div className="col-md-4">
+                host monitor
               </div>
             </div>
           </div>

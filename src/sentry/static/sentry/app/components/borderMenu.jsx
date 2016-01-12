@@ -34,6 +34,10 @@ const BorderMenu = createClass({
             <nav id="bt-menu" className="bt-menu" ref="menu">
               <a className="bt-menu-trigger" onClick={this.foldHandler}>
                 <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/org-logo-normal.png`} className="op-avatar"/>
+                <div className="username-info">
+                  <div>John.Smith</div>
+                  <div className="font-bold user-link">用户权限</div>
+                </div>
               </a>
               <ul>
                 <li><a href="#">定义抽取规则</a></li>
@@ -70,6 +74,20 @@ const BorderMenu = createClass({
                   activeClassName="active"
                   className="fa fa-th-large"
                   title="主页"/>
+              </li>
+              <li>
+                <Link
+                    to={`/`}
+                    className="fa fa-times"
+                    onClick={this.onClickHandler}
+                    title="Error Report"/>
+              </li>
+              <li>
+                <Link
+                    to={`/`}
+                    className="fa fa-database"
+                    onClick={this.onClickHandler}
+                    title="LogStore"/>
               </li>
             </ul>
           </div>

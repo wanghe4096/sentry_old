@@ -9,7 +9,6 @@ import React from 'react';
 import Reflux from 'reflux';
 import ApiMixin from '../../mixins/apiMixin';
 import LoadingIndicator from '../../components/loadingIndicator';
-import HostList from '../../components/storage/hostList';
 import {t} from '../../locale';
 
 import HostStore from '../../stores/storage/hostStore';
@@ -47,7 +46,7 @@ const HostManage = React.createClass({
   },
 
   componentWillMount(){
-    HostAction.fetch();
+    //HostAction.fetch();
   },
 
   changeHost(id) {
@@ -76,7 +75,6 @@ const HostManage = React.createClass({
           <h4>Host Manage</h4>
         </div>
 
-        <HostList/>
         <StreamList />
         <FileList />
 

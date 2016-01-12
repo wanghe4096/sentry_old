@@ -75,7 +75,7 @@ const HostList = React.createClass({
     return (
       <div className="host-list-wrap">
         <div>
-          <h5>{t('host')}</h5>
+          <h5>{t('Host List')}</h5>
         </div>
         <ul className="host-list">
           {this.renderList()}

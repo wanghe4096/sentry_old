@@ -12,6 +12,7 @@ const ProjectHeader = React.createClass({
     let project = this.props.project;
     let org = this.props.organization;
     let access = new Set(org.access);
+    console.log(navSection)
 
     return (
       <div>
@@ -36,6 +37,11 @@ const ProjectHeader = React.createClass({
                     {t('Issues')}
                   </Link>
                 </li>
+                <li className={navSection == 'install' ? 'active' : ''}>
+                  <Link to={`/${org.slug}/${project.slug}/settings/install/`}>
+                    {t('接入')}
+                  </Link>
+                </li>
                 <li className={navSection == 'releases' ? 'active' : ''}>
                   <Link to={`/${org.slug}/${project.slug}/releases/`}>
                     {t('Releases')}
@@ -48,6 +54,7 @@ const ProjectHeader = React.createClass({
                     </a>
                   </li>
                 }
+
               </ul>
             </div>
             <ProjectSelector
