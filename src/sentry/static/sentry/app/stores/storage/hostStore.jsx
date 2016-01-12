@@ -1,5 +1,5 @@
 import Reflux from 'reflux';
-import HostAction from '../../actions/storage/hostAction';
+import HostAction from 'actions/storage/hostAction';
 import _ from 'underscore';
 
 const HostStore = Reflux.createStore({
@@ -22,7 +22,7 @@ const HostStore = Reflux.createStore({
     this.trigger(this.items)
   },
 
-  onAddSuccess(e) {
+  onAddError(e) {
     console.error('onAddSuccess fail:', e);
   },
 

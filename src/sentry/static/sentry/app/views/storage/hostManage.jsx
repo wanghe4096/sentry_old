@@ -7,16 +7,16 @@
 
 import React from 'react';
 import Reflux from 'reflux';
-import ApiMixin from '../../mixins/apiMixin';
-import LoadingIndicator from '../../components/loadingIndicator';
-import {t} from '../../locale';
+import ApiMixin from 'mixins/apiMixin';
+import LoadingIndicator from 'components/loadingIndicator';
+import {t} from 'app/locale';
 
-import HostStore from '../../stores/storage/hostStore';
-import HostAction from '../../actions/storage/hostAction';
-import StreamStore from '../../stores/storage/streamStore';
-import StreamAction from '../../actions/storage/streamAction';
-import HmStatusStore from '../../stores/storage/hostManageStatusStore';
-import HmStatusAction from '../../actions/storage/hostManageStatusAction';
+import HostStore from 'stores/storage/hostStore';
+import HostAction from 'actions/storage/hostAction';
+import StreamStore from 'stores/storage/streamStore';
+import StreamAction from 'actions/storage/streamAction';
+import HmStatusStore from 'stores/storage/hostManageStatusStore';
+import HmStatusAction from 'actions/storage/hostManageStatusAction';
 
 
 const StreamList = React.createClass({

@@ -7,7 +7,7 @@
 
 import Reflux from 'reflux';
 
-import StreamActions from '../../actions/storage/streamAction.jsx';
+import StreamActions from 'actions/storage/streamAction.jsx';
 
 const StreamStore = Reflux.createStore({
   listenables: StreamActions,

@@ -13,7 +13,7 @@ const HostAction = Reflux.createActions({
   fetch: {
     children: ["success", "failed"]
   },
-  addItem: {
+  add: {
     children: ["success", "failed"]
   }
 });
@@ -33,12 +33,22 @@ HostAction.fetch.listen(function () {
     {
       host_id: 'xxxx-1-id',
       host_name: 'xxxx-1',
-      hostType: 'xxxx-1-hostType'
+      host_type: 'xxxx-1-hostType'
     },
     {
       host_id: 'xxxx-2-id',
       host_name: 'xxxx-2',
-      hostType: 'xxxx-2-hostType'
+      host_type: 'xxxx-2-hostType'
+    },
+    {
+      host_id: 'xxxx-3-id',
+      host_name: 'xxxx-3',
+      host_type: 'xxxx-3-hostType'
+    },
+    {
+      host_id: 'xxxx-4-id',
+      host_name: 'xxxx-4',
+      host_type: 'xxxx-4-hostType'
     }
   ];
 
@@ -46,11 +56,11 @@ HostAction.fetch.listen(function () {
 });
 
 
-HostAction.addItem.listen(function (data) {
+HostAction.add.listen(function (data) {
   const mockData = {
     host_id: 'id-' + moment().format('YYYY-MM-DD-HH:mm:ss'),
     host_name: '创建于' + moment().format('YYYY-MM-DD HH:mm:ss') + '的临时host',
-    hostType: 'xxxxx-host_type'
+    host_type: 'xxxxx-host_type'
   };
 
   console.log('新增host:',data);

@@ -1,4 +1,3 @@
-
 // transition:
 
 .host-mng-ani-enter {
@@ -18,7 +17,6 @@
   transform: translateX(1000px);
   transition: all 300ms;
 }
-
 
 // overlay
 .host-mng-overlay .host-mng-container {
@@ -40,14 +38,93 @@
 
 }
 
-
 // storage app
 .sa-storage {
   .sub-header {
     border-bottom: 1px solid #D6DBE4;
     font-weight: 600;
     color: #394359;
-    padding-left:15px;
+    padding-left: 15px;
   }
+
+  .host-list-wrap{
+    .list-head{
+      margin-bottom: 10px;
+      border-bottom: 1px solid #eee;
+      padding-bottom: 20px;
+      h5{
+        margin:0 30px 0 0;
+        display: inline-block;
+      }
+    }
+  }
+
+
+  .host-list {
+    padding-left: 0;
+  }
+
+  .host-item {
+    list-style: none;
+    position: relative;
+    //margin-bottom: 30px;
+    border-bottom: 1px solid #D6DBE4;
+    padding: 20px 0 20px 10px;
+    &.active {
+      background-color: #fafafa;
+      &:before {
+        content: ' ';
+        position: absolute;
+        left: 0;
+        top:0;
+        bottom:0;
+        width: 5px;
+        //background-color: rgba(80,160,53);
+        background-color: #eee;
+      }
+    }
+
+    .host-name{
+      font-weight: 600;
+      font-size: 15px;
+      margin: 0;
+    }
+  }
+
+  .host-props-list {
+    padding-left: 0;
+    font-size: 12px;
+    color:#6F7E94;
+    li {
+      list-style: none;
+      float: left;
+      margin-right: 30px;
+    }
+  }
+
+  .host-stat {
+    padding: 0;
+    li {
+      list-style: none;
+      width: 50%;
+      float: left;
+    }
+    .nav-header {
+      padding: 0 0 10px;
+      margin: 0;
+    }
+    .count {
+      font-size: 36px;
+      color: #546076;
+      margin: 10px 0 20px;
+      .unit {
+        display: inline-block;
+        margin-left: 10px;
+        font-size: 14px;
+        color: #333;
+      }
+    }
+  }
+
 }
 

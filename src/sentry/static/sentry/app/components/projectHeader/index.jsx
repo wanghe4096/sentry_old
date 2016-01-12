@@ -18,13 +18,6 @@ const ProjectHeader = React.createClass({
       <div>
         <div className="sub-header">
           <div className="container">
-            <div className="pull-right" style={{ margin:'-3px 0 0 20px' }}>
-              <Link
-                className="btn btn-default btn-sm"
-                activeClassName="btn-disabled"
-                to={`/${org.slug}/${project.slug}/settings/install/`}
-              >接入</Link>
-            </div>
             <div className="pull-right">
               <ul className="nav nav-tabs">
                 <li className={navSection == 'dashboard' ? 'active' : ''}>
@@ -39,7 +32,7 @@ const ProjectHeader = React.createClass({
                 </li>
                 <li className={navSection == 'install' ? 'active' : ''}>
                   <Link to={`/${org.slug}/${project.slug}/settings/install/`}>
-                    {t('接入')}
+                    {t('install sdk')}
                   </Link>
                 </li>
                 <li className={navSection == 'releases' ? 'active' : ''}>

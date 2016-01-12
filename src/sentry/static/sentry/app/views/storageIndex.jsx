@@ -9,22 +9,32 @@ import React from 'react';
 import DocumentTitle from 'react-document-title';
 import HostManage from './storage/hostManage';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
-import HostList from '../components/storage/hostList';
-import {t} from '../locale';
+import HostList from 'components/storage/hostList';
+import {t} from 'app/locale';
 
-import HostStore from '../stores/storage/hostStore';
-import HostAction from '../actions/storage/hostAction';
+import HostStore from 'stores/storage/hostStore';
+import HostAction from 'actions/storage/hostAction';
+import HmStatusStore from 'stores/storage/hostManageStatusStore';
+import HmStatusAction from 'actions/storage/hostManageStatusAction';
+
+import HostStat from 'components/storage/hostStat';
 
 
 const StorageIndex = React.createClass({
+  mixins:[
+
+  ],
+
   getInitialState(){
     return {
       showManageOverlay: false
     }
   },
+
   componentDidMount(){
     HostAction.fetch();
   },
+
   render() {
     return (
       <DocumentTitle title="storage">
@@ -48,16 +58,10 @@ const StorageIndex = React.createClass({
                 <h5>{t('Log Storage')}</h5>
               </div>
               <div className="col-md-8">
-
-                <button
-                  type="button"
-                  onClick={() => (this.setState({showManageOverlay:!this.state.showManageOverlay})) }>
-                  show overlay
-                </button>
                 <HostList />
               </div>
               <div className="col-md-4">
-                host monitor
+                <HostStat />
               </div>
             </div>
           </div>
