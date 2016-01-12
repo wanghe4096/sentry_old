@@ -3,7 +3,9 @@ import ConfigStore from '../../stores/configStore';
 import DropdownLink from '../dropdownLink';
 import Gravatar from '../gravatar';
 import MenuItem from '../menuItem';
+import {Link} from 'react-router';
 import {t} from '../../locale';
+
 
 const UserNav = React.createClass({
   shouldComponentUpdate(nextProps, nextState) {
@@ -32,6 +34,15 @@ const UserNav = React.createClass({
         {user.isSuperuser &&
           <MenuItem to="/manage/">{t('Admin')}</MenuItem>
         }
+          {/*
+          <Link
+              className="btn btn-sm btn-default tip"
+              to={`organizations/${org.slug}/stats/`}>{t('Stats')}</Link>
+              */}
+        <li>
+            <Link
+                to={`/`}>{t('Stats')}</Link>
+        </li>
         <MenuItem href={urlPrefix + '/auth/logout/'}>{t('Sign out')}</MenuItem>
       </DropdownLink>
     );

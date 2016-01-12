@@ -13,9 +13,12 @@ import AlertNav from './alertNav';
 */}
 
 const TabsContent = React.createClass({
-  render() {
+  render: function() {
+    var items = this.props.items.map(function(item) {
+      return <div>{item.content}</div>;
+    }.bind(this));
     return (
-        <div>456</div>
+        <div className="tabs-panel">{items}</div>
     )
   }
 });

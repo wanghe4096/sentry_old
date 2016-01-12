@@ -12,19 +12,20 @@ import {t} from '../../locale';
 import AlertNav from './alertNav';
 */}
 
+
 const TabsSwitcher = React.createClass({
-  render() {
-    function(){
-      var tabs = this.props.data.map(item){
-      var selected = item
-      }
-    }
+  onClick: function(item) {
+    this.props.onTabClick(item);
+  },
+  render: function() {
+    var items = this.props.items.map(function(item) {
+      return <a onClick={this.onClick.bind(this, item)}>{item.name}</a>;
+    }.bind(this));
     return (
-        <div>
-          <ul>{tabs}</ul>
-        </div>
+        <div>{items}</div>
     )
   }
 });
+
 
 export default TabsSwitcher;
