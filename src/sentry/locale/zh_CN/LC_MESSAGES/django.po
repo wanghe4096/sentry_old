@@ -3515,3 +3515,7 @@ msgstr "应用"
 #: static/sentry/app/components/events/interfaces/frame.jsx:194
 msgid "Toggle context"
 msgstr "显示/隐藏上下文"
+
+#: templates/sentry/projects/manage.html:20
+msgid "Install"
+msgstr "接入"
