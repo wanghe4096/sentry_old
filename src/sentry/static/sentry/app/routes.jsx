@@ -47,7 +47,7 @@ function appendTrailingSlash(nextState, replaceState) {
 
 let routes = (
   <Route path="/" component={App}>
-
+    
     <IndexRedirect to={OrganizationStore.items[0].slug} />
 
     <Route path="/manage/" component={Admin}>
@@ -70,11 +70,11 @@ let routes = (
       //<Route path="/organizations/:orgId/stats/" component={OrganizationStats} />
       //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
 
-      <IndexRedirect to="error" />
+      <IndexRedirect to="issues" />
 
       <Route path="storage" component={StorageIndex}></Route>
 
-      <Route path="error" component={OrganizationTeams} />
+      <Route path="issues" component={OrganizationTeams} />
       <Route path=":projectId/" component={ProjectDetails}>
         <IndexRoute component={Stream} />
 
