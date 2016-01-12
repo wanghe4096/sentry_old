@@ -9,6 +9,7 @@ import React,{createClass} from 'react';
 import {History,IndexLink,Link} from 'react-router';
 import OrganizationStore from '../stores/organizationStore';
 import PropTypes from '../proptypes';
+import {t} from '../locale';
 
 const BorderMenu = createClass({
 
@@ -64,30 +65,23 @@ const BorderMenu = createClass({
             <ul id="myTab">
               <li>
                 <Link
-                  to={`/${org.slug}/issues`}
+                  to={`/${org.slug}/issues/`}
                   activeClassName="active"
                   className="fa fa-home"
-                  title="主页"/>
-
-                <Link
-                  to={`/${org.slug}/storage`}
-                  activeClassName="active"
-                  className="fa fa-th-large"
-                  title="主页"/>
+                  title={t('issues')}/>
               </li>
               <li>
                 <Link
-                    to={`/`}
-                    className="fa fa-times"
-                    onClick={this.onClickHandler}
-                    title="Error Report"/>
-              </li>
-              <li>
-                <Link
-                    to={`/`}
+                    to={`/${org.slug}/storage/`}
                     className="fa fa-database"
-                    onClick={this.onClickHandler}
-                    title="LogStore"/>
+                    activeClassName="active"
+                    title={t('log storage')}/>
+              </li>
+              <li className="hide">
+                <Link
+                  to={`/`}
+                  className="fa fa-times"
+                  title="Error Report"/>
               </li>
             </ul>
           </div>
