@@ -450,7 +450,7 @@ const Stream = React.createClass({
     }
 
     // todo: wizard 任务往后推移
-    showWizard = true;
+    showWizard = false;
 
     return (
       <div className={classNames(classes)}>

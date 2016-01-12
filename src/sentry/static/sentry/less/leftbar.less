@@ -87,6 +87,25 @@
   transition: border-width 0.3s, background-color 0.3s;
 }
 
+.bt-menu .bt-menu-trigger .username-info{
+  position: fixed;
+  top:12px;
+  left:72px;
+  display: none;
+  line-height:24px;
+  color: #fff;
+  font-weight:bold;
+}
+
+.bt-menu-open .bt-menu-trigger .username-info{
+  display: block;
+}
+
+.username-info .user-link{
+  font-size:14px;
+  color: #999;
+}
+
 .bt-menu ul {
   position: fixed;
   margin: 0;
@@ -226,7 +245,7 @@
 .search .search-text-input{
   height: 26px;
   margin-top: 8px;
-  padding-left: 26px;
+  padding: 0 24px 0 26px;
   border-radius: 12px;
   background-color: #fff;
   border: 1px solid #ddd;

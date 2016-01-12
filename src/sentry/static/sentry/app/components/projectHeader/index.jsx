@@ -48,6 +48,11 @@ const ProjectHeader = React.createClass({
                     </a>
                   </li>
                 }
+                <li className={navSection == 'dashboard' ? 'active' : ''}>
+                  <Link to={`/${org.slug}/${project.slug}//settings/install/`}>
+                    {t('接入')}
+                  </Link>
+                </li>
               </ul>
             </div>
             <ProjectSelector
