@@ -13,10 +13,9 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import HostList from 'components/storage/hostList';
 import {t} from 'app/locale';
 
-import HostStore from 'stores/storage/hostStore';
 import HostAction from 'actions/storage/hostAction';
-import StreamStore from 'stores/storage/streamStore';
 import StreamAction from 'actions/storage/streamAction';
+import FileAction from 'actions/storage/fileAction';
 import HmStatusStore from 'stores/storage/hostManageStatusStore';
 import HmStatusAction from 'actions/storage/hostManageStatusAction';
 
@@ -36,22 +35,25 @@ const StorageIndex = React.createClass({
 
   onStatusChange(status) {
 
-    // todo: 需要判断 activeHost 是否有变化
     if (status.activeHost && HmStatusStore.hasChanged('activeHost')) {
       StreamAction.fetch(HmStatusStore.status.activeHost);
+    }
+
+    if (status.activeStream && HmStatusStore.hasChanged('activeStream')) {
+      FileAction.fetch(HmStatusStore.status.activeStream);
     }
 
     this.setState({
       showManageOverlay: !!status.activeHost
     });
-
   },
 
-  componentDidMount(){
+  componentDidMount() {
     HostAction.fetch();
   },
 
   render() {
+
     return (
       <DocumentTitle title="storage">
         <div className="sub-app sa-storage">
