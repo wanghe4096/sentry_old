@@ -10,24 +10,29 @@ import Reflux from 'reflux';
 import hostManageStatusActions from '../../actions/storage/hostManageStatusAction';
 
 const hostManageStatusStore = Reflux.createStore({
-  listenables:hostManageStatusActions,
+  listenables: hostManageStatusActions,
+
   init(){
 
   },
-  status:{
-    activeHost:null,
-    activeStream:null
+
+  status: {
+    activeHost: null,
+    activeStream: null
   },
-  onSetActiveHost(hostId){
+
+  onSetActiveHost(hostId) {
     this.status.activeHost = hostId;
     this.status.activeStream = null;
     this.trigger(this.status);
   },
-  onSetActiveStream(streamId){
-    this.status.activeStream= streamId;
+
+  onSetActiveStream(streamId) {
+    this.status.activeStream = streamId;
     this.trigger(this.status);
   },
-  getStatus(){
+
+  getStatus() {
     return this.status;
   }
 });

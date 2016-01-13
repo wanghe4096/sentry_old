@@ -21,7 +21,7 @@ const HostItem = React.createClass({
   displayName: 'HostItem',
 
   mixins: [
-    Reflux.listenTo(HmStatusStore, 'onHostMngStatusChange')
+    Reflux.listenTo(HmStatusStore, 'onStatusChange')
   ],
 
   getInitialState() {
@@ -30,16 +30,15 @@ const HostItem = React.createClass({
     }
   },
 
-  onHostMngStatusChange(status){
-
+  onStatusChange(status){
     this.setState({
       active: status.activeHost === this.props.host_id
     });
-
   },
 
   onClickHandler() {
-    HmStatusAction.setActiveHost(this.props.host_id);
+    let activeHost = HmStatusStore.status.activeHost === this.props.host_id ? null : this.props.host_id;
+    HmStatusAction.setActiveHost(activeHost);
   },
 
   render() {
@@ -63,10 +62,6 @@ const HostList = React.createClass({
   mixins: [
     Reflux.connect(HostStore, 'hostList')
   ],
-
-  propTypes: {
-    activeHost: React.PropTypes.string
-  },
 
   getInitialState() {
     return {

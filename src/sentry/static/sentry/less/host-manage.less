@@ -1,25 +1,25 @@
 // transition:
 
-.host-mng-ani-enter {
+.stream-list-ani-enter {
   transform: translateX(1000px);
 }
 
-.host-mng-ani-enter.host-mng-ani-enter-active {
+.stream-list-ani-enter.stream-list-ani-enter-active {
   transform: translateX(0);
   transition: all 400ms;
 }
 
-.host-mng-ani-leave {
+.stream-list-ani-leave {
   transform: translateX(0);
 }
 
-.host-mng-ani-leave.host-mng-ani-leave-active {
+.stream-list-ani-leave.stream-list-ani-leave-active {
   transform: translateX(1000px);
   transition: all 300ms;
 }
 
 // overlay
-.host-mng-overlay .host-mng-container {
+.stream-list-overlay .stream-list-container {
   position: fixed;
   top: 43px;
   right: 0;
@@ -33,8 +33,8 @@
   z-index: 2;
 }
 
-// host manage
-.host-mng-container {
+// stream-list
+.stream-list{
 
 }
 
@@ -87,7 +87,7 @@
     .host-name{
       font-weight: 600;
       font-size: 15px;
-      margin: 0;
+      margin: 0 0 3px;
     }
   }
 

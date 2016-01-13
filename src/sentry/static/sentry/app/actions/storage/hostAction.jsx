@@ -63,8 +63,6 @@ HostAction.add.listen(function (data) {
     host_type: 'xxxxx-host_type'
   };
 
-  console.log('新增host:',data);
-
   this.success(mockData);
 });
 

@@ -4,7 +4,9 @@ import _ from 'underscore';
 
 const HostStore = Reflux.createStore({
   listenables: HostAction,
+
   items: [],
+
   init() {
 
   },
@@ -27,7 +29,6 @@ const HostStore = Reflux.createStore({
   },
 
   onFetchSuccess(items) {
-    console.log('fetch succc:', items);
     this.items = items;
     this.trigger(this.items);
   },

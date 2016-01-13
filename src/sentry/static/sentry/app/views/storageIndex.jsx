@@ -6,8 +6,9 @@
  */
 
 import React from 'react';
+import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
-import HostManage from './storage/hostManage';
+import StreamList from './storage/streamList';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import HostList from 'components/storage/hostList';
 import {t} from 'app/locale';
@@ -21,14 +22,20 @@ import HostStat from 'components/storage/hostStat';
 
 
 const StorageIndex = React.createClass({
-  mixins:[
-
+  mixins: [
+    Reflux.listenTo(HmStatusStore, 'onStatusChange')
   ],
 
   getInitialState(){
     return {
       showManageOverlay: false
     }
+  },
+
+  onStatusChange(status) {
+    this.setState({
+      showManageOverlay: !!status.activeHost
+    })
   },
 
   componentDidMount(){
@@ -40,17 +47,13 @@ const StorageIndex = React.createClass({
       <DocumentTitle title="storage">
         <div className="sub-app sa-storage">
           <ReactCSSTransitionGroup
-            transitionName="host-mng-ani"
+            transitionName="stream-list-ani"
             component="div"
-            className="host-mng-overlay"
+            className="stream-list-overlay"
             transitionEnterTimeout={300}
             transitionLeaveTimeout={400}
           >
-            {
-              this.state.showManageOverlay && (
-                <HostManage></HostManage>
-              )
-            }
+            { this.state.showManageOverlay && (<StreamList/>) }
           </ReactCSSTransitionGroup>
           <div className="container">
             <div className="row content">
