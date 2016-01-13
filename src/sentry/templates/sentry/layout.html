@@ -76,8 +76,8 @@
         <div class="pull-right">
           <div class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
-              <span>
-                <img src="{% gravatar_url user.email size 72 %}" class="avatar">
+              <span class="fa fa-lg fa-user">
+                <!--<img src="{% gravatar_url user.email size 72 %}" class="avatar">-->
               </span>
               <i class="icon-arrow-down"></i>
             </a>
@@ -86,6 +86,8 @@
               {% if request.user.is_superuser %}
                 <li><a href="{% url 'sentry-admin-overview' %}">{% trans "Admin" %}</a></li>
               {% endif %}
+
+              <li><a href="{% url 'sentry-organization-stats' organization.slug %}">{% trans "Stats" %}</a></li>
               <li><a href="{% url 'sentry-logout' %}">{% trans "Sign out" %}</a></li>
             </ul>
           </div>
@@ -94,14 +96,59 @@
         {% endif %}
 
         {% block logo %}
-        <a href="/" class="logo"><span class="fa fa-home icon-sentry-logo"></span></a>
+        <!--<a href="/" class="logo"><span class="fa fa-home icon-sentry-logo"></span></a>-->
+        {% endblock %}
+
+        {% block search %}
+        <div class="search pull-left">
+          <form class="form-horizontal">
+            <div>
+              <input type="text" class="search-input form-control search-text-input" placeholder="search" />
+              <span class="icon-search search-text-icon"></span>
+              <!--<div>-->
+                <!--<a class="search-clear-form search-text-clear-form">-->
+                  <!--<span class="icon-circle-cross"></span>-->
+                <!--</a>-->
+              <!--</div>-->
+            </div>
+          </form>
+        </div>
         {% endblock %}
 
         <ul class="global-nav pull-right">
           {% block global_nav %}
-          <li><a href="http://blog.loginsight.cn/">{% trans "Docs" %}</a></li>
+          <!--<li><a href="http://blog.loginsight.cn/">{% trans "Docs" %}</a></li>-->
           {% endblock %}
         </ul>
+
+        {% block message %}
+        <div class="broadcasts pull-right">
+          <div class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <span class="fa fa-lg fa-globe"></span>
+              <i class="icon-arrow-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li>最近没有来自 LogInsight 团队的广播。</li>
+            </ul>
+          </div>
+        </div>
+        {% endblock %}
+
+        {% block addbtn %}
+        <div class="pull-right">
+          <div class="dropdown">
+            <a class="dropdown-toggle" data-toggle="dropdown">
+              <span class="fa fa-lg fa-plus"></span>
+              <i class="icon-arrow-down"></i>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-right">
+              <li><a href="{% url 'sentry-create-team' organization.slug %}">{% trans "New team" %}</a></li>
+              <li><a href="{% url 'sentry-create-project' organization.slug %}">{% trans "New project" %}</a></li>
+            </ul>
+          </div>
+        </div>
+        {% endblock %}
 
         {% if not SINGLE_ORGANIZATION and request.user.is_authenticated and organization %}
         {% block org_selector %}
@@ -109,17 +156,17 @@
           <div class="dropdown">
             <a class="dropdown-toggle" data-toggle="dropdown">
               {{ organization.name }}
-              <i class="icon-arrow-down"></i>
+              <!--<i class="icon-arrow-down"></i>-->
             </a>
-            <ul class="dropdown-menu dropdown-menu-right">
-              {% for org in request.user|list_organizations %}
-                <li><a href="{% url 'sentry-organization-home' org.slug %}">{{ org.name }}</a></li>
-              {% endfor %}
-              <!--{% feature organizations:create %}-->
-                <!--<li class="divider"></li>-->
-                <!--<li><a href="{% url 'sentry-create-organization' %}">New Organization</a></li>-->
-              <!--{% endfeature %}-->
-            </ul>
+            <!--<ul class="dropdown-menu dropdown-menu-right">-->
+              <!--{% for org in request.user|list_organizations %}-->
+                <!--&lt;!&ndash;<li><a href="{% url 'sentry-organization-home' org.slug %}">{{ org.name }}</a></li>&ndash;&gt;-->
+              <!--{% endfor %}-->
+              <!--&lt;!&ndash;{% feature organizations:create %}&ndash;&gt;-->
+                <!--&lt;!&ndash;<li class="divider"></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="{% url 'sentry-create-organization' %}">New Organization</a></li>&ndash;&gt;-->
+              <!--&lt;!&ndash;{% endfeature %}&ndash;&gt;-->
+            <!--</ul>-->
           </div>
         </div>
         {% endblock %}

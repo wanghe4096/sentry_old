@@ -12,7 +12,6 @@ const ProjectHeader = React.createClass({
     let project = this.props.project;
     let org = this.props.organization;
     let access = new Set(org.access);
-    console.log(navSection)
 
     return (
       <div>
