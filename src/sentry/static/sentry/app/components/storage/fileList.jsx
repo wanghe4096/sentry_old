@@ -26,7 +26,7 @@ const FileItem = React.createClass({
 
   onClickHandler() {
     this.setState({
-      active:!!this.state.active
+      active: !this.state.active
     })
   },
 

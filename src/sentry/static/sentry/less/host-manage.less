@@ -20,16 +20,19 @@
 // overlay
 .stream-list-overlay .stream-list-container {
   position: fixed;
-  top: 43px;
+  top: 41px;
   right: 0;
   bottom: 0;
   left: 380px;
   background-color: #fff;
   border-left: 1px solid #ccc;
-  box-shadow: -3px 3px 10px #ccc;
   overflow-y: auto;
-  padding: 20px 0;
+  padding: 0 0 0 20px;
   z-index: 2;
+  &.pull {
+    transition: left 1s;
+    left: 200px;
+  }
 }
 
 // stream-list
@@ -124,28 +127,35 @@
     }
   }
 
-  .stream-list {
+  .stream-list, .file-list {
     padding: 0;
     //border-radius: 5px;
     //border: 1px solid #D6DBE4;
   }
 
-  .stream-list-head {
-    padding-left: 20px;
+  .stream-list-head, .file-list-head {
+    padding: 18px 10px;
+    border-bottom: 1px solid #D6DBE4;
+    h5 {
+      margin: 0;
+    }
   }
 
-  .stream-item {
+  .stream-item, .file-item {
     list-style: none;
     position: relative;
     padding: 20px 0 20px 20px;
     & + .stream-item {
       border-top: 1px solid #D6DBE4;
     }
+    & + .file-item {
+      border-top: 1px solid #D6DBE4;
+    }
     &.active {
       background-color: #fafafa;
     }
 
-    .stream-name {
+    .stream-name, .file-name {
       font-weight: 600;
       font-size: 15px;
       margin: 0 0 3px;
@@ -181,9 +191,8 @@
     left: 180px;
     background-color: #fff;
     border-left: 1px solid #ccc;
-    box-shadow: -3px 3px 10px #ccc;
     overflow-y: auto;
-    padding: 20px 0;
+    padding: 0 0 0 20px;
     z-index: 2;
   }
 

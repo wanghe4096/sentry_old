@@ -60,7 +60,6 @@ const StreamItem = React.createClass({
 });
 
 
-
 // todo:需要考虑stream的分页 ,可能涉及到 Reflux.filter
 const StreamList = React.createClass({
   mixins: [
@@ -94,8 +93,12 @@ const StreamList = React.createClass({
     const activeHostId = HmStatusStore.status.activeHost;
     const activeHost = HostStore.getById(activeHostId);
 
+    const showFileOverlay = !!HmStatusStore.status.activeStream;
+
     return (
-      <div className="stream-list-container">
+      <div
+        className={`stream-list-container ${showFileOverlay ? `pull`:``}`}
+      >
         <div className="list-head stream-list-head">
           <h5>Host:{activeHost.host_name} 的 Stream List</h5>
         </div>
@@ -109,7 +112,7 @@ const StreamList = React.createClass({
           transitionEnterTimeout={300}
           transitionLeaveTimeout={400}
         >
-          { !!HmStatusStore.status.activeStream && (<FileList />) }
+          { showFileOverlay && (<FileList />) }
         </ReactCSSTransitionGroup>
       </div>
     )
