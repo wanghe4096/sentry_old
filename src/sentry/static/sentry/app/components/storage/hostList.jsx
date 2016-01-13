@@ -30,7 +30,7 @@ const HostItem = React.createClass({
     }
   },
 
-  onStatusChange(status){
+  onStatusChange(status) {
     this.setState({
       active: status.activeHost === this.props.host_id
     });

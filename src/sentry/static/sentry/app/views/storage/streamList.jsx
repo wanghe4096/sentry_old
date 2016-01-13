@@ -9,6 +9,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import ApiMixin from 'mixins/apiMixin';
 import LoadingIndicator from 'components/loadingIndicator';
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {t} from 'app/locale';
 
 import HostStore from 'stores/storage/hostStore';
@@ -18,6 +19,7 @@ import StreamAction from 'actions/storage/streamAction';
 import HmStatusStore from 'stores/storage/hostManageStatusStore';
 import HmStatusAction from 'actions/storage/hostManageStatusAction';
 
+import FileList from 'components/storage/fileList';
 
 const StreamItem = React.createClass({
   mixins: [
@@ -26,7 +28,6 @@ const StreamItem = React.createClass({
 
   getInitialState() {
     return {
-      //loading: true,
       active: false
     }
   },
@@ -82,7 +83,6 @@ const StreamList = React.createClass({
 
   renderList() {
     return this.state.streamList.map((stream)=> {
-      console.log(...stream);
       return (
         <StreamItem {...stream} key={stream.stream_id}/>
       )
@@ -97,11 +97,20 @@ const StreamList = React.createClass({
     return (
       <div className="stream-list-container">
         <div className="list-head stream-list-head">
-          <h5>host {activeHost.host_name} 的 Stream List</h5>
+          <h5>Host:{activeHost.host_name} 的 Stream List</h5>
         </div>
         <ul className="stream-list">
           { this.renderList() }
         </ul>
+        <ReactCSSTransitionGroup
+          transitionName="file-list-ani"
+          component="div"
+          className="file-list-overlay"
+          transitionEnterTimeout={300}
+          transitionLeaveTimeout={400}
+        >
+          { !!HmStatusStore.status.activeStream && (<FileList />) }
+        </ReactCSSTransitionGroup>
       </div>
     )
   }

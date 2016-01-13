@@ -7,6 +7,7 @@
 
 import Reflux from 'reflux';
 import StreamActions from 'actions/storage/streamAction';
+import _ from 'underscore';
 
 const StreamStore = Reflux.createStore({
   listenables: StreamActions,
@@ -18,9 +19,7 @@ const StreamStore = Reflux.createStore({
   },
 
   getById(streamId) {
-    return _.find((stream)=> {
-      return stream.id === streamId
-    });
+    return _.find(this.items, (stream) => stream.stream_id === streamId);
   },
 
   getAll() {
