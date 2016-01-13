@@ -12,19 +12,11 @@ const ProjectHeader = React.createClass({
     let project = this.props.project;
     let org = this.props.organization;
     let access = new Set(org.access);
-    console.log(navSection)
 
     return (
       <div>
         <div className="sub-header">
           <div className="container">
-            <div className="pull-right" style={{ margin:'-3px 0 0 20px' }}>
-              <Link
-                className="btn btn-default btn-sm"
-                activeClassName="btn-disabled"
-                to={`/${org.slug}/${project.slug}/settings/install/`}
-              >接入</Link>
-            </div>
             <div className="pull-right">
               <ul className="nav nav-tabs">
                 <li className={navSection == 'dashboard' ? 'active' : ''}>
