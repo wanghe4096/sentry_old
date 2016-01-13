@@ -33,7 +33,7 @@ const StreamItem = React.createClass({
 
   onStatusChange(status) {
     this.setState({
-      active: status.activeStream === this.props.stream.stream_id
+      active: status.activeStream === this.props.stream_id
     })
   },
 
@@ -44,15 +44,23 @@ const StreamItem = React.createClass({
 
   render() {
     return (
-      <li className={`host-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
+      <li className={`stream-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
         <h5 className="stream-name">
           {this.props.stream_name}
         </h5>
+        <ul className="clearfix host-props-list">
+          <li>ID: {this.props.stream_id} </li>
+          <li>Stream Tag: {this.props.stream_tag}</li>
+          <li>Files: 10</li>
+        </ul>
       </li>
     );
   }
 });
 
+
+
+// todo:需要考虑stream的分页 ,可能涉及到 Reflux.filter
 const StreamList = React.createClass({
   mixins: [
     Reflux.connect(StreamStore, 'streamList')
@@ -64,7 +72,7 @@ const StreamList = React.createClass({
     }
   },
 
-  onStatChange(stream){
+  onStatChange(stream) {
 
   },
 
@@ -73,7 +81,8 @@ const StreamList = React.createClass({
   },
 
   renderList() {
-    this.state.streamList.map((stream)=> {
+    return this.state.streamList.map((stream)=> {
+      console.log(...stream);
       return (
         <StreamItem {...stream} key={stream.stream_id}/>
       )
@@ -81,8 +90,15 @@ const StreamList = React.createClass({
   },
 
   render() {
+
+    const activeHostId = HmStatusStore.status.activeHost;
+    const activeHost = HostStore.getById(activeHostId);
+
     return (
       <div className="stream-list-container">
+        <div className="list-head stream-list-head">
+          <h5>host {activeHost.host_name} 的 Stream List</h5>
+        </div>
         <ul className="stream-list">
           { this.renderList() }
         </ul>

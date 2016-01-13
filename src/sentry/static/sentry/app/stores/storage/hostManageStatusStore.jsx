@@ -16,18 +16,30 @@ const hostManageStatusStore = Reflux.createStore({
 
   },
 
+  previousStatus: {},
+
   status: {
     activeHost: null,
     activeStream: null
   },
 
+  getPrevious() {
+    return this.previousStatus;
+  },
+
+  hasChanged(attr) {
+    return this.previousStatus[attr] !== this.status[attr];
+  },
+
   onSetActiveHost(hostId) {
+    Object.assign(this.previousStatus, this.status);
     this.status.activeHost = hostId;
     this.status.activeStream = null;
     this.trigger(this.status);
   },
 
   onSetActiveStream(streamId) {
+    Object.assign(this.previousStatus, this.status);
     this.status.activeStream = streamId;
     this.trigger(this.status);
   },

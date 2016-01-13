@@ -6,38 +6,34 @@
  */
 
 import Reflux from 'reflux';
-
-import StreamActions from 'actions/storage/streamAction.jsx';
+import StreamActions from 'actions/storage/streamAction';
 
 const StreamStore = Reflux.createStore({
   listenables: StreamActions,
+
+  items: [],
+
   init() {
-    this.items = [];
-  },
-  get(){
 
   },
-  getAll() {
 
-  },
-  onFetch(hostId) {
-    const that = this;
-    $.ajax({
-      url:'xxxx'
-    }).done((data)=>{
-      //StreamActions.update.completed(data);
-      that.triggerPromise(data);
-
-    }).fail(()=>{
-      StreamActions.update.failed();
+  getById(streamId) {
+    return _.find((stream)=> {
+      return stream.id === streamId
     });
   },
-  onUpdate() {
 
+  getAll() {
+    return this.items;
   },
-  load(items){
+
+  onFetchSuccess(items) {
     this.items = items;
-    this.trigger(items);
+    this.trigger(this.items);
+  },
+
+  onFetchFailed(e) {
+    console.log('fetch err:', e);
   }
 });
 
