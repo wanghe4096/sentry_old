@@ -1900,6 +1900,32 @@ table.integrations {
  }
 
 
+#messages .message-notice{
+  max-width: 300px;
+  position: fixed;
+  top: auto;
+  right: 20px;
+  bottom: 20px;
+  border-radius: 5px;
+  padding: 20px 38px 20px 20px;
+  box-shadow: 0 7px 6px rgba(0,0,0,.1), 2px 4px 6px rgba(0,0,0,.4);
+  -webkit-animation-name: animGenie;
+  animation-name: animGenie;
+  -webkit-animation-duration: 0.4s;
+  animation-duration: 0.4s;
+  .container{
+    padding:0;
+
+    .close {
+      top: -22px;
+      right: -34px;
+
+      &:active, &:focus {
+        outline: none;
+      }
+    }
+  }
+}
 
 /**
 * Alerts
