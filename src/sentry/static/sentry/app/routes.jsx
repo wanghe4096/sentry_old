@@ -72,10 +72,10 @@ let routes = (
 
       <IndexRedirect to="issues" />
 
-      <Route path="storage" component={StorageIndex}></Route>
+      <Route path="storage" component={StorageIndex} />
 
       <Route path="issues" component={OrganizationTeams} />
-      <Route path=":projectId/" component={ProjectDetails}>
+      <Route path="issues/:projectId/" component={ProjectDetails}>
         <IndexRoute component={Stream} />
 
         <Route path="dashboard/" component={ProjectDashboard} />
