@@ -218,7 +218,7 @@ const Stream = React.createClass({
           let params = this.props.params;
           let groupId = data[0].id;
 
-          return void this.history.pushState(null, `/${params.orgId}/${params.projectId}/issues/${groupId}/`);
+          return void this.history.pushState(null, `/${params.orgId}/issues/${params.projectId}/${groupId}/`);
         }
 
         this._streamManager.push(data);
@@ -259,9 +259,11 @@ const Stream = React.createClass({
     let params = this.props.params;
 
     return '/projects/' + params.orgId + '/' + params.projectId + '/issues/';
+
   },
 
-  onRealtimeChange(realtime) {
+
+onRealtimeChange(realtime) {
     Cookies.set('realtimeActive', realtime.toString());
     this.setState({
       realtimeActive: realtime

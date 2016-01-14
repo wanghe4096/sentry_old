@@ -34,6 +34,7 @@ import ReleaseNewEvents from 'views/releaseNewEvents';
 import RouteNotFound from 'views/routeNotFound';
 import SharedGroupDetails from 'views/sharedGroupDetails';
 import StorageIndex from 'views/storageIndex';
+import IssuesIndex from 'views/issuesIndex';
 import Stream from 'views/stream';
 
 import OrganizationStore from 'stores/organizationStore';
@@ -74,38 +75,40 @@ let routes = (
 
       <Route path="storage" component={StorageIndex} />
 
-      <Route path="issues" component={OrganizationTeams} />
-      <Route path="issues/:projectId/" component={ProjectDetails}>
-        <IndexRoute component={Stream} />
+      <Route path="issues" component={IssuesIndex}>
+        <IndexRoute component={OrganizationTeams} />
+        <Route path=":projectId/" component={ProjectDetails}>
+          <IndexRoute component={Stream} />
 
-        <Route path="dashboard/" component={ProjectDashboard} />
-        <Route path="releases/" component={ProjectReleases} />
-        <Route name="releaseDetails" path="releases/:version/" component={ReleaseDetails}>
-          <IndexRoute component={ReleaseNewEvents} />
-          <Route path="all-events/" component={ReleaseAllEvents} />
-          <Route path="artifacts/" component={ReleaseArtifacts} />
-        </Route>
-
-        <Route path="settings/" component={ProjectSettings}>
-          <Route path="install/" component={ProjectInstall}>
-            <IndexRoute component={ProjectInstallOverview}/>
-            <Route path=":platform/" component={ProjectInstallPlatform}/>
+          <Route path="dashboard/" component={ProjectDashboard} />
+          <Route path="releases/" component={ProjectReleases} />
+          <Route name="releaseDetails" path="releases/:version/" component={ReleaseDetails}>
+            <IndexRoute component={ReleaseNewEvents} />
+            <Route path="all-events/" component={ReleaseAllEvents} />
+            <Route path="artifacts/" component={ReleaseArtifacts} />
           </Route>
 
-          <Route path="*" component={RouteNotFound}/>
+          <Route path="settings/" component={ProjectSettings}>
+            <Route path="install/" component={ProjectInstall}>
+              <IndexRoute component={ProjectInstallOverview}/>
+              <Route path=":platform/" component={ProjectInstallPlatform}/>
+            </Route>
 
-        </Route>
+            <Route path="*" component={RouteNotFound}/>
 
-        <Redirect from="group/:groupId/" to="issues/:groupId/" />
+          </Route>
 
-        <Route path="issues/:groupId/" component={GroupDetails} ignoreScrollBehavior>
-          <IndexRoute component={GroupEventDetails} />
-          <Route path="activity/" component={GroupActivity} />
-          <Route path="events/:eventId/" component={GroupEventDetails} />
-          <Route path="events/" component={GroupEvents} />
-          <Route path="tags/" component={GroupTags} />
-          <Route path="tags/:tagKey/" component={GroupTagValues} />
-          <Route path="reports/" component={GroupUserReports} />
+          <Redirect from="group/:groupId/" to="issues/:groupId/" />
+
+          <Route path="issues/:groupId/" component={GroupDetails} ignoreScrollBehavior>
+            <IndexRoute component={GroupEventDetails} />
+            <Route path="activity/" component={GroupActivity} />
+            <Route path="events/:eventId/" component={GroupEventDetails} />
+            <Route path="events/" component={GroupEvents} />
+            <Route path="tags/" component={GroupTags} />
+            <Route path="tags/:tagKey/" component={GroupTagValues} />
+            <Route path="reports/" component={GroupUserReports} />
+          </Route>
         </Route>
       </Route>
     </Route>
