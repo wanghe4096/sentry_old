@@ -10,7 +10,6 @@ let OrganizationState = {
   },
 
   getAccess() {
-    console.log('this.context:',this.context);
     return new Set(this.context.organization.access);
   },
 
