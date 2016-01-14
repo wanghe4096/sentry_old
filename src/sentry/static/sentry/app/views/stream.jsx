@@ -218,7 +218,7 @@ const Stream = React.createClass({
           let params = this.props.params;
           let groupId = data[0].id;
 
-          return void this.history.pushState(null, `/${params.orgId}/issues/${params.projectId}/${groupId}/`);
+          return void this.history.pushState(null, `/${params.orgId}/events/${params.projectId}/${groupId}/`);
         }
 
         this._streamManager.push(data);
@@ -356,7 +356,7 @@ onRealtimeChange(realtime) {
     }
 
     let params = this.props.params;
-    this.history.pushState(null, `/${params.orgId}/issues/${params.projectId}/`, queryParams);
+    this.history.pushState(null, `/${params.orgId}/events/${params.projectId}/`, queryParams);
   },
 
   renderGroupNodes(ids, statsPeriod) {

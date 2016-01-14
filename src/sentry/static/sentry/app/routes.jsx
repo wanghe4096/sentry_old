@@ -34,7 +34,7 @@ import ReleaseNewEvents from 'views/releaseNewEvents';
 import RouteNotFound from 'views/routeNotFound';
 import SharedGroupDetails from 'views/sharedGroupDetails';
 import StorageIndex from 'views/storageIndex';
-import IssuesIndex from 'views/issuesIndex';
+import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
 
 import OrganizationStore from 'stores/organizationStore';
@@ -71,11 +71,11 @@ let routes = (
       //<Route path="/organizations/:orgId/stats/" component={OrganizationStats} />
       //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
 
-      <IndexRedirect to="issues" />
+      <IndexRedirect to="events" />
 
       <Route path="storage" component={StorageIndex} />
 
-      <Route path="issues" component={IssuesIndex}>
+      <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams} />
         <Route path=":projectId/" component={ProjectDetails}>
           <IndexRoute component={Stream} />
