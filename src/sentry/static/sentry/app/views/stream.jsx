@@ -354,7 +354,7 @@ const Stream = React.createClass({
     }
 
     let params = this.props.params;
-    this.history.pushState(null, `/${params.orgId}/${params.projectId}/`, queryParams);
+    this.history.pushState(null, `/${params.orgId}/issues/${params.projectId}/`, queryParams);
   },
 
   renderGroupNodes(ids, statsPeriod) {
