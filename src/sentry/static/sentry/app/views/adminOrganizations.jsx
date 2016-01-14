@@ -111,7 +111,7 @@ const AdminOrganizations = React.createClass({
       return (
         <tr>
           <td>
-            <Link to={`/${item.slug}/`}>
+            <Link to={`/${item.slug}/events/`}>
               {item.name}
             </Link><br />
             <small>{item.slug}</small>

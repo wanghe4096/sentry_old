@@ -43,7 +43,7 @@ const GroupActions = React.createClass({
       }
     });
 
-    this.history.pushState(null, `/${org.slug}/${project.slug}/`);
+    this.history.pushState(null, `/${org.slug}/events/${project.slug}/`);
   },
 
   onUpdate(data) {

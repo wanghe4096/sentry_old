@@ -45,7 +45,7 @@ const OrganizationSelector = React.createClass({
           title={activeOrg.name}>
         {OrganizationStore.getAll().map((org) => {
           return (
-            <MenuItem key={org.slug} to={`/${org.slug}/`}
+            <MenuItem key={org.slug} to={`/${org.slug}/events/`}
                       isActive={activeOrg.id === org.id}>
               {org.name}
             </MenuItem>
