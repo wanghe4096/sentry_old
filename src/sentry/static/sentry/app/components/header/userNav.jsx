@@ -50,9 +50,6 @@ const UserNav = React.createClass({
           <MenuItem to="/manage/">{t('Admin')}</MenuItem>
         }
         <li>
-            <Link
-                to={`/organizations/${org.slug}/stats/`}>{t('Stats')}
-            </Link>
         </li>
         <MenuItem href={urlPrefix + '/auth/logout/'}>{t('Sign out')}</MenuItem>
       </DropdownLink>

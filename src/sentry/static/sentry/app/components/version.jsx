@@ -24,7 +24,7 @@ const Version = React.createClass({
 
     if (this.props.anchor) {
       return (
-        <Link to={`/${orgId}/${projectId}/releases/${version}/`}>
+        <Link to={`/${orgId}/events/${projectId}/releases/${version}/`}>
           <span title={version}>{shortVersion}</span>
         </Link>
       );

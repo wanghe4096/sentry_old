@@ -36,7 +36,7 @@ const HomeSidebar = React.createClass({
       <div>
         <h6 className="nav-header">{t('Organization')}</h6>
         <ul className="nav nav-stacked">
-          <ListLink to={`/${orgId}/`} isActive={() => {
+          <ListLink to={`/${orgId}/events/`} isActive={() => {
             // return true if path matches /slug-name/
             return /^\/[^\/]+\/$/.test(this.context.location.pathname);
           }}>{t('Projects')}</ListLink>

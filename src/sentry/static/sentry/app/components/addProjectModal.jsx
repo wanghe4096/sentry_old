@@ -101,7 +101,7 @@ const ProjectModal = React.createClass({
         TeamStore.loadInitialData(newTeamList);
         AlertActions.addAlert(t('Creating Success'), 'success', 3000);
         this.props.onHide();
-        this.history.pushState({isNew: true}, `/${org.slug}/${result.slug}/`);
+        this.history.pushState({isNew: true}, `/${org.slug}/events/${result.slug}/`);
       },
       error: () => {
         // todo : 错误详情提示

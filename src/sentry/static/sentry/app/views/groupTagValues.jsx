@@ -100,7 +100,7 @@ const GroupTagValues = React.createClass({
           </td>
           <td>
             <Link
-                to={`/${orgId}/${projectId}/`}
+                to={`/${orgId}/events/${projectId}/`}
                 query={{query: tagKey.key + ':' + '"' + tagValue.value + '"'}}>
               {tagValue.name}
             </Link>
