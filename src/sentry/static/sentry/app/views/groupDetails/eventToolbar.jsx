@@ -23,7 +23,7 @@ let GroupEventToolbar  = React.createClass({
       (evt.previousEventID ?
         <Link
             key="oldest"
-            to={`/${orgId}/${projectId}/issues/${groupId}/events/oldest/`}
+            to={`/${orgId}/events/${projectId}/issues/${groupId}/events/oldest/`}
             className="btn btn-default"
             title={t('Oldest')}>
             <span className="icon-skip-back"></span>
@@ -35,7 +35,7 @@ let GroupEventToolbar  = React.createClass({
       (evt.previousEventID ?
         <Link
             key="prev"
-            to={`/${orgId}/${projectId}/issues/${groupId}/events/${evt.previousEventID}/`}
+            to={`/${orgId}/events/${projectId}/issues/${groupId}/events/${evt.previousEventID}/`}
             className="btn btn-default">{t('Older')}</Link>
       :
         <a key="prev"
@@ -44,7 +44,7 @@ let GroupEventToolbar  = React.createClass({
       (evt.nextEventID ?
         <Link
             key="next"
-            to={`/${orgId}/${projectId}/issues/${groupId}/events/${evt.nextEventID}/`}
+            to={`/${orgId}/events/${projectId}/issues/${groupId}/events/${evt.nextEventID}/`}
             className="btn btn-default">{t('Newer')}</Link>
       :
         <a key="next"
@@ -53,7 +53,7 @@ let GroupEventToolbar  = React.createClass({
       (evt.nextEventID ?
         <Link
           key="latest"
-          to={`/${orgId}/${projectId}/issues/${groupId}/events/latest/`}
+          to={`/${orgId}/events/${projectId}/issues/${groupId}/events/latest/`}
           className="btn btn-default"
           title={t('Newest')}>
           <span className="icon-skip-forward"></span>

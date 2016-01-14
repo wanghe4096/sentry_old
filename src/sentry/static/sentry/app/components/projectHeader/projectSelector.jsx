@@ -115,7 +115,7 @@ const ProjectSelector = React.createClass({
    */
   getProjectUrlProps(project) {
     let org = this.props.organization;
-    let path = `/${org.slug}/${project.slug}/`;
+    let path = `/${org.slug}/events/${project.slug}/`;
 
     if (this.context.location) {
       return {to: path};
@@ -136,7 +136,7 @@ const ProjectSelector = React.createClass({
     let projectId = project.slug;
 
     return (
-      <Link to={`/${orgId}/${projectId}/`}>{label}</Link>
+      <Link to={`/${orgId}/events/${projectId}/`}>{label}</Link>
     );
   },
 

@@ -51,7 +51,7 @@ const ProjectTable = React.createClass({
             return (
               <tr key={item.id}>
                 <td>
-                  <a href={urlPrefix + '/' + project.slug + '/'}>{project.team.name} / {project.name}</a>
+                  <a href={urlPrefix + '/events/' + project.slug + '/'}>{project.team.name} / {project.name}</a>
                 </td>
                 <td className="align-right">
                   <Count value={item.accepted} /><br/>

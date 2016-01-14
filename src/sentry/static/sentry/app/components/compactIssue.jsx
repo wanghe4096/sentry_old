@@ -159,7 +159,7 @@ const CompactIssue = React.createClass({
         <div className="col-md-9">
           <span className="error-level truncate" title={issue.level}></span>
           <h3 className="truncate">
-            <Link to={`/${orgId}/${projectId}/issues/${id}/`}>
+            <Link to={`/${orgId}/events/${projectId}/issues/${id}/`}>
               <span className="icon icon-soundoff" />
               <span className="icon icon-bookmark" />
               {issue.title}
@@ -167,11 +167,11 @@ const CompactIssue = React.createClass({
           </h3>
           <div className="event-extra">
             <span className="project-name">
-              <Link to={`/${orgId}/${projectId}/`}>{issue.project.name}</Link>
+              <Link to={`/${orgId}/events/${projectId}/`}>{issue.project.name}</Link>
             </span>
             {issue.numComments !== 0 &&
               <span>
-                <Link to={`/${orgId}/${projectId}/issues/${id}/activity/`} className="comments">
+                <Link to={`/${orgId}/events/${projectId}/issues/${id}/activity/`} className="comments">
                   <span className="icon icon-comments" />
                   <span className="tag-count">{issue.numComments}</span>
                 </Link>
