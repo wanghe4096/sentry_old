@@ -37,10 +37,10 @@ const FileItem = React.createClass({
         </ul>
         <ul className="actions clearfix">
           <li>
-            <Link className="btn btn-link btn-sm" to="xxx">查看文件</Link>
+            <Link className="btn" to="xxx">查看文件</Link>
           </li>
           <li>
-            <a className="btn btn-link btn-sm" href="xxx">下载文件</a>
+            <a className="btn" href="xxx">下载文件</a>
           </li>
         </ul>
       </li>

@@ -160,17 +160,23 @@
 
   // :::: files
   .file-list {
-    .actions{
-      padding:0;
-      li{
+    .actions {
+      padding: 0;
+      li {
         list-style: none;
         float: left;
         margin-right: 30px;
         font-size: 12px;
+        a {
+          color: #ccc;
+          padding:0;
+          &:active {
+            color: #25A6F7;
+          }
+        }
       }
     }
   }
-
 
 }
 
