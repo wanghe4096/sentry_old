@@ -49,7 +49,7 @@ const ProjectInstall = React.createClass({
 
     let data = this.state.data;
     let {orgId, projectId} = this.props.params;
-    let isFirstSteP = this.history.isActive(`/${orgId}/${projectId}/settings/install/`,null,true);
+    let isFirstSteP = this.history.isActive(`/${orgId}/events/${projectId}/settings/install/`,null,true);
 
     return (
       <div className="row">

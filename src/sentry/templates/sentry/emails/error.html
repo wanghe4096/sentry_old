@@ -12,7 +12,7 @@
 {% endblock %}
 
 {% block header %}
-    <a href="{{ link }}" class="btn">View on Sentry</a>
+    <a href="{{ link }}" class="btn">View on LogInsight</a>
     {{ block.super }}
 {% endblock %}
 
@@ -34,7 +34,7 @@
 
     {% if enhanced_privacy %}
       <div class="notice">Details about this issue are not shown in this notification since enhanced privacy
-        controls are enabled. For more details about this issue, <a href="{{ link }}">view this issue on Sentry</a>.</div>
+        controls are enabled. For more details about this issue, <a href="{{ link }}">view this issue on LogInsight</a>.</div>
     {% else %}
       {% for label, html, _ in interfaces %}
       <div class="interface">
@@ -70,14 +70,14 @@
 
     {# support for gmail actions #}
     <div itemscope itemtype="http://schema.org/EmailMessage">
-      <meta itemprop="description" content="View Issue Details in Sentry"/>
+      <meta itemprop="description" content="View Issue Details in LogInsight"/>
       <div itemprop="action" itemscope itemtype="http://schema.org/ViewAction">
         <link itemprop="url" href="{{ link }}"/>
-        <meta itemprop="name" content="View in Sentry"/>
+        <meta itemprop="name" content="View in LogInsight"/>
       </div>
       <div itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-        <meta itemprop="name" content="GetSentry"/>
-        <link itemprop="url" href="https://getsentry.com/"/>
+        <meta itemprop="name" content="LogInsight"/>
+        <link itemprop="url" href="https://loginsight.cn/"/>
       </div>
     </div>
 {% endblock %}
