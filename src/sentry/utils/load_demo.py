@@ -108,7 +108,7 @@ def create_sample_time_series(event):
         now = now - timedelta(hours=1)
 
 
-def main(num_events=1, user_name="dummy@example.com", org_name='default'):
+def create_demo_sample(num_events=1, user_name="dummy@example.com", org_name='default'):
 
     dummy_user, _ = User.objects.get_or_create(
         username=user_name,
@@ -301,4 +301,4 @@ if __name__ == '__main__':
     parser.add_option('--orgname', dest='org_name', type=str)
     (options, args) = parser.parse_args()
 
-    main(num_events=options.num_events, user_name=options.user_name, org_name=options.org_name)
+    create_demo_sample(num_events=options.num_events, user_name=options.user_name, org_name=options.org_name)

@@ -66,11 +66,20 @@ from .endpoints.team_project_index import TeamProjectIndexEndpoint
 from .endpoints.team_stats import TeamStatsEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
 from .endpoints.register import RegisterEndpoint
+from .endpoints.host_stream import HostView, StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
+from .endpoints.demo_exception import DemoExceptionView
 
 urlpatterns = patterns(
     '',
-    # Register User
+    #  loginsight  Register User
     url(r'register', RegisterEndpoint.as_view(), name='sentry-api-0-register'),
+    url(r'^hosts', HostView.as_view(), name='sentry-api-0-hosts'),
+    url(r'^streams', StreamView.as_view(), name='sentry-api-0-streams'),
+    url(r'^host-type', HostTypeView.as_view(), name='sentry-api-0-host-type'),
+    url(r'^stream-type', StreamTypeView.as_view(), name='sentry-api-0-stream-type'),
+    url(r'^tags', TagView.as_view(), name='sentry-api-0-tags'),
+    url(r'^logevents', LogEventView.as_view(), name='sentry-api-0-events'),
+    url(r'^create_demo', DemoExceptionView.as_view(), name='sentry-api-0-create-demo'),
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),

@@ -15,7 +15,7 @@ class AddTeamForm(forms.ModelForm):
             'placeholder': _('E.g. Operations, Web, Desktop, ...'),
             'required': '',
         }),
-        help_text='The team name has no significant impact and can be changed later.',
+        help_text=_('The team name has no significant impact and can be changed later.'),
     )
 
     class Meta:
