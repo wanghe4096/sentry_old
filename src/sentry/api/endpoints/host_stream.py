@@ -17,15 +17,17 @@ from sentry.api.authentication import QuietBasicAuthentication
 import os
 import requests
 
-
-class HostView(Endpoint):
+class HostView(Endpoint,
+               mixins.ListModelMixin,
+               mixins.CreateModelMixin,
+               generics.GenericAPIView):
     """
       GET /hosts
     """
     serializer_class = HostSerializer
     queryset = Host.objects.all()
 
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
 
     def get(self, request, *args, **kwargs):
@@ -52,12 +54,15 @@ class HostView(Endpoint):
         return Response({'msg': 'Success to add host'})
 
 
-class HostTypeView(Endpoint):
+class HostTypeView(
+                mixins.ListModelMixin,
+                mixins.CreateModelMixin,
+                generics.GenericAPIView):
     """
     GET /host-type
     parm: none
     """
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = HostTypeSerializer
     queryset = HostType.objects.all()
@@ -88,7 +93,7 @@ class TagView(mixins.ListModelMixin,
     GET /tags
     param: none
     """
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = TagSerializer
     queryset = Tag.objects.all()
@@ -101,12 +106,14 @@ class TagView(mixins.ListModelMixin,
         return self.create(request, *args, **kwargs)
 
 
-class StreamTypeView(Endpoint):
+class StreamTypeView(mixins.ListModelMixin,
+                     mixins.CreateModelMixin,
+                     generics.GenericAPIView):
     """
     GET /stream-type
     PARAM: none
     """
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = StreamTypeSerializer
     queryset = StreamType.objects.all()
@@ -127,12 +134,14 @@ class StreamTypeView(Endpoint):
         # return self.create(request, *args, **kwargs)
 
 
-class StreamView(Endpoint):
+class StreamView(mixins.ListModelMixin,
+                  mixins.CreateModelMixin,
+                  generics.GenericAPIView):
     """
     GET /streams
     param:  host_name=hostA,hostB,hostC,hostD
     """
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = StreamSerializer
     queryset = Stream.objects.all()
@@ -177,7 +186,7 @@ class StreamView(Endpoint):
         #     for e in s:
         #         obj['stream_name'] = e.stream_name
         #         obj['stream_type'] = StreamType.objects.filter(id = e.stream_type.id)[0].stream_type
-        #         obj['host_name'] = Host.objects.filter(id=host_id)[0].host_name
+        #         obj['host_name'] = Host.objects.fapi/0/streams?host_id=1ilter(id=host_id)[0].host_name
         #         streams.append(obj)
 
     def post(self, request, *args, **kwargs):
@@ -202,10 +211,9 @@ class StreamView(Endpoint):
 
 import datetime
 
-
 class LogFilesView(Endpoint):
 
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = LogFileSerializer
     queryset = LogFile.objects.all()
@@ -263,7 +271,7 @@ class LogEventView(Endpoint,
         event_offset  = 0
         event_count = 0
     """
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = LogEventSerializer
     queryset = LogEvent.objects.all()[:20]
