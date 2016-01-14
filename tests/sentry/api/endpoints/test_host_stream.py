@@ -111,11 +111,30 @@ r = requests.post("http://localhost:9000/api/0/logfiles", data={
     'file_path': '/var/log/apache/error.log',
     'host_id': 1,
     'stream_name': 'nginx.error.log',
-    # 'create_timestamp': str(datetime.datetime.now()),
-    # 'modify_timestamp': str(datetime.datetime.now()),
-    # 'file_size': 64*1024,
+    'stream_id': 1,
     'crc32_value': 12353
 }, auth=(username, password))
+
+
+r = requests.post("http://localhost:9000/api/0/logfiles", data={
+    'file_name': 'error.log',
+    'file_path': '/var/log/apache/error.log',
+    'host_id': 2,
+    'stream_name': 'nginx.error.log',
+    'stream_id': 1,
+    'crc32_value': 122432
+})
+
+r = requests.post("http://localhost:9000/api/0/logfiles", data={
+    'file_name': 'error.log',
+    'file_path': '/var/log/apache/error.log',
+    'host_id': 2,
+    'stream_name': 'nginx.error.log',
+    'stream_id': 1,
+    'crc32_value': 123531235
+})
+
+
 
 print r
 print r.text

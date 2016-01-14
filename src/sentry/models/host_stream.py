@@ -84,7 +84,7 @@ class LogFile(models.Model):
     stream_type = models.CharField(max_length=128, null=True)
     host = models.ForeignKey(Host, null=True)
     tag = models.ForeignKey(Tag, null=True)
-    # stream = models.ForeignKey(Stream, null=True)
+    stream = models.ForeignKey(Stream, null=True)
     create_timestamp = models.DateTimeField(null=True)
     modify_timestamp = models.DateTimeField(null=True)
     owner = models.IntegerField(null=True)
