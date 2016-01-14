@@ -73,7 +73,7 @@ const ProjectSettings = React.createClass({
 
     let urlPrefix = ConfigStore.get('urlPrefix');
     let {orgId, projectId} = this.props.params;
-    let settingsUrlRoot = `${urlPrefix}/${orgId}/${projectId}/settings`;
+    let settingsUrlRoot = `${urlPrefix}/${orgId}/events/${projectId}/settings`;
     let project = this.state.project;
 
     return (
@@ -90,13 +90,6 @@ const ProjectSettings = React.createClass({
           </ul>
           <h6 className="nav-header">{t('Setup')}</h6>
           <ul className="nav nav-stacked">
-            <ListLink to="install/" isActive={function (to) {
-              let rootInstallPath = `/${orgId}/events/${projectId}/settings/install/`;
-              let pathname = this.context.location.pathname;
-
-              // Because react-router 1.0 removes router.isActive(route)
-              return pathname === rootInstallPath || /install\/[\w\-]+\/$/.test(pathname);
-            }.bind(this)}>{t('Instructions')}</ListLink>
             <li><a href={`${settingsUrlRoot}/keys/`}>{t('Client Keys')}</a></li>
           </ul>
           <h6 className="nav-header">{t('Integrations')}</h6>

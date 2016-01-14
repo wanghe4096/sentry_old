@@ -76,7 +76,7 @@ class CreateProjectView(OrganizationView):
         if form.is_valid():
             project = form.save(request.user, request.META['REMOTE_ADDR'])
 
-            return self.redirect(absolute_uri('/{}/{}/settings/install/'.format(
+            return self.redirect(absolute_uri('/{}/events/{}/settings/install/'.format(
                 organization.slug,
                 project.slug,
             )))
