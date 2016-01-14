@@ -102,6 +102,8 @@ export default {
     ProjectSelector: require('./components/projectHeader/projectSelector'),
     RuleEditor: require('./views/ruleEditor'),
     TimeSince: require('./components/timeSince'),
-    BorderMenu: require('./components/borderMenu')
+    BorderMenu: require('./components/borderMenu'),
+    ApiClient: Client
   }
 };
+
