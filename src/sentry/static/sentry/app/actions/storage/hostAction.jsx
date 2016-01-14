@@ -8,6 +8,7 @@
 import Reflux from 'reflux';
 import moment from 'moment';
 import _ from 'underscore';
+import {Client} from './../../api';
 
 const HostAction = Reflux.createActions({
   fetch: {
@@ -20,47 +21,28 @@ const HostAction = Reflux.createActions({
 
 
 HostAction.fetch.listen(function () {
-  //new Client().request('/storage/host/', {
-  //  success: function (data) {
-  //    this.completed(data);
-  //  },
-  //  error: function (e) {
-  //    this.failed(e);
-  //  }
-  //});
 
-  const mockData = [
-    {
-      host_id: 'xxxx-1-id',
-      host_name: 'xxxx-1',
-      host_type: 'xxxx-1-hostType'
+  var that = this;
+  new Client().request('/hosts/', {
+    success: function (data) {
+      that.success(data);
     },
-    {
-      host_id: 'xxxx-2-id',
-      host_name: 'xxxx-2',
-      host_type: 'xxxx-2-hostType'
-    },
-    {
-      host_id: 'xxxx-3-id',
-      host_name: 'xxxx-3',
-      host_type: 'xxxx-3-hostType'
-    },
-    {
-      host_id: 'xxxx-4-id',
-      host_name: 'xxxx-4',
-      host_type: 'xxxx-4-hostType'
+    error: function (e) {
+      that.failed(e);
     }
-  ];
+  });
 
-  this.success(mockData);
 });
-
 
 HostAction.add.listen(function (data) {
   const mockData = {
-    host_id: 'id-' + moment().format('YYYY-MM-DD-HH:mm:ss'),
+    id: 'id-' + moment().format('YYYY-MM-DD-HH:mm:ss'),
     host_name: '创建于' + moment().format('YYYY-MM-DD HH:mm:ss') + '的临时host',
-    host_type: 'xxxxx-host_type'
+    host_type: 'xxxxx-host_type',
+    distver: "3.1.0",
+    host_key: "yyyy",
+    system: "linux",
+    user: 1
   };
 
   this.success(mockData);

@@ -32,12 +32,12 @@ const HostItem = React.createClass({
 
   onStatusChange(status) {
     this.setState({
-      active: status.activeHost === this.props.host_id
+      active: status.activeHost === this.props.id
     });
   },
 
   onClickHandler() {
-    let activeHost = HmStatusStore.status.activeHost === this.props.host_id ? null : this.props.host_id;
+    let activeHost = HmStatusStore.status.activeHost === this.props.id ? null : this.props.id;
     HmStatusAction.setActiveHost(activeHost);
   },
 
@@ -48,9 +48,12 @@ const HostItem = React.createClass({
           {this.props.host_name}
         </h5>
         <ul className="clearfix props-list">
-          <li>ID: {this.props.host_id} </li>
+          <li>Host ID: {this.props.id} </li>
+          <li>Distver: {this.props.distver} </li>
+          <li>Host Key: {this.props.host_key} </li>
           <li>Host Type: {this.props.host_type}</li>
-          <li>Stream: 10</li>
+          <li>System: {this.props.system}</li>
+          <li>User: {this.props.user}</li>
         </ul>
       </li>
     );
@@ -72,7 +75,7 @@ const HostList = React.createClass({
   renderList() {
     return this.state.hostList.map((host) => {
       return (
-        <HostItem {...host} key={host.host_id}></HostItem>
+        <HostItem {...host} key={host.id}></HostItem>
       )
     });
   },

@@ -12,7 +12,7 @@ const HostStore = Reflux.createStore({
   },
 
   getById(hostId) {
-    return _.find(this.items, (item) => hostId === item.host_id);
+    return _.find(this.items, (item) => hostId === item.id);
   },
 
   getAll() {
