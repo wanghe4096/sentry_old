@@ -14,7 +14,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ('name', 'email')
+        fields = ('name', 'email', 'userkey')
 
 
 class UserDetailsEndpoint(UserEndpoint):

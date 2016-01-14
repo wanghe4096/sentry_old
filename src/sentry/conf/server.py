@@ -41,6 +41,8 @@ APPEND_SLASH = True
 
 PROJECT_ROOT = os.path.normpath(os.path.join(os.path.dirname(__file__), os.pardir))
 
+CREATE_DEMO_EXCEPTION_SAMPLE = 0
+
 # XXX(dcramer): handle case when we've installed from source vs just running
 # this straight out of the repository
 if 'site-packages' in __file__:
@@ -87,7 +89,7 @@ if 'DATABASE_URL' in os.environ:
 EMAIL_SUBJECT_PREFIX = '[LogInsight] '
 
 # This should always be UTC.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
