@@ -13,10 +13,9 @@ from rest_framework.response import Response
 from rest_framework import mixins
 from rest_framework import generics
 from sentry.api.base import Endpoint
-from sentry.api.authentication import QuietBasicAuthentication
 import os
 import requests
-
+import random
 class HostView(Endpoint,
                mixins.ListModelMixin,
                mixins.CreateModelMixin,
@@ -31,11 +30,56 @@ class HostView(Endpoint,
     permission_classes = ()
 
     def get(self, request, *args, **kwargs):
-        if request.user.username == 'AnonymousUser':
-            return Response({'msg': 'Invalid user'})
+        # if request.user.username == 'AnonymousUser':
+        #     return Response({'msg': 'Invalid user'})
+        #
+        # self.queryset = Host.objects.filter(user=request.user)
+        # return self.list(request, *args, **kwargs)
 
-        self.queryset = Host.objects.filter(user=request.user)
-        return self.list(request, *args, **kwargs)
+        result = [{'id':'1',
+                   'host_name': "a23d650bee@centos",
+                   'host_key': "2e092f112aa23d650bee15aa6d2582ce",
+                   'system': "centos",
+                   'distver': "3.2.1",
+                   'host_type': 'web服务器'},
+                  {'id':'2',
+                   'host_name': "a2adf65asdf0bee@centos",
+                   'host_key': "7104fc4c8c34e40e555bf9b75f591aea",
+                   'system': "centos",
+                   'distver': "3.1.0",
+                   'host_type': 'web服务器'
+                   },
+                  {'id':'3',
+                   'host_name': "92eecbab@opensuse",
+                   'host_key': "b34f9859db111b092eecbab0da47d958",
+                   'system': "opensuse",
+                   'distver': "3.1.0",
+                   'host_type': '代理服务器'},
+                  {'id':'4',
+                   'host_name:': "b34252agcjej@ubuntu",
+                   'host_key': "d35fa7d6fa222e27f5ca562514c67745",
+                   'system': "linux",
+                   'distver': "3.1.0",
+                   "host_type":"代理服务器"},
+                  {'id':'5',
+                   'host_name:': "b34252agcjej@ubuntu",
+                   'host_key': "d35fa7d6fa222e27f5ca562514c67745",
+                   'system': "Ubuntu",
+                   'distver': "3.1.0",
+                   "host_type":"代理服务器"},
+                    {'id':'4',
+                   'host_name:': "b34252agcjej@ubuntu",
+                   'host_key': "d35fa7d6fa222e27f5ca562514c67745",
+                   'system': "linux",
+                   'distver': "3.1.0",
+                   "host_type":"代理服务器"},
+                  {'id':'5',
+                   'host_name:': "b34252agcjej@ubuntu",
+                   'host_key': "d35fa7d6fa222e27f5ca562514c67745",
+                   'system': "Ubuntu",
+                   'distver': "3.1.0",
+                   "host_type":"代理服务器"}]
+        return Response(result)
 
     def post(self, request, *args, **kwargs):
         host_type_s = request.POST.get('host_type', '')
@@ -68,8 +112,14 @@ class HostTypeView(Endpoint,
     queryset = HostType.objects.all()
 
     def get(self, request, *args, **kwargs):
-        self.queryset = HostType.objects.filter(user=request.user)
-        return self.list(request, *args, **kwargs)
+        # self.queryset = HostType.objects.filter(user=request.user)
+        result = [{'id': 1, 'host_type': 'Web服务器'},
+                  {'id': 2, 'host_type': '数据库服务器'},
+                  {'id': 3, 'host_type': '代理服务器'},
+                  {'id': 4, 'host_type': 'VPN'}
+                  ]
+        return Response(result)
+        # return self.list(request, *args, **kwargs)
 
     def post(self, request):
         host_type_s = request.POST.get('host_type')
@@ -119,8 +169,66 @@ class StreamTypeView(mixins.ListModelMixin,
     queryset = StreamType.objects.all()
 
     def get(self, request, *args, **kwargs):
-        self.queryset = StreamType.objects.filter(user=request.user)
-        return self.list(request, *args, **kwargs)
+        # self.queryset = StreamType.objects.filter(user=request.user)
+        result = [{'id':1,
+                   'stream_name':'nginx.access.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 1,
+                   },
+                  {'id':2,
+                   'stream_name':'nginx.error.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 1,
+                   },
+                  {'id':3,
+                   'stream_name':'apache.access.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 2,
+                   },
+                  {'id':4,
+                   'stream_name':'apache.access.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 2,
+                   },
+                  {'id':5,
+                   'stream_name':'tomcat.access.log',
+                   'size':  random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 3,
+                   },
+                  {'id':6,
+                   'stream_name':'tomcat.access.log',
+                   'size': random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id':3
+                   },
+                  {'id':7,
+                   'stream_name':'tomcat.access.log',
+                   'size': random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 3,
+                   },
+                  {'id':8,
+                   'stream_name':'tomcat.access.log',
+                   'size': random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id':3
+                   }
+                  ]
+        return Response(result)
+        # return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         stream_type_req = request.POST.get('stream_type', '')
@@ -148,46 +256,70 @@ class StreamView(Endpoint,
     queryset = Stream.objects.all()
 
     def get(self, request, *args, **kwargs):
-        host_id = request.GET.get('host_id', '')
-        host_obj = Host.objects.get(id=host_id)
-        if not host_obj:
-            return Response({'msg': 'Invalid Host id'})
-        self.queryset = Stream.objects.filter(host=host_obj)
-        return self.list(request, *args, **kwargs)
-
-        # Storage server client
+         result = [{'id':1,
+                   'stream_name':'nginx.access.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 1,
+                   },
+                  {'id':2,
+                   'stream_name':'nginx.error.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 1,
+                   },
+                  {'id':3,
+                   'stream_name':'apache.access.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 2,
+                   },
+                  {'id':4,
+                   'stream_name':'apache.access.log',
+                   'size': 12353532,
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 2,
+                   },
+                  {'id':5,
+                   'stream_name':'tomcat.access.log',
+                   'size':  random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 3,
+                   },
+                  {'id':6,
+                   'stream_name':'tomcat.access.log',
+                   'size': random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id':3
+                   },
+                  {'id':7,
+                   'stream_name':'tomcat.access.log',
+                   'size': random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id': 3,
+                   },
+                  {'id':8,
+                   'stream_name':'tomcat.access.log',
+                   'size': random.randint(64*1024, 256*1024*3),
+                   'create_timestamp': str(datetime.datetime.now()),
+                   'last_timestamp': str(datetime.datetime.now()),
+                   'host_id':3
+                   }
+                  ]
+         return Response(result)
         # host_id = request.GET.get('host_id', '')
-        # print 'host_id=', host_id
-        # host = Host.objects.get(id=host_id)
-        # resp = None
-        # if not host:
-        #     resp = requests.get("http:192.168.200.228:5000?hostid="+host.id)
-        #     return Response(resp.text)
-        # return Response({"msg": "Not found host"})
-
-        # if len(host) == 0:
-        #     self.queryset = Stream.objects.filter(user=request.user)
-        #     return self.list(request, *args, **kwargs)
-        #
-        # host_list = []
-        # if len(str(host)) != 0:
-        #     host_list = host.split(',')
-        #
-        # host_id_list = []
-        # for h in host_list:
-        #     for e in Host.objects.filter(user=request.user):
-        #         if h == e.host_name:
-        #             host_id_list.append(e.id)
-        #
-        # streams = []
-        # for host_id in host_id_list:
-        #     s = Stream.objects.filter(host=host_id)
-        #     obj = {'stream_name': '', 'stream_type':'', 'tag': '', 'size': 0}
-        #     for e in s:
-        #         obj['stream_name'] = e.stream_name
-        #         obj['stream_type'] = StreamType.objects.filter(id = e.stream_type.id)[0].stream_type
-        #         obj['host_name'] = Host.objects.fapi/0/streams?host_id=1ilter(id=host_id)[0].host_name
-        #         streams.append(obj)
+        # host_obj = Host.objects.get(id=host_id)
+        # if not host_obj:
+        #     return Response({'msg': 'Invalid Host id'})
+        # self.queryset = Stream.objects.filter(host=host_obj)
+        # return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         stream_name_req = request.POST.get('stream_name', '')
@@ -222,13 +354,63 @@ class LogFilesView(Endpoint,
     queryset = LogFile.objects.all()
 
     def get(self, request, *args, **kwargs):
-        stream_name_str = request.GET.get('stream_name', '')
-        stream_id_str = request.GET.get('stream_id', '')
-        stream_obj = Stream.objects.get(id=stream_id_str)
-        if not stream_obj:
-            return Response({'msg': 'Invalid host id'})
-        self.queryset = LogFile.objects.filter(stream=stream_obj)
-        return self.list(request,*args, **kwargs)
+        # stream_name_str = request.GET.get('stream_name', '')
+        # stream_id_str = request.GET.get('stream_id', '')
+        # stream_obj = Stream.objects.get(id=stream_id_str)
+        # if not stream_obj:
+        #     return Response({'msg': 'Invalid host id'})
+        # self.queryset = LogFile.objects.filter(stream=stream_obj)
+        # return self.list(request,*args, **kwargs)
+        result = [{'id': '1',
+                   'file_name': 'access.log',
+                   'file_path': '/var/log/nginx',
+                   'stream_id': 1,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'1'},
+                  {'id': '2',
+                   'file_name': 'error.log',
+                   'file_path': '/var/log/apache',
+                   'stream_id': 1,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'1'},
+                  {'id': '3',
+                   'file_name': 'system.log',
+                   'file_path': '/var/log/apache',
+                   'stream_id': 1,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'1'},
+                  {'id': '4',
+                   'file_name': 'message.log',
+                   'file_path': '/var/log/system',
+                   'stream_id': 1,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'1'},
+                  {'id': '5',
+                   'file_name': 'access.log',
+                   'file_path': '/var/log/system',
+                   'stream_id': 2,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'2'},
+                  {'id': '6',
+                   'file_name': 'kern.log',
+                   'file_path': '/var/log/',
+                   'stream_id': 2,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'2'},
+                  {'id': '7',
+                   'file_name': 'net.log',
+                   'file_path': '/var/log/',
+                   'stream_id': 2,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'2'},
+                  {'id': '8',
+                   'file_name': 'x.org.log',
+                   'file_path': '/var/log/',
+                   'stream_id': 2,
+                   'size': random.randint(64*1024, 234*4321),
+                   'host_id':'2'}
+                  ]
+        return Response(result)
 
     def post(self, request, *args, **kwargs):
         file_name_req = request.POST.get('file_name', '')
@@ -253,7 +435,7 @@ class LogFilesView(Endpoint,
                                    # stream=stream_obj
                                    # create_timestamp=create_timestamp_req,
                                    # modify_timestamp=modify_timestamp_req,
-                                   # size=file_size_req,
+                                   size= random.randint(64*1024, 128*1024),
                                    crc32_value=crc32_value_req
                                    )
             log_file_obj.save()

@@ -3,14 +3,17 @@ import hashlib
 import datetime
 
 
-username = 'bold@oluul.com'
-password = '123456'
+# username = 'bold@oluul.com'
+# password = '123456'
+username = 'admin@loginsight.cn'
+password = '123'
+
 print 'add host-type '
-r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'oracle'})
-r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'proxy'})
-r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'tomcat'})
-r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'nginx'} )
-r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'mysql'} )
+r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'oracle'}, auth=(username, password))
+r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'proxy'},  auth=(username, password))
+r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'tomcat'},  auth=(username, password))
+r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'nginx'},  auth=(username, password))
+r = requests.post("http://localhost:9000/api/0/host-type", data={'host_type': 'mysql'},  auth=(username, password))
 r = requests.get("http://localhost:9000/api/0/host-type")
 print r.text
 
@@ -39,9 +42,9 @@ r = requests.post("http://localhost:9000/api/0/hosts", data={
     "host_type": 'nginx'
 })
 
+print r.text
 
 
-# print r.text
 #
 #
 # print 'Add Stream Type '
