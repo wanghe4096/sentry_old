@@ -2407,12 +2407,12 @@ msgstr "重试"
 #: static/sentry/app/components/timeSince.jsx:69
 #, python-format
 msgid "%(time)s ago"
-msgstr ""
+msgstr "%(time)s 秒之前"
 
 #: static/sentry/app/components/timeSince.jsx:71
 #, python-format
 msgid "%(time)s old"
-msgstr ""
+msgstr "%(time)s 秒之前"
 
 #: static/sentry/app/components/projectHeader/projectSelector.jsx:187
 msgid "Filter projects"
@@ -3111,17 +3111,17 @@ msgstr "14 天"
 
 #: static/sentry/app/views/stream/actions.jsx:367
 msgid "All issues matching this search query selected."
-msgstr ""
+msgstr "所有符合这个查询条件的issue已被选中"
 
 #: static/sentry/app/views/stream/actions.jsx:369
 #, python-format
 msgid "%d issues on this page selected."
 msgid_plural "%d issues on this page selected."
-msgstr[0] ""
+msgstr[0] "本页的第%d个issue已被选中"
 
 #: static/sentry/app/views/stream/actions.jsx:372
 msgid "Select all issues matching this search query."
-msgstr ""
+msgstr "选择所有符合本次查询的issue"
 
 #: static/sentry/app/views/stream/filters.jsx:55
 msgid "All Events"
@@ -3394,7 +3394,7 @@ msgstr "该操作无法撤销。"
 
 #: static/sentry/app/components/issueList.jsx:108
 msgid "Nothing to show here, move along."
-msgstr ""
+msgstr "没有任何issue,请继续其他操作"
 
 #: static/sentry/app/components/groupListHeader.jsx:10
 msgid "Event"

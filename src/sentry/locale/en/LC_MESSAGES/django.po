@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-14 11:36+0000\n"
+"POT-Creation-Date: 2016-01-14 23:04+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -104,295 +104,295 @@ msgstr ""
 msgid "You must be authenticated to link accounts."
 msgstr ""
 
-#: conf/server.py:97
+#: conf/server.py:99
 msgid "Afrikaans"
 msgstr ""
 
-#: conf/server.py:98
+#: conf/server.py:100
 msgid "Arabic"
 msgstr ""
 
-#: conf/server.py:99
+#: conf/server.py:101
 msgid "Azerbaijani"
 msgstr ""
 
-#: conf/server.py:100
+#: conf/server.py:102
 msgid "Bulgarian"
 msgstr ""
 
-#: conf/server.py:101
+#: conf/server.py:103
 msgid "Belarusian"
 msgstr ""
 
-#: conf/server.py:102
+#: conf/server.py:104
 msgid "Bengali"
 msgstr ""
 
-#: conf/server.py:103
+#: conf/server.py:105
 msgid "Breton"
 msgstr ""
 
-#: conf/server.py:104
+#: conf/server.py:106
 msgid "Bosnian"
 msgstr ""
 
-#: conf/server.py:105
+#: conf/server.py:107
 msgid "Catalan"
 msgstr ""
 
-#: conf/server.py:106
+#: conf/server.py:108
 msgid "Czech"
 msgstr ""
 
-#: conf/server.py:107
+#: conf/server.py:109
 msgid "Welsh"
 msgstr ""
 
-#: conf/server.py:108
+#: conf/server.py:110
 msgid "Danish"
 msgstr ""
 
-#: conf/server.py:109
+#: conf/server.py:111
 msgid "German"
 msgstr ""
 
-#: conf/server.py:110
+#: conf/server.py:112
 msgid "Greek"
 msgstr ""
 
-#: conf/server.py:111
+#: conf/server.py:113
 msgid "English"
 msgstr ""
 
-#: conf/server.py:112
+#: conf/server.py:114
 msgid "Esperanto"
 msgstr ""
 
-#: conf/server.py:113
+#: conf/server.py:115
 msgid "Spanish"
 msgstr ""
 
-#: conf/server.py:114
+#: conf/server.py:116
 msgid "Estonian"
 msgstr ""
 
-#: conf/server.py:115
+#: conf/server.py:117
 msgid "Basque"
 msgstr ""
 
-#: conf/server.py:116
+#: conf/server.py:118
 msgid "Persian"
 msgstr ""
 
-#: conf/server.py:117
+#: conf/server.py:119
 msgid "Finnish"
 msgstr ""
 
-#: conf/server.py:118
+#: conf/server.py:120
 msgid "French"
 msgstr ""
 
-#: conf/server.py:119
+#: conf/server.py:121
 msgid "Irish"
 msgstr ""
 
-#: conf/server.py:120
+#: conf/server.py:122
 msgid "Galician"
 msgstr ""
 
-#: conf/server.py:121
+#: conf/server.py:123
 msgid "Hebrew"
 msgstr ""
 
-#: conf/server.py:122
+#: conf/server.py:124
 msgid "Hindi"
 msgstr ""
 
-#: conf/server.py:123
+#: conf/server.py:125
 msgid "Croatian"
 msgstr ""
 
-#: conf/server.py:124
+#: conf/server.py:126
 msgid "Hungarian"
 msgstr ""
 
-#: conf/server.py:125
+#: conf/server.py:127
 msgid "Interlingua"
 msgstr ""
 
-#: conf/server.py:126
+#: conf/server.py:128
 msgid "Indonesian"
 msgstr ""
 
-#: conf/server.py:127
+#: conf/server.py:129
 msgid "Icelandic"
 msgstr ""
 
-#: conf/server.py:128
+#: conf/server.py:130
 msgid "Italian"
 msgstr ""
 
-#: conf/server.py:129
+#: conf/server.py:131
 msgid "Japanese"
 msgstr ""
 
-#: conf/server.py:130
+#: conf/server.py:132
 msgid "Georgian"
 msgstr ""
 
-#: conf/server.py:131
+#: conf/server.py:133
 msgid "Kazakh"
 msgstr ""
 
-#: conf/server.py:132
+#: conf/server.py:134
 msgid "Khmer"
 msgstr ""
 
-#: conf/server.py:133
+#: conf/server.py:135
 msgid "Kannada"
 msgstr ""
 
-#: conf/server.py:134
+#: conf/server.py:136
 msgid "Korean"
 msgstr ""
 
-#: conf/server.py:135
+#: conf/server.py:137
 msgid "Luxembourgish"
 msgstr ""
 
-#: conf/server.py:136
+#: conf/server.py:138
 msgid "Lithuanian"
 msgstr ""
 
-#: conf/server.py:137
+#: conf/server.py:139
 msgid "Latvian"
 msgstr ""
 
-#: conf/server.py:138
+#: conf/server.py:140
 msgid "Macedonian"
 msgstr ""
 
-#: conf/server.py:139
+#: conf/server.py:141
 msgid "Malayalam"
 msgstr ""
 
-#: conf/server.py:140
+#: conf/server.py:142
 msgid "Mongolian"
 msgstr ""
 
-#: conf/server.py:141
+#: conf/server.py:143
 msgid "Burmese"
 msgstr ""
 
-#: conf/server.py:142
+#: conf/server.py:144
 msgid "Norwegian Bokmal"
 msgstr ""
 
-#: conf/server.py:143
+#: conf/server.py:145
 msgid "Nepali"
 msgstr ""
 
-#: conf/server.py:144
+#: conf/server.py:146
 msgid "Dutch"
 msgstr ""
 
-#: conf/server.py:145
+#: conf/server.py:147
 msgid "Norwegian Nynorsk"
 msgstr ""
 
-#: conf/server.py:146
+#: conf/server.py:148
 msgid "Ossetic"
 msgstr ""
 
-#: conf/server.py:147
+#: conf/server.py:149
 msgid "Punjabi"
 msgstr ""
 
-#: conf/server.py:148
+#: conf/server.py:150
 msgid "Polish"
 msgstr ""
 
-#: conf/server.py:149
+#: conf/server.py:151
 msgid "Portuguese"
 msgstr ""
 
-#: conf/server.py:150
+#: conf/server.py:152
 msgid "Brazilian Portuguese"
 msgstr ""
 
-#: conf/server.py:151
+#: conf/server.py:153
 msgid "Romanian"
 msgstr ""
 
-#: conf/server.py:152
+#: conf/server.py:154
 msgid "Russian"
 msgstr ""
 
-#: conf/server.py:153
+#: conf/server.py:155
 msgid "Slovak"
 msgstr ""
 
-#: conf/server.py:154
+#: conf/server.py:156
 msgid "Slovenian"
 msgstr ""
 
-#: conf/server.py:155
+#: conf/server.py:157
 msgid "Albanian"
 msgstr ""
 
-#: conf/server.py:156
+#: conf/server.py:158
 msgid "Serbian"
 msgstr ""
 
-#: conf/server.py:157
+#: conf/server.py:159
 msgid "Swedish"
 msgstr ""
 
-#: conf/server.py:158
+#: conf/server.py:160
 msgid "Swahili"
 msgstr ""
 
-#: conf/server.py:159
+#: conf/server.py:161
 msgid "Tamil"
 msgstr ""
 
-#: conf/server.py:160
+#: conf/server.py:162
 msgid "Telugu"
 msgstr ""
 
-#: conf/server.py:161
+#: conf/server.py:163
 msgid "Thai"
 msgstr ""
 
-#: conf/server.py:162
+#: conf/server.py:164
 msgid "Turkish"
 msgstr ""
 
-#: conf/server.py:163
+#: conf/server.py:165
 msgid "Tatar"
 msgstr ""
 
-#: conf/server.py:164
+#: conf/server.py:166
 msgid "Udmurt"
 msgstr ""
 
-#: conf/server.py:165
+#: conf/server.py:167
 msgid "Ukrainian"
 msgstr ""
 
-#: conf/server.py:166
+#: conf/server.py:168
 msgid "Urdu"
 msgstr ""
 
-#: conf/server.py:167
+#: conf/server.py:169
 msgid "Vietnamese"
 msgstr ""
 
-#: conf/server.py:168
+#: conf/server.py:170
 msgid "Simplified Chinese"
 msgstr ""
 
-#: conf/server.py:169
+#: conf/server.py:171
 msgid "Traditional Chinese"
 msgstr ""
 
@@ -488,61 +488,65 @@ msgid "username"
 msgstr ""
 
 #: models/user.py:29
+msgid "user key"
+msgstr ""
+
+#: models/user.py:30
 msgid "name"
 msgstr ""
 
-#: models/user.py:31
+#: models/user.py:32
 msgid "email address"
 msgstr ""
 
-#: models/user.py:33
+#: models/user.py:34
 msgid "staff status"
 msgstr ""
 
-#: models/user.py:34
+#: models/user.py:35
 msgid "Designates whether the user can log into this admin site."
 msgstr ""
 
-#: models/user.py:37
+#: models/user.py:38
 msgid "active"
 msgstr ""
 
-#: models/user.py:38
+#: models/user.py:39
 msgid ""
 "Designates whether this user should be treated as active. Unselect this "
 "instead of deleting accounts."
 msgstr ""
 
-#: models/user.py:41
+#: models/user.py:42
 msgid "superuser status"
 msgstr ""
 
-#: models/user.py:42
+#: models/user.py:43
 msgid ""
 "Designates that this user has all permissions without explicitly "
 "assigning them."
 msgstr ""
 
-#: models/user.py:45
+#: models/user.py:46
 msgid "managed"
 msgstr ""
 
-#: models/user.py:46
+#: models/user.py:47
 msgid ""
 "Designates whether this user should be treated as managed. Select this to"
 " disallow the user from modifying their account (username, password, "
 "etc)."
 msgstr ""
 
-#: models/user.py:50
+#: models/user.py:51
 msgid "date joined"
 msgstr ""
 
-#: models/user.py:60
+#: models/user.py:61
 msgid "user"
 msgstr ""
 
-#: models/user.py:61 static/sentry/app/components/groupListHeader.jsx:16
+#: models/user.py:62 static/sentry/app/components/groupListHeader.jsx:16
 msgid "users"
 msgstr ""
 
@@ -748,15 +752,10 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: templates/sentry/layout.html:87 templates/sentry/layout.html.py:227
+#: templates/sentry/layout.html:87 templates/sentry/layout.html.py:212
 #: templates/sentry/bases/admin.html:7 web/forms/__init__.py:54
 #: static/sentry/app/components/header/userNav.jsx:50
 msgid "Admin"
-msgstr ""
-
-#: templates/sentry/layout.html:90 templates/sentry/bases/organization.html:27
-#: static/sentry/app/components/organizations/homeSidebar.jsx:44
-msgid "Stats"
 msgstr ""
 
 #: templates/sentry/layout.html:91
@@ -764,28 +763,18 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: templates/sentry/layout.html:120 templates/sentry/layout.html.py:231
+#: templates/sentry/layout.html:120 templates/sentry/layout.html.py:216
 #: static/sentry/app/components/footer.jsx:26
 msgid "Docs"
 msgstr ""
 
-#: templates/sentry/layout.html:146
-#: static/sentry/app/components/header/AddBtn.jsx:72
-msgid "New team"
-msgstr ""
-
-#: templates/sentry/layout.html:147
-#: static/sentry/app/components/header/AddBtn.jsx:77
-msgid "New project"
-msgstr ""
-
-#: templates/sentry/layout.html:230
+#: templates/sentry/layout.html:215
 #: templates/sentry/project-release-tracking.html:117
 #: static/sentry/app/components/footer.jsx:25
 msgid "API"
 msgstr ""
 
-#: templates/sentry/layout.html:232 static/sentry/app/components/footer.jsx:27
+#: templates/sentry/layout.html:217 static/sentry/app/components/footer.jsx:27
 msgid "Contribute"
 msgstr ""
 
@@ -1442,6 +1431,11 @@ msgstr ""
 msgid "Organization Settings"
 msgstr ""
 
+#: templates/sentry/bases/organization.html:27
+#: static/sentry/app/components/organizations/homeSidebar.jsx:44
+msgid "Stats"
+msgstr ""
+
 #: templates/sentry/bases/organization.html:32
 msgid "My Issues"
 msgstr ""
@@ -1636,8 +1630,8 @@ msgid "Project ID"
 msgstr ""
 
 #: templates/sentry/projects/keys.html:6 templates/sentry/projects/keys.html:15
-#: templates/sentry/projects/manage.html:188
-#: static/sentry/app/views/projectSettings/index.jsx:100
+#: templates/sentry/projects/manage.html:185
+#: static/sentry/app/views/projectSettings/index.jsx:93
 msgid "Client Keys"
 msgstr ""
 
@@ -1745,19 +1739,14 @@ msgstr ""
 msgid "Setup"
 msgstr ""
 
-#: templates/sentry/projects/manage.html:185
-#: static/sentry/app/views/projectSettings/index.jsx:99
-msgid "Instructions"
-msgstr ""
-
-#: templates/sentry/projects/manage.html:192
+#: templates/sentry/projects/manage.html:189
 #: templates/sentry/projects/plugins/list.html:10
-#: static/sentry/app/views/projectSettings/index.jsx:102
+#: static/sentry/app/views/projectSettings/index.jsx:95
 msgid "Integrations"
 msgstr ""
 
-#: templates/sentry/projects/manage.html:195
-#: static/sentry/app/views/projectSettings/index.jsx:104
+#: templates/sentry/projects/manage.html:192
+#: static/sentry/app/views/projectSettings/index.jsx:97
 msgid "All Integrations"
 msgstr ""
 
@@ -2069,6 +2058,10 @@ msgstr ""
 
 #: web/forms/add_team.py:15 static/sentry/app/components/addTeamModal.jsx:109
 msgid "E.g. Operations, Web, Desktop, ..."
+msgstr ""
+
+#: web/forms/add_team.py:18
+msgid "The team name has no significant impact and can be changed later."
 msgstr ""
 
 #: web/forms/fields.py:83
@@ -2497,8 +2490,8 @@ msgstr ""
 
 #: static/sentry/app/views/adminSettings.jsx:155
 msgid ""
-"We were unable to load the required configuration from the Sentry server."
-" Please take a look at the service logs."
+"We were unable to load the required configuration from the LogInsight "
+"server. Please take a look at the service logs."
 msgstr ""
 
 #: static/sentry/app/views/adminSettings.jsx:160
@@ -2618,7 +2611,7 @@ msgstr ""
 msgid "Log Storage"
 msgstr ""
 
-#: static/sentry/app/views/stream.jsx:389
+#: static/sentry/app/views/stream.jsx:391
 msgid "Sorry, no events match your filters."
 msgstr ""
 
@@ -2785,30 +2778,6 @@ msgstr ""
 msgid "The technical contact for this LogInsight installation."
 msgstr ""
 
-#: static/sentry/app/stores/groupStore.jsx:215
-msgid "Unable to change assignee. Please try again."
-msgstr ""
-
-#: static/sentry/app/stores/groupStore.jsx:239
-msgid "Unable to delete events. Please try again."
-msgstr ""
-
-#: static/sentry/app/stores/groupStore.jsx:250
-msgid "The selected events have been scheduled for deletion."
-msgstr ""
-
-#: static/sentry/app/stores/groupStore.jsx:265
-msgid "Unable to merge events. Please try again."
-msgstr ""
-
-#: static/sentry/app/stores/groupStore.jsx:280
-msgid "The selected events have been scheduled for merge."
-msgstr ""
-
-#: static/sentry/app/stores/groupStore.jsx:312
-msgid "Unable to update events. Please try again."
-msgstr ""
-
 #: static/sentry/app/views/stream/searchBar.jsx:73
 msgid "Assigned"
 msgstr ""
@@ -2831,6 +2800,30 @@ msgstr ""
 
 #: static/sentry/app/views/groupDetails/header.jsx:175
 msgid "Related Events"
+msgstr ""
+
+#: static/sentry/app/stores/groupStore.jsx:215
+msgid "Unable to change assignee. Please try again."
+msgstr ""
+
+#: static/sentry/app/stores/groupStore.jsx:239
+msgid "Unable to delete events. Please try again."
+msgstr ""
+
+#: static/sentry/app/stores/groupStore.jsx:250
+msgid "The selected events have been scheduled for deletion."
+msgstr ""
+
+#: static/sentry/app/stores/groupStore.jsx:265
+msgid "Unable to merge events. Please try again."
+msgstr ""
+
+#: static/sentry/app/stores/groupStore.jsx:280
+msgid "The selected events have been scheduled for merge."
+msgstr ""
+
+#: static/sentry/app/stores/groupStore.jsx:312
+msgid "Unable to update events. Please try again."
 msgstr ""
 
 #: static/sentry/app/views/groupDetails/eventToolbar.jsx:28
@@ -3223,6 +3216,12 @@ msgid ""
 "[link:creating your first team]."
 msgstr ""
 
+#: static/sentry/app/views/organizationTeams/allTeamsList.jsx:40
+msgid ""
+"You don't have any teams for this organization yet. Get started by "
+"[link:creating your first team]."
+msgstr ""
+
 #: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:87
 msgid "Events Per Minute"
 msgstr ""
@@ -3233,12 +3232,6 @@ msgstr ""
 
 #: static/sentry/app/views/organizationTeams/organizationStatOverview.jsx:93
 msgid "View all stats"
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/allTeamsList.jsx:40
-msgid ""
-"You don't have any teams for this organization yet. Get started by "
-"[link:creating your first team]."
 msgstr ""
 
 #: static/sentry/app/views/organizationStats/projectTable.jsx:43
@@ -3258,7 +3251,7 @@ msgid "Total"
 msgstr ""
 
 #: static/sentry/app/components/projectHeader/index.jsx:34
-msgid "install sdk"
+msgid "接入"
 msgstr ""
 
 #: static/sentry/app/components/groupListHeader.jsx:15
@@ -3451,6 +3444,10 @@ msgstr ""
 msgid "This action cannot be undone."
 msgstr ""
 
+#: static/sentry/app/views/stream/sortOptions.jsx:48
+msgid "Sort by"
+msgstr ""
+
 #: static/sentry/app/views/stream/searchBar.jsx:59
 msgid "Tag"
 msgstr ""
@@ -3471,10 +3468,6 @@ msgstr ""
 msgid "or paste an event id to jump straight to it"
 msgstr ""
 
-#: static/sentry/app/views/stream/sortOptions.jsx:48
-msgid "Sort by"
-msgstr ""
-
 #: static/sentry/app/views/groupActivity/note.jsx:32
 msgid "Are you sure you wish to delete this comment?"
 msgstr ""
@@ -3489,6 +3482,30 @@ msgstr ""
 
 #: static/sentry/app/components/header/broadcasts.jsx:128
 msgid "Read more"
+msgstr ""
+
+#: static/sentry/app/components/header/AddBtn.jsx:41
+msgid "Being imported demo data!"
+msgstr ""
+
+#: static/sentry/app/components/header/AddBtn.jsx:46
+msgid "Create demo data is successfully!"
+msgstr ""
+
+#: static/sentry/app/components/header/AddBtn.jsx:50
+msgid "Create demo data failed!"
+msgstr ""
+
+#: static/sentry/app/components/header/AddBtn.jsx:101
+msgid "New demo"
+msgstr ""
+
+#: static/sentry/app/components/header/AddBtn.jsx:106
+msgid "New team"
+msgstr ""
+
+#: static/sentry/app/components/header/AddBtn.jsx:111
+msgid "New project"
 msgstr ""
 
 #: static/sentry/app/components/addTeamModal.jsx:54
