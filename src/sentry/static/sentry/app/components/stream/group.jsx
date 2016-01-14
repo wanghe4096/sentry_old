@@ -118,7 +118,7 @@ const StreamGroup = React.createClass({
             </label>
           }
           <h3 className="truncate">
-            <Link to={`/${orgId}/events/${projectId}/${data.id}/`}>
+            <Link to={`/${orgId}/events/${projectId}/issues/${data.id}/`}>
               <span className="error-level truncate">{data.level}</span>
               <span className="icon icon-soundoff"></span>
               <span className="icon icon-bookmark"></span>
@@ -146,7 +146,7 @@ const StreamGroup = React.createClass({
               }
               {data.logger &&
                 <li className="event-annotation">
-                  <Link to={`/${orgId}/${projectId}/`} query={{query: 'logger:' + data.logger}}>
+                  <Link to={`/${orgId}/events/${projectId}/`} query={{query: 'logger:' + data.logger}}>
                     {data.logger}
                   </Link>
                 </li>

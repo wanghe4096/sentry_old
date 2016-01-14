@@ -72,7 +72,7 @@ const ProjectInstallPlatform = React.createClass({
     return (
       <Link
         key={platform}
-        to={`/${orgId}/${projectId}/settings/install/${platform}/`}
+        to={`/${orgId}/events/${projectId}/settings/install/${platform}/`}
         className="list-group-item">
           {display || platform}
       </Link>

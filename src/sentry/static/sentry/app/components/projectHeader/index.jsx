@@ -20,22 +20,22 @@ const ProjectHeader = React.createClass({
             <div className="pull-right">
               <ul className="nav nav-tabs">
                 <li className={navSection == 'dashboard' ? 'active' : ''}>
-                  <Link to={`/${org.slug}/${project.slug}/dashboard/`}>
+                  <Link to={`/${org.slug}/events/${project.slug}/dashboard/`}>
                     {t('Dashboard')}
                   </Link>
                 </li>
                 <li className={navSection == 'stream' ? 'active' : ''}>
-                  <Link to={`/${org.slug}/${project.slug}/`}>
+                  <Link to={`/${org.slug}/events/${project.slug}/`}>
                     {t('Issues')}
                   </Link>
                 </li>
                 <li className={navSection == 'install' ? 'active' : ''}>
-                  <Link to={`/${org.slug}/${project.slug}/settings/install/`}>
+                  <Link to={`/${org.slug}/events/${project.slug}/settings/install/`}>
                     {t('install sdk')}
                   </Link>
                 </li>
                 <li className={navSection == 'releases' ? 'active' : ''}>
-                  <Link to={`/${org.slug}/${project.slug}/releases/`}>
+                  <Link to={`/${org.slug}/events/${project.slug}/releases/`}>
                     {t('Releases')}
                   </Link>
                 </li>

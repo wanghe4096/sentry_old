@@ -34,7 +34,7 @@ const Header = React.createClass({
           {
             // <NodeNav className="pull-right"/>
           }
-          {org && <Link to={`/${org.slug}/`} className="pull-right" style={{fontSize:15}}>{org.name}</Link>}
+          {org && <Link to={`/${org.slug}/events/`} className="pull-right" style={{fontSize:15}}>{org.name}</Link>}
         </div>
       </header>
     );

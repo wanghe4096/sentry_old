@@ -136,7 +136,7 @@ const ProjectSelector = React.createClass({
     let projectId = project.slug;
 
     return (
-      <Link to={`/${orgId}/${projectId}/`}>{label}</Link>
+      <Link to={`/${orgId}/events/${projectId}/`}>{label}</Link>
     );
   },
 

@@ -34,7 +34,7 @@ const OrganizationSelector = React.createClass({
     let features = ConfigStore.get('features');
 
     return (
-      <Link to={`/${activeOrg.slug}`} className="pull-right" style={{fontSize:14}}>{activeOrg.name}</Link>
+      <Link to={`/${activeOrg.slug}/events/`} className="pull-right" style={{fontSize:14}}>{activeOrg.name}</Link>
     );
 
     /*
