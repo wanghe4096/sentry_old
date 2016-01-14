@@ -33,7 +33,7 @@ const EventTags = React.createClass({
             return (
               <li key={tag.key}>
                 {tag.key} = <Link
-                  to={`/${orgId}/${projectId}/`}
+                  to={`/${orgId}/events/${projectId}/`}
                   query={{query: `${tag.key}:"${tag.value}"`}}>
                   {tag.value}
                 </Link>

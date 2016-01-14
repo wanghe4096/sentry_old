@@ -91,7 +91,7 @@ const ProjectSettings = React.createClass({
           <h6 className="nav-header">{t('Setup')}</h6>
           <ul className="nav nav-stacked">
             <ListLink to="install/" isActive={function (to) {
-              let rootInstallPath = `/${orgId}/${projectId}/settings/install/`;
+              let rootInstallPath = `/${orgId}/events/${projectId}/settings/install/`;
               let pathname = this.context.location.pathname;
 
               // Because react-router 1.0 removes router.isActive(route)

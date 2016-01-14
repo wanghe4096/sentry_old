@@ -152,7 +152,7 @@ const GroupHeader = React.createClass({
         </div>
         <ul className="nav nav-tabs">
           <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/`} isActive={function (to) {
-            let rootGroupPath = `/${orgId}/${projectId}/issues/${groupId}/`;
+            let rootGroupPath = `/${orgId}/events/${projectId}/issues/${groupId}/`;
             let pathname = this.context.location.pathname;
 
             // Because react-router 1.0 removes router.isActive(route)

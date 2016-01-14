@@ -72,7 +72,7 @@ const ProjectInstallOverview = React.createClass({
              client integrations, please visit see [docLink:our in-depth documentation].
           `, {
             em: <em />,
-            docLink: <a href="https://docs.getsentry.com" />
+            docLink: <a href="http://blog.loginsight.cn" />
           })}
           </p>
         </div>
