@@ -4,10 +4,10 @@ from django.shortcuts import render
 # Create your views here.
 from sentry.api.serializers.models.host_stream import (
     HostSerializer, TagSerializer,
-    HostTypeSerializer, StreamSerializer, StreamTypeSerializer, LogEventSerializer)
+    HostTypeSerializer, StreamSerializer, StreamTypeSerializer, LogEventSerializer, LogFileSerializer)
 
 from sentry.models.host_stream import (
-    Host, HostType, Stream, StreamType, Tag, LogEvent
+    Host, HostType, Stream, StreamType, Tag, LogEvent, LogFile
 )
 from rest_framework.response import Response
 from rest_framework import mixins
@@ -122,7 +122,15 @@ class StreamTypeView(mixins.ListModelMixin,
         return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+        stream_type_req = request.POST.get('stream_type', '')
+        stream_type_obj = StreamType.objects.filter(stream_type=stream_type_req, user=request.user)
+        if not stream_type_obj:
+            obj = StreamType(stream_type=stream_type_req, user=request.user)
+            obj.save()
+            return Response({'msg': 'Success to add stream type'})
+        return Response({'msg': ' Stream Type has exists'})
+
+        # return self.create(request, *args, **kwargs)
 
 
 class StreamView(mixins.ListModelMixin,
@@ -139,13 +147,22 @@ class StreamView(mixins.ListModelMixin,
 
     def get(self, request, *args, **kwargs):
         host_id = request.GET.get('host_id', '')
-        print 'host_id=', host_id
-        host = Host.objects.get(id=host_id)
-        resp = None
-        if not host:
-            resp = requests.get("http:192.168.200.228:5000?hostid="+host.id)
-            return Response(resp.text)
-        return Response({"msg": "Not found host"})
+        host_obj = Host.objects.filter(id=host_id)
+        if not host_obj:
+            return Response({'msg': 'Invalid Host id'})
+
+        self.queryset = Stream.objects.filter(host=host_obj, user=request.user)
+        return self.list(request, *args, **kwargs)
+
+        # Storage server client
+        # host_id = request.GET.get('host_id', '')
+        # print 'host_id=', host_id
+        # host = Host.objects.get(id=host_id)
+        # resp = None
+        # if not host:
+        #     resp = requests.get("http:192.168.200.228:5000?hostid="+host.id)
+        #     return Response(resp.text)
+        # return Response({"msg": "Not found host"})
 
         # if len(host) == 0:
         #     self.queryset = Stream.objects.filter(user=request.user)
@@ -172,14 +189,79 @@ class StreamView(mixins.ListModelMixin,
         #         streams.append(obj)
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+        stream_name_req = request.POST.get('stream_name', '')
+        stream_type_req = request.POST.get('stream_type', '')
+        host_id_req = request.POST.get('host_id', '')
+        if len(stream_name_req) == 0 or len(stream_type_req ) == 0 or len(host_id_req) == 0:
+            return Response({'msg': 'Invalid request parameters'})
+        host_obj = Host.objects.get(id=host_id_req, user=request.user)
+        if not host_obj:
+            return Response({'msg': 'Invalid host id'})
+        stream_type_obj = StreamType.objects.get(stream_type=stream_type_req, user=request.user)
+        if not stream_type_obj:
+            return Response({'msg': 'Invalid stream type'})
+        if not Stream.objects.filter(stream_name=stream_name_req):
+            stream_obj = Stream(stream_name=stream_name_req, host=host_obj, stream_type=stream_type_obj,  user=request.user)
+            stream_obj.save()
+            return Response({'msg': 'success to add stream'})
 
-    def put(self, request, *args, **kwargs):
-        pass
+        return Response({'msg': 'Stream has existed'})
 
 
+import datetime
 
-class LogEventView(mixins.ListModelMixin,
+class LogFilesView(Endpoint,
+                mixins.ListModelMixin,
+                mixins.CreateModelMixin,
+                generics.GenericAPIView):
+
+    authentication_classes = [QuietBasicAuthentication]
+    permission_classes = ()
+    serializer_class = LogFileSerializer
+    queryset = LogFile.objects.all()
+
+    def get(self, request, *args, **kwargs):
+        host_id = request.GET.get('host_id', '')
+        print 'host_id = ', host_id
+        host_obj = Host.objects.get(id=host_id)
+        print host_obj.id
+        if not host_obj:
+            return Response({'msg': 'Invalid host id'})
+        self.queryset = LogFile.objects.filter(host=host_obj)
+        return self.list(request,*args, **kwargs)
+
+    def post(self, request, *args, **kwargs):
+        file_name_req = request.POST.get('file_name', '')
+        file_path_req = request.POST.get('file_path', '')
+        host_id_req = request.POST.get('host_id', '')
+        stream_name_req = request.POST.get('stream_name', '')
+        create_timestamp_req = request.POST.get('create_timestamp', str(datetime.datetime.now()))
+        modify_timestamp_req = request.POST.get('modify_timestamp', str(datetime.datetime.now()))
+        file_size_req = request.POST.get('file_size', '')
+        crc32_value_req = request.POST.get('crc32_value', '')
+        host_obj = Host.objects.get(id=host_id_req, user=request.user)
+        if not host_obj:
+            return Response({'msg': 'Invalid host id'})
+        stream_obj = Stream.objects.get(stream_name=stream_name_req, user=request.user)
+        if not stream_obj:
+            return Response({'msg': 'Invalid stream '})
+        if not LogFile.objects.filter(crc32_value=crc32_value_req):
+            log_file_obj = LogFile(file_name=file_name_req,
+                                   file_path=file_path_req,
+                                   host=host_obj,
+                                   # stream=stream_obj
+                                   # create_timestamp=create_timestamp_req,
+                                   # modify_timestamp=modify_timestamp_req,
+                                   # size=file_size_req,
+                                   crc32_value=crc32_value_req
+                                   )
+            log_file_obj.save()
+            return Response({'msg': 'Success to add log file.'})
+        return Response({'msg': 'Invalid request parameters'})
+
+
+class LogEventView(Endpoint,
+                mixins.ListModelMixin,
                 mixins.CreateModelMixin,
                 generics.GenericAPIView):
     """
@@ -196,16 +278,49 @@ class LogEventView(mixins.ListModelMixin,
     queryset = LogEvent.objects.all()[:20]
 
     def get(self, request, *args, **kwargs):
-        host_name = request.GET.get('file_id', '')
+        file_id = request.GET.get('file_id', '')
         event_offset_param = request.GET.get('event_offset', '0')
         event_count_param = request.GET.get('event_count', '20')
         event_offset = int(event_offset_param)
         event_count = int(event_count_param)
         if len(self.queryset) == 0:
             return Response([])
-        self.queryset = LogEvent.objects.filter(user=request.user, host = Host.objects.filter(host_name=host_name)[0])[event_offset: event_offset + event_count]
-        return self.list(request, *args, **kwargs)
+        file_obj = LogFile.objects.get(id=file_id)
+        if not file_obj:
+            return {'msg': 'Invalid file id'}
+
+        self.queryset = LogEvent.objects.filter(logfile=file_obj)[event_offset: event_offset+event_count]
+        event_obj = {'payload': '', 'offset': 0, 'file_id': 0}
+        result = []
+        i = event_offset
+        for e in self.queryset:
+
+            event_obj['payload'] = e.payload
+            event_obj['offset'] = i
+            result.append(event_obj)
+            i = i + 1
+
+        return Response(result)
+        # return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
-        return self.create(request, *args, **kwargs)
+        # 'payload, 'offset', 'host', 'user', 'LogFile'
+        payload_req = request.POST.get('payload', '')
+        offset_req = request.POST.get('offset', '')
+        host_req = request.POST.get('host_id', '')
+        file_id_req = request.POST.get('file_id','')
+        host_obj = Host.objects.get(id=host_req)
+        if not host_obj:
+            return Response({'msg': 'Invalid host id'})
+
+        file_obj = LogFile.objects.get(id=file_id_req)
+        if not file_obj:
+            return Response({'msg': 'Invalid file id'})
+
+        if not LogEvent.objects.filter(offset=offset_req):
+            event_obj = LogEvent(payload=payload_req, offset=offset_req, host=host_obj, logfile=file_obj, user=request.user)
+            event_obj.save()
+            return  Response({'msg': 'success add event '})
+
+        return Response({'msg': 'add event ok'})
 

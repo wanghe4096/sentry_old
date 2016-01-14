@@ -68,7 +68,7 @@ from .endpoints.user_details import UserDetailsEndpoint
 from .endpoints.register import RegisterEndpoint
 from .endpoints.host_stream import HostView, StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
 from .endpoints.demo_exception import DemoExceptionView
-
+from .endpoints.host_stream import LogFilesView
 urlpatterns = patterns(
     '',
     #  loginsight  Register User
@@ -78,6 +78,7 @@ urlpatterns = patterns(
     url(r'^host-type', HostTypeView.as_view(), name='sentry-api-0-host-type'),
     url(r'^stream-type', StreamTypeView.as_view(), name='sentry-api-0-stream-type'),
     url(r'^tags', TagView.as_view(), name='sentry-api-0-tags'),
+    url(r'logfiles', LogFilesView.as_view(), name='sentry-api-0-logfiles'),
     url(r'^logevents', LogEventView.as_view(), name='sentry-api-0-events'),
     url(r'^create_demo', DemoExceptionView.as_view(), name='sentry-api-0-create-demo'),
     # Auth

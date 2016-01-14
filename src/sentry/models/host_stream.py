@@ -62,7 +62,7 @@ class StreamType(models.Model):
 
 class Stream(models.Model):
     stream_name = models.CharField(max_length=128)
-    stream_type = models.ForeignKey(StreamType)
+    stream_type = models.ForeignKey(StreamType, null=True)
     size = models.IntegerField(null=True)
     modify_timestamp = models.DateTimeField(null=True)
     create_timestamp = models.DateTimeField(null=True)
@@ -80,32 +80,36 @@ class Stream(models.Model):
 
 class LogFile(models.Model):
     file_name = models.CharField(max_length=128)
+    file_path = models.CharField(max_length=256, null=True)
     stream_type = models.CharField(max_length=128, null=True)
     host = models.ForeignKey(Host, null=True)
     tag = models.ForeignKey(Tag, null=True)
+    # stream = models.ForeignKey(Stream, null=True)
     create_timestamp = models.DateTimeField(null=True)
     modify_timestamp = models.DateTimeField(null=True)
     owner = models.IntegerField(null=True)
     group = models.IntegerField(null=True)
     mod = models.IntegerField(null=True)
+    size = models.IntegerField(null=True)
     crc32_value = models.IntegerField(null=True)
 
     class Meta:
         app_label = 'sentry'
-        db_table = 'sentry_stream'
+        db_table = 'sentry_log_file'
 
-    def _get_unique_checks(self):
+    def __unicode__(self):
         return self.file_name
 
 
 class LogEvent(models.Model):
     payload = models.CharField(max_length=64*1024)
-    offset = models.IntegerField()
-    stream = models.ForeignKey(Stream)
+    offset = models.IntegerField(null=True)
+    # stream = models.ForeignKey(Stream, null=True)
+    logfile = models.ForeignKey(LogFile, null=True)
     host = models.ForeignKey(Host)
     user = models.ForeignKey(User)
     tag = models.ForeignKey(Tag, null=True)
-
+    event_no = models.IntegerField(null=True)
     class Meta:
         app_label = 'sentry'
         db_table = 'sentry_log_event'
