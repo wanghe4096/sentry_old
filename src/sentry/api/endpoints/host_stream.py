@@ -17,10 +17,8 @@ from sentry.api.authentication import QuietBasicAuthentication
 import os
 import requests
 
-class HostView(Endpoint,
-               mixins.ListModelMixin,
-               mixins.CreateModelMixin,
-               generics.GenericAPIView):
+
+class HostView(Endpoint):
     """
       GET /hosts
     """
@@ -54,10 +52,7 @@ class HostView(Endpoint,
         return Response({'msg': 'Success to add host'})
 
 
-class HostTypeView(
-                mixins.ListModelMixin,
-                mixins.CreateModelMixin,
-                generics.GenericAPIView):
+class HostTypeView(Endpoint):
     """
     GET /host-type
     parm: none
@@ -106,9 +101,7 @@ class TagView(mixins.ListModelMixin,
         return self.create(request, *args, **kwargs)
 
 
-class StreamTypeView(mixins.ListModelMixin,
-                     mixins.CreateModelMixin,
-                     generics.GenericAPIView):
+class StreamTypeView(Endpoint):
     """
     GET /stream-type
     PARAM: none
@@ -134,9 +127,7 @@ class StreamTypeView(mixins.ListModelMixin,
         # return self.create(request, *args, **kwargs)
 
 
-class StreamView(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
+class StreamView(Endpoint):
     """
     GET /streams
     param:  host_name=hostA,hostB,hostC,hostD
@@ -210,6 +201,7 @@ class StreamView(mixins.ListModelMixin,
 
 
 import datetime
+
 
 class LogFilesView(Endpoint):
 
