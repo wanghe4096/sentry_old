@@ -114,7 +114,7 @@ const GroupEventDetails = React.createClass({
     let group = this.state.group;
     let evt = this.state.event;
     let params = this.props.params;
-    console.log(this.state);
+
     return (
       <div className="group-overlay">
         <div className="row event">

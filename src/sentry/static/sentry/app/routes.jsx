@@ -114,7 +114,9 @@ let routes = (
             <Route path="tags/:tagKey/" component={GroupTagValues} />
             <Route path="reports/" component={GroupUserReports} />
           </Route>
+          <Route path="*" component={RouteNotFound}/>
         </Route>
+
       </Route>
     </Route>
 

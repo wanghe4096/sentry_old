@@ -20,8 +20,6 @@ import StreamAction from 'actions/storage/streamAction';
 import HmStatusStore from 'stores/storage/hostManageStatusStore';
 import HmStatusAction from 'actions/storage/hostManageStatusAction';
 
-import FileList from 'components/storage/fileList';
-
 const StreamItem = React.createClass({
   mixins: [
     Reflux.listenTo(HmStatusStore, 'onStatusChange')
@@ -53,9 +51,9 @@ const StreamItem = React.createClass({
           {this.props.stream_name}
         </h5>
         <ul className="clearfix props-list">
-          <li><strong>ID:</strong> {this.props.id} </li>
+          <li><strong>Stream ID:</strong> {this.props.id} </li>
+          <li><strong>{t('Latest Updated')}:</strong> {updateTime} </li>
           <li><strong>{t('Created Time')}:</strong> {createdTime}</li>
-          <li><strong>Latest Updated:</strong> {updateTime} </li>
         </ul>
       </li>
     );
@@ -93,9 +91,6 @@ const StreamList = React.createClass({
 
   render() {
 
-    const activeHostId = HmStatusStore.status.activeHost;
-    const activeHost = HostStore.getById(activeHostId);
-
     const showFileOverlay = !!HmStatusStore.status.activeStream;
 
     return (
@@ -110,15 +105,6 @@ const StreamList = React.createClass({
             { this.renderList() }
           </ul>
         </div>
-        <ReactCSSTransitionGroup
-          transitionName="file-list-ani"
-          component="div"
-          className="file-list-overlay"
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={500}
-        >
-          { showFileOverlay && (<FileList />) }
-        </ReactCSSTransitionGroup>
       </div>
     )
   }

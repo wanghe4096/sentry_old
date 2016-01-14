@@ -89,8 +89,9 @@ const LogPreview = React.createClass({
             <Link to={`/${org.slug}/storage`}>{t('Log Storage')}</Link>
           </li>
           <li className="active">preview</li>
+          <li className="active">log:{this.props.params.logId}</li>
         </ol>
-        <div className="preview-head">
+        <div className="preview-head hide">
           <h4>Preview log file: {this.props.params.logId}</h4>
         </div>
         <div className="events">

@@ -13,6 +13,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import HostList from 'components/storage/hostList';
 import {t} from 'app/locale';
 
+import HostStore from 'stores/storage/hostStore';
 import HostAction from 'actions/storage/hostAction';
 import StreamAction from 'actions/storage/streamAction';
 import FileAction from 'actions/storage/fileAction';
@@ -20,6 +21,7 @@ import HmStatusStore from 'stores/storage/hostManageStatusStore';
 import HmStatusAction from 'actions/storage/hostManageStatusAction';
 
 import HostStat from 'components/storage/hostStat';
+import FileList from 'components/storage/fileList';
 
 
 const StorageIndex = React.createClass({
@@ -49,10 +51,23 @@ const StorageIndex = React.createClass({
   },
 
   componentDidMount() {
+    $(document).on('keydown', this.keyDownHandler);
     HostAction.fetch();
   },
 
+  componentWillUnmount() {
+    $(document).off('keydown', this.keyDownHandler);
+  },
+
+  keyDownHandler(evt){
+    if (evt.keyCode === 27) {
+      HmStatusAction.setActiveHost(null);
+    }
+  },
+
   render() {
+
+    const showFileOverlay = !!HmStatusStore.status.activeStream;
 
     return (
       <DocumentTitle title="Storage">
@@ -65,6 +80,15 @@ const StorageIndex = React.createClass({
             transitionLeaveTimeout={500}
           >
             { this.state.showManageOverlay && (<StreamList/>) }
+          </ReactCSSTransitionGroup>
+          <ReactCSSTransitionGroup
+            transitionName="file-list-ani"
+            component="div"
+            className="file-list-overlay"
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
+          >
+            { showFileOverlay && (<FileList />) }
           </ReactCSSTransitionGroup>
           <div className="col-md-8">
             <HostList />

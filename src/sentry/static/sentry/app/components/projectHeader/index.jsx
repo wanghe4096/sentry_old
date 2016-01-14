@@ -31,7 +31,7 @@ const ProjectHeader = React.createClass({
                 </li>
                 <li className={navSection == 'install' ? 'active' : ''}>
                   <Link to={`/${org.slug}/events/${project.slug}/settings/install/`}>
-                    {t('接入')}
+                    {t('Access')}
                   </Link>
                 </li>
                 <li className={navSection == 'releases' ? 'active' : ''}>
