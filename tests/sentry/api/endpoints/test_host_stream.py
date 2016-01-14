@@ -140,7 +140,7 @@ r = requests.post("http://localhost:9000/api/0/logevents", data = {
 print r, r.text
 
 
-r = requests.get("http://localhost:9000/api/0/logevents?file_id=1", auth=(username, password))
+r = requests.get("http://localhost:9000/api/0/logevents?file_id=1&", auth=(username, password))
 print r, r.text
 
 

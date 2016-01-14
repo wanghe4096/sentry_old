@@ -54,7 +54,7 @@ class HostView(Endpoint,
         return Response({'msg': 'Success to add host'})
 
 
-class HostTypeView(
+class HostTypeView(Endpoint,
                 mixins.ListModelMixin,
                 mixins.CreateModelMixin,
                 generics.GenericAPIView):
@@ -134,7 +134,10 @@ class StreamTypeView(mixins.ListModelMixin,
         # return self.create(request, *args, **kwargs)
 
 
-class StreamView(Endpoint):
+class StreamView(Endpoint,
+                 mixins.ListModelMixin,
+                 mixins.CreateModelMixin,
+                 generics.GenericAPIView):
     """
     GET /streams
     param:  host_name=hostA,hostB,hostC,hostD
@@ -146,11 +149,11 @@ class StreamView(Endpoint):
 
     def get(self, request, *args, **kwargs):
         host_id = request.GET.get('host_id', '')
-        host_obj = Host.objects.filter(id=host_id)
+        print 'host_id=========', host_id
+        host_obj = Host.objects.get(id=host_id)
         if not host_obj:
             return Response({'msg': 'Invalid Host id'})
-
-        self.queryset = Stream.objects.filter(host=host_obj, user=request.user)
+        self.queryset = Stream.objects.filter(host=host_obj)
         return self.list(request, *args, **kwargs)
 
         # Storage server client
@@ -222,7 +225,6 @@ class LogFilesView(Endpoint,
     def get(self, request, *args, **kwargs):
         host_id = request.GET.get('host_id', '')
         host_obj = Host.objects.get(id=host_id)
-        print host_obj.id
         if not host_obj:
             return Response({'msg': 'Invalid host id'})
         self.queryset = LogFile.objects.filter(host=host_obj)
