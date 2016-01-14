@@ -45,11 +45,11 @@ const StreamItem = React.createClass({
 
   render() {
     return (
-      <li className={`stream-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
-        <h5 className="stream-name">
+      <li className={`list-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
+        <h5 className="item-name">
           {this.props.stream_name}
         </h5>
-        <ul className="clearfix host-props-list">
+        <ul className="clearfix props-list">
           <li>ID: {this.props.stream_id} </li>
           <li>Stream Tag: {this.props.stream_tag}</li>
           <li>Files: 10</li>
@@ -99,12 +99,14 @@ const StreamList = React.createClass({
       <div
         className={`stream-list-container ${showFileOverlay ? `pull`:``}`}
       >
-        <div className="list-head stream-list-head">
-          <h5>Host:{activeHost.host_name} 的 Stream List</h5>
+        <div className="list-wrap stream-list">
+          <div className="list-head">
+            <h5>Stream List</h5>
+          </div>
+          <ul>
+            { this.renderList() }
+          </ul>
         </div>
-        <ul className="stream-list">
-          { this.renderList() }
-        </ul>
         <ReactCSSTransitionGroup
           transitionName="file-list-ani"
           component="div"

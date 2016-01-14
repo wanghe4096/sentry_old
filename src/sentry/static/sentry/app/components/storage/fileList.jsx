@@ -7,6 +7,7 @@
 
 import React from 'react';
 import Reflux from 'reflux';
+import {t} from 'app/locale';
 
 import HostStore from 'stores/storage/hostStore';
 import StreamStore from 'stores/storage/streamStore';
@@ -14,9 +15,7 @@ import FileStore from 'stores/storage/fileStore';
 import HmStatusStore from 'stores/storage/hostManageStatusStore';
 
 const FileItem = React.createClass({
-  mixins: [
-
-  ],
+  mixins: [],
 
   getInitialState() {
     return {
@@ -32,10 +31,18 @@ const FileItem = React.createClass({
 
   render() {
     return (
-      <li className={`file-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
-        <h5 className="file-name">
+      <li className={`list-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
+        <h5 className="item-name">
           {this.props.file_name}
         </h5>
+        <ul className="props-list clearfix">
+          <li>{t('ID')}: {this.props.file_id} </li>
+          <li>{t('Created Time')}: xxx</li>
+          <li>{t('Latest Updated')}: xxx</li>
+          <li>{t('File SIze')}: xxx</li>
+          <li>{t('File Path')}: xxx</li>
+          <li>{t('Total Event')}: xxx</li>
+        </ul>
       </li>
     );
   }
@@ -55,7 +62,7 @@ const FileList = React.createClass({
   renderList() {
     return this.state.fileList.map((file)=> {
       return (
-        <FileItem {...file} key={file.file_id} />
+        <FileItem {...file} key={file.file_id}/>
       )
     });
   },
@@ -66,12 +73,14 @@ const FileList = React.createClass({
 
     return (
       <div className="file-list-container">
-        <div className="list-head file-list-head">
-          <h5>Stream:{activeStream.stream_name} 的 File List</h5>
+        <div className="list-wrap file-list">
+          <div className="list-head">
+            <h5>File List</h5>
+          </div>
+          <ul>
+            { this.renderList() }
+          </ul>
         </div>
-        <ul className="file-list">
-          { this.renderList() }
-        </ul>
       </div>
     )
   }

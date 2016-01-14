@@ -43,11 +43,11 @@ const HostItem = React.createClass({
 
   render() {
     return (
-      <li className={`host-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
-        <h5 className="host-name">
+      <li className={`list-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
+        <h5 className="item-name">
           {this.props.host_name}
         </h5>
-        <ul className="clearfix host-props-list">
+        <ul className="clearfix props-list">
           <li>ID: {this.props.host_id} </li>
           <li>Host Type: {this.props.host_type}</li>
           <li>Stream: 10</li>
@@ -84,7 +84,7 @@ const HostList = React.createClass({
   render() {
 
     return (
-      <div className="host-list-wrap">
+      <div className="list-wrap host-list">
         <div className="list-head">
           <h5>{t('Host List')}</h5>
 
@@ -94,7 +94,7 @@ const HostList = React.createClass({
           </button>
 
         </div>
-        <ul className="host-list">
+        <ul>
           {this.renderList()}
         </ul>
       </div>
