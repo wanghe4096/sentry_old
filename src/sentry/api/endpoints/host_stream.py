@@ -14,6 +14,7 @@ from rest_framework import mixins
 from rest_framework import generics
 from sentry.api.base import Endpoint
 from sentry.api.authentication import QuietBasicAuthentication
+import os
 import requests
 
 class HostView(Endpoint,
@@ -210,10 +211,7 @@ class StreamView(mixins.ListModelMixin,
 
 import datetime
 
-class LogFilesView(Endpoint,
-                mixins.ListModelMixin,
-                mixins.CreateModelMixin,
-                generics.GenericAPIView):
+class LogFilesView(Endpoint):
 
     authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
@@ -260,6 +258,7 @@ class LogFilesView(Endpoint,
         return Response({'msg': 'Invalid request parameters'})
 
 
+
 class LogEventView(Endpoint,
                 mixins.ListModelMixin,
                 mixins.CreateModelMixin,
@@ -277,50 +276,65 @@ class LogEventView(Endpoint,
     serializer_class = LogEventSerializer
     queryset = LogEvent.objects.all()[:20]
 
+    raw_log_path = os.path.join(os.path.expanduser("~"), 'apache.log')
+
     def get(self, request, *args, **kwargs):
         file_id = request.GET.get('file_id', '')
         event_offset_param = request.GET.get('event_offset', '0')
         event_count_param = request.GET.get('event_count', '20')
         event_offset = int(event_offset_param)
         event_count = int(event_count_param)
-        if len(self.queryset) == 0:
-            return Response([])
-        file_obj = LogFile.objects.get(id=file_id)
-        if not file_obj:
-            return {'msg': 'Invalid file id'}
 
-        self.queryset = LogEvent.objects.filter(logfile=file_obj)[event_offset: event_offset+event_count]
-        event_obj = {'payload': '', 'offset': 0, 'file_id': 0}
+        lines = []
+        with open(self.raw_log_path, "r") as fd:
+            lines = fd.readlines()
+        events = lines[event_offset: event_offset + event_count]
         result = []
-        i = event_offset
-        for e in self.queryset:
-
-            event_obj['payload'] = e.payload
-            event_obj['offset'] = i
+        event_obj = {'payload': '', 'offset': 0, 'file_id': 0}
+        for l in events:
+            event_obj['payload'] = l
+            event_obj['offset'] = event_offset
+            event_offset = event_offset + 1
             result.append(event_obj)
-            i = i + 1
-
         return Response(result)
+
+        # if len(self.queryset) == 0:
+        #     return Response([])
+        # file_obj = LogFile.objects.get(id=file_id)
+        # if not file_obj:
+        #     return {'msg': 'Invalid file id'}
+        #
+        # self.queryset = LogEvent.objects.filter(logfile=file_obj)[event_offset: event_offset+event_count]
+        # event_obj = {'payload': '', 'offset': 0, 'file_id': 0}
+        # result = []
+        # i = event_offset
+        # for e in self.queryset:
+        #
+        #     event_obj['payload'] = e.payload
+        #     event_obj['offset'] = i
+        #     result.append(event_obj)
+        #     i = i + 1
+
+        # return Response(result)
         # return self.list(request, *args, **kwargs)
 
     def post(self, request, *args, **kwargs):
+        pass
+
         # 'payload, 'offset', 'host', 'user', 'LogFile'
-        payload_req = request.POST.get('payload', '')
-        offset_req = request.POST.get('offset', '')
-        host_req = request.POST.get('host_id', '')
-        file_id_req = request.POST.get('file_id','')
-        host_obj = Host.objects.get(id=host_req)
-        if not host_obj:
-            return Response({'msg': 'Invalid host id'})
-
-        file_obj = LogFile.objects.get(id=file_id_req)
-        if not file_obj:
-            return Response({'msg': 'Invalid file id'})
-
-        if not LogEvent.objects.filter(offset=offset_req):
-            event_obj = LogEvent(payload=payload_req, offset=offset_req, host=host_obj, logfile=file_obj, user=request.user)
-            event_obj.save()
-            return  Response({'msg': 'success add event '})
-
-        return Response({'msg': 'add event ok'})
-
+        # payload_req = request.POST.get('payload', '')
+        # offset_req = request.POST.get('offset', '')
+        # host_req = request.POST.get('host_id', '')
+        # file_id_req = request.POST.get('file_id','')
+        # host_obj = Host.objects.get(id=host_req)
+        # if not host_obj:
+        #     return Response({'msg': 'Invalid host id'})
+        #
+        # file_obj = LogFile.objects.get(id=file_id_req)
+        # if not file_obj:
+        #     return Response({'msg': 'Invalid file id'})
+        #
+        # event_obj = LogEvent(payload=payload_req, offset=offset_req, host=host_obj, logfile=file_obj, user=request.user)
+        # event_obj.save()
+        # return Response({'msg': 'success add event '})
+        # return Response({'msg': 'add event ok'})
