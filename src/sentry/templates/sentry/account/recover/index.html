@@ -2,11 +2,11 @@
 
 {% load crispy_forms_tags %}
 {% load i18n %}
-
+{% block bordermenu %}{% endblock %}
 {% block title %}{% trans "Recover Account" %} | {{ block.super }}{% endblock %}
-
+{% block header %}{% endblock %}
 {% block auth_main %}
-  <h3>{% trans "Recover Account" %}</h2>
+  <h3 style="margin-top:100px;">{% trans "Recover Account" %}</h2>
   <p>{% blocktrans %}We will send a confirmation email to this address:{% endblocktrans %}</p>
 
   <form class="form-stacked" action="" method="post">

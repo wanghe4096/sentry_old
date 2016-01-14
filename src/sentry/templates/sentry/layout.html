@@ -57,11 +57,11 @@
 </head>
 
 <body class="{% block wrapperclass %}{% endblock %}">
+  {% block bordermenu %}
+    {% include "sentry/includes/bordermenu.html" %}
+  {% endblock %}
   {% block body %}
   <div class="app">
-    <div id="border-menu-container">
-      {% include "sentry/includes/bordermenu.html" %}
-    </div>
     {% if request.is_superuser %}
         {% show_system_status %}
     {% endif %}

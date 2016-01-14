@@ -4,7 +4,6 @@ import Alerts from '../components/alerts';
 import AlertActions from '../actions/alertActions.jsx';
 import ConfigStore from '../stores/configStore';
 import Indicators from '../components/indicators';
-import BorderMenu from '../components/borderMenu';
 import LoadingIndicator from '../components/loadingIndicator';
 //import OrganizationStore from '../stores/organizationStore';
 import {t} from '../locale';
@@ -46,12 +45,6 @@ const App = React.createClass({
 
   render() {
     let user = ConfigStore.get('user');
-
-    if(window.STATIC_PAGE){
-      return (
-        <BorderMenu/>
-      )
-    }
 
     if (this.state.loading) {
       return (
