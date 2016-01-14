@@ -39,6 +39,7 @@ const FileItem = React.createClass({
 
   render() {
     const org = this.getOrganization();
+    const fileSize = this.props.size ? (this.props.size / 1000) + 'M' : null;
 
     return (
       <li className={`list-item ${this.state.active ? 'active' : ''}`}>
@@ -46,11 +47,9 @@ const FileItem = React.createClass({
           {this.props.file_name}
         </h5>
         <ul className="props-list clearfix">
-          <li>{t('ID')}: {this.props.id} </li>
-          <li>{t('Created Time')}: {this.props.create_timestamp || 'none'} </li>
-          <li>{t('Latest Updated')}: {this.props.modify_timestamp || 'none'} </li>
-          <li>{t('File SIze')}: {this.props.file_size || 'none'}</li>
-          <li>{t('File Path')}: {this.props.file_path || 'none'} </li>
+          <li><strong>{t('ID')}:</strong> {this.props.id} </li>
+          <li><strong>{t('File Size')}:</strong> {fileSize}</li>
+          <li><strong>{t('File Path')}:</strong> {this.props.file_path + '/' + this.props.file_name} </li>
         </ul>
         <ul className="actions clearfix">
           <li>

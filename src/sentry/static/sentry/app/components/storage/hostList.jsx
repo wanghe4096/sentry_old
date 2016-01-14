@@ -48,12 +48,11 @@ const HostItem = React.createClass({
           {this.props.host_name}
         </h5>
         <ul className="clearfix props-list">
-          <li>Host ID: {this.props.id} </li>
-          <li>Distver: {this.props.distver} </li>
-          <li>Host Key: {this.props.host_key} </li>
-          <li>Host Type: {this.props.host_type}</li>
-          <li>System: {this.props.system}</li>
-          <li>User: {this.props.user}</li>
+          <li><strong>Host ID:</strong> {this.props.id} </li>
+          <li><strong>Distver:</strong> {this.props.distver} </li>
+          <li><strong>Host Key:</strong> {this.props.host_key} </li>
+          <li><strong>Host Type:</strong> {this.props.host_type}</li>
+          <li><strong>System: </strong> {this.props.system}</li>
         </ul>
       </li>
     );
@@ -73,9 +72,10 @@ const HostList = React.createClass({
   },
 
   renderList() {
-    return this.state.hostList.map((host) => {
+    return this.state.hostList.map((host,i) => {
+      console.log(host);
       return (
-        <HostItem {...host} key={host.id}></HostItem>
+        <HostItem {...host} key={i}></HostItem>
       )
     });
   },

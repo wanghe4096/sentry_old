@@ -11,6 +11,7 @@ import ApiMixin from 'mixins/apiMixin';
 import LoadingIndicator from 'components/loadingIndicator';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import {t} from 'app/locale';
+import moment from 'moment';
 
 import HostStore from 'stores/storage/hostStore';
 import HostAction from 'actions/storage/hostAction';
@@ -44,14 +45,17 @@ const StreamItem = React.createClass({
   },
 
   render() {
+    const createdTime = moment(this.props.create_timestamp).format('YYYY-MM-DD HH:mm:ss');
+    const updateTime = moment(this.props.last_timestamp).format('YYYY-MM-DD HH:mm:ss');
     return (
       <li className={`list-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
         <h5 className="item-name">
           {this.props.stream_name}
         </h5>
         <ul className="clearfix props-list">
-          <li>ID: {this.props.id} </li>
-          <li>Stream Tag: {this.props.tag}</li>
+          <li><strong>ID:</strong> {this.props.id} </li>
+          <li><strong>{t('Created Time')}:</strong> {createdTime}</li>
+          <li><strong>Latest Updated:</strong> {updateTime} </li>
         </ul>
       </li>
     );
