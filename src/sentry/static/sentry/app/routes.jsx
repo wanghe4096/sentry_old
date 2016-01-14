@@ -48,10 +48,15 @@ function appendTrailingSlash(nextState, replaceState) {
   }
 }
 
+const defaultOrg = OrganizationStore.items[0];
+
 let routes = (
   <Route path="/" component={App}>
     
-    <IndexRedirect to={OrganizationStore.items[0].slug} />
+    <IndexRedirect to={defaultOrg.slug} />
+
+    <Redirect from="/events" to={defaultOrg.slug+'/events'} />
+    <Redirect from="/storage" to={defaultOrg.slug+'/storage'} />
 
     <Route path="/manage/" component={Admin}>
       <IndexRoute component={AdminOverview} />

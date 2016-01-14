@@ -23,6 +23,7 @@ import HmStatusAction from 'actions/storage/hostManageStatusAction';
 import HostStat from 'components/storage/hostStat';
 import FileList from 'components/storage/fileList';
 
+// 解决 hostlist/streamlist/filelist 空时的提醒
 
 const StorageIndex = React.createClass({
   mixins: [
@@ -48,15 +49,31 @@ const StorageIndex = React.createClass({
     this.setState({
       showManageOverlay: !!status.activeHost
     });
+
+    if (status.activeHost) {
+      document.body.scrollTop = 0;
+      $('body').css('overflow-y', 'hidden');
+    } else {
+      $('body').css('overflow-y', 'auto');
+    }
   },
 
   componentDidMount() {
     $(document).on('keydown', this.keyDownHandler);
+    $(document).on('scroll', this.scrollHandler);
     HostAction.fetch();
   },
 
   componentWillUnmount() {
     $(document).off('keydown', this.keyDownHandler);
+    $(document).off('scroll', this.scrollHandler);
+  },
+
+  scrollHandler(e) {
+    //if (HmStatusStore.status.activeHost) {
+    //  e.preventDefault();
+    //  document.body.scrollTop = 0;
+    //}
   },
 
   keyDownHandler(evt){

@@ -80,9 +80,9 @@ const FileList = React.createClass({
   },
 
   renderList() {
-    return this.state.fileList.map((file)=> {
+    return this.state.fileList.map((file,i)=> {
       return (
-        <FileItem {...file} key={file.id}/>
+        <FileItem {...file} key={i} />
       )
     });
   },

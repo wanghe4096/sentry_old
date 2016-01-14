@@ -59,7 +59,9 @@
 <body class="{% block wrapperclass %}{% endblock %}">
   {% block body %}
   <div class="app">
-    <div id="border-menu-container"></div>
+    <div id="border-menu-container">
+      {% include "sentry/includes/bordermenu.html" %}
+    </div>
     {% if request.is_superuser %}
         {% show_system_status %}
     {% endif %}
@@ -343,15 +345,15 @@
 
   {% block reactInit %}
   <script>
-    window.STATIC_PAGE = true;
-    $(function(){
-      // border-menu-container
-      ReactDOM.render(
-        React.createElement(Router.Router, {history:Sentry.createHistory()}, Sentry.routes),
-        document.getElementById('border-menu-container')
-      );
-      Sentry.BorderMenu
-    });
+    // window.STATIC_PAGE = true;
+    // $(function(){
+    //   // border-menu-container
+    //   ReactDOM.render(
+    //     React.createElement(Router.Router, {history:Sentry.createHistory()}, Sentry.routes),
+    //     document.getElementById('border-menu-container')
+    //   );
+    //   Sentry.BorderMenu
+    // });
   </script>
   {% endblock %}
 
