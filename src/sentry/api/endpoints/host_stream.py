@@ -149,7 +149,6 @@ class StreamView(Endpoint,
 
     def get(self, request, *args, **kwargs):
         host_id = request.GET.get('host_id', '')
-        print 'host_id=========', host_id
         host_obj = Host.objects.get(id=host_id)
         if not host_obj:
             return Response({'msg': 'Invalid Host id'})
@@ -223,32 +222,34 @@ class LogFilesView(Endpoint,
     queryset = LogFile.objects.all()
 
     def get(self, request, *args, **kwargs):
-        host_id = request.GET.get('host_id', '')
-        host_obj = Host.objects.get(id=host_id)
-        if not host_obj:
+        stream_name_str = request.GET.get('stream_name', '')
+        stream_id_str = request.GET.get('stream_id', '')
+        stream_obj = Stream.objects.get(id=stream_id_str)
+        if not stream_obj:
             return Response({'msg': 'Invalid host id'})
-        self.queryset = LogFile.objects.filter(host=host_obj)
+        self.queryset = LogFile.objects.filter(stream=stream_obj)
         return self.list(request,*args, **kwargs)
 
     def post(self, request, *args, **kwargs):
         file_name_req = request.POST.get('file_name', '')
         file_path_req = request.POST.get('file_path', '')
         host_id_req = request.POST.get('host_id', '')
-        stream_name_req = request.POST.get('stream_name', '')
+        stream_id_req = request.POST.get('stream_id', '')
         create_timestamp_req = request.POST.get('create_timestamp', str(datetime.datetime.now()))
         modify_timestamp_req = request.POST.get('modify_timestamp', str(datetime.datetime.now()))
         file_size_req = request.POST.get('file_size', '')
         crc32_value_req = request.POST.get('crc32_value', '')
-        host_obj = Host.objects.get(id=host_id_req, user=request.user)
+        host_obj = Host.objects.get(id=host_id_req)
         if not host_obj:
             return Response({'msg': 'Invalid host id'})
-        stream_obj = Stream.objects.get(stream_name=stream_name_req, user=request.user)
+        stream_obj = Stream.objects.get(id=stream_id_req)
         if not stream_obj:
             return Response({'msg': 'Invalid stream '})
         if not LogFile.objects.filter(crc32_value=crc32_value_req):
             log_file_obj = LogFile(file_name=file_name_req,
                                    file_path=file_path_req,
                                    host=host_obj,
+                                   stream = stream_obj,
                                    # stream=stream_obj
                                    # create_timestamp=create_timestamp_req,
                                    # modify_timestamp=modify_timestamp_req,
