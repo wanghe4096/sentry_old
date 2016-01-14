@@ -13,7 +13,7 @@ const ReleaseAllEvents = React.createClass({
     return (
       <div>
         <div className="alert alert-block">
-          <Link to={`/${orgId}/${projectId}/`} query={{
+          <Link to={`/${orgId}/events/${projectId}/`} query={{
             query: 'release:' + this.context.release.version
           }}>
             <span className="icon icon-open"></span>

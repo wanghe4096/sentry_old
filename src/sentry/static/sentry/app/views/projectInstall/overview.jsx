@@ -14,7 +14,7 @@ const ProjectInstallOverview = React.createClass({
   getIntegrationLink(root, platform, display) {
     let {orgId, projectId} = this.props.params;
     return (
-      <Link to={`/${orgId}/${projectId}/settings/install/${platform}/`} key={platform}>
+      <Link to={`/${orgId}/events/${projectId}/settings/install/${platform}/`} key={platform}>
         <div className="icon-circle-setup">
           <i className={`platformicon platformicon-${platform}`} />
         </div>

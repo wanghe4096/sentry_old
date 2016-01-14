@@ -103,7 +103,7 @@ const ProjectDashboard = React.createClass({
     let dateSince = this.getStatsPeriodBeginTimestamp(statsPeriod);
     let resolution = this.getStatsPeriodResolution(statsPeriod);
     let {orgId, projectId} = this.props.params;
-    let url = `/${orgId}/${projectId}/dashboard/`;
+    let url = `/${orgId}/events/${projectId}/dashboard/`;
     let routeQuery = this.props.location.query;
 
     return (
