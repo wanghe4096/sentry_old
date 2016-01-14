@@ -126,10 +126,10 @@ print r, r.text
 
 
 # add log event
-print 'Add log event'
-fd = open('/Users/wanghe/LogSample/apache/access_log', 'r')
-lines = fd.readlines()
-fd.close()
+# print 'Add log event'
+# fd = open('/Users/wanghe/LogSample/apache/access_log', 'r')
+# lines = fd.readlines()
+# fd.close()
 
 r = requests.post("http://localhost:9000/api/0/logevents", data = {
     'payload': "hello world!!",
