@@ -4,13 +4,9 @@ from sentry.api.authentication import QuietBasicAuthentication
 from sentry.api.base import Endpoint
 from sentry.models.user import User
 from django.http.response import HttpResponse
-<<<<<<< HEAD
 from rest_framework import mixins
 from rest_framework import generics
 import simplejson as json
-=======
-
->>>>>>> feature_api_host
 import hashlib
 
 
@@ -56,11 +52,6 @@ class RegisterEndpoint(Endpoint):
         return Response(user.userkey)
 
     def post(self, request):
-<<<<<<< HEAD
-        print request.POST.get('username')
-
-=======
->>>>>>> feature_api_host
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')

@@ -34,14 +34,9 @@ class StreamTypeSerializer(serializers.ModelSerializer):
 
 class LogFileSerializer(serializers.ModelSerializer):
     class Meta:
-<<<<<<< HEAD
-        model = LogEvent
-        fields = ('id', 'payload', 'offset', 'stream', 'host', 'user', )
-=======
         model = LogFile
         fields = ('id', 'host', 'file_path', 'file_name', 'create_timestamp', 'modify_timestamp', )
 
->>>>>>> feature_api_host
 
 class LogEventSerializer(serializers.ModelSerializer):
     class Meta:
