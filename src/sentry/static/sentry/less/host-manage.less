@@ -168,12 +168,48 @@
         margin-right: 30px;
         font-size: 12px;
         a {
-          color: #ccc;
-          padding:0;
-          &:active {
+          color: #aaa;
+          padding: 0;
+          &:hover {
             color: #25A6F7;
           }
         }
+      }
+    }
+  }
+
+  // log preview
+  .log-preview {
+    .breadcrumb {
+      padding: 8px 15px 8px 0;
+      background-color: transparent;
+    }
+
+    .preview-head {
+
+    }
+
+    .events {
+      position: fixed;
+      top: 198px;
+      left: 80px;
+      right: 30px;
+      bottom: 20px;
+      overflow-y: auto;
+      background-color: #050505;
+      padding:30px 0;
+    }
+
+    .event-item {
+      margin:0 80px;
+      pre {
+        word-break: break-word;
+        font-size: 13px;
+        line-height: 1.6;
+        padding: 10px 0;
+        margin: 0;
+        background: transparent;
+        color:#fff;
       }
     }
   }

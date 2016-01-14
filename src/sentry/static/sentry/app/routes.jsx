@@ -34,6 +34,8 @@ import ReleaseNewEvents from 'views/releaseNewEvents';
 import RouteNotFound from 'views/routeNotFound';
 import SharedGroupDetails from 'views/sharedGroupDetails';
 import StorageIndex from 'views/storageIndex';
+import StorageApp from 'views/storageApp';
+import LogPreview from 'views/logPreview';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
 
@@ -73,7 +75,10 @@ let routes = (
 
       <IndexRedirect to="events" />
 
-      <Route path="storage" component={StorageIndex} />
+      <Route path="storage" component={StorageApp} >
+        <IndexRoute component={StorageIndex} />
+        <Route path="preview/:logId" component={LogPreview} />
+      </Route>
 
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams} />

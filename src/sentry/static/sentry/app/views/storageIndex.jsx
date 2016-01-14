@@ -55,8 +55,8 @@ const StorageIndex = React.createClass({
   render() {
 
     return (
-      <DocumentTitle title="storage">
-        <div className="sub-app sa-storage">
+      <DocumentTitle title="Storage">
+        <div className="row">
           <ReactCSSTransitionGroup
             transitionName="stream-list-ani"
             component="div"
@@ -66,18 +66,11 @@ const StorageIndex = React.createClass({
           >
             { this.state.showManageOverlay && (<StreamList/>) }
           </ReactCSSTransitionGroup>
-          <div className="container">
-            <div className="row content">
-              <div className="col-md-12 sub-header">
-                <h5>{t('Log Storage')}</h5>
-              </div>
-              <div className="col-md-8">
-                <HostList />
-              </div>
-              <div className="col-md-4">
-                <HostStat />
-              </div>
-            </div>
+          <div className="col-md-8">
+            <HostList />
+          </div>
+          <div className="col-md-4">
+            <HostStat />
           </div>
         </div>
       </DocumentTitle>
