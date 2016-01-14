@@ -134,9 +134,7 @@ class StreamTypeView(mixins.ListModelMixin,
         # return self.create(request, *args, **kwargs)
 
 
-class StreamView(mixins.ListModelMixin,
-                  mixins.CreateModelMixin,
-                  generics.GenericAPIView):
+class StreamView(Endpoint):
     """
     GET /streams
     param:  host_name=hostA,hostB,hostC,hostD
@@ -211,7 +209,10 @@ class StreamView(mixins.ListModelMixin,
 
 import datetime
 
-class LogFilesView(Endpoint):
+class LogFilesView(Endpoint,
+                mixins.ListModelMixin,
+               mixins.CreateModelMixin,
+               generics.GenericAPIView):
 
     # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
@@ -220,7 +221,6 @@ class LogFilesView(Endpoint):
 
     def get(self, request, *args, **kwargs):
         host_id = request.GET.get('host_id', '')
-        print 'host_id = ', host_id
         host_obj = Host.objects.get(id=host_id)
         print host_obj.id
         if not host_obj:
