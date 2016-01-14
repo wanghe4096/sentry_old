@@ -6,7 +6,7 @@ import ConfigStore from '../stores/configStore';
 import Indicators from '../components/indicators';
 import BorderMenu from '../components/borderMenu';
 import LoadingIndicator from '../components/loadingIndicator';
-import OrganizationStore from '../stores/organizationStore';
+//import OrganizationStore from '../stores/organizationStore';
 import {t} from '../locale';
 
 const App = React.createClass({
@@ -16,29 +16,12 @@ const App = React.createClass({
 
   getInitialState() {
     return {
-      loading: true,
+      loading: false,
       error: false
     };
   },
 
   componentWillMount() {
-    this.api.request('/organizations/', {
-      query: {
-        'member': '1'
-      },
-      success: (data) => {
-        OrganizationStore.load(data);
-        this.setState({
-          loading: false
-        });
-      },
-      error: () => {
-        this.setState({
-          loading: false,
-          error: true
-        });
-      }
-    });
 
     this.api.request('/internal/health/', {
       success: (data) => {
@@ -57,7 +40,8 @@ const App = React.createClass({
   },
 
   componentWillUnmount() {
-    OrganizationStore.load([]);
+    // 暂时关闭,不清楚后遗症
+    //OrganizationStore.load([]);
   },
 
   render() {

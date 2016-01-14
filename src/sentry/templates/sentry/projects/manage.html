@@ -11,16 +11,19 @@
 {% block header_action %}
   <ul class="nav nav-tabs">
     <li>
-      <a href="{% absolute_uri '/{}/{}/dashboard/' project.organization.slug project.slug %}">Dashboard</a>
+      <a href="{% absolute_uri '/{}/{}/dashboard/' project.organization.slug project.slug %}">{% trans "Dashboard" %}</a>
     </li>
     <li>
-      <a href="{% absolute_uri '/{}/{}/' project.organization.slug project.slug %}">Issues</a>
+      <a href="{% absolute_uri '/{}/{}/' project.organization.slug project.slug %}">{% trans "Issues" %}</a>
     </li>
     <li>
-      <a href="{% absolute_uri '/{}/{}/releases/' project.organization.slug project.slug %}">Releases</a>
+      <a href="{% absolute_uri '/{}/{}/settings/install/' project.organization.slug project.slug %}">{% trans "Install" %}</a>
+    </li>
+    <li>
+      <a href="{% absolute_uri '/{}/{}/releases/' project.organization.slug project.slug %}">{% trans "Releases" %}</a>
     </li>
     <li class="active">
-      <a href="{% absolute_uri '/{}/{}/settings/' project.organization.slug project.slug %}">Settings</a>
+      <a href="{% absolute_uri '/{}/{}/settings/' project.organization.slug project.slug %}">{% trans "Settings" %}</a>
     </li>
   </ul>
 {% endblock %}

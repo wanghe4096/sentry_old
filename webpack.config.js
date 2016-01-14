@@ -119,7 +119,13 @@ var config = {
   resolve: {
     alias: {
       'flot': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot'),
-      'flot-tooltip': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot-tooltip')
+      'flot-tooltip': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot-tooltip'),
+      components:path.join(__dirname, staticPrefix, 'app/components'),
+      actions:path.join(__dirname, staticPrefix, 'app/actions'),
+      stores:path.join(__dirname, staticPrefix, 'app/stores'),
+      views:path.join(__dirname, staticPrefix, 'app/views'),
+      mixins:path.join(__dirname, staticPrefix, 'app/mixins'),
+      app:path.join(__dirname, staticPrefix, 'app')
     },
     modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
     extensions: ['', '.jsx', '.js', '.json']

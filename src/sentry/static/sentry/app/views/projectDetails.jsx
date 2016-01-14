@@ -138,13 +138,6 @@ const ProjectDetails = React.createClass({
     });
   },
 
-  getTitle() {
-    if (this.state.project) {
-      return this.state.team.name + ' / ' + this.state.project.name;
-    }
-    return 'LogInsight';
-  },
-
   render() {
     if (this.state.loading)
       return <LoadingIndicator />;
@@ -173,7 +166,7 @@ const ProjectDetails = React.createClass({
     }
 
     return (
-      <DocumentTitle title={this.getTitle()}>
+      <DocumentTitle title="error">
         <div>
           <ProjectHeader
             activeSection={this.state.projectNavSection}

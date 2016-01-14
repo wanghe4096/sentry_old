@@ -22,7 +22,7 @@ const ProjectInstall = React.createClass({
   },
 
   componentWillMount() {
-    this.props.setProjectNavSection('settings');
+    this.props.setProjectNavSection('install');
   },
 
   componentDidMount() {

@@ -16,11 +16,9 @@
   </div>
   <script>
   $(function(){
-    ReactDOM.render(
-      React.createElement(Router.Router, {history:Sentry.createHistory()}, Sentry.routes),
-      document.getElementById('blk_router')
-    );
+    new App();
   });
   </script>
 {% endblock %}
+
 {% block reactInit %}{% endblock %}

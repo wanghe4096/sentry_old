@@ -111,9 +111,6 @@ const OrganizationTeams = React.createClass({
                       onHide={() => this.setState({showWizard:false})}
                       org={org.id}/>
                   ) }
-                  <Link
-                    className="btn btn-sm btn-default tip"
-                    to={`/organizations/${org.slug}/stats/`}>{t('Stats')}</Link>
                 </div>
               </div>
               <ul className="nav nav-tabs border-bottom">

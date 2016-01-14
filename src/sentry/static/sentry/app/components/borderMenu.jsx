@@ -9,6 +9,7 @@ import React,{createClass} from 'react';
 import {History,IndexLink,Link} from 'react-router';
 import OrganizationStore from '../stores/organizationStore';
 import PropTypes from '../proptypes';
+import {t} from '../locale';
 
 const BorderMenu = createClass({
 
@@ -25,7 +26,7 @@ const BorderMenu = createClass({
 
   render() {
 
-    let org = this.context.organization;
+    let org = this.context.organization || OrganizationStore.items[0];
 
     return (
       <div className="leftbar clearfix">
@@ -34,6 +35,10 @@ const BorderMenu = createClass({
             <nav id="bt-menu" className="bt-menu" ref="menu">
               <a className="bt-menu-trigger" onClick={this.foldHandler}>
                 <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/org-logo-normal.png`} className="op-avatar"/>
+                <div className="username-info">
+                  <div>John.Smith</div>
+                  <div className="font-bold user-link">用户权限</div>
+                </div>
               </a>
               <ul>
                 <li><a href="#">定义抽取规则</a></li>
@@ -60,24 +65,29 @@ const BorderMenu = createClass({
             <ul id="myTab">
               <li>
                 <Link
-                  to={`/`}
+                  to={`/${org.slug}/issues/`}
                   activeClassName="active"
                   className="fa fa-home"
-                  onClick={this.onClickHandler}
-                  title="主页"/>
+                  title={t('issues')}/>
+              </li>
+              <li>
+                <Link
+                    to={`/${org.slug}/storage/`}
+                    className="fa fa-database"
+                    activeClassName="active"
+                    title={t('log storage')}/>
+              </li>
+              <li className="hide">
+                <Link
+                  to={`/`}
+                  className="fa fa-times"
+                  title="Error Report"/>
               </li>
             </ul>
           </div>
         </div>
       </div>
     );
-  },
-  onClickHandler(e) {
-    //fix staticpage
-    //if (window.STATIC_PAGE) {
-      e.preventDefault();
-      window.location = $(e.target).attr('href');
-    //}
   }
 });
 

@@ -1,4 +1,6 @@
 import jQuery from 'jquery';
+import {Client} from './api';
+import OrganizationStore from './stores/organizationStore';
 
 // setup jquery for CSRF tokens
 function getCookie(name) {
@@ -24,16 +26,53 @@ function csrfSafeMethod(method) {
   return (/^(GET|HEAD|OPTIONS|TRACE)$/.test(method));
 }
 jQuery.ajaxSetup({
-  beforeSend: function(xhr, settings) {
+  beforeSend: function (xhr, settings) {
     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
       xhr.setRequestHeader('X-CSRFToken', csrftoken);
     }
   }
 });
 
+
+function App() {
+  this.initialize();
+}
+
+App.prototype = {
+  initialize: function () {
+    this.fetchOrg();
+  },
+  fetchOrg: function () {
+    var that = this;
+    new Client().request('/organizations/', {
+      query: {
+        'member': '1'
+      },
+      success: function (data) {
+        OrganizationStore.load(data);
+        that.render();
+      },
+      error: function () {
+        console.log('读取错误');
+      }
+    });
+  },
+  render: function () {
+
+    let routes = require('./routes');
+    ReactDOM.render(
+      React.createElement(Router.Router, {history: Sentry.createHistory()}, routes),
+      document.getElementById('blk_router')
+    );
+
+  }
+};
+
+
 // these get exported to a global variable, which is important as its the only
 // way we can call into scoped objects
 export default {
+  App: App,
   jQuery: jQuery,
   moment: require('moment'),
   Raven: require('raven-js'),
@@ -42,7 +81,7 @@ export default {
   Router: require('react-router'),
   Sentry: {
     api: require('./api'),
-    routes: require('./routes'),
+    //routes: require('./routes'),
     createHistory: require('history/lib/createBrowserHistory'),
     Alerts: require('./components/alerts'),
     mixins: {
