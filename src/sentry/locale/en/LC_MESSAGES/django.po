@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-14 22:46+0800\n"
+"POT-Creation-Date: 2016-01-14 23:04+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -2414,17 +2414,17 @@ msgstr ""
 msgid "Filter projects"
 msgstr ""
 
+#: static/sentry/app/components/timeSince.jsx:67
+#, python-format
+msgid "%(time)s old"
+msgstr ""
+
 #: static/sentry/app/components/borderMenu.jsx:71
 msgid "issues"
 msgstr ""
 
 #: static/sentry/app/components/borderMenu.jsx:78
 msgid "log storage"
-msgstr ""
-
-#: static/sentry/app/components/timeSince.jsx:67
-#, python-format
-msgid "%(time)s old"
 msgstr ""
 
 #: static/sentry/app/views/ruleEditor/index.jsx:112
@@ -2802,22 +2802,6 @@ msgstr ""
 msgid "Related Events"
 msgstr ""
 
-#: static/sentry/app/views/groupDetails/eventToolbar.jsx:28
-msgid "Oldest"
-msgstr ""
-
-#: static/sentry/app/views/groupDetails/eventToolbar.jsx:42
-msgid "Older"
-msgstr ""
-
-#: static/sentry/app/views/groupDetails/eventToolbar.jsx:51
-msgid "Newer"
-msgstr ""
-
-#: static/sentry/app/views/groupDetails/eventToolbar.jsx:58
-msgid "Newest"
-msgstr ""
-
 #: static/sentry/app/stores/groupStore.jsx:215
 msgid "Unable to change assignee. Please try again."
 msgstr ""
@@ -2840,6 +2824,22 @@ msgstr ""
 
 #: static/sentry/app/stores/groupStore.jsx:312
 msgid "Unable to update events. Please try again."
+msgstr ""
+
+#: static/sentry/app/views/groupDetails/eventToolbar.jsx:28
+msgid "Oldest"
+msgstr ""
+
+#: static/sentry/app/views/groupDetails/eventToolbar.jsx:42
+msgid "Older"
+msgstr ""
+
+#: static/sentry/app/views/groupDetails/eventToolbar.jsx:51
+msgid "Newer"
+msgstr ""
+
+#: static/sentry/app/views/groupDetails/eventToolbar.jsx:58
+msgid "Newest"
 msgstr ""
 
 #: static/sentry/app/components/group/sidebar.jsx:19
@@ -3182,12 +3182,6 @@ msgstr ""
 msgid "Markdown supported"
 msgstr ""
 
-#: static/sentry/app/views/organizationTeams/allTeamsList.jsx:40
-msgid ""
-"You don't have any teams for this organization yet. Get started by "
-"[link:creating your first team]."
-msgstr ""
-
 #: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:89
 msgid "Leave Team"
 msgstr ""
@@ -3219,6 +3213,12 @@ msgstr ""
 #: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:185
 msgid ""
 "You dont have any teams for this organization yet. Get started by "
+"[link:creating your first team]."
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/allTeamsList.jsx:40
+msgid ""
+"You don't have any teams for this organization yet. Get started by "
 "[link:creating your first team]."
 msgstr ""
 
@@ -3444,6 +3444,10 @@ msgstr ""
 msgid "This action cannot be undone."
 msgstr ""
 
+#: static/sentry/app/views/stream/sortOptions.jsx:48
+msgid "Sort by"
+msgstr ""
+
 #: static/sentry/app/views/stream/searchBar.jsx:59
 msgid "Tag"
 msgstr ""
@@ -3462,10 +3466,6 @@ msgstr ""
 
 #: static/sentry/app/views/stream/searchBar.jsx:80
 msgid "or paste an event id to jump straight to it"
-msgstr ""
-
-#: static/sentry/app/views/stream/sortOptions.jsx:48
-msgid "Sort by"
 msgstr ""
 
 #: static/sentry/app/views/groupActivity/note.jsx:32
@@ -3508,14 +3508,6 @@ msgstr ""
 msgid "New project"
 msgstr ""
 
-#: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:42
-msgid "There was an error while trying to join the team."
-msgstr ""
-
-#: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:70
-msgid "There was an error while trying to leave the team."
-msgstr ""
-
 #: static/sentry/app/components/addTeamModal.jsx:54
 msgid "Creating Success"
 msgstr ""
@@ -3550,6 +3542,14 @@ msgstr ""
 
 #: static/sentry/app/components/addTeamModal.jsx:124
 msgid "Saving ... "
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:42
+msgid "There was an error while trying to join the team."
+msgstr ""
+
+#: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:70
+msgid "There was an error while trying to leave the team."
 msgstr ""
 
 #: static/sentry/app/components/events/errorItem.jsx:25
