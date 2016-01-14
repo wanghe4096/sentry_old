@@ -91,7 +91,7 @@ const LogPreview = React.createClass({
           <li className="active">preview</li>
         </ol>
         <div className="preview-head">
-          <h4>{this.props.params.logId}</h4>
+          <h4>Log file: {this.props.params.logId}</h4>
         </div>
         <div className="events">
           { this.renderEvents() }
