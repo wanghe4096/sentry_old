@@ -114,8 +114,8 @@ const StreamList = React.createClass({
           transitionName="file-list-ani"
           component="div"
           className="file-list-overlay"
-          transitionEnterTimeout={300}
-          transitionLeaveTimeout={400}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
         >
           { showFileOverlay && (<FileList />) }
         </ReactCSSTransitionGroup>

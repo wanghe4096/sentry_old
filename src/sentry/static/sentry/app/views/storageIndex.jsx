@@ -61,8 +61,8 @@ const StorageIndex = React.createClass({
             transitionName="stream-list-ani"
             component="div"
             className="stream-list-overlay"
-            transitionEnterTimeout={300}
-            transitionLeaveTimeout={300}
+            transitionEnterTimeout={500}
+            transitionLeaveTimeout={500}
           >
             { this.state.showManageOverlay && (<StreamList/>) }
           </ReactCSSTransitionGroup>

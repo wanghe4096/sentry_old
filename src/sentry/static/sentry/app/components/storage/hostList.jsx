@@ -73,7 +73,6 @@ const HostList = React.createClass({
 
   renderList() {
     return this.state.hostList.map((host,i) => {
-      console.log(host);
       return (
         <HostItem {...host} key={i}></HostItem>
       )

@@ -40,7 +40,6 @@
 
 .file-list-ani-enter.file-list-ani-enter-active {
   transform: translateX(0);
-  transition: all 400ms;
 }
 
 .file-list-ani-leave {
@@ -49,7 +48,6 @@
 
 .file-list-ani-leave.file-list-ani-leave-active {
   transform: translateX(1000px);
-  transition: all 300ms;
 }
 
 // overlay
@@ -64,6 +62,7 @@
   overflow-y: auto;
   padding: 0 0 0 20px;
   z-index: 2;
+  transition: transform 500ms cubic-bezier(0, 0, 0, 1.16);
 }
 
 // storage app
