@@ -103,7 +103,7 @@ const GroupHeader = React.createClass({
               <span className="message">{group.culprit}</span>
               {group.logger &&
                 <span className="event-annotation">
-                  <Link to={`/${orgId}/events/${projectId}/`} query={{query: 'logger:' + group.logger}}>
+                  <Link to={`/${orgId}/${projectId}/`} query={{query: 'logger:' + group.logger}}>
                     {group.logger}
                   </Link>
                 </span>
@@ -124,14 +124,14 @@ const GroupHeader = React.createClass({
               </div>
               <div className="col-xs-4 count align-right">
                 <h6 className="nav-header">{t('Events')}</h6>
-                <Link to={`/${orgId}/events/${projectId}/issues/${groupId}/events/`}>
+                <Link to={`/${orgId}/${projectId}/issues/${groupId}/events/`}>
                   <Count className="count" value={group.count} />
                 </Link>
               </div>
               <div className="col-xs-4 count align-right">
                 <h6 className="nav-header">{t('Users')}</h6>
                 {userCount !== 0 ?
-                  <Link to={`/${orgId}/events/${projectId}/issues/${groupId}/tags/user/`}>
+                  <Link to={`/${orgId}/${projectId}/issues/${groupId}/tags/user/`}>
                     <Count className="count" value={userCount} />
                   </Link>
                 :
@@ -143,7 +143,7 @@ const GroupHeader = React.createClass({
         </div>
         <GroupSeenBy />
         <GroupActions />
-        <div className="pull-right">
+        <div className="pull-right hide">
           <div className="group-privacy">
             <a onClick={this.onShare}>
               <span className="icon" /> {t('Share this event')}
@@ -151,8 +151,8 @@ const GroupHeader = React.createClass({
           </div>
         </div>
         <ul className="nav nav-tabs">
-          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/`} isActive={function (to) {
-            let rootGroupPath = `/${orgId}/events/${projectId}/issues/${groupId}/`;
+          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/`} isActive={function (to) {
+            let rootGroupPath = `/${orgId}/${projectId}/issues/${groupId}/`;
             let pathname = this.context.location.pathname;
 
             // Because react-router 1.0 removes router.isActive(route)
@@ -160,18 +160,18 @@ const GroupHeader = React.createClass({
           }.bind(this)}>
             {t('Details')}
           </ListLink>
-          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/activity/`}>
+          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/activity/`}>
             {t('Comments')} <span className="badge animated">{group.numComments}</span>
           </ListLink>
           {features.has('user-reports') &&
-            <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/reports/`}>
+            <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/reports/`}>
               {t('User Reports')} <span className="badge animated">{group.userReportCount}</span>
             </ListLink>
           }
-          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/tags/`}>
+          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/tags/`}>
             {t('Tags')}
           </ListLink>
-          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/events/`}>
+          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/events/`}>
             {t('Related Events')}
           </ListLink>
         </ul>
