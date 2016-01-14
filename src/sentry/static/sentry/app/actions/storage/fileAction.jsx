@@ -17,7 +17,7 @@ const FileAction = Reflux.createActions({
 FileAction.fetch.listen(function(streamId){
 
   var that = this;
-  new Client().request('/logfiles/?host_id=' + streamId, {
+  new Client().request('/logfiles/?stream_id=' + streamId, {
     success: function (data) {
       that.success(data);
     },

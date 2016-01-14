@@ -40,8 +40,7 @@ const StorageIndex = React.createClass({
     }
 
     if (status.activeStream && HmStatusStore.hasChanged('activeStream')) {
-      //FileAction.fetch(HmStatusStore.status.activeStream);
-      FileAction.fetch(HmStatusStore.status.activeHost);
+      FileAction.fetch(HmStatusStore.status.activeStream);
     }
 
     this.setState({
