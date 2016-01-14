@@ -1,19 +1,10 @@
 from __future__ import absolute_import
-
-from django.contrib.auth import login, logout
-from django.contrib.auth.models import AnonymousUser
 from rest_framework.response import Response
-from rest_framework.request import Request
-
 from sentry.api.authentication import QuietBasicAuthentication
 from sentry.api.base import Endpoint
-from sentry.api.serializers import serialize
-from sentry.api.serializers.models.user import UserSerializer
 from sentry.models.user import User
 from django.http.response import HttpResponse
-from rest_framework import mixins
-from rest_framework import generics
-import simplejson as json
+
 import hashlib
 
 
@@ -59,8 +50,6 @@ class RegisterEndpoint(Endpoint):
         return Response(user.userkey)
 
     def post(self, request):
-        print request.POST.get('username')
-
         username = request.POST.get('username')
         password = request.POST.get('password')
         email = request.POST.get('email')

@@ -23,7 +23,7 @@ class StreamSerializer(serializers.ModelSerializer):
 class HostTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = HostType
-        fields = ('id', 'host_type', 'user', )
+        fields = ('id', 'host_type', )
 
 
 class StreamTypeSerializer(serializers.ModelSerializer):
