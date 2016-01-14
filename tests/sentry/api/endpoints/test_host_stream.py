@@ -136,6 +136,8 @@ for raw in lines:
         'host_id': 1
     }, auth=('wangh@loginsight.cn', '123'))
     i = i + 1
+    if i == 100:
+        break
     print r, r.text
 
 
