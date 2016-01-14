@@ -152,7 +152,7 @@ const AdminSettings = React.createClass({
         : (error ?
           <div className="loading-error">
             <span className="icon" />
-            {t('We were unable to load the required configuration from the Sentry server. Please take a look at the service logs.')}
+            {t('We were unable to load the required configuration from the LogInsight server. Please take a look at the service logs.')}
           </div>
         :
           <div>

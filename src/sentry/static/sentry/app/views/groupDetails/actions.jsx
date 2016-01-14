@@ -134,7 +134,7 @@ const GroupActions = React.createClass({
                       <div className="help-text">{t('Snooze notifications until this issue reoccurs in a future release.')}</div>
                     </a>
                   :
-                    <a className="disabled tip" title="You need to send release data to Sentry in order to use this feature.">
+                    <a className="disabled tip" title="You need to send release data to LogInsight in order to use this feature.">
                       <strong>{t('Resolved in next release.')}</strong>
                       <div className="help-text">{t('Snooze notifications until this issue reoccurs in a future release.')}</div>
                     </a>

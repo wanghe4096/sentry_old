@@ -108,7 +108,7 @@ const ProjectInstallPlatform = React.createClass({
               <p>
                 {tct(`
                  This is a quick getting started guide. For in-depth instructions
-                 on integrating Sentry with [integration], view
+                 on integrating LogInsight with [integration], view
                  [docLink:our complete documentation].
                 `, {
                   integration: integration.name,
