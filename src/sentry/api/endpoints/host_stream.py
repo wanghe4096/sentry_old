@@ -293,10 +293,13 @@ class LogEventView(Endpoint,
             lines = fd.readlines()
         events = lines[event_offset: event_offset + event_count]
         result = []
-        event_obj = {'payload': '', 'offset': 0, 'file_id': 0}
+        event_obj = {'payload': '', 'offset': 0, 'file_id': 0, 'create_timestamp': '', 'last_timestamp':'', 'size':''}
         for l in events:
             event_obj['payload'] = l
             event_obj['offset'] = event_offset
+            event_obj['create_timestamp'] = str(datetime.datetime.now())
+            event_obj['last_timestamp'] = str(datetime.datetime.now())
+            event_obj['size'] = str(len(l))
             event_offset = event_offset + 1
             result.append(event_obj)
         return Response(result)
