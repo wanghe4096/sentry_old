@@ -9,6 +9,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import {t} from 'app/locale';
 import {Link,IndexLink} from 'react-router';
+import OrganizationState from 'mixins/organizationState';
 
 import HostStore from 'stores/storage/hostStore';
 import StreamStore from 'stores/storage/streamStore';
@@ -16,13 +17,29 @@ import FileStore from 'stores/storage/fileStore';
 import HmStatusStore from 'stores/storage/hostManageStatusStore';
 
 const FileItem = React.createClass({
-  mixins: [],
+  mixins: [
+    OrganizationState
+  ],
 
   getInitialState() {
     return {}
   },
 
+  downLogFile(e) {
+
+    e.preventDefault();
+    var aLink = document.createElement('a');
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("click", false, false);
+    aLink.download = this.props.file_name;
+    aLink.href = '/api/0/logevents?file_id=' + this.props.id + '&event_offset=1&event_count=10000000000';
+    aLink.dispatchEvent(evt);
+
+  },
+
   render() {
+    const org = this.getOrganization();
+
     return (
       <li className={`list-item ${this.state.active ? 'active' : ''}`}>
         <h5 className="item-name">
@@ -32,15 +49,19 @@ const FileItem = React.createClass({
           <li>{t('ID')}: {this.props.id} </li>
           <li>{t('Created Time')}: {this.props.create_timestamp || 'none'} </li>
           <li>{t('Latest Updated')}: {this.props.modify_timestamp || 'none'} </li>
-          <li>{t('File SIze')}:  {this.props.file_size || 'none'}</li>
+          <li>{t('File SIze')}: {this.props.file_size || 'none'}</li>
           <li>{t('File Path')}: {this.props.file_path || 'none'} </li>
         </ul>
         <ul className="actions clearfix">
           <li>
-            <Link className="btn" to="xxx">查看文件</Link>
+            <a
+              className="a-btn"
+              href={`/${org.slug}/storage/preview/${this.props.id}/`}
+              target="_blank"
+            >查看文件</a>
           </li>
           <li>
-            <a className="btn" href="xxx">下载文件</a>
+            <a className="a-btn" onClick={this.downLogFile}>下载文件</a>
           </li>
         </ul>
       </li>

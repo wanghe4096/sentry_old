@@ -80,7 +80,7 @@ const StreamList = React.createClass({
   },
 
   renderList() {
-    return this.state.streamList.map((stream)=> {
+    return this.state.streamList.map((stream) => {
       return (
         <StreamItem {...stream} key={stream.id}/>
       )
