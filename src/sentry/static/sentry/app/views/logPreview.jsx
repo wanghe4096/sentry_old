@@ -49,8 +49,8 @@ const LogPreview = React.createClass({
 
   renderEmpty() {
     return (
-      <div className="alert alert-block">
-        {t('This file is empty')}
+      <div className="">
+        <center style={{marginTop:300+'px'}}>{t('This file is empty')}</center>
       </div>
     )
   },
