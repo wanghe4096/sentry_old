@@ -89,7 +89,7 @@ if 'DATABASE_URL' in os.environ:
 EMAIL_SUBJECT_PREFIX = '[LogInsight] '
 
 # This should always be UTC.
-TIME_ZONE = 'UTC'
+TIME_ZONE = 'Asia/Shanghai'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
