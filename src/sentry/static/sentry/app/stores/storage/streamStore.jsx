@@ -19,7 +19,7 @@ const StreamStore = Reflux.createStore({
   },
 
   getById(streamId) {
-    return _.find(this.items, (stream) => stream.stream_id === streamId);
+    return _.find(this.items, (stream) => stream.id === streamId);
   },
 
   getAll() {

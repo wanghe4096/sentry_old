@@ -34,12 +34,12 @@ const StreamItem = React.createClass({
 
   onStatusChange(status) {
     this.setState({
-      active: status.activeStream === this.props.stream_id
+      active: status.activeStream === this.props.id
     })
   },
 
   onClickHandler() {
-    let activeStream = HmStatusStore.status.activeStream === this.props.stream_id ? null : this.props.stream_id;
+    let activeStream = HmStatusStore.status.activeStream === this.props.id ? null : this.props.id;
     HmStatusAction.setActiveStream(activeStream);
   },
 
@@ -50,9 +50,8 @@ const StreamItem = React.createClass({
           {this.props.stream_name}
         </h5>
         <ul className="clearfix props-list">
-          <li>ID: {this.props.stream_id} </li>
-          <li>Stream Tag: {this.props.stream_tag}</li>
-          <li>Files: 10</li>
+          <li>ID: {this.props.id} </li>
+          <li>Stream Tag: {this.props.tag}</li>
         </ul>
       </li>
     );
@@ -83,7 +82,7 @@ const StreamList = React.createClass({
   renderList() {
     return this.state.streamList.map((stream)=> {
       return (
-        <StreamItem {...stream} key={stream.stream_id}/>
+        <StreamItem {...stream} key={stream.id}/>
       )
     });
   },

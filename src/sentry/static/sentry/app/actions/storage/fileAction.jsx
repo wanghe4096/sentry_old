@@ -6,6 +6,7 @@
  */
 
 import Reflux from 'reflux';
+import {Client} from './../../api';
 
 const FileAction = Reflux.createActions({
   fetch:{
@@ -13,43 +14,18 @@ const FileAction = Reflux.createActions({
   }
 });
 
-FileAction.fetch.listen(function(options){
+FileAction.fetch.listen(function(streamId){
 
-  const mockData = [
-    {
-      file_id:'file-1',
-      file_name:'filename-1.log'
+  var that = this;
+  new Client().request('/logfiles/?host_id=' + streamId, {
+    success: function (data) {
+      that.success(data);
     },
-    {
-      file_id:'file-2',
-      file_name:'filename-2.log'
-    },
-    {
-      file_id:'file-3',
-      file_name:'filename-3.log'
-    },
-    {
-      file_id:'file-4',
-      file_name:'filename-4.log'
-    },
-    {
-      file_id:'file-5',
-      file_name:'filename-5.log'
-    },
-    {
-      file_id:'file-6',
-      file_name:'filename-6.log'
-    },
-    {
-      file_id:'file-7',
-      file_name:'filename-7.log'
-    },
-    {
-      file_id:'file-8',
-      file_name:'filename-8.log'
+    error: function (e) {
+      that.failed(e);
     }
-  ];
-  this.success(mockData);
+  });
+
 });
 
 export default FileAction;
