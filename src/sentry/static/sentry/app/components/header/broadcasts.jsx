@@ -125,7 +125,7 @@ const Broadcasts = React.createClass({
                 }
                 {item.message}
                 {item.link &&
-                  <a href={item.link} className="read-more">{t('Read more')}</a>
+                  <a href="javascript:;" className="read-more">{t('Read more')}</a>
                 }
               </li>
             );
