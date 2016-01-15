@@ -55,7 +55,7 @@ build-js-po:
 
 locale: build-js-po
 	cd src/sentry && sentry django makemessages -i static -l en 
-	./bin/merge-catalogs en 
+	./bin/merge-catalogs zh_CN 
 	./bin/find-good-catalogs src/sentry/locale/catalogs.json
 	cd src/sentry && sentry django compilemessages
 
