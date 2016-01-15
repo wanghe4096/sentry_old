@@ -85,11 +85,6 @@
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
               <li><a href="{% url 'sentry-account-settings' %}">{% trans "Account" %}</a></li>
-              {% if request.user.is_superuser %}
-                <li><a href="{% url 'sentry-admin-overview' %}">{% trans "Admin" %}</a></li>
-              {% endif %}
-
-            
               <li><a href="{% url 'sentry-logout' %}">{% trans "Sign out" %}</a></li>
             </ul>
           </div>
