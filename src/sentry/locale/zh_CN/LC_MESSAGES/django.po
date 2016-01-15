@@ -1222,7 +1222,7 @@ msgstr "项目"
 
 #: templates/sentry/admin/projects/list.html:37
 msgid "Events (24h)"
-msgstr "事件 (24 小时)"
+msgstr "事件 (24 小时格式)"
 
 #: templates/sentry/admin/projects/list.html:38
 #: templates/sentry/admin/teams/list.html:32
@@ -2619,6 +2619,18 @@ msgstr "工件"
 msgid "Sorry, no events match your filters."
 msgstr "抱歉，没有满足您过滤条件的事件。"
 
+#: static/sentry/app/views/logPreview.jsx:89
+msgid "Log Storage"
+msgstr "日志存储"
+
+#: static/sentry/app/views/logPreview.jsx:44
+msgid "Loaded Error, Please Retry!"
+msgstr "加载出错，请重试！"
+
+#: static/sentry/app/views/logPreview.jsx:53
+msgid "This file is empty"
+msgstr "文件为空"
+
 #: static/sentry/app/views/releaseAllEvents.jsx:20
 msgid "View all events seen in this release in the stream"
 msgstr "在流中查看此版本的所有事件"
@@ -2918,10 +2930,46 @@ msgstr "加入团队"
 #: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:97
 msgid "Request Access"
 msgstr "请求访问"
+#: static/sentry/app/views/storage/streamList.jsx:55
+msgid "Latest Updated"
+msgstr "最近更新"
+
+#: static/sentry/app/views/storage/streamList.jsx:56
+msgid "Created Time"
+msgstr "创建时间"
 
 #: static/sentry/app/views/projectDashboard/eventList.jsx:108
 msgid "No data available."
 msgstr "无可用数据。"
+
+#: static/sentry/app/components/storage/hostList.jsx:91
+msgid "Host List"
+msgstr "节点"
+
+#: static/sentry/app/components/storage/hostList.jsx:95
+msgid "Add Host"
+msgstr "添加节点"
+
+#: static/sentry/app/components/storage/hostStat.jsx:17
+msgid "Total Host:"
+msgstr "所有节点"
+
+#: static/sentry/app/components/storage/hostStat.jsx:24
+msgid "Total Stream:"
+msgstr "所有流"
+
+#: static/sentry/app/components/storage/fileList.jsx:50
+msgid "ID"
+msgstr "ID"
+
+#: static/sentry/app/components/storage/fileList.jsx:51
+msgid "File Size"
+msgstr "文件大小"
+
+#: static/sentry/app/components/storage/fileList.jsx:52
+msgid "File Path"
+msgstr "文件路径"
+
 
 #: static/sentry/app/views/stream/actions.jsx:91
 msgid "Removing events.."
@@ -3219,6 +3267,19 @@ msgid ""
 " project]."
 msgstr "该团队没有项目。通过[链接：正在创建第一个项目]开始。"
 
+#: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:146
+msgid "time"
+msgstr "时间"
+
+#: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:150
+msgid "host"
+msgstr "节点"
+
+#: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:154
+msgid "stream"
+msgstr "流"
+
+
 #: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:130
 msgid ""
 "You are not a member of any teams. [joinLink:Join an existing team] or "
@@ -3243,9 +3304,17 @@ msgstr "最近 24 小时被拒绝数"
 msgid "View all stats"
 msgstr "查看所有统计数据"
 
+#: static/sentry/app/components/projectHeader/index.jsx:34
+msgid "Access"
+msgstr "接入"
+
 #: static/sentry/app/components/groupListHeader.jsx:15
 msgid "events"
 msgstr "事件"
+
+#: static/sentry/app/components/sdkInstallWizard/index.jsx:21
+msgid "project install sdk wizard"
+msgstr "SDK安装向导"
 
 #: static/sentry/app/views/groupDetails/actions.jsx:34
 msgid "Delete event.."
@@ -3444,6 +3513,30 @@ msgstr "最近没有来自 LogInsight 团队的广播。"
 msgid "Read more"
 msgstr "阅读更多"
 
+#: static/sentry/app/components/header/AddBtn.jsx:41
+msgid "Being imported demo data!"
+msgstr "正在导入demo数据！"
+
+#: static/sentry/app/components/header/AddBtn.jsx:46
+msgid "Create demo data is successfully!"
+msgstr "创建demo数据成功！"
+
+#: static/sentry/app/components/header/AddBtn.jsx:50
+msgid "Create demo data failed!"
+msgstr "创建demo数据失败！"
+
+#: static/sentry/app/components/header/AddBtn.jsx:101
+msgid "New demo"
+msgstr "新建demo"
+
+#: static/sentry/app/components/header/AddBtn.jsx:106
+msgid "New team"
+msgstr "新建团队"
+
+#: static/sentry/app/components/header/AddBtn.jsx:111
+msgid "New project"
+msgstr "新建项目"
+
 #: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:42
 msgid "There was an error while trying to join the team."
 msgstr "尝试加入团队时出错。"
@@ -3451,6 +3544,43 @@ msgstr "尝试加入团队时出错。"
 #: static/sentry/app/views/organizationTeams/allTeamsRow.jsx:70
 msgid "There was an error while trying to leave the team."
 msgstr "尝试离开团队时出错。"
+
+#: static/sentry/app/components/addTeamModal.jsx:54
+msgid "Creating Success"
+msgstr "创建成功"
+
+#: static/sentry/app/components/addTeamModal.jsx:93
+msgid "Creation Failed"
+msgstr "创建失败"
+
+#: static/sentry/app/components/addProjectModal.jsx:138
+msgid "添加项目"
+msgstr ""
+
+#: static/sentry/app/components/addProjectModal.jsx:148
+msgid "E.g. API, Frontend, My Application Name, ..."
+msgstr "例如 API，前端，应用程序名字等等"
+
+#: static/sentry/app/components/addProjectModal.jsx:149
+msgid "project name"
+msgstr "项目名称"
+
+#: static/sentry/app/components/addProjectModal.jsx:150
+msgid "* At least two characters,Using the repository name generally works well."
+msgstr "* 至少两个字符，一般建议使用repo名称"
+
+#: static/sentry/app/components/addProjectModal.jsx:160
+msgid "team"
+msgstr "团队"
+
+#: static/sentry/app/components/addTeamModal.jsx:122
+msgid "Reset"
+msgstr "重置"
+
+#: static/sentry/app/components/addTeamModal.jsx:124
+msgid "Saving ... "
+msgstr "正在保存"
+
 
 #: static/sentry/app/components/events/errorItem.jsx:25
 msgid "Collapse"
@@ -3515,6 +3645,20 @@ msgstr "应用"
 #: static/sentry/app/components/events/interfaces/frame.jsx:194
 msgid "Toggle context"
 msgstr "显示/隐藏上下文"
+
+#: static/sentry/app/components/addTeamModal.jsx:99
+msgid "add team"
+msgstr "添加团队"
+
+#: static/sentry/app/components/addTeamModal.jsx:110
+msgid "team name"
+msgstr "团队名称"
+
+#: static/sentry/app/components/addTeamModal.jsx:111
+msgid ""
+"* At least two characters,The team name has no significant impact and can"
+" be changed later."
+msgstr "* 至少两个字符，建议给你的团队起一个有意义的名字，并且团队名称是可以在后期修改的。"
 
 #: templates/sentry/projects/manage.html:20
 msgid "Install"
