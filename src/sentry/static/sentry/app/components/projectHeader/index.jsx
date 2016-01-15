@@ -29,11 +29,6 @@ const ProjectHeader = React.createClass({
                     {t('Issues')}
                   </Link>
                 </li>
-                <li className={navSection == 'install' ? 'active' : ''}>
-                  <Link to={`/${org.slug}/events/${project.slug}/settings/install/`}>
-                    {t('Access')}
-                  </Link>
-                </li>
                 <li className={navSection == 'releases' ? 'active' : ''}>
                   <Link to={`/${org.slug}/events/${project.slug}/releases/`}>
                     {t('Releases')}
@@ -46,7 +41,11 @@ const ProjectHeader = React.createClass({
                     </a>
                   </li>
                 }
-
+                <li className={navSection == 'install' ? 'active' : ''}>
+                  <Link to={`/${org.slug}/events/${project.slug}/settings/install/`}>
+                    {t('Access')}
+                  </Link>
+                </li>
               </ul>
             </div>
             <ProjectSelector
