@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-15 09:58+0800\n"
+"POT-Creation-Date: 2016-01-15 10:56+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -747,25 +747,25 @@ msgstr ""
 msgid "Account"
 msgstr ""
 
-#: templates/sentry/layout.html:89 templates/sentry/layout.html.py:214
-#: templates/sentry/bases/admin.html:7 web/forms/__init__.py:54
-msgid "Admin"
-msgstr ""
-
-#: templates/sentry/layout.html:93
+#: templates/sentry/layout.html:88
 msgid "Sign out"
 msgstr ""
 
-#: templates/sentry/layout.html:122 templates/sentry/layout.html.py:218
+#: templates/sentry/layout.html:117 templates/sentry/layout.html.py:213
 msgid "Docs"
 msgstr ""
 
-#: templates/sentry/layout.html:217
+#: templates/sentry/layout.html:209 templates/sentry/bases/admin.html:7
+#: web/forms/__init__.py:54
+msgid "Admin"
+msgstr ""
+
+#: templates/sentry/layout.html:212
 #: templates/sentry/project-release-tracking.html:117
 msgid "API"
 msgstr ""
 
-#: templates/sentry/layout.html:219
+#: templates/sentry/layout.html:214
 msgid "Contribute"
 msgstr ""
 
@@ -1370,7 +1370,7 @@ msgstr ""
 
 #: templates/sentry/bases/account.html:6 templates/sentry/bases/admin.html:17
 #: templates/sentry/bases/organization.html:74
-#: templates/sentry/projects/manage.html:26
+#: templates/sentry/projects/manage.html:23
 msgid "Settings"
 msgstr ""
 
@@ -1618,11 +1618,11 @@ msgid "Issues"
 msgstr ""
 
 #: templates/sentry/projects/manage.html:20
-msgid "Install"
+msgid "Releases"
 msgstr ""
 
-#: templates/sentry/projects/manage.html:23
-msgid "Releases"
+#: templates/sentry/projects/manage.html:26
+msgid "Install"
 msgstr ""
 
 #: templates/sentry/projects/manage.html:32
