@@ -17,13 +17,13 @@
       <a href="{% absolute_uri '/{}/events/{}/' project.organization.slug project.slug %}">{% trans "Issues" %}</a>
     </li>
     <li>
-      <a href="{% absolute_uri '/{}/events/{}/settings/install/' project.organization.slug project.slug %}">{% trans "Install" %}</a>
-    </li>
-    <li>
       <a href="{% absolute_uri '/{}/events/{}/releases/' project.organization.slug project.slug %}">{% trans "Releases" %}</a>
     </li>
     <li class="active">
       <a href="{% absolute_uri '/{}/events/{}/settings/' project.organization.slug project.slug %}">{% trans "Settings" %}</a>
+    </li>
+    <li>
+      <a href="{% absolute_uri '/{}/events/{}/settings/install/' project.organization.slug project.slug %}">{% trans "Install" %}</a>
     </li>
   </ul>
 {% endblock %}

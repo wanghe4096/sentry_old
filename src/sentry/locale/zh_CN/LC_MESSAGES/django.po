@@ -31,7 +31,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Generated-By: Babel 2.1.1\n"
+"Generated-By: Babel 2.2.0\n"
 
 #: admin.py:170
 msgid "Personal info"
@@ -421,6 +421,7 @@ msgstr "大整数"
 msgid "%(calls)d call in %(duration).2fms"
 msgid_plural "%(calls)d calls in %(duration).2fms"
 msgstr[0] "%(duration).2fms 内 %(calls)d 次调用"
+msgstr[1] ""
 
 #: debug/panels/redis.py:79
 msgid "Redis"
@@ -1451,7 +1452,7 @@ msgid "Organization Settings"
 msgstr "组织设置"
 
 #: templates/sentry/bases/organization.html:27
-#: static/sentry/app/components/organizations/homeSidebar.jsx:44
+#: static/sentry/app/components/header/userNav.jsx:51
 msgid "Stats"
 msgstr "统计"
 
@@ -2519,6 +2520,7 @@ msgstr "您要查找的问题未找到。"
 msgid "%2$d unique historical value"
 msgid_plural "%2$d unique historical values"
 msgstr[0] "%2$d 个唯一的历史值"
+msgstr[1] ""
 
 #: static/sentry/app/views/groupTagValues.jsx:132
 msgid "Data is based on events seen in the last 7 days."
@@ -2792,7 +2794,7 @@ msgstr "还没有新版本。"
 msgid "Learn how to integrate Release Tracking"
 msgstr "了解如何集成版本追踪"
 
-#: static/sentry/app/components/projectHeader/index.jsx:39
+#: static/sentry/app/components/projectHeader/index.jsx:34
 msgid "Releases"
 msgstr "版本"
 
@@ -3010,7 +3012,8 @@ msgstr "你确定要解决所有搜索查询匹配的问题吗?"
 #, python-format
 msgid "Are you sure you want to resolve this %d issue?"
 msgid_plural "Are you sure you want to resolve these %d issues?"
-msgstr[0] "你确定想要解决%d 个问题吗?"
+msgstr[0] "你确定想要解决第%d个问题吗?"
+msgstr[1] "你确定想要解决第%d个问题吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:167
 msgid "Resolve all issues"
@@ -3020,7 +3023,8 @@ msgstr "解决所有问题"
 #, python-format
 msgid "Resolve %d selected issue"
 msgid_plural "Resolve %d selected issues"
-msgstr[0] "解决 %d 个选定问题"
+msgstr[0] "解决第%d个选定问题"
+msgstr[1] "解决第%d个选定问题"
 
 #: static/sentry/app/views/stream/actions.jsx:173
 msgid "Set Status to Resolved"
@@ -3038,7 +3042,8 @@ msgstr "你确定要给所有搜查查询匹配的问题设置标记吗？"
 #, python-format
 msgid "Are you sure you want to bookmark this %d issue?"
 msgid_plural "Are you sure you want to bookmark these %d issues?"
-msgstr[0] "你确定要给%d 个问题标记为书签吗?"
+msgstr[0] "你确定要给第%d个问题标记为书签吗?"
+msgstr[1] "你确定要给第%d个问题标记为书签吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:193
 msgid "Bookmark all issues"
@@ -3048,7 +3053,8 @@ msgstr "标记全部问题"
 #, python-format
 msgid "Bookmark %d selected issue"
 msgid_plural "Bookmark %d selected issues"
-msgstr[0] "为 %d 个选定问题加书签"
+msgstr[0] "为第%d个选定问题加书签"
+msgstr[1] "为第%d个选定问题加书签"
 
 #: static/sentry/app/views/stream/actions.jsx:199
 msgid "Add to Bookmarks"
@@ -3058,13 +3064,15 @@ msgstr "添加至书签"
 #, python-format
 msgid "Are you sure you want to merge %d issue?"
 msgid_plural "Are you sure you want to merge %d issues?"
-msgstr[0] "确定要合并 %d 个问题？"
+msgstr[0] "确定要合并第%d个问题？"
+msgstr[1] "确定要合并第%d个问题？"
 
 #: static/sentry/app/views/stream/actions.jsx:224
 #, python-format
 msgid "Merge %d selected issue"
 msgid_plural "Merge %d selected issues"
-msgstr[0] "合并 %d 个选定问题"
+msgstr[0] "合并第%d个选定问题"
+msgstr[1] "合并第%d个选定问题"
 
 #: static/sentry/app/views/stream/actions.jsx:229
 msgid "Merge Events"
@@ -3080,7 +3088,8 @@ msgstr "你确定要移除搜索匹配的全部问题吗？"
 #, python-format
 msgid "Are you sure you want to remove this %d issue from your bookmarks?"
 msgid_plural "Are you sure you want to remove these %d issues from your bookmarks?"
-msgstr[0] "确定要从您的书签移除这 %d 个问题？"
+msgstr[0] "确定要从您的书签移除第%d个问题？"
+msgstr[1] "确定要从您的书签移除第%d个问题？"
 
 #: static/sentry/app/views/stream/actions.jsx:247
 msgid "Remove all issues from bookmarks"
@@ -3090,7 +3099,8 @@ msgstr "从书签中移除全部问题"
 #, python-format
 msgid "Remove %d selected issue from bookmarks"
 msgid_plural "Remove %d selected issues from bookmarks"
-msgstr[0] "从书签中移除 %d 个被选择问题"
+msgstr[0] "从书签中移除第%d个被选择问题"
+msgstr[1] "从书签中移除第%d个被选择问题"
 
 #: static/sentry/app/views/stream/actions.jsx:255
 msgid "Remove from Bookmarks"
@@ -3104,7 +3114,8 @@ msgstr "你确定不想要想解决全部搜索查询匹配的全部问题？"
 #, python-format
 msgid "Are you sure you want to unresolve this %d issue?"
 msgid_plural "Are you sure you want to unresolve these %d issues?"
-msgstr[0] "你确定未解决 %d 个问题?"
+msgstr[0] "你确定未解决第%d个问题?"
+msgstr[1] "你确定未解决第%d个问题?"
 
 #: static/sentry/app/views/stream/actions.jsx:274
 msgid "Unresolve all issues"
@@ -3114,7 +3125,8 @@ msgstr "未解决全部问题"
 #, python-format
 msgid "Unresolve %d selected issue"
 msgid_plural "Unresolve %d selected issues"
-msgstr[0] "未解决的 %d 个选定问题"
+msgstr[0] "第%d个未解决的选定问题"
+msgstr[1] "第%d个未解决的选定问题"
 
 #: static/sentry/app/views/stream/actions.jsx:283
 msgid "Set status to: Unresolved"
@@ -3128,7 +3140,8 @@ msgstr "你确定要不再提醒这个查询的所有结果吗?"
 #, python-format
 msgid "Are you sure you want to mute this %d issue?"
 msgid_plural "Are you sure you want to mute these %d issues?"
-msgstr[0] "你确定不再提醒 %d 个问题吗 ?"
+msgstr[0] "你确定不再提醒第%d个问题吗?"
+msgstr[1] "你确定不再提醒第%d个问题吗?"
 
 #: static/sentry/app/views/stream/actions.jsx:301
 msgid "Mute all issues"
@@ -3138,7 +3151,8 @@ msgstr "对所有问题都不提醒"
 #, python-format
 msgid "Mute %d selected issue"
 msgid_plural "Mute %d selected issues"
-msgstr[0] "不提醒第 %d 个选定问题"
+msgstr[0] "不提醒第%d个选定问题"
+msgstr[1] "不提醒第%d个选定问题"
 
 #: static/sentry/app/views/stream/actions.jsx:309
 msgid "Set status to: Muted"
@@ -3148,13 +3162,15 @@ msgstr "设置状态为：不再提醒"
 #, python-format
 msgid "Are you sure you want to delete %d issue?"
 msgid_plural "Are you sure you want to delete %d issues?"
-msgstr[0] "确定要删除 %d 个问题？"
+msgstr[0] "确定要删除第%d个问题？"
+msgstr[1] "确定要删除第%d个问题？"
 
 #: static/sentry/app/views/stream/actions.jsx:326
 #, python-format
 msgid "Delete %d selected issue"
 msgid_plural "Delete %d selected issues"
-msgstr[0] "删除 %d 个选定问题"
+msgstr[0] "删除第%d个选定问题"
+msgstr[1] "删除第%d个选定问题"
 
 #: static/sentry/app/views/stream/actions.jsx:331
 msgid "Delete Events"
@@ -3181,6 +3197,7 @@ msgstr "所有符合这个查询条件的issue已被选中"
 msgid "%d issues on this page selected."
 msgid_plural "%d issues on this page selected."
 msgstr[0] "本页的第%d个issue已被选中"
+msgstr[1] "本页的第%d个issue已被选中"
 
 #: static/sentry/app/views/stream/actions.jsx:373
 msgid "Select all issues matching this search query."
@@ -3318,7 +3335,7 @@ msgstr "最近 24 小时被拒绝数"
 msgid "View all stats"
 msgstr "查看所有统计数据"
 
-#: static/sentry/app/components/projectHeader/index.jsx:34
+#: static/sentry/app/components/projectHeader/index.jsx:46
 msgid "Access"
 msgstr "接入"
 
@@ -3405,6 +3422,7 @@ msgstr "显示"
 msgid "There was %d error encountered while processing this event"
 msgid_plural "There were %d errors encountered while processing this event"
 msgstr[0] ""
+msgstr[1] ""
 
 #: static/sentry/app/components/events/extraData.jsx:27
 msgid "Additional Data"
@@ -3568,8 +3586,8 @@ msgid "Creation Failed"
 msgstr "创建失败"
 
 #: static/sentry/app/components/addProjectModal.jsx:138
-msgid "添加项目"
-msgstr ""
+msgid "Add project"
+msgstr "添加项目"
 
 #: static/sentry/app/components/addProjectModal.jsx:148
 msgid "E.g. API, Frontend, My Application Name, ..."
@@ -3679,45 +3697,54 @@ msgstr "接入"
 
 #: static/sentry/app/components/borderMenu.jsx:71
 msgid "issues"
-msgstr ""
+msgstr "问题"
 
 #: static/sentry/app/components/borderMenu.jsx:78
 msgid "log storage"
-msgstr ""
+msgstr "日志存储"
 
 #: static/sentry/app/views/app.jsx:52
 msgid "Getting a list of all of your organizations."
-msgstr ""
+msgstr "获取组织列表"
 
 #: static/sentry/app/views/organizationDetails.jsx:107
 msgid "Loading data for your organization."
-msgstr ""
+msgstr "加载组织数据"
 
 #: static/sentry/app/views/projectDashboard.jsx:148
 msgid "Trending Issues"
-msgstr ""
+msgstr "趋势问题"
 
 #: static/sentry/app/views/organizationTeams/index.jsx:108
 msgid "SDK install wizard"
-msgstr ""
+msgstr "SDK接入向导"
 
 #: static/sentry/app/components/storage/hostList.jsx:95
 msgid "DEMO: add Host"
-msgstr ""
+msgstr "DEMO：添加节点"
 
 #: static/sentry/app/views/stream/actions.jsx:370
 #, python-format
 msgid "%d issue on this page selected."
 msgid_plural "%d issues on this page selected."
-msgstr[0] ""
+msgstr[0] "本页的第%d个问题被选中"
+msgstr[1] "本页的第%d个问题被选中"
 
 #: static/sentry/app/views/organizationTeams/expandedTeamList.jsx:103
 msgid ""
 "There are no projects in this team. Get started by creating your first "
 "project."
-msgstr ""
+msgstr "这个团队中还没有任何项目，请创建你的第一个项目"
 
 #: static/sentry/app/components/addProjectModal.jsx:138
 msgid "add project"
-msgstr ""
+msgstr "添加项目"
+
+#: static/sentry/app/components/storage/fileList.jsx:51
+msgid "Size"
+msgstr "大小"
+
+#: static/sentry/app/components/storage/fileList.jsx:52
+msgid "Path"
+msgstr "路径"
 
