@@ -134,7 +134,7 @@
 
   // :::: hosts
   .host-stat {
-    ul{
+    ul {
       padding: 20px 0 0 0;
     }
     li {
@@ -158,24 +158,24 @@
       }
     }
 
-    .statistics{
+    .statistics {
       min-width: 350px;
-      .sl{
+      .sl {
         position: relative;
         float: left;
-        width:13px;
+        width: 13px;
         margin-right: 5px;
-        height:100px;
-        &:hover .s{
+        height: 100px;
+        &:hover .s {
           background: #6FBA57;
         }
       }
-      .s{
+      .s {
         display: block;
         position: absolute;
-        left:0;
-        right:0;
-        bottom:0;
+        left: 0;
+        right: 0;
+        bottom: 0;
         background-image: linear-gradient(to bottom, #8c98aa 0%, #6F7E94 100%);
         background-color: #ccc;
       }
@@ -184,6 +184,59 @@
 
   // :::: files
   .file-list {
+    .item-name {
+      a {
+        color: #394359;
+      }
+    }
+    .path-block {
+      margin-top: -5px;
+    }
+    .props-list {
+      width: 300px;
+    }
+    .list-item{
+      &:hover{
+        .analytic{
+          opacity: 1;
+        }
+      }
+    }
+    .analytic {
+      margin-left: 300px;
+      max-width: 400px;
+      opacity: .5;
+      transition: opacity 300ms;
+      ul{
+        padding:0;
+        display: table;
+        width:100%;
+      }
+
+      .sl {
+        position: relative;
+        float: left;
+        width:3.33%;
+        list-style: none;
+        display: table-cell;
+        padding:0;
+        margin:0;
+        height: 50px;
+        &:hover .s {
+          background: #6FBA57;
+        }
+      }
+      .s {
+        display: block;
+        position: absolute;
+        left: 1px;
+        right: 1px;
+        bottom: 0;
+        background-image: linear-gradient(to bottom, #8c98aa 0%, #6F7E94 100%);
+        background-color: #ccc;
+      }
+
+    }
     .actions {
       padding: 0;
       li {
@@ -222,11 +275,11 @@
       bottom: 0;
       overflow-y: auto;
       background-color: #050505;
-      padding:30px 0;
+      padding: 30px 0;
     }
 
     .event-item {
-      margin:0 80px;
+      margin: 0 80px;
       pre {
         word-break: break-word;
         font-size: 13px;
@@ -234,7 +287,7 @@
         padding: 10px 0;
         margin: 0;
         background: transparent;
-        color:#50A035;
+        color: #50A035;
       }
     }
   }

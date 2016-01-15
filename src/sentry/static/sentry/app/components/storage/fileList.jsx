@@ -10,6 +10,7 @@ import Reflux from 'reflux';
 import {t} from 'app/locale';
 import {Link,IndexLink} from 'react-router';
 import OrganizationState from 'mixins/organizationState';
+import _ from 'underscore';
 
 import HostStore from 'stores/storage/hostStore';
 import StreamStore from 'stores/storage/streamStore';
@@ -41,16 +42,41 @@ const FileItem = React.createClass({
     const org = this.getOrganization();
     const fileSize = this.props.size ? (this.props.size / 1000) + 'M' : null;
 
+    const analytic = [];
+    for (let i = 0; i < 30; i++) {
+      analytic.push(_.random(1, 10))
+    }
+
     return (
       <li className={`list-item ${this.state.active ? 'active' : ''}`}>
         <h5 className="item-name">
-          {this.props.file_name}
+          <a href={`/${org.slug}/storage/preview/${this.props.id}/`} target="_blank">
+            {this.props.file_name}
+          </a>
         </h5>
-        <ul className="props-list clearfix">
-          <li><strong>{t('ID')}:</strong> {this.props.id} </li>
-          <li><strong>{t('Size')}:</strong> {fileSize}</li>
-          <li><strong>{t('Path')}:</strong> {this.props.file_path + '/' + this.props.file_name} </li>
-        </ul>
+        <div className="clearfix">
+          <ul className="props-list clearfix pull-left">
+            <li><strong>{t('ID')}:</strong> {this.props.id} </li>
+            <li><strong>{t('Size')}:</strong> {fileSize}</li>
+            <br />
+            <li className="path-block">
+              <strong>{t('Path')}:</strong> {this.props.file_path + '/' + this.props.file_name}
+            </li>
+          </ul>
+          <div className="analytic">
+            <ul>
+              {
+                analytic.map((s, i) => {
+                  return (
+                    <li className="sl" key={i}>
+                      <div className="s" style={{top:(50-s*5)+'px'}}></div>
+                    </li>
+                  )
+                })
+              }
+            </ul>
+          </div>
+        </div>
         <ul className="actions clearfix">
           <li>
             <a
@@ -80,9 +106,9 @@ const FileList = React.createClass({
   },
 
   renderList() {
-    return this.state.fileList.map((file,i)=> {
+    return this.state.fileList.map((file, i)=> {
       return (
-        <FileItem {...file} key={i} />
+        <FileItem {...file} key={i}/>
       )
     });
   },
@@ -95,7 +121,7 @@ const FileList = React.createClass({
       <div className="file-list-container">
         <div className="list-wrap file-list">
           <div className="list-head">
-            <h5>File List</h5>
+            <h5>{t('File List')}</h5>
           </div>
           <ul>
             { this.renderList() }

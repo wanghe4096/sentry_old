@@ -51,7 +51,7 @@ const StreamItem = React.createClass({
           {this.props.stream_name}
         </h5>
         <ul className="clearfix props-list">
-          <li><strong>Stream ID:</strong> {this.props.id} </li>
+          <li><strong>{t('Stream ID')}:</strong> {this.props.id} </li>
           <li><strong>{t('Latest Updated')}:</strong> {updateTime} </li>
           <li><strong>{t('Created Time')}:</strong> {createdTime}</li>
         </ul>
@@ -99,7 +99,7 @@ const StreamList = React.createClass({
       >
         <div className="list-wrap stream-list">
           <div className="list-head">
-            <h5>Stream List</h5>
+            <h5>{t('Stream List')}</h5>
           </div>
           <ul>
             { this.renderList() }

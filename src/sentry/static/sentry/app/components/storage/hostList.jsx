@@ -48,11 +48,11 @@ const HostItem = React.createClass({
           {this.props.host_name}
         </h5>
         <ul className="clearfix props-list">
-          <li><strong>Host ID:</strong> {this.props.id} </li>
-          <li><strong>Distver:</strong> {this.props.distver} </li>
-          <li><strong>Host Key:</strong> {this.props.host_key} </li>
-          <li><strong>Host Type:</strong> {this.props.host_type}</li>
-          <li><strong>System: </strong> {this.props.system}</li>
+          <li><strong>{t('Host ID')}:</strong> {this.props.id} </li>
+          <li><strong>{t('Distver')}:</strong> {this.props.distver} </li>
+          <li><strong>{t('Host Key')}:</strong> {this.props.host_key} </li>
+          <li><strong>{t('Host Type')}:</strong> {this.props.host_type}</li>
+          <li><strong>{t('System')}: </strong> {this.props.system}</li>
         </ul>
       </li>
     );
