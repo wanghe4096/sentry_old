@@ -48,8 +48,8 @@ const FileItem = React.createClass({
         </h5>
         <ul className="props-list clearfix">
           <li><strong>{t('ID')}:</strong> {this.props.id} </li>
-          <li><strong>{t('File Size')}:</strong> {fileSize}</li>
-          <li><strong>{t('File Path')}:</strong> {this.props.file_path + '/' + this.props.file_name} </li>
+          <li><strong>{t('Size')}:</strong> {fileSize}</li>
+          <li><strong>{t('Path')}:</strong> {this.props.file_path + '/' + this.props.file_name} </li>
         </ul>
         <ul className="actions clearfix">
           <li>
