@@ -54,15 +54,15 @@ build-js-po:
 	SENTRY_EXTRACT_TRANSLATIONS=1 ./node_modules/.bin/webpack
 
 locale: build-js-po
-	cd src/sentry && sentry django makemessages -i static -l en
-	./bin/merge-catalogs en
+	cd src/sentry && sentry django makemessages -i static -l en 
+	./bin/merge-catalogs en 
 	./bin/find-good-catalogs src/sentry/locale/catalogs.json
 	cd src/sentry && sentry django compilemessages
 
 update-transifex: build-js-po
 	pip install transifex-client
 	cd src/sentry && sentry django makemessages -i static -l en
-	./bin/merge-catalogs en
+	./bin/merge-catalogs zh-cn 
 	tx push -s
 	tx pull -a
 	./bin/find-good-catalogs src/sentry/locale/catalogs.json
