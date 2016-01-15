@@ -1430,6 +1430,7 @@ msgid "Settings"
 msgstr "设置"
 
 #: templates/sentry/bases/admin.html:10
+#: static/sentry/app/components/storage/hostList.jsx:55
 msgid "System"
 msgstr "系统"
 
@@ -1452,7 +1453,7 @@ msgid "Organization Settings"
 msgstr "组织设置"
 
 #: templates/sentry/bases/organization.html:27
-#: static/sentry/app/components/header/userNav.jsx:51
+#: static/sentry/app/components/organizations/homeSidebar.jsx:44
 msgid "Stats"
 msgstr "统计"
 
@@ -2980,7 +2981,7 @@ msgstr "所有节点"
 msgid "Total Stream:"
 msgstr "所有流"
 
-#: static/sentry/app/components/storage/fileList.jsx:50
+#: static/sentry/app/components/storage/fileList.jsx:59
 msgid "ID"
 msgstr "ID"
 
@@ -3740,11 +3741,39 @@ msgstr "这个团队中还没有任何项目，请创建你的第一个项目"
 msgid "add project"
 msgstr "添加项目"
 
-#: static/sentry/app/components/storage/fileList.jsx:51
+#: static/sentry/app/components/storage/fileList.jsx:60
 msgid "Size"
 msgstr "大小"
 
-#: static/sentry/app/components/storage/fileList.jsx:52
+#: static/sentry/app/components/storage/fileList.jsx:63
 msgid "Path"
 msgstr "路径"
+
+#: static/sentry/app/views/storage/streamList.jsx:54
+msgid "Stream ID"
+msgstr "流ID"
+
+#: static/sentry/app/views/storage/streamList.jsx:102
+msgid "Stream List"
+msgstr "流列表"
+
+#: static/sentry/app/components/storage/hostList.jsx:51
+msgid "Host ID"
+msgstr "节点ID"
+
+#: static/sentry/app/components/storage/hostList.jsx:52
+msgid "Distver"
+msgstr "版本号"
+
+#: static/sentry/app/components/storage/hostList.jsx:53
+msgid "Host Key"
+msgstr "节点Key"
+
+#: static/sentry/app/components/storage/hostList.jsx:54
+msgid "Host Type"
+msgstr "节点类型"
+
+#: static/sentry/app/components/storage/fileList.jsx:124
+msgid "File List"
+msgstr "文件列表"
 
