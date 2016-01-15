@@ -9,7 +9,7 @@ const RequestActions = React.createClass({
     let group = this.props.group;
     let evt = this.props.event;
     let urlPrefix = (
-      ConfigStore.get('urlPrefix') + '/' + org.slug + '/' +
+      ConfigStore.get('urlPrefix') + '/' + org.slug + '/events/' +
       project.slug + '/issues/' + group.id
     );
 

@@ -66,7 +66,7 @@ let GroupEventToolbar  = React.createClass({
 
     // TODO: possible to define this as a route in react-router, but without a corresponding
     //       React component?
-    let jsonUrl = `/${orgId}/${projectId}/issues/${groupId}/events/${evt.id}/json/`;
+    let jsonUrl = `/${orgId}/events/${projectId}/issues/${groupId}/events/${evt.id}/json/`;
 
     return (
       <div className="event-toolbar">

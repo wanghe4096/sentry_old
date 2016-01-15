@@ -57,13 +57,6 @@ let routes = (
 
     <Redirect from="/events" to={defaultOrg.slug+'/events'} />
     <Redirect from="/storage" to={defaultOrg.slug+'/storage'} />
-
-    <Route path="/manage/" component={Admin}>
-      <IndexRoute component={AdminOverview} />
-      <Route path="organizations/" component={AdminOrganizations} />
-      <Route path="settings/" component={AdminSettings} />
-    </Route>
-
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/" />
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails} />
 

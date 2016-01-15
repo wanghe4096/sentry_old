@@ -92,7 +92,7 @@ const HostList = React.createClass({
 
           <button className="btn btn-sm btn-default" onClick={this.addHostHandler}>
             <span className="glyphicon glyphicon-plus"></span>
-            {t('Add Host')}
+            {t('DEMO: add Host')}
           </button>
 
         </div>

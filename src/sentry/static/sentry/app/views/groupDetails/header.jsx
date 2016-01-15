@@ -151,7 +151,7 @@ const GroupHeader = React.createClass({
           </div>
         </div>
         <ul className="nav nav-tabs">
-          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/`} isActive={function (to) {
+          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/`} isActive={function (to) {
             let rootGroupPath = `/${orgId}/${projectId}/issues/${groupId}/`;
             let pathname = this.context.location.pathname;
 
@@ -160,18 +160,18 @@ const GroupHeader = React.createClass({
           }.bind(this)}>
             {t('Details')}
           </ListLink>
-          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/activity/`}>
+          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/activity/`}>
             {t('Comments')} <span className="badge animated">{group.numComments}</span>
           </ListLink>
           {features.has('user-reports') &&
-            <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/reports/`}>
+            <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/reports/`}>
               {t('User Reports')} <span className="badge animated">{group.userReportCount}</span>
             </ListLink>
           }
-          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/tags/`}>
+          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/tags/`}>
             {t('Tags')}
           </ListLink>
-          <ListLink to={`/${orgId}/${projectId}/issues/${groupId}/events/`}>
+          <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/events/`}>
             {t('Related Events')}
           </ListLink>
         </ul>
