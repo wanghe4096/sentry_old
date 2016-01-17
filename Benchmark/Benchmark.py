@@ -14,9 +14,7 @@ TODO:
 
     3. 按序顺发送给sentry server
 
-    4. 循环发送1分钟
-
-    5. 输出:成功发送的EVENT,  每秒发送EVENT的数量
+    4. 输出:成功发送的指定数量的EVENT, 输出所花费的时间
 
 """
 
@@ -31,6 +29,7 @@ import time
 
 client = Client('http://d69d677d37d3420583f6da36490fee34:efd1133590b146febfc86916c1ebb444@localhost:9000/7')
 
+start_time = time.time()
 
 class CmdStart(Command):
     """
@@ -43,20 +42,23 @@ class CmdStart(Command):
     events = []
 
     def __init__(self):
-        for i in range(0, 1000000):
-            msg = "%d this is test event " % i
-            self.events.append(msg)
+        # for i in range(0, 1000000):
+            # msg = "%d this is test event " % i
+        with open('./tmp/apache.log', 'r') as fd:
+            self.events = fd.readlines()
 
     def run(self, count):
+
         """
             if durtime is -1, infint
         """
         count = int(count)
         start_time = time.time()
         print 'start ...'
+        print 'event count: ', len(self.events)
         i = 0
         for i in range(0, count):
-            client.captureMessage(self.events[i])
+            client.captureMessage(self.events[random.randint(0, len(self.events)-1)])
         end_time = time.time()
         print 'i= ', i
         print 'time: ', end_time - start_time
