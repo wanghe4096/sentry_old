@@ -16,7 +16,10 @@
 ## 获取主机列表
     - request
         GET /api/0/hosts
-    
+        {
+            'user_key': 
+        }
+
     - response 
       [
           {
@@ -154,26 +157,31 @@
   ]
   
 ## 更新stream
-
-    {
-        'name': 'stream_name',
-        'source': [{
-            'host_id':
-            'file_id':
-        }],
-        "last_timestamp": 
-        "create_timestamp" 
-        "host_id": 
-        "size": 
-        'options':{ 
-            'extract_template': true,
-             'sort_by_time': true, 
-             'regex: true, 
-             'exception_monitor: true,
-             'sort_by_domain: true,
-             'others: true 
-             }
-    }
+    - request
+        POST /api/0/streams
+        {
+            'name': 'stream_name',
+            'source': [{
+                'host_id':
+                'file_id':
+            }],
+            "last_timestamp": 
+            "create_timestamp" 
+            "host_id": 
+            "size": 
+            'options':{ 
+                'extract_template': true,
+                 'sort_by_time': true, 
+                 'regex: true, 
+                 'exception_monitor: true,
+                 'sort_by_domain: true,
+                 'others: true 
+                 }
+        }
+     - response 
+        {
+            'msg': 'ok/failed'
+        }
 
  GET  /api/0/streams/templates
 
