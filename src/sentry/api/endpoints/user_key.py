@@ -38,9 +38,6 @@ class UserkeyEndpoint(Endpoint,
         return Response(resp)
 
     def post(self, request):
-        user_name = request.POST.get('username', '')
-        print 'user_name=', user_name
-        print 'user_name=', request.user.username
         user = User.objects.get(username=request.user.username)
         user_key = generate_user_key(user)
         if User.objects.filter(username=request.user.username).update(userkey=user_key):
