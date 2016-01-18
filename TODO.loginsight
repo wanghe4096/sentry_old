@@ -1,0 +1,58 @@
+api LIST :
+
+   GET /api/0/user_key
+   request:
+   {
+    'username':
+    'password':
+   }
+
+   response:
+   {
+    'user_key': '234asdfaj32sfhasdf234123'
+   }
+
+
+   GET  /api/0/agent_config?host_key=7777&uer_key=
+   {
+
+   }
+
+   POST /api/0/agent_config
+
+   {
+        "name": ""
+   }
+
+    PUT /api/0/agent_config
+    {
+
+    }
+
+    DELETE /api/0/agent_config
+    {
+        host_key=
+    }
+
+   POST /api/0/hosts
+
+   GET /api/0/logfiles?host_id=1
+
+   POST /api/0/logevents?file_id=1&event_offset=1&event_count=30
+
+
+   POST /api/0/streams
+
+    {
+        'name': 'stream_name',
+        'source': [{
+            'host_id':
+            'file_id':
+        }]
+        'options':{ 'extract_template': true, 'sort_by_time': true,  regex: true, exception_monitor: true, sort_by_domain: true, others: true }
+    }
+
+ GET  /api/0/streams/templates
+
+ POST /api/0/streams/templates
+

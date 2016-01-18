@@ -26,7 +26,6 @@ class HostView(Endpoint,
     serializer_class = HostSerializer
     queryset = Host.objects.all()
 
-    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
 
     def get(self, request, *args, **kwargs):
