@@ -31,9 +31,7 @@ class UserkeyEndpoint(Endpoint,
     queryset = User.objects.all()
 
     def get(self, request):
-        user_name = request.GET.get('username', '')
-        pass_word = request.GET.get('password', '')
-        user = User.objects.get(username=user_name)
+        user = User.objects.get(username=request.user.username)
         resp = {'user_key': user.userkey}
         return Response(resp)
 
