@@ -21,6 +21,12 @@ class UserkeyEndpoint(Endpoint,
                       generics.GenericAPIView):
     """
      GET /api/0/user_key
+     授权方式 : basic auth (username/password)
+     描述:  获取USER_KEY
+
+     POST /api/0/user
+    授权方式: basic auth (username/password)
+    描述: 更新USER_KEY
     """
     authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
