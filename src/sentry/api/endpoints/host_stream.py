@@ -16,6 +16,7 @@ from rest_framework import generics
 from sentry.api.base import Endpoint
 import os
 import requests
+import datetime
 import random
 import hashlib
 
@@ -379,14 +380,11 @@ class StreamView(Endpoint,
         return Response({'msg': 'Stream has existed'})
 
 
-import datetime
-
 class LogFilesView(Endpoint,
-                mixins.ListModelMixin,
-               mixins.CreateModelMixin,
-               generics.GenericAPIView):
+                   mixins.ListModelMixin,
+                   mixins.CreateModelMixin,
+                   generics.GenericAPIView):
 
-    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = LogFileSerializer
     queryset = LogFile.objects.all()
