@@ -38,7 +38,6 @@ class RegisterEndpoint(Endpoint):
     """
 
     authentication_classes = [QuietBasicAuthentication]
-
     permission_classes = ()
 
     # XXX: it's not quite clear if this should be documented or not at

@@ -51,9 +51,10 @@
             "id": "2"
           }
       ]
+
 ## AGENT 注册主机
     - request
-        POST /api/0/hosts
+        POST /api/0/agent/hosts
         {
             "user_key": 
             "host_key":
@@ -66,10 +67,10 @@
         {
             'msg': 'ok/failed'
         }
-## agent 获取配置文件
+        
+获取配置文件
    - request
        GET /api/0/agent_config
-    
        {
             "user_key": ""
             "host_key": ""

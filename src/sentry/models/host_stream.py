@@ -19,13 +19,10 @@ class HostType(models.Model):
 
 class Host(models.Model):
     host_name = models.CharField(max_length=128)
-    # host ident
     host_key = models.CharField(max_length=128, null=True)
-    # system type
     system = models.CharField(max_length=128, null=True)
-    #system version
     distver = models.CharField(max_length=128, null=True)
-    host_type = models.ForeignKey(HostType)
+    host_type = models.CharField(max_length=128, null=True)
     user = models.ForeignKey(User)
 
     class Meta:

@@ -6,6 +6,7 @@ from sentry.api.serializers.models.host_stream import (
     HostSerializer, TagSerializer,
     HostTypeSerializer, StreamSerializer, StreamTypeSerializer, LogEventSerializer, LogFileSerializer)
 
+from sentry.models import User
 from sentry.models.host_stream import (
     Host, HostType, Stream, StreamType, Tag, LogEvent, LogFile
 )
@@ -16,6 +17,7 @@ from sentry.api.base import Endpoint
 import os
 import requests
 import random
+import hashlib
 
 
 class HostView(Endpoint,
@@ -24,8 +26,28 @@ class HostView(Endpoint,
                generics.GenericAPIView):
     """
       GET /hosts
-    """
+      POST /hosts
+      param
+      {
+        'user_key': string,
+        'host_name': string,
+        'host_key': string,
+        'system': string,
+        'distver': string,
+        'host_type': string
+      }
 
+    test:
+    requests.post("http://localhost:9000/api/0/hosts", data =
+    {
+        'user_key':'aa090248d975de3f9478fca7a3f28573',
+        'host_type': "web",
+        'host_name': 'centos@wanghe',
+        'system':'linux',
+        'distver':'1.0'
+    })
+
+    """
     serializer_class = HostSerializer
     queryset = Host.objects.all()
     permission_classes = ()
@@ -33,8 +55,12 @@ class HostView(Endpoint,
     def get(self, request, *args, **kwargs):
         if request.user.username == 'AnonymousUser':
             return Response({'msg': 'Invalid user'})
-
-        self.queryset = Host.objects.filter(user=request.user)
+        user_key = request.GET.get('user_key', '')
+        if len(user_key) == 0:
+            user_obj = request.user
+        else:
+            user_obj = User.objects.get(userkey=user_key)
+        self.queryset = Host.objects.filter(user=user_obj)
         return self.list(request, *args, **kwargs)
 
         # result = [{'id':'1',
@@ -82,17 +108,27 @@ class HostView(Endpoint,
         #            "host_type":"代理服务器"}]
         # return Response(result)
 
-    def post(self, request, *args, **kwargs):
+    def post(self, request):
+        user_key_s = request.POST.get('user_key', '')
         host_type_s = request.POST.get('host_type', '')
         host_name = request.POST.get('host_name', '')
-        host_key = request.POST.get('host_key', '')
         system = request.POST.get('system', '')
         distver = request.POST.get('distver', '')
-        host_type_obj = HostType.objects.get(host_type=host_type_s, user=request.user)
-        if not host_type_obj:
-            return Response({'msg': 'Invalid Host type'})
+        host_key = request.POST.get('host_key', '')
+        if len(host_key) == 0:
+            m = hashlib.md5()
+            m.update(str(datetime.datetime.now())+host_name+distver+system)
+            host_key = m.hexdigest()
 
-        host = Host(host_name = host_name, host_type=host_type_obj, host_key=host_key, system = system, distver = distver, user=request.user)
+        if len(user_key_s) == 0:
+            return Response({'msg': 'user key is null'})
+        user = User.objects.get(userkey=user_key_s)
+        host = Host(host_name=host_name,
+                    host_type=host_type_s,
+                    host_key=host_key,
+                    system=system,
+                    distver=distver,
+                    user=user)
         if Host.objects.filter(host_key=host_key):
             return Response({'msg': 'Host has exists!'})
         host.save()
@@ -137,9 +173,10 @@ class HostTypeView(Endpoint,
         # return self.create(request, *args, **kwargs)
 
 
-class TagView(mixins.ListModelMixin,
-                     mixins.CreateModelMixin,
-                     generics.GenericAPIView):
+class TagView(Endpoint,
+              mixins.ListModelMixin,
+              mixins.CreateModelMixin,
+              generics.GenericAPIView):
     """
     GET /tags
     param: none
@@ -157,7 +194,8 @@ class TagView(mixins.ListModelMixin,
         return self.create(request, *args, **kwargs)
 
 
-class StreamTypeView(mixins.ListModelMixin,
+class StreamTypeView(Endpoint,
+                     mixins.ListModelMixin,
                      mixins.CreateModelMixin,
                      generics.GenericAPIView):
     """
