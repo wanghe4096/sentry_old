@@ -98,7 +98,7 @@ const ProjectInstallPlatform = React.createClass({
         <div className="install-content col-md-10">
           <div className="box">
             <div className="box-header">
-              <div className="pull-right">
+              <div className="pull-right hide">
                 <a href={integration.link} className="btn btn-sm btn-default">{t('Full Documentation')}</a>
               </div>
 

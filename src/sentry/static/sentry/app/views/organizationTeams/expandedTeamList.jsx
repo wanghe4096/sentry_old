@@ -141,7 +141,7 @@ const ExpandedTeamList = React.createClass({
               {project.name}
             </Link>
           </h5>
-          <ul className="project-message">
+          <ul className="project-message hide">
             <li>
               <span>{t('time')}</span>
               <span>2015/10/12</span>
