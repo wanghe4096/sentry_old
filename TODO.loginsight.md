@@ -1,6 +1,6 @@
 # API 列表
 
-## 获取和更新USER_KEY
+## 获取USER_KEY
    GET /api/0/user_key
    request:
    {
@@ -13,6 +13,18 @@
     'user_key': '234asdfaj32sfhasdf234123'
    }
 
+## 更新USER_KEY 
+    POST /api/0/user_key
+    request:
+    {
+        "username":
+        "password":
+    }
+    reponse:
+    {
+        'msg': 'ok/failed'
+    }
+    
 ## 获取主机列表
     - request
         GET /api/0/hosts
@@ -75,7 +87,8 @@
         "host_key":
         "config": "config content"
     }
-
+    agent_config = (name(128char), config,  host_id(fk))
+    
 ## 获取文件列表
    - request
    GET /api/0/logfiles?stream_id=1
@@ -144,7 +157,7 @@
         "create_timestamp": "2016-01-18 14:15:48.308696",
         "host_id": 1,
         "id": 1,
-        "size": 72860
+        "size": 72860,
       },
       {
         "stream_name": "nginx.error",
@@ -152,23 +165,20 @@
         "create_timestamp": "2016-01-18 14:15:48.308715",
         "host_id": 1,
         "id": 2,
-        "size": 78176
+        "size": 78176, 
       }
   ]
   
-## 更新stream
+## 更新stream group
     - request
-        POST /api/0/streams
+        POST /api/0/stream-group
         {
-            'name': 'stream_name',
+            'name': 'stream_group_name',
             'source': [{
-                'host_id':
-                'file_id':
+                stream_id, .... 
             }],
             "last_timestamp": 
             "create_timestamp" 
-            "host_id": 
-            "size": 
             'options':{ 
                 'extract_template': true,
                  'sort_by_time': true, 
