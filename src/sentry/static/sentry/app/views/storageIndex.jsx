@@ -60,20 +60,13 @@ const StorageIndex = React.createClass({
 
   componentDidMount() {
     $(document).on('keydown', this.keyDownHandler);
-    $(document).on('scroll', this.scrollHandler);
     HostAction.fetch();
   },
 
   componentWillUnmount() {
     $(document).off('keydown', this.keyDownHandler);
-    $(document).off('scroll', this.scrollHandler);
-  },
-
-  scrollHandler(e) {
-    //if (HmStatusStore.status.activeHost) {
-    //  e.preventDefault();
-    //  document.body.scrollTop = 0;
-    //}
+    HmStatusAction.setActiveHost(null);
+    $('body').css('overflow-y', 'auto');
   },
 
   keyDownHandler(evt){
