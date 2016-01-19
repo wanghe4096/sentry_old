@@ -96,10 +96,6 @@ const OrganizationDetails = React.createClass({
     return '/organizations/' + this.props.params.orgId + '/';
   },
 
-  getTitle() {
-    return this.state.organization ? this.state.organization.name : 'LogInsight';
-  },
-
   render() {
     if (this.state.loading) {
         return (
@@ -125,7 +121,7 @@ const OrganizationDetails = React.createClass({
     let params = this.props.params;
 
     return (
-      <DocumentTitle title={this.getTitle()}>
+      <DocumentTitle title="Events">
         <div className="app">
           <BorderMenu/>
           {this.state.hooks}
