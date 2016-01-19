@@ -9,6 +9,7 @@ import React from 'react';
 import Reflux from 'reflux';
 import ApiMixin from 'mixins/apiMixin';
 import LoadingIndicator from 'components/loadingIndicator';
+import LoadingError from 'components/loadingError';
 import {t} from 'app/locale';
 
 import HostStore from 'stores/storage/hostStore';
@@ -71,12 +72,36 @@ const HostList = React.createClass({
     }
   },
 
-  renderList() {
-    return this.state.hostList.map((host,i) => {
+  renderBody() {
+
+    // todo: 此处需要实现loading 状态
+
+    if (this.state.loading) {
       return (
-        <HostItem {...host} key={i}></HostItem>
+        <div className="box">
+          <LoadingIndicator />
+        </div>
+      );
+    } else if (this.state.error) {
+      return (
+        <LoadingError onRetry={()=>{
+          HostAction.fetch();
+        }}/>
       )
-    });
+    } else if (!this.state.hostList.length) {
+      return (
+        <div className="box empty-stream">
+          <span className="icon icon-exclamation"/>
+          <p>{t('Sorry, no host match your account.')}</p>
+        </div>
+      );
+    } else {
+      return this.state.hostList.map((host, i) => {
+        return (
+          <HostItem {...host} key={i}/>
+        )
+      });
+    }
   },
 
   addHostHandler() {
@@ -97,7 +122,7 @@ const HostList = React.createClass({
 
         </div>
         <ul>
-          {this.renderList()}
+          {this.renderBody()}
         </ul>
       </div>
     );

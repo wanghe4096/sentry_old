@@ -8,10 +8,13 @@
 import React from 'react';
 import Reflux from 'reflux';
 import {t} from 'app/locale';
+import _ from 'underscore';
 import {Link,IndexLink} from 'react-router';
 import OrganizationState from 'mixins/organizationState';
-import _ from 'underscore';
+import LoadingIndicator from 'components/loadingIndicator';
+import LoadingError from 'components/loadingError';
 
+import FileAction from 'actions/storage/fileAction';
 import HostStore from 'stores/storage/hostStore';
 import StreamStore from 'stores/storage/streamStore';
 import FileStore from 'stores/storage/fileStore';
@@ -105,12 +108,33 @@ const FileList = React.createClass({
     }
   },
 
-  renderList() {
-    return this.state.fileList.map((file, i)=> {
+  renderBody() {
+    if (this.state.loading) {
       return (
-        <FileItem {...file} key={i}/>
+        <div className="box">
+          <LoadingIndicator />
+        </div>
+      );
+    } else if (this.state.error) {
+      return (
+        <LoadingError onRetry={()=>{
+          FileAction.fetch(HmStatusStore.status.activeStream);
+        }}/>
       )
-    });
+    } else if (!this.state.fileList.length) {
+      return (
+        <div className="box empty-stream">
+          <span className="icon icon-exclamation"/>
+          <p>{t('Sorry, not found.')}</p>
+        </div>
+      );
+    } else {
+      return this.state.fileList.map((file, i)=> {
+        return (
+          <FileItem {...file} key={i}/>
+        )
+      });
+    }
   },
 
   render() {
@@ -124,7 +148,7 @@ const FileList = React.createClass({
             <h5>{t('File List')}</h5>
           </div>
           <ul>
-            { this.renderList() }
+            { this.renderBody() }
           </ul>
         </div>
       </div>

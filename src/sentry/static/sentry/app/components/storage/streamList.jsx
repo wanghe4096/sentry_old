@@ -8,8 +8,9 @@
 import React from 'react';
 import Reflux from 'reflux';
 import ApiMixin from 'mixins/apiMixin';
-import LoadingIndicator from 'components/loadingIndicator';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import LoadingIndicator from 'components/loadingIndicator';
+import LoadingError from 'components/loadingError';
 import {t} from 'app/locale';
 import moment from 'moment';
 
@@ -81,12 +82,33 @@ const StreamList = React.createClass({
 
   },
 
-  renderList() {
-    return this.state.streamList.map((stream) => {
+  renderBody() {
+    if (this.state.loading) {
       return (
-        <StreamItem {...stream} key={stream.id}/>
+        <div className="box">
+          <LoadingIndicator />
+        </div>
+      );
+    } else if (this.state.error) {
+      return (
+        <LoadingError onRetry={()=>{
+          StreamAction.fetch(HmStatusStore.status.activeHost);
+        }}/>
       )
-    });
+    } else if (!this.state.streamList.length) {
+      return (
+        <div className="box empty-stream">
+          <span className="icon icon-exclamation"/>
+          <p>{t('Sorry, not found.')}</p>
+        </div>
+      );
+    } else {
+      return this.state.streamList.map((stream) => {
+        return (
+          <StreamItem {...stream} key={stream.id}/>
+        )
+      });
+    }
   },
 
   render() {
@@ -102,7 +124,7 @@ const StreamList = React.createClass({
             <h5>{t('Stream List')}</h5>
           </div>
           <ul>
-            { this.renderList() }
+            { this.renderBody() }
           </ul>
         </div>
       </div>
