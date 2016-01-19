@@ -76,6 +76,10 @@ body.auth {
 */
 
 header {
+  position: fixed;
+  top:0;
+  width: 100%;
+  z-index: 1;
   background-color: @header-bg-color;
   -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
   box-shadow: 0 0 4px rgba(0, 0, 0, 0.2);
@@ -83,7 +87,6 @@ header {
   color: @gray-darker;
   .clearfix();
   font-size: 15px;
-  margin-bottom: 30px;
 
   .container {
     //padding-right: 0;
@@ -172,17 +175,27 @@ header {
   }
 }
 
+.sub-app{
+  padding-top: 60px;
+}
+
 .sub-header {
   background: #fff;
   color: @gray-dark;
   border-bottom: 1px solid @trim;
   position: relative;
-  height: 56px;
-  padding: 20px 0 0;
-  margin: -30px 0 20px;
+  margin-bottom: 20px;
+  //height: 56px;
+  //padding: 20px 0 0;
+  //margin: -30px 0 20px;
   line-height: 1;
   font-size: 16px;
   .clearfix;
+
+  h5 {
+    margin-bottom: 15px;
+    line-height: 1.4;
+  }
 
   .container {
 
@@ -216,6 +229,7 @@ header {
   .nav-tabs {
     position: relative;
     margin-top: -3px;
+    margin-bottom: 0;
     z-index: 2;
 
     li {
