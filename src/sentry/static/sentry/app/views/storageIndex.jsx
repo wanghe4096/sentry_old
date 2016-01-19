@@ -71,7 +71,12 @@ const StorageIndex = React.createClass({
 
   keyDownHandler(evt){
     if (evt.keyCode === 27) {
-      HmStatusAction.setActiveHost(null);
+      if (HmStatusStore.status.activeStream) {
+        HmStatusAction.setActiveStream(null);
+      } else {
+        HmStatusAction.setActiveHost(null);
+      }
+
     }
   },
 
