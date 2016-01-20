@@ -77,6 +77,13 @@ const BorderMenu = createClass({
                     activeClassName="active"
                     title={t('log storage')}/>
               </li>
+              <li>
+                <Link
+                  to={`/${org.slug}/extract/`}
+                  className="fa fa-random"
+                  activeClassName="active"
+                  title={t('structure')}/>
+              </li>
               <li className="hide">
                 <Link
                   to={`/`}

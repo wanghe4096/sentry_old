@@ -38,6 +38,9 @@ import StorageApp from 'views/storageApp';
 import LogPreview from 'views/logPreview';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
+import ExtractApp from 'views/extractApp';
+import ExtractIndex from 'views/extractIndex';
+import ExtractDetail from 'views/extractDetail'
 
 import OrganizationStore from 'stores/organizationStore';
 
@@ -77,6 +80,12 @@ let routes = (
         <IndexRoute component={StorageIndex} />
         <Route path="preview/:logId" component={LogPreview} />
       </Route>
+
+      <Route path="extract" component={ExtractApp} >
+        <IndexRoute component={ExtractIndex} />
+        <Route path=":streamId/:action" component={ExtractDetail} />
+      </Route>
+
 
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams} />
