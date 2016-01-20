@@ -65,10 +65,10 @@ from .endpoints.team_groups_trending import TeamGroupsTrendingEndpoint
 from .endpoints.team_project_index import TeamProjectIndexEndpoint
 from .endpoints.team_stats import TeamStatsEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
-from .endpoints.register import RegisterEndpoint
-from .endpoints.host_stream import HostView, StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
+from .endpoints.store_auth import RegisterEndpoint
+from .endpoints.store_streams import HostView, StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
 from .endpoints.demo_exception import DemoExceptionView
-from .endpoints.host_stream import LogFilesView
+from .endpoints.store_streams import LogFilesView
 from .endpoints.user_key import UserkeyEndpoint
 urlpatterns = patterns(
     '',
