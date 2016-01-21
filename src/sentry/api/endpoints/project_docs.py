@@ -6,6 +6,10 @@ from sentry import options
 from sentry.api.bases.project import ProjectEndpoint
 from sentry.models import ProjectKey
 
+import logging
+
+logger = logging.getLogger('sentry')
+
 
 class ProjectDocsEndpoint(ProjectEndpoint):
     def get(self, request, project):
@@ -15,6 +19,8 @@ class ProjectDocsEndpoint(ProjectEndpoint):
         context = {
             'platforms': data['platforms'],
         }
+        logger.info(context)
+
         if project_key:
             context['dsn'] = project_key.dsn_private
             context['dsnPublic'] = project_key.dsn_public

@@ -57,6 +57,7 @@ const ProjectInstallPlatform = React.createClass({
           error: false,
           html: data.html
         });
+        console.log("fffffffff=", data)
       },
       error: () => {
         this.setState({

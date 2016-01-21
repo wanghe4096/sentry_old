@@ -4,7 +4,8 @@ import logging
 
 from sentry.tasks.base import instrumented_task
 
-BASE_URL = 'https://docs.getsentry.com/hosted/_platforms/{}'
+# BASE_URL = 'https://docs.getsentry.com/hosted/_platforms/{}'
+BASE_URL = 'http://docs.loginsight.cn/hosted/_platforms/{}'
 
 logger = logging.getLogger('sentry')
 
@@ -42,7 +43,7 @@ def sync_docs():
                 )
             ],
         })
-
+    logger.info(platform_list)
     platform_list.sort(key=lambda x: x['name'])
 
     options.set('sentry:docs', {'platforms': platform_list})
@@ -65,7 +66,7 @@ def sync_integration_docs(platform_id, integration_id, path):
     session = http.build_session()
 
     data = session.get(BASE_URL.format(path)).json()
-
+    logger.info(data)
     key = get_integration_id(platform_id, integration_id)
     options.set('sentry:docs:{}'.format(key), {
         'id': key,
