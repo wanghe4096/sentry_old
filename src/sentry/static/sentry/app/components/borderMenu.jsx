@@ -21,7 +21,16 @@ const BorderMenu = createClass({
 
   foldHandler() {
     let $menu = $(this.refs.menu);
-    $menu.toggleClass('bt-menu-open');
+    //$menu.toggleClass('bt-menu-open');
+    let $body = $(document.body);
+    if ($menu.hasClass("bt-menu-open")) {
+      $body.click(function(){
+        $menu.removeClass('bt-menu-open');
+      });
+    }
+    else{
+      $menu.addClass('bt-menu-open');
+    }
   },
 
   render() {
