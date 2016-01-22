@@ -35,6 +35,7 @@ import RouteNotFound from 'views/routeNotFound';
 import SharedGroupDetails from 'views/sharedGroupDetails';
 import StorageIndex from 'views/storageIndex';
 import StorageApp from 'views/storageApp';
+import HomeApp from 'views/homeApp';
 import LogPreview from 'views/logPreview';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
@@ -57,6 +58,7 @@ let routes = (
 
     <Redirect from="/events" to={defaultOrg.slug+'/events'} />
     <Redirect from="/storage" to={defaultOrg.slug+'/storage'} />
+    <Redirect from="/home" to={defaultOrg.slug+'/home'} />
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/" />
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails} />
 
@@ -76,6 +78,9 @@ let routes = (
       <Route path="storage" component={StorageApp} >
         <IndexRoute component={StorageIndex} />
         <Route path="preview/:logId" component={LogPreview} />
+      </Route>
+
+      <Route path="home" component={HomeApp} >
       </Route>
 
       <Route path="events" component={EventsIndex}>

@@ -19,19 +19,10 @@ const BorderMenu = createClass({
     organization: PropTypes.Organization
   },
 
-  foldHandler() {
-    let $menu = $(this.refs.menu);
-    //$menu.toggleClass('bt-menu-open');
-    let $body = $(document.body);
-    if ($menu.hasClass("bt-menu-open")) {
-      $body.click(function(){
-        $menu.removeClass('bt-menu-open');
-      });
-    }
-    else{
-      $menu.addClass('bt-menu-open');
-    }
-  },
+  //foldHandler() {
+  //  let $menu = $(this.refs.menu);
+  //  $menu.toggleClass('bt-menu-open');
+  //},
 
   render() {
 
@@ -74,9 +65,16 @@ const BorderMenu = createClass({
             <ul id="myTab">
               <li>
                 <Link
+                    to={`/${org.slug}/home/`}
+                    activeClassName="active"
+                    className="fa fa-home"
+                    title={t('issues')}/>
+              </li>
+              <li>
+                <Link
                   to={`/${org.slug}/events/`}
                   activeClassName="active"
-                  className="fa fa-home"
+                  className="fa fa-bug"
                   title={t('issues')}/>
               </li>
               <li>
