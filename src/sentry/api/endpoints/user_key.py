@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
+"""
 __author__ = 'wanghe'
 __company__ = 'LogInsight'
 __email__ = 'wangh@loginsight.cn'
-
+"""
 from __future__ import absolute_import
 from rest_framework.response import Response
 from sentry.api.authentication import QuietBasicAuthentication

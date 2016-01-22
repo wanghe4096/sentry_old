@@ -1,11 +1,12 @@
 # -*- coding: utf-8 -*-
-__author__ = 'wanghe'
+"""__author__ = 'wanghe'
 __company__ = 'LogInsight'
 __email__ = 'wangh@loginsight.cn'
-
+"""
 
 from __future__ import unicode_literals
 from sentry.models.user import User
+from sentry.models.organization import Organization
 from django.db import models
 
 # Create your models here.
@@ -29,7 +30,10 @@ class Host(models.Model):
     system = models.CharField(max_length=128, null=True)
     distver = models.CharField(max_length=128, null=True)
     host_type = models.CharField(max_length=128, null=True)
+    create_time = models.DateTimeField(null=True)
+    last_time = models.DateTimeField(null=True)
     user = models.ForeignKey(User)
+    organization = models.ForeignKey(Organization)
 
     class Meta:
         app_label = 'sentry'
@@ -38,6 +42,17 @@ class Host(models.Model):
     def __unicode__(self):
         return self.host_name
 
+    def get_audit_log_data(self):
+        return {
+            'id': self.id,
+            'host_name': self.host_name,
+            'host_key': self.host_key,
+            'system': self.system,
+            'distver': self.distver,
+            'host_type': self.host_type,
+            'create_time': str(self.create_time),
+            'last_time': str(self.last_time),
+        }
 
 class Tag(models.Model):
     tag_name = models.CharField(max_length=128)

@@ -5,10 +5,8 @@ __email__ = 'wangh@loginsight.cn'
 
 # Create your views here.
 from sentry.api.serializers.models.host_stream import (
-    HostSerializer, TagSerializer,
-    HostTypeSerializer, StreamSerializer, StreamTypeSerializer, LogEventSerializer, LogFileSerializer)
+    TagSerializer,HostTypeSerializer, StreamSerializer, StreamTypeSerializer, LogEventSerializer, LogFileSerializer)
 
-from sentry.models import User
 from sentry.models.host_stream import (
     Host, HostType, Stream, StreamType, Tag, LogEvent, LogFile
 )
@@ -17,77 +15,9 @@ from rest_framework import mixins
 from rest_framework import generics
 from sentry.api.base import Endpoint
 import os
-import requests
 import datetime
 import random
-import hashlib
 
-
-class HostView(Endpoint):
-    """
-      GET /hosts
-      POST /hosts
-      param
-      {
-        'user_key': string,
-        'host_name': string,
-        'host_key': string,
-        'system': string,
-        'distver': string,
-        'host_type': string
-      }
-
-    test:
-    requests.post("http://localhost:9000/api/0/hosts", data =
-    {
-        'user_key':'aa090248d975de3f9478fca7a3f28573',
-        'host_type': "web",
-        'host_name': 'centos@wanghe',
-        'system':'linux',
-        'distver':'1.0'
-    })
-
-    """
-    serializer_class = HostSerializer
-    queryset = Host.objects.all()
-    permission_classes = ()
-
-    def get(self, request, *args, **kwargs):
-        if request.user.username == 'AnonymousUser':
-            return Response({'msg': 'Invalid user'})
-        user_key = request.GET.get('user_key', '')
-        if len(user_key) == 0:
-            user_obj = request.user
-        else:
-            user_obj = User.objects.get(userkey=user_key)
-        self.queryset = Host.objects.filter(user=user_obj)
-        return self.list(request, *args, **kwargs)
-
-    def post(self, request):
-        user_key_s = request.POST.get('user_key', '')
-        host_type_s = request.POST.get('host_type', '')
-        host_name = request.POST.get('host_name', '')
-        system = request.POST.get('system', '')
-        distver = request.POST.get('distver', '')
-        host_key = request.POST.get('host_key', '')
-        if len(host_key) == 0:
-            m = hashlib.md5()
-            m.update(str(datetime.datetime.now())+host_name+distver+system)
-            host_key = m.hexdigest()
-
-        if len(user_key_s) == 0:
-            return Response({'msg': 'user key is null'})
-        user = User.objects.get(userkey=user_key_s)
-        host = Host(host_name=host_name,
-                    host_type=host_type_s,
-                    host_key=host_key,
-                    system=system,
-                    distver=distver,
-                    user=user)
-        if Host.objects.filter(host_key=host_key):
-            return Response({'msg': 'Host has exists!'})
-        host.save()
-        return Response({'msg': 'Success to add host'})
 
 
 class HostTypeView(Endpoint,
