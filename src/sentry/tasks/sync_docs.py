@@ -4,7 +4,6 @@ import logging
 
 from sentry.tasks.base import instrumented_task
 
-# BASE_URL = 'https://docs.getsentry.com/hosted/_platforms/{}'
 BASE_URL = 'http://docs.loginsight.cn/hosted/_platforms/{}'
 
 logger = logging.getLogger('sentry')

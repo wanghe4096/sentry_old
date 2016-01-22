@@ -15,7 +15,6 @@ class ProjectDocsEndpoint(ProjectEndpoint):
     def get(self, request, project):
         data = options.get('sentry:docs')
         project_key = ProjectKey.get_default(project)
-        print 'data = ', data
         context = {
             'platforms': data['platforms'],
         }

@@ -22,8 +22,6 @@ def replace_keys(html, project_key):
 class ProjectDocsPlatformEndpoint(ProjectEndpoint):
     def get(self, request, project, platform):
         data = options.get('sentry:docs:{}'.format(platform))
-        print 'ddddddddd=', data
-        print 'platform=', platform
         if not data:
             raise ResourceDoesNotExist
 
