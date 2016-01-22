@@ -32,7 +32,5 @@ class HostSerializer(Serializer):
             'system': obj.system,
             'create_time': obj.create_time,
             'last_time': obj.last_time,
-            'user': obj.user,
-            'organization': obj.organization,
         }
 
