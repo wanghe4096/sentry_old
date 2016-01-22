@@ -86,36 +86,36 @@ class HostIndexEndpoint(HostEndpoint):
 
         :pparam string organization_slug: the slug of the organization the
                                           team should be created for.
-        :param string name: the name of the organization.
-        :param string slug: the optional slug for this organization.  If
-                            not provided it will be auto generated from the
-                            name.
+        :param string host_name: the name of the host.
+        :param string host_type:  the host type of the host
+        :param string system:  the os of the host
+        :param string distver:  the os version of the host
+
         :auth: required
         """
-        # serializer = HostSerializer(data=request.DATA)
-        # if serializer.is_valid():
-        #     result = serializer.object
 
         result = request.DATA
         org_mem = OrganizationMember.objects.get(user=request.user)
         org = Organization.objects.get(id=org_mem.organization_id)
-
-        host = Host.objects.create(
-            host_name=result['host_name'],
-            host_key=generate_host_key(result),
-            host_type=result['host_type'],
-            system=result['system'],
-            distver=result['distver'],
-            last_time=result['last_time'],
-            create_time=result['create_time'],
-            user_id=request.user.id,
-            organization=org,
-        )
-        self.create_audit_entry(
-            request=request,
-            organization=org,
-            target_object=host.id,
-            event=AuditLogEntryEvent.HOST_ADD,
-            data=host.get_audit_log_data(),
-        )
-        return Response({'msg': 'ok'}, status=201)
+        hk = generate_host_key(result)
+        if not Host.objects.filter(host_key=hk):
+            host = Host.objects.create(
+                host_name=result['host_name'],
+                host_key=generate_host_key(result),
+                host_type=result['host_type'],
+                system=result['system'],
+                distver=result['distver'],
+                last_time=str(datetime.datetime.now()),
+                create_time=str(datetime.datetime.now()),
+                user_id=request.user.id,
+                organization=org,
+            )
+            self.create_audit_entry(
+                request=request,
+                organization=org,
+                target_object=host.id,
+                event=AuditLogEntryEvent.HOST_ADD,
+                data=host.get_audit_log_data(),
+            )
+            return Response({'msg': 'ok'}, status=201)
+        return Response({'msg': 'fail'}, status=501)
