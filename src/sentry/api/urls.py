@@ -67,7 +67,7 @@ from .endpoints.team_stats import TeamStatsEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
 from .endpoints.store_auth import RegisterEndpoint
 from .endpoints.store_streams import HostView, StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
-from .endpoints.demo_exception import DemoExceptionView
+from .endpoints.demo_exception import DemoExceptionEndpoint
 from .endpoints.store_streams import LogFilesView
 from .endpoints.user_key import UserkeyEndpoint
 urlpatterns = patterns(
@@ -82,7 +82,7 @@ urlpatterns = patterns(
     url(r'^tags', TagView.as_view(), name='sentry-api-0-tags'),
     url(r'^logfiles', LogFilesView.as_view(), name='sentry-api-0-logfiles'),
     url(r'^logevents', LogEventView.as_view(), name='sentry-api-0-events'),
-    url(r'^create_demo', DemoExceptionView.as_view(), name='sentry-api-0-create-demo'),
+    url(r'^create_demo', DemoExceptionEndpoint.as_view(), name='sentry-api-0-create-demo'),
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),

@@ -1,3 +1,9 @@
+# -*- coding: utf-8 -*-
+__author__ = 'wanghe'
+__company__ = 'LogInsight'
+__email__ = 'wangh@loginsight.cn'
+
+
 from __future__ import unicode_literals
 from sentry.models.user import User
 from django.db import models
