@@ -26,33 +26,48 @@ const TemplateChart = React.createClass({
   getOption() {
     window.xxx = this.state.data;
 
+    const values = this.state.data.map((template) => {
+      return template.events.length
+    });
+    const xNames = this.state.data.map((x, i) => {
+      return "T" + i
+    });
+
+    console.log('values:',values,xNames);
+
     let option = {
       toolbox: {
         show: false
       },
-      grid: {
-        y2: 80
+      tooltip:{
+        show:true
       },
       xAxis: [
         {
           type: 'category',
-          data: this.state.data.map(() => { return "template 1" })
+          data: xNames
         }
       ],
       yAxis: [
         {
           name: 'events',
           type: 'value',
-          axisLabel : {
+          axisLabel: {
             formatter: '{value}'
           }
         }
       ],
       series: [
         {
-          name:'蒸发量',
-          type:'bar',
-          data:this.state.data.map((template) => { return template.events.length })
+          name: '匹配数',
+          type: 'bar',
+          data: values,
+          itemStyle: {
+            normal: {
+              opacity: 0.5,
+              color: '#50A035' //'#25A6F7'
+            }
+          }
         }
       ]
     };

@@ -26,6 +26,9 @@ const EventChart = React.createClass({
   },
 
   getOption() {
+
+    console.log('this.state.data:', this.state.data);
+
     return {
 
       toolbox: {
@@ -33,10 +36,9 @@ const EventChart = React.createClass({
       },
       dataZoom: [
         {
-          type: 'slider',
+          type: 'inside',
           show: true,
-          zoomLock: true,
-          start: 70
+          zoomLock: true
         }
       ],
       grid: {
@@ -46,7 +48,6 @@ const EventChart = React.createClass({
         {
           type: 'time',
           splitNumber: 10
-
         }
       ],
       yAxis: [
@@ -61,9 +62,10 @@ const EventChart = React.createClass({
           type: 'line',
           smooth: true,
           areaStyle: {
-            normal: {}
+            normal: {
+              color: 'red'
+            }
           },
-          backgroundColor: 'rgba(0, 0, 0, 0.5)',
           data: this.state.data
         }
       ]

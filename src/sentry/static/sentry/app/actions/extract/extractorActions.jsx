@@ -23,13 +23,14 @@ ExtractorActions.run.listen(function (streamId, action) {
   let mockData = [];
   let i = 0;
   while (i++ < 10) {
+    const event_len = _.random(1, 6);
     let template = {
       action: action,
       stream_id: streamId,
       template: 'xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx',
+      matched_total: _.random(event_len,100),
       events: (() => {
         let events = [];
-        const event_len = _.random(1, 6);
         let event_i = 0;
         while (event_i++ < event_len) {
           let logObj = [
