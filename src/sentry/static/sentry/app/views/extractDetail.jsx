@@ -16,6 +16,7 @@ import _ from 'underscore';
 import OrganizationState from 'mixins/organizationState';
 import EventList from 'components/extract/eventList';
 import EventChart from 'components/extract/eventChart';
+import TemplateChart from 'components/extract/templateChart';
 import TimeRange  from 'components/extract/timeRange';
 import LoadingIndicator from 'components/loadingIndicator';
 import LoadingError from 'components/loadingError';
@@ -26,35 +27,38 @@ import ExtractorConfigStore from 'stores/extract/extractorConfigStore';
 import ExtractorConfigActions from 'actions/extract/extractorConfigActions';
 import StreamChartStore from 'stores/extract/streamChartStore';
 import StreamChartActions from 'actions/extract/streamChartActions';
+import ExtractorActions from 'actions/extract/extractorActions';
+import ExtractorTemplateStore from 'stores/extract/extractorTemplateStore'
+import StructureTemplate from 'components/extract/structureTemplate'
+
+
+// todo: 验证 streamID,action是否合法?不合法则 replaceState -> 404
 
 const ExtractDetail = React.createClass({
   mixins: [
     OrganizationState,
     Reflux.listenTo(ExtractorConfigStore, 'onConfigChange'),
+    Reflux.listenTo(ExtractorTemplateStore, 'onTemplateChange')
     //Reflux.listenTo(StreamChartStore, 'onStreamChartDataChange')
   ],
 
   getInitialState() {
     return {
+      streamId: this.props.params.streamId,
+      action: this.props.params.action,
       error: false,
       loading: false,
-      config: null,
       isRuned: false,
       runing: false
     }
   },
 
   componentWillMount() {
-    this.initData();
-  },
-
-  initData() {
 
     this.setState({
       loading: true
     });
-    // todo:
-    // 会存在一个问题:  runed的无法查看 events list 和 stream chart
+    // todo:  runed的无法查看 events list 和 stream chart
     ExtractorConfigActions.fetch(this.props.params.streamId);
 
   },
@@ -63,48 +67,40 @@ const ExtractDetail = React.createClass({
 
     if (config.last_extracted_at) {
       this.setState({
-        loading:false,
+        loading: false,
         isRuned: true
       });
     } else {
       this.setState({
-        loading:false
+        loading: false
       });
     }
   },
 
+  onTemplateChange() {
 
-  //onStreamChartDataChange(data) {
-  //  this.setState({
-  //    loading: false
-  //  });
-  //},
+    this.setState({
+      runing: false
+    })
 
-  //
-  //getActionConfig(cb) {
-  //
-  //  const streamId = this.props.params.streamId;
-  //
-  //  // todo: mock data
-  //  setTimeout(()=> {
-  //    cb(null, {
-  //      action_name: 'xxxx',
-  //      stream_id: streamId,
-  //      isRuned: window.location.hash === '#runed', // mock:是否已运行过
-  //      options: {}
-  //    })
-  //  }, 300)
-  //
-  //},
+  },
 
   runBtnHandler() {
+
     this.setState({
-      runing: true
+      runing: true,
+      isRuned: true
     });
+
+    setTimeout(() => {
+      ExtractorActions.run(this.state.streamId, this.state.action);
+    }, 0)
+
+
   },
 
   saveBtnHandler() {
-    console.log('saving');
+    console.log('saving handler');
   },
 
   renderRunBtn() {
@@ -127,14 +123,15 @@ const ExtractDetail = React.createClass({
   renderChartView() {
 
     const streamId = this.props.params.streamId;
+    const action = this.props.params.action;
 
     if (this.state.isRuned) {
       return (
-        <div>模板列表</div>
+        <TemplateChart streamId={streamId} action={action}/>
       )
     } else {
       return (
-        <EventChart streamId={streamId} />
+        <EventChart streamId={streamId} action={action}/>
       )
     }
 
@@ -152,14 +149,28 @@ const ExtractDetail = React.createClass({
   },
 
   renderBodyView() {
-    if (this.state.isRuned) {
-      return (
-        <div>模板 报表</div>
-      )
-    } else {
+    if (!this.state.isRuned) {
       return (
         <EventList />
       )
+    }
+
+    switch (this.state.action) {
+      case 'structure':
+        return (
+          <StructureTemplate />
+        );
+        break;
+      case 'grok':
+        return (
+          <div><h1>grok</h1></div>
+        );
+        break;
+      case 'reg':
+        return (
+          <div><h1>reg</h1></div>
+        );
+        break;
     }
   },
 

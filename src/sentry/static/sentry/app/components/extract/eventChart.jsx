@@ -90,10 +90,6 @@ const EventChart = React.createClass({
 
     ExtractorStatusActions.setTimeRange(param.start, param.end);
 
-    //console.log(timelinechanged)
-
-    console.log('param:', param);
-    //  ExtractStateActions
   },
   render() {
     return (
