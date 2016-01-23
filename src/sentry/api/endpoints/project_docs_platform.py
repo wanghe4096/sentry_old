@@ -32,6 +32,4 @@ class ProjectDocsPlatformEndpoint(ProjectEndpoint):
             'html': replace_keys(data['html'], project_key),
             'link': data['link'],
         }
-        print 'resp = ', resp
-
         return Response(resp)

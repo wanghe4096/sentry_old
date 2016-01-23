@@ -18,8 +18,6 @@ class ProjectDocsEndpoint(ProjectEndpoint):
         context = {
             'platforms': data['platforms'],
         }
-        logger.info(context)
-
         if project_key:
             context['dsn'] = project_key.dsn_private
             context['dsnPublic'] = project_key.dsn_public
