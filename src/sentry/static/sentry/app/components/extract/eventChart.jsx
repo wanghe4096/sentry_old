@@ -27,7 +27,14 @@ const EventChart = React.createClass({
 
   getOption() {
 
-    console.log('this.state.data:', this.state.data);
+    window.xxx = this.state.data;
+
+    const values = this.state.data.map((x) => {
+      return x[1]
+    });
+    const xNames = this.state.data.map((x, i) => {
+      return "T" + i
+    });
 
     return {
 
@@ -42,31 +49,36 @@ const EventChart = React.createClass({
         }
       ],
       grid: {
-        y2: 80
+        left: 20,
+        right: 20,
+        bottom: 30,
+        top:20
       },
       xAxis: [
         {
-          type: 'time',
-          splitNumber: 10
+          type: 'category',
+          data: xNames
         }
       ],
       yAxis: [
         {
-          type: 'value'
+          type: 'value',
+          axisLabel: {
+            formatter: '{value}'
+          }
         }
       ],
-      throttle: 300, // 节流阀
       series: [
         {
           name: 'series1',
-          type: 'line',
+          type: 'bar',
           smooth: true,
-          areaStyle: {
+          itemStyle: {
             normal: {
-              color: 'red'
+              color: '#ccc'
             }
           },
-          data: this.state.data
+          data: values
         }
       ]
     };

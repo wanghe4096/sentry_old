@@ -15,11 +15,10 @@
     font-weight: 600;
     color: #394359;
     margin-bottom: 0;
-    padding-left: 15px;
   }
 
   // ::: structure
-  .extract-detail {
+  .extractor-container {
 
     .breadcrumb {
       padding: 8px 15px 8px 0;
@@ -28,14 +27,17 @@
     }
 
     .chart-view {
-      height: 300px;
+      height: 220px;
       margin-bottom: 20px;
     }
 
-    .btn-view {
-      padding: 10px 30px;
-      background: #efefef;
-      margin: 0 -15px 0 -30px;
+    .control-group {
+
+      .tab-btn {
+        .btn-default.btn-primary {
+          color: #fff;
+        }
+      }
     }
 
     .time-range {
@@ -105,9 +107,28 @@
 
     .chart-wrap {
       height: 100%;
-      margin-top: -60px;
     }
 
+  }
+  .extract-role {
+    .template-chart-wrap {
+      width: 200px;
+      height: 100%;
+      background-color: #ccc;
+    }
+
+    .template-editor-wrap {
+      margin-left: 200px;
+      background-color: #eee;
+      height: 100%;
+
+      .template-editor {
+
+      }
+      .save-btn {
+
+      }
+    }
   }
 
   .structure-template {
@@ -126,19 +147,6 @@
 
     .template-item {
       margin-bottom: 30px;
-    }
-
-    .template-editor {
-      textarea {
-        width: 100%;
-        border: 1px solid #ccc;
-        color: #50A035;
-        outline: none;
-        resize: none;
-        &:focus {
-          border: 1px solid #333;
-        }
-      }
     }
 
     .template-info {

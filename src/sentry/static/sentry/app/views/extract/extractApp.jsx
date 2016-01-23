@@ -7,6 +7,7 @@
 
 import React from 'react';
 import DocumentTitle from 'react-document-title';
+import {Link} from 'react-router';
 import {t} from 'app/locale';
 
 const ExtractApp = React.createClass({
@@ -14,15 +15,15 @@ const ExtractApp = React.createClass({
     return {}
   },
   render() {
-    return(
+
+    const depth = this.props.routes.length;
+
+    return (
       <DocumentTitle title="Extract">
-        <div className="sub-app sa-extract">
-          <div className="container">
-            <div className="row content">
-              <div className="col-md-12 sub-header">
-                <h5>{t('Log Structure')}</h5>
-              </div>
-              <div className="col-md-12">
+        <div className="container">
+          <div className="row">
+            <div className="col-md-12">
+              <div className="sub-app sa-extract">
                 { this.props.children }
               </div>
             </div>

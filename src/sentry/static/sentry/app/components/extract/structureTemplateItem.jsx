@@ -30,8 +30,8 @@ const StructureTemplateItem = React.createClass({
   render() {
     return (
       <div className="template-item">
-        <div className="template-editor">
-          <textarea onChange={this.onChangeHandler} value={ this.props.template }></textarea>
+        <div className="template-val">
+          <pre>{this.props.template }</pre>
         </div>
         <div className="template-info">
           <ul className="matched_events">

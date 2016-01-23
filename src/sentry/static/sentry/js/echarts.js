@@ -98,17 +98,17 @@ var esl;
    * @type {Object}
    */
   var requireConf = {
-    baseUrl: './',
-    paths: {},
-    config: {},
-    map: {},
-    packages: [],
-    shim: {},
+    baseUrl    : './',
+    paths      : {},
+    config     : {},
+    map        : {},
+    packages   : [],
+    shim       : {},
     // #begin-ignore
     waitSeconds: 0,
     // #end-ignore
-    bundles: {},
-    urlArgs: {}
+    bundles    : {},
+    urlArgs    : {}
   };
   /* eslint-enable key-spacing */
 
@@ -264,7 +264,6 @@ var esl;
       );
     }
   }
-
   // #end-ignore
 
   /**
@@ -398,18 +397,18 @@ var esl;
     if (!modModules[id]) {
       /* eslint-disable key-spacing */
       modModules[id] = {
-        id: id,
-        depsDec: dependencies,
-        deps: dependencies || ['require', 'exports', 'module'],
-        factoryDeps: [],
-        factory: factory,
-        exports: {},
-        config: moduleConfigGetter,
-        state: MODULE_PRE_DEFINED,
-        require: createLocalRequire(id),
-        depMs: [],
-        depMkv: {},
-        depRs: []
+        id          : id,
+        depsDec     : dependencies,
+        deps        : dependencies || ['require', 'exports', 'module'],
+        factoryDeps : [],
+        factory     : factory,
+        exports     : {},
+        config      : moduleConfigGetter,
+        state       : MODULE_PRE_DEFINED,
+        require     : createLocalRequire(id),
+        depMs       : [],
+        depMkv      : {},
+        depRs       : []
       };
       /* eslint-enable key-spacing */
     }
@@ -1134,7 +1133,6 @@ var esl;
     function bundlesIterator(id) {
       bundlesIndex[id] = key;
     }
-
     /* eslint-enable no-use-before-define */
     for (var key in requireConf.bundles) {
       each(requireConf.bundles[key], bundlesIterator);
@@ -1544,7 +1542,6 @@ var esl;
         onload();
       }
     }
-
     currentlyAddingScript = script;
 
     // If BASE tag is in play, using appendChild is a problem for IE6.
@@ -1621,9 +1618,7 @@ var esl;
     esl = globalRequire;
   }
 })(this);
-define('echarts', ['echarts/echarts'], function (main) {
-  return main;
-});
+define('echarts', ['echarts/echarts'], function (main) {return main;});
 define('echarts/echarts', [
   'require',
   './config',
@@ -1661,7 +1656,7 @@ define('echarts/echarts', [
   var _instances = {};
   var DOM_ATTRIBUTE_KEY = '_echarts_instance_';
   self.version = '2.2.7';
-  self.dependencies = {zrender: '2.1.1'};
+  self.dependencies = { zrender: '2.1.1' };
   self.init = function (dom, theme) {
     var zrender = require('zrender');
     if (zrender.version.replace('.', '') - 0 < self.dependencies.zrender.replace('.', '') - 0) {
@@ -1688,7 +1683,6 @@ define('echarts/echarts', [
   function MessageCenter() {
     zrEvent.Dispatcher.call(this);
   }
-
   zrUtil.merge(MessageCenter.prototype, zrEvent.Dispatcher.prototype, true);
   function Echarts(dom) {
     dom.innerHTML = '';
@@ -1707,7 +1701,6 @@ define('echarts/echarts', [
     this.resize = this.resize();
     this._init();
   }
-
   var ZR_EVENT = require('zrender/config').EVENT;
   var ZR_EVENT_LISTENS = [
     'CLICK',
@@ -1721,7 +1714,6 @@ define('echarts/echarts', [
     'DRAGLEAVE',
     'DROP'
   ];
-
   function callChartListMethodReverse(ecInstance, methodName, arg0, arg1, arg2) {
     var chartList = ecInstance._chartList;
     var len = chartList.length;
@@ -1732,7 +1724,6 @@ define('echarts/echarts', [
       }
     }
   }
-
   Echarts.prototype = {
     _init: function () {
       var self = this;
@@ -1798,9 +1789,6 @@ define('echarts/echarts', [
               dz.silence(false);
             }
           }
-          //debugger;
-          param.startDate = window._dataZoomStartDate;
-          param.endDate = window._dataZoomEndDate;
           this._ondataZoom(param);
           break;
         case ecConfig.EVENT.DATA_RANGE:
@@ -2231,7 +2219,6 @@ define('echarts/echarts', [
     getOption: function () {
       var magicOption = zrUtil.clone(this._option);
       var self = this;
-
       function restoreOption(prop) {
         var restoreSource = self._optionRestore[prop];
         if (restoreSource) {
@@ -2245,7 +2232,6 @@ define('echarts/echarts', [
           }
         }
       }
-
       restoreOption('xAxis');
       restoreOption('yAxis');
       restoreOption('series');
@@ -2253,7 +2239,7 @@ define('echarts/echarts', [
     },
     setSeries: function (series, notMerge) {
       if (!notMerge) {
-        this.setOption({series: series});
+        this.setOption({ series: series });
       } else {
         this._option.series = series;
         this.setOption(this._option, notMerge);
@@ -2368,9 +2354,8 @@ define('echarts/echarts', [
         for (var i = 0, l = chartList.length; i < l; i++) {
           chartList[i].motionlessOnce = magicOption.addDataAnimation && chartList[i].addDataAnimation;
         }
-        self._messageCenter.dispatch(ecConfig.EVENT.REFRESH, null, {option: magicOption}, self);
+        self._messageCenter.dispatch(ecConfig.EVENT.REFRESH, null, { option: magicOption }, self);
       }
-
       if (!magicOption.addDataAnimation) {
         setTimeout(animationDone, 0);
       }
@@ -2390,8 +2375,8 @@ define('echarts/echarts', [
         var seriesRItem = seriesR[seriesIdx];
         var markOpt = seriesItem[markType];
         var markOptR = seriesRItem[markType];
-        markOpt = seriesItem[markType] = markOpt || {data: []};
-        markOptR = seriesRItem[markType] = markOptR || {data: []};
+        markOpt = seriesItem[markType] = markOpt || { data: [] };
+        markOptR = seriesRItem[markType] = markOptR || { data: [] };
         for (var key in markData) {
           if (key === 'data') {
             markOpt.data = markOpt.data.concat(markData.data);
@@ -2685,7 +2670,7 @@ define('echarts/echarts', [
       };
     },
     _clearEffect: function () {
-      this._zr.modLayer(ecConfig.EFFECT_ZLEVEL, {motionBlur: false});
+      this._zr.modLayer(ecConfig.EFFECT_ZLEVEL, { motionBlur: false });
       this._zr.painter.clearLayer(ecConfig.EFFECT_ZLEVEL);
     },
     clear: function () {
@@ -2709,8 +2694,7 @@ define('echarts/echarts', [
     }
   };
   return self;
-});
-define('echarts/config', [], function () {
+});define('echarts/config', [], function () {
   var config = {
     CHART_TYPE_LINE: 'line',
     CHART_TYPE_BAR: 'bar',
@@ -2790,7 +2774,7 @@ define('echarts/config', [], function () {
             position: 'inside'
           }
         },
-        emphasis: {label: {show: true}}
+        emphasis: { label: { show: true } }
       }
     },
     markLine: {
@@ -2822,10 +2806,10 @@ define('echarts/config', [], function () {
             show: true,
             position: 'end'
           },
-          lineStyle: {type: 'dashed'}
+          lineStyle: { type: 'dashed' }
         },
         emphasis: {
-          label: {show: false},
+          label: { show: false },
           lineStyle: {}
         }
       }
@@ -2895,8 +2879,7 @@ define('echarts/config', [], function () {
     animationEasing: 'ExponentialOut'
   };
   return config;
-});
-define('zrender/tool/util', [
+});define('zrender/tool/util', [
   'require',
   '../dep/excanvas'
 ], function (require) {
@@ -2912,11 +2895,9 @@ define('zrender/tool/util', [
     '[object CanvasGradient]': 1
   };
   var objToString = Object.prototype.toString;
-
   function isDom(obj) {
     return obj && obj.nodeType === 1 && typeof obj.nodeName == 'string';
   }
-
   function clone(source) {
     if (typeof source == 'object' && source !== null) {
       var result = source;
@@ -2937,7 +2918,6 @@ define('zrender/tool/util', [
     }
     return source;
   }
-
   function mergeItem(target, source, key, overwrite) {
     if (source.hasOwnProperty(key)) {
       var targetProp = target[key];
@@ -2948,16 +2928,13 @@ define('zrender/tool/util', [
       }
     }
   }
-
   function merge(target, source, overwrite) {
     for (var i in source) {
       mergeItem(target, source, i, overwrite);
     }
     return target;
   }
-
   var _ctx;
-
   function getContext() {
     if (!_ctx) {
       require('../dep/excanvas');
@@ -2973,7 +2950,6 @@ define('zrender/tool/util', [
     }
     return _ctx;
   }
-
   function indexOf(array, value) {
     if (array.indexOf) {
       return array.indexOf(value);
@@ -2985,13 +2961,10 @@ define('zrender/tool/util', [
     }
     return -1;
   }
-
   function inherits(clazz, baseClazz) {
     var clazzPrototype = clazz.prototype;
-
     function F() {
     }
-
     F.prototype = baseClazz.prototype;
     clazz.prototype = new F();
     for (var prop in clazzPrototype) {
@@ -2999,7 +2972,6 @@ define('zrender/tool/util', [
     }
     clazz.constructor = clazz;
   }
-
   function each(obj, cb, context) {
     if (!(obj && cb)) {
       return;
@@ -3018,7 +2990,6 @@ define('zrender/tool/util', [
       }
     }
   }
-
   function map(obj, cb, context) {
     if (!(obj && cb)) {
       return;
@@ -3033,7 +3004,6 @@ define('zrender/tool/util', [
       return result;
     }
   }
-
   function filter(obj, cb, context) {
     if (!(obj && cb)) {
       return;
@@ -3050,13 +3020,11 @@ define('zrender/tool/util', [
       return result;
     }
   }
-
   function bind(func, context) {
     return function () {
       func.apply(context, arguments);
     };
   }
-
   return {
     inherits: inherits,
     clone: clone,
@@ -3068,26 +3036,21 @@ define('zrender/tool/util', [
     filter: filter,
     bind: bind
   };
-});
-define('zrender/tool/event', [
+});define('zrender/tool/event', [
   'require',
   '../mixin/Eventful'
 ], function (require) {
   'use strict';
   var Eventful = require('../mixin/Eventful');
-
   function getX(e) {
     return typeof e.zrenderX != 'undefined' && e.zrenderX || typeof e.offsetX != 'undefined' && e.offsetX || typeof e.layerX != 'undefined' && e.layerX || typeof e.clientX != 'undefined' && e.clientX;
   }
-
   function getY(e) {
     return typeof e.zrenderY != 'undefined' && e.zrenderY || typeof e.offsetY != 'undefined' && e.offsetY || typeof e.layerY != 'undefined' && e.layerY || typeof e.clientY != 'undefined' && e.clientY;
   }
-
   function getDelta(e) {
     return typeof e.zrenderDelta != 'undefined' && e.zrenderDelta || typeof e.wheelDelta != 'undefined' && e.wheelDelta || typeof e.detail != 'undefined' && -e.detail;
   }
-
   var stop = typeof window.addEventListener === 'function' ? function (e) {
     e.preventDefault();
     e.stopPropagation();
@@ -3103,8 +3066,7 @@ define('zrender/tool/event', [
     stop: stop,
     Dispatcher: Eventful
   };
-});
-define('zrender/tool/env', [], function () {
+});define('zrender/tool/env', [], function () {
   function detect(ua) {
     var os = this.os = {};
     var browser = this.browser = {};
@@ -3175,12 +3137,8 @@ define('zrender/tool/env', [], function () {
       canvasSupported: document.createElement('canvas').getContext ? true : false
     };
   }
-
   return detect(navigator.userAgent);
-});
-define('zrender', ['zrender/zrender'], function (main) {
-  return main;
-});
+});define('zrender', ['zrender/zrender'], function (main) {return main;});
 define('zrender/zrender', [
   'require',
   './dep/excanvas',
@@ -3234,14 +3192,13 @@ define('zrender/zrender', [
       }
     };
   }
-
   var ZRender = function (id, dom) {
     this.id = id;
     this.env = require('./tool/env');
     this.storage = new Storage();
     this.painter = new Painter(dom, this.storage);
     this.handler = new Handler(dom, this.storage, this.painter);
-    this.animation = new Animation({stage: {update: getFrameCallback(this)}});
+    this.animation = new Animation({ stage: { update: getFrameCallback(this) } });
     this.animation.start();
     var self = this;
     this.painter.refreshNextFrame = function () {
@@ -3364,7 +3321,7 @@ define('zrender/zrender', [
         el.__animators = [];
       }
       var animators = el.__animators;
-      var animator = this.animation.animate(target, {loop: loop}).during(function () {
+      var animator = this.animation.animate(target, { loop: loop }).during(function () {
         self.modShape(el);
       }).done(function () {
         var idx = util.indexOf(el.__animators, animator);
@@ -3441,8 +3398,7 @@ define('zrender/zrender', [
     zrender.delInstance(this.id);
   };
   return zrender;
-});
-define('zrender/config', [], function () {
+});define('zrender/config', [], function () {
   var config = {
     EVENT: {
       RESIZE: 'resize',
@@ -3469,8 +3425,7 @@ define('zrender/config', [], function () {
     devicePixelRatio: Math.max(window.devicePixelRatio || 1, 1)
   };
   return config;
-});
-define('echarts/chart/island', [
+});define('echarts/chart/island', [
   'require',
   './base',
   'zrender/shape/Circle',
@@ -3494,7 +3449,6 @@ define('echarts/chart/island', [
   var ecData = require('../util/ecData');
   var zrUtil = require('zrender/tool/util');
   var zrEvent = require('zrender/tool/event');
-
   function Island(ecTheme, messageCenter, zr, option, myChart) {
     ChartBase.call(this, ecTheme, messageCenter, zr, option, myChart);
     this._nameConnector;
@@ -3521,7 +3475,6 @@ define('echarts/chart/island', [
       zrEvent.stop(event);
     };
   }
-
   Island.prototype = {
     type: ecConfig.CHART_TYPE_ISLAND,
     _combine: function (tarShape, srcShape) {
@@ -3592,7 +3545,7 @@ define('echarts/chart/island', [
       }
       this.setCalculable(islandShape);
       islandShape.dragEnableTime = 0;
-      ecData.pack(islandShape, {name: seriesName}, -1, value, -1, name);
+      ecData.pack(islandShape, { name: seriesName }, -1, value, -1, name);
       islandShape = new CircleShape(islandShape);
       this.shapeList.push(islandShape);
       this.zr.addShape(islandShape);
@@ -3641,8 +3594,7 @@ define('echarts/chart/island', [
   zrUtil.inherits(Island, ChartBase);
   require('../chart').define('island', Island);
   return Island;
-});
-define('echarts/component/toolbox', [
+});define('echarts/component/toolbox', [
   'require',
   './base',
   'zrender/shape/Line',
@@ -3746,7 +3698,6 @@ define('echarts/component/toolbox', [
   var zrEvent = require('zrender/tool/event');
   var _MAGICTYPE_STACK = 'stack';
   var _MAGICTYPE_TILED = 'tiled';
-
   function Toolbox(ecTheme, messageCenter, zr, option, myChart) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     this.dom = myChart.dom;
@@ -3806,7 +3757,6 @@ define('echarts/component/toolbox', [
       return self.__onclick(param);
     };
   }
-
   Toolbox.prototype = {
     type: ecConfig.COMPONENT_TYPE_TOOLBOX,
     _buildShape: function () {
@@ -4205,7 +4155,7 @@ define('echarts/component/toolbox', [
         this.zr.refreshNextFrame();
       } else {
         this._resetZoom();
-        this.zr.modShape(target.id, {style: {strokeColor: this._enableColor}});
+        this.zr.modShape(target.id, { style: { strokeColor: this._enableColor } });
         this.zr.refreshNextFrame();
         this._markStart = true;
         var self = this;
@@ -4256,7 +4206,7 @@ define('echarts/component/toolbox', [
         this.dom.style.cursor = 'default';
       } else {
         this._resetMark();
-        this.zr.modShape(target.id, {style: {strokeColor: this._enableColor}});
+        this.zr.modShape(target.id, { style: { strokeColor: this._enableColor } });
         this.zr.refreshNextFrame();
         this._zoomStart = true;
         var self = this;
@@ -4286,7 +4236,7 @@ define('echarts/component/toolbox', [
       if (this._markStart) {
         this._markStart = false;
         if (this._iconShapeMap['mark']) {
-          this.zr.modShape(this._iconShapeMap['mark'].id, {style: {strokeColor: this._iconShapeMap['mark'].highlightStyle.strokeColor}});
+          this.zr.modShape(this._iconShapeMap['mark'].id, { style: { strokeColor: this._iconShapeMap['mark'].highlightStyle.strokeColor } });
         }
         this.zr.un(zrConfig.EVENT.CLICK, this._onclick);
         this.zr.un(zrConfig.EVENT.MOUSEMOVE, this._onmousemove);
@@ -4297,7 +4247,7 @@ define('echarts/component/toolbox', [
       if (this._zoomStart) {
         this._zoomStart = false;
         if (this._iconShapeMap['dataZoom']) {
-          this.zr.modShape(this._iconShapeMap['dataZoom'].id, {style: {strokeColor: this._iconShapeMap['dataZoom'].highlightStyle.strokeColor}});
+          this.zr.modShape(this._iconShapeMap['dataZoom'].id, { style: { strokeColor: this._iconShapeMap['dataZoom'].highlightStyle.strokeColor } });
         }
         this.zr.un(zrConfig.EVENT.MOUSEDOWN, this._onmousedown);
         this.zr.un(zrConfig.EVENT.MOUSEUP, this._onmouseup);
@@ -4309,13 +4259,13 @@ define('echarts/component/toolbox', [
         this.zr.modShape(target.id, {
           hoverable: false,
           clickable: false,
-          style: {strokeColor: this._disableColor}
+          style: { strokeColor: this._disableColor }
         });
       } else {
         this.zr.modShape(target.id, {
           hoverable: false,
           clickable: false,
-          style: {opacity: 0.3}
+          style: { opacity: 0.3 }
         });
       }
     },
@@ -4324,13 +4274,13 @@ define('echarts/component/toolbox', [
         this.zr.modShape(target.id, {
           hoverable: true,
           clickable: true,
-          style: {strokeColor: target.highlightStyle.strokeColor}
+          style: { strokeColor: target.highlightStyle.strokeColor }
         });
       } else {
         this.zr.modShape(target.id, {
           hoverable: true,
           clickable: true,
-          style: {opacity: 0.8}
+          style: { opacity: 0.8 }
         });
       }
     },
@@ -4407,14 +4357,14 @@ define('echarts/component/toolbox', [
         } else if (itemName === _MAGICTYPE_TILED) {
           this._magicType[_MAGICTYPE_STACK] = false;
         }
-        this.messageCenter.dispatch(ecConfig.EVENT.MAGIC_TYPE_CHANGED, param.event, {magicType: this._magicType}, this.myChart);
+        this.messageCenter.dispatch(ecConfig.EVENT.MAGIC_TYPE_CHANGED, param.event, { magicType: this._magicType }, this.myChart);
       }
       return true;
     },
     setMagicType: function (magicType) {
       this._resetMark();
       this._magicType = magicType;
-      !this._isSilence && this.messageCenter.dispatch(ecConfig.EVENT.MAGIC_TYPE_CHANGED, null, {magicType: this._magicType}, this.myChart);
+      !this._isSilence && this.messageCenter.dispatch(ecConfig.EVENT.MAGIC_TYPE_CHANGED, null, { magicType: this._magicType }, this.myChart);
     },
     __onCustomHandler: function (param) {
       var target = param.target.style.iconType;
@@ -4586,8 +4536,7 @@ define('echarts/component/toolbox', [
   zrUtil.inherits(Toolbox, Base);
   require('../component').define('toolbox', Toolbox);
   return Toolbox;
-});
-define('echarts/component', [], function () {
+});define('echarts/component', [], function () {
   var self = {};
   var _componentLibrary = {};
   self.define = function (name, clazz) {
@@ -4598,8 +4547,7 @@ define('echarts/component', [], function () {
     return _componentLibrary[name];
   };
   return self;
-});
-define('echarts/component/title', [
+});define('echarts/component/title', [
   'require',
   './base',
   'zrender/shape/Text',
@@ -4632,17 +4580,15 @@ define('echarts/component/title', [
       fontWeight: 'bolder',
       color: '#333'
     },
-    subtextStyle: {color: '#aaa'}
+    subtextStyle: { color: '#aaa' }
   };
   var zrUtil = require('zrender/tool/util');
   var zrArea = require('zrender/tool/area');
   var zrColor = require('zrender/tool/color');
-
   function Title(ecTheme, messageCenter, zr, option, myChart) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     this.refresh(option);
   }
-
   Title.prototype = {
     type: ecConfig.COMPONENT_TYPE_TITLE,
     _buildShape: function () {
@@ -4830,8 +4776,7 @@ define('echarts/component/title', [
   zrUtil.inherits(Title, Base);
   require('../component').define('title', Title);
   return Title;
-});
-define('echarts/component/tooltip', [
+});define('echarts/component/tooltip', [
   'require',
   './base',
   '../util/shape/Cross',
@@ -4887,7 +4832,7 @@ define('echarts/component/tooltip', [
         type: 'default'
       }
     },
-    textStyle: {color: '#fff'}
+    textStyle: { color: '#fff' }
   };
   var ecData = require('../util/ecData');
   var zrConfig = require('zrender/config');
@@ -4896,7 +4841,6 @@ define('echarts/component/tooltip', [
   var zrColor = require('zrender/tool/color');
   var zrUtil = require('zrender/tool/util');
   var zrShapeBase = require('zrender/shape/Base');
-
   function Tooltip(ecTheme, messageCenter, zr, option, myChart) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     this.dom = myChart.dom;
@@ -4964,7 +4908,6 @@ define('echarts/component/tooltip', [
     this.showing = false;
     this.refresh(option);
   }
-
   Tooltip.prototype = {
     type: ecConfig.COMPONENT_TYPE_TOOLTIP,
     _gCssText: 'position:absolute;display:block;border-style:solid;white-space:nowrap;',
@@ -5431,7 +5374,7 @@ define('echarts/component/tooltip', [
             }
             data = data != null ? data : {
               name: '',
-              value: {dataIndex: '-'}
+              value: { dataIndex: '-' }
             };
             value = this.getDataFromOption(data.value[dataIndex]);
             params.push({
@@ -6061,8 +6004,7 @@ define('echarts/component/tooltip', [
   zrUtil.inherits(Tooltip, Base);
   require('../component').define('tooltip', Tooltip);
   return Tooltip;
-});
-define('echarts/component/legend', [
+});define('echarts/component/legend', [
   'require',
   './base',
   'zrender/shape/Text',
@@ -6096,12 +6038,11 @@ define('echarts/component/legend', [
     itemGap: 10,
     itemWidth: 20,
     itemHeight: 14,
-    textStyle: {color: '#333'},
+    textStyle: { color: '#333' },
     selectedMode: true
   };
   var zrUtil = require('zrender/tool/util');
   var zrArea = require('zrender/tool/area');
-
   function Legend(ecTheme, messageCenter, zr, option, myChart) {
     if (!this.query(option, 'legend.data')) {
       console.error('option.legend.data has not been defined.');
@@ -6121,7 +6062,6 @@ define('echarts/component/legend', [
     this._hasDataMap = {};
     this.refresh(option);
   }
-
   Legend.prototype = {
     type: ecConfig.COMPONENT_TYPE_LEGEND,
     _buildShape: function () {
@@ -6502,7 +6442,7 @@ define('echarts/component/legend', [
       }, this.myChart);
     },
     __dispatchHoverLink: function (param) {
-      this.messageCenter.dispatch(ecConfig.EVENT.LEGEND_HOVERLINK, param.event, {target: param.target._name}, this.myChart);
+      this.messageCenter.dispatch(ecConfig.EVENT.LEGEND_HOVERLINK, param.event, { target: param.target._name }, this.myChart);
       return;
     },
     refresh: function (newOption) {
@@ -6750,8 +6690,7 @@ define('echarts/component/legend', [
   zrUtil.inherits(Legend, Base);
   require('../component').define('legend', Legend);
   return Legend;
-});
-define('echarts/util/ecData', [], function () {
+});define('echarts/util/ecData', [], function () {
   function pack(shape, series, seriesIndex, data, dataIndex, name, special, special2) {
     var value;
     if (typeof data != 'undefined') {
@@ -6769,7 +6708,6 @@ define('echarts/util/ecData', [], function () {
     };
     return shape._echartsData;
   }
-
   function get(shape, key) {
     var data = shape._echartsData;
     if (!key) {
@@ -6788,7 +6726,6 @@ define('echarts/util/ecData', [], function () {
     }
     return null;
   }
-
   function set(shape, key, value) {
     shape._echartsData = shape._echartsData || {};
     switch (key) {
@@ -6804,7 +6741,6 @@ define('echarts/util/ecData', [], function () {
         break;
     }
   }
-
   function clone(source, target) {
     target._echartsData = {
       '_series': source._echartsData._series,
@@ -6817,15 +6753,13 @@ define('echarts/util/ecData', [], function () {
       '_special2': source._echartsData._special2
     };
   }
-
   return {
     pack: pack,
     set: set,
     get: get,
     clone: clone
   };
-});
-define('echarts/chart', [], function () {
+});define('echarts/chart', [], function () {
   var self = {};
   var _chartLibrary = {};
   self.define = function (name, clazz) {
@@ -6836,8 +6770,7 @@ define('echarts/chart', [], function () {
     return _chartLibrary[name];
   };
   return self;
-});
-define('zrender/tool/color', [
+});define('zrender/tool/color', [
   'require',
   '../tool/util'
 ], function (require) {
@@ -7028,33 +6961,26 @@ define('zrender/tool/color', [
     yellow: '#ff0',
     yellowgreen: '#9acd32'
   };
-
   function customPalette(userPalete) {
     palette = userPalete;
   }
-
   function resetPalette() {
     palette = _palette;
   }
-
   function getColor(idx, userPalete) {
     idx = idx | 0;
     userPalete = userPalete || palette;
     return userPalete[idx % userPalete.length];
   }
-
   function customHighlight(userHighlightColor) {
     highlightColor = userHighlightColor;
   }
-
   function resetHighlight() {
     _highlightColor = highlightColor;
   }
-
   function getHighlightColor() {
     return highlightColor;
   }
-
   function getRadialGradient(x0, y0, r0, x1, y1, r1, colorList) {
     if (!_ctx) {
       _ctx = util.getContext();
@@ -7066,7 +6992,6 @@ define('zrender/tool/color', [
     gradient.__nonRecursion = true;
     return gradient;
   }
-
   function getLinearGradient(x0, y0, x1, y1, colorList) {
     if (!_ctx) {
       _ctx = util.getContext();
@@ -7078,7 +7003,6 @@ define('zrender/tool/color', [
     gradient.__nonRecursion = true;
     return gradient;
   }
-
   function getStepColors(start, end, step) {
     start = toRGBA(start);
     end = toRGBA(end);
@@ -7122,7 +7046,6 @@ define('zrender/tool/color', [
     ], 'rgba');
     return colors;
   }
-
   function getGradientColors(colors, step) {
     var ret = [];
     var len = colors.length;
@@ -7142,7 +7065,6 @@ define('zrender/tool/color', [
     }
     return ret;
   }
-
   function toColor(data, format) {
     format = format || 'rgb';
     if (data && (data.length === 3 || data.length === 4)) {
@@ -7171,7 +7093,6 @@ define('zrender/tool/color', [
       return format + '(' + data.slice(0, 3).join(',') + ')';
     }
   }
-
   function toArray(color) {
     color = trim(color);
     if (color.indexOf('rgba') < 0) {
@@ -7189,7 +7110,6 @@ define('zrender/tool/color', [
     });
     return data;
   }
-
   function convert(color, format) {
     if (!isCalculableColor(color)) {
       return color;
@@ -7212,43 +7132,33 @@ define('zrender/tool/color', [
     data[3] = alpha;
     return toColor(data, format);
   }
-
   function toRGBA(color) {
     return convert(color, 'rgba');
   }
-
   function toRGB(color) {
     return convert(color, 'rgb');
   }
-
   function toHex(color) {
     return convert(color, 'hex');
   }
-
   function toHSVA(color) {
     return convert(color, 'hsva');
   }
-
   function toHSV(color) {
     return convert(color, 'hsv');
   }
-
   function toHSBA(color) {
     return convert(color, 'hsba');
   }
-
   function toHSB(color) {
     return convert(color, 'hsb');
   }
-
   function toHSLA(color) {
     return convert(color, 'hsla');
   }
-
   function toHSL(color) {
     return convert(color, 'hsl');
   }
-
   function toName(color) {
     for (var key in _nameColors) {
       if (toHex(_nameColors[key]) === toHex(color)) {
@@ -7257,11 +7167,9 @@ define('zrender/tool/color', [
     }
     return null;
   }
-
   function trim(color) {
     return String(color).replace(/\s+/g, '');
   }
-
   function normalize(color) {
     if (_nameColors[color]) {
       color = _nameColors[color];
@@ -7277,7 +7185,6 @@ define('zrender/tool/color', [
     }
     return color;
   }
-
   function lift(color, level) {
     if (!isCalculableColor(color)) {
       return color;
@@ -7298,7 +7205,6 @@ define('zrender/tool/color', [
     }
     return 'rgb(' + data.join(',') + ')';
   }
-
   function reverse(color) {
     if (!isCalculableColor(color)) {
       return color;
@@ -7309,7 +7215,6 @@ define('zrender/tool/color', [
     });
     return toColor(data, 'rgb');
   }
-
   function mix(color1, color2, weight) {
     if (!isCalculableColor(color1) || !isCalculableColor(color2)) {
       return color1;
@@ -7339,11 +7244,9 @@ define('zrender/tool/color', [
     data[3] = alpha;
     return toColor(data, 'rgba');
   }
-
   function random() {
     return '#' + (Math.random().toString(16) + '0000').slice(2, 8);
   }
-
   function getData(color) {
     color = normalize(color);
     var r = color.match(colorRegExp);
@@ -7409,7 +7312,6 @@ define('zrender/tool/color', [
     }
     return data;
   }
-
   function alpha(color, a) {
     if (!isCalculableColor(color)) {
       return color;
@@ -7424,7 +7326,6 @@ define('zrender/tool/color', [
     ]);
     return toColor(data, 'rgba');
   }
-
   function map(array, fun) {
     if (typeof fun !== 'function') {
       throw new TypeError();
@@ -7435,7 +7336,6 @@ define('zrender/tool/color', [
     }
     return array;
   }
-
   function adjust(value, region) {
     if (value <= region[0]) {
       value = region[0];
@@ -7444,11 +7344,9 @@ define('zrender/tool/color', [
     }
     return value;
   }
-
   function isCalculableColor(color) {
     return color instanceof Array || typeof color === 'string';
   }
-
   function _HSV_2_RGB(data) {
     var H = data[0];
     var S = data[1];
@@ -7507,7 +7405,6 @@ define('zrender/tool/color', [
       B
     ];
   }
-
   function _HSL_2_RGB(data) {
     var H = data[0];
     var S = data[1];
@@ -7537,7 +7434,6 @@ define('zrender/tool/color', [
       B
     ];
   }
-
   function _HUE_2_RGB(v1, v2, vH) {
     if (vH < 0) {
       vH += 1;
@@ -7556,7 +7452,6 @@ define('zrender/tool/color', [
     }
     return v1;
   }
-
   function _RGB_2_HSB(data) {
     var R = data[0] / 255;
     var G = data[1] / 255;
@@ -7598,7 +7493,6 @@ define('zrender/tool/color', [
       V
     ];
   }
-
   function _RGB_2_HSL(data) {
     var R = data[0] / 255;
     var G = data[1] / 255;
@@ -7644,7 +7538,6 @@ define('zrender/tool/color', [
       L
     ];
   }
-
   return {
     customPalette: customPalette,
     resetPalette: resetPalette,
@@ -7676,8 +7569,7 @@ define('zrender/tool/color', [
     alpha: alpha,
     getData: getData
   };
-});
-define('echarts/component/timeline', [
+});define('echarts/component/timeline', [
   'require',
   './base',
   'zrender/shape/Rectangle',
@@ -7722,7 +7614,7 @@ define('echarts/component/timeline', [
       show: true,
       interval: 'auto',
       rotate: 0,
-      textStyle: {color: '#333'}
+      textStyle: { color: '#333' }
     },
     checkpointStyle: {
       symbol: 'auto',
@@ -7732,14 +7624,14 @@ define('echarts/component/timeline', [
       borderWidth: 'auto',
       label: {
         show: false,
-        textStyle: {color: 'auto'}
+        textStyle: { color: 'auto' }
       }
     },
     controlStyle: {
       itemSize: 15,
       itemGap: 5,
-      normal: {color: '#333'},
-      emphasis: {color: '#1e90ff'}
+      normal: { color: '#333' },
+      emphasis: { color: '#1e90ff' }
     },
     symbol: 'emptyDiamond',
     symbolSize: 4,
@@ -7748,7 +7640,6 @@ define('echarts/component/timeline', [
   var zrUtil = require('zrender/tool/util');
   var zrArea = require('zrender/tool/area');
   var zrEvent = require('zrender/tool/event');
-
   function Timeline(ecTheme, messageCenter, zr, option, myChart) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     var self = this;
@@ -7804,7 +7695,6 @@ define('echarts/component/timeline', [
       }, this.ecTheme.animationDuration != null ? this.ecTheme.animationDuration : ecConfig.animationDuration);
     }
   }
-
   Timeline.prototype = {
     type: ecConfig.COMPONENT_TYPE_TIMELINE,
     _buildShape: function () {
@@ -7926,11 +7816,9 @@ define('echarts/component/timeline', [
       var y = this._location.y + this._location.height / 4 * 3;
       var width = this._location.x2 - this._location.x;
       var len = data.length;
-
       function _getName(i) {
         return data[i].name != null ? data[i].name : data[i] + '';
       }
-
       var xList = [];
       if (len > 1) {
         var boundaryGap = width / len;
@@ -8382,13 +8270,11 @@ define('echarts/component/timeline', [
       });
     }
   }
-
   IconShape.prototype.iconLibrary['timelineControl'] = timelineControl;
   zrUtil.inherits(Timeline, Base);
   require('../component').define('timeline', Timeline);
   return Timeline;
-});
-define('zrender/shape/Image', [
+});define('zrender/shape/Image', [
   'require',
   './Base',
   '../tool/util'
@@ -8490,8 +8376,7 @@ define('zrender/shape/Image', [
   };
   require('../tool/util').inherits(ZImage, Base);
   return ZImage;
-});
-define('zrender/loadingEffect/Bar', [
+});define('zrender/loadingEffect/Bar', [
   'require',
   './Base',
   '../tool/util',
@@ -8502,15 +8387,13 @@ define('zrender/loadingEffect/Bar', [
   var util = require('../tool/util');
   var zrColor = require('../tool/color');
   var RectangleShape = require('../shape/Rectangle');
-
   function Bar(options) {
     Base.call(this, options);
   }
-
   util.inherits(Bar, Base);
   Bar.prototype._start = function (addShapeHandle, refreshHandle) {
     var options = util.merge(this.options, {
-      textStyle: {color: '#888'},
+      textStyle: { color: '#888' },
       backgroundColor: 'rgba(250, 250, 250, 0.8)',
       effectOption: {
         x: 0,
@@ -8524,7 +8407,7 @@ define('zrender/loadingEffect/Bar', [
     var textShape = this.createTextShape(options.textStyle);
     var background = this.createBackgroundShape(options.backgroundColor);
     var effectOption = options.effectOption;
-    var barShape = new RectangleShape({highlightStyle: util.clone(effectOption)});
+    var barShape = new RectangleShape({ highlightStyle: util.clone(effectOption) });
     barShape.highlightStyle.color = effectOption.color || zrColor.getLinearGradient(effectOption.x, effectOption.y, effectOption.x + effectOption.width, effectOption.y + effectOption.height, [
         [
           0,
@@ -8565,8 +8448,7 @@ define('zrender/loadingEffect/Bar', [
     }
   };
   return Bar;
-});
-define('zrender/loadingEffect/Bubble', [
+});define('zrender/loadingEffect/Bubble', [
   'require',
   './Base',
   '../tool/util',
@@ -8577,15 +8459,13 @@ define('zrender/loadingEffect/Bubble', [
   var util = require('../tool/util');
   var zrColor = require('../tool/color');
   var CircleShape = require('../shape/Circle');
-
   function Bubble(options) {
     Base.call(this, options);
   }
-
   util.inherits(Bubble, Base);
   Bubble.prototype._start = function (addShapeHandle, refreshHandle) {
     var options = util.merge(this.options, {
-      textStyle: {color: '#888'},
+      textStyle: { color: '#888' },
       backgroundColor: 'rgba(250, 250, 250, 0.8)',
       effect: {
         n: 50,
@@ -8635,8 +8515,7 @@ define('zrender/loadingEffect/Bubble', [
     }, effectOption.timeInterval);
   };
   return Bubble;
-});
-define('zrender/loadingEffect/DynamicLine', [
+});define('zrender/loadingEffect/DynamicLine', [
   'require',
   './Base',
   '../tool/util',
@@ -8647,15 +8526,13 @@ define('zrender/loadingEffect/DynamicLine', [
   var util = require('../tool/util');
   var zrColor = require('../tool/color');
   var LineShape = require('../shape/Line');
-
   function DynamicLine(options) {
     Base.call(this, options);
   }
-
   util.inherits(DynamicLine, Base);
   DynamicLine.prototype._start = function (addShapeHandle, refreshHandle) {
     var options = util.merge(this.options, {
-      textStyle: {color: '#fff'},
+      textStyle: { color: '#fff' },
       backgroundColor: 'rgba(0, 0, 0, 0.8)',
       effectOption: {
         n: 30,
@@ -8710,8 +8587,7 @@ define('zrender/loadingEffect/DynamicLine', [
     }, effectOption.timeInterval);
   };
   return DynamicLine;
-});
-define('zrender/loadingEffect/Ring', [
+});define('zrender/loadingEffect/Ring', [
   'require',
   './Base',
   '../tool/util',
@@ -8724,15 +8600,13 @@ define('zrender/loadingEffect/Ring', [
   var zrColor = require('../tool/color');
   var RingShape = require('../shape/Ring');
   var SectorShape = require('../shape/Sector');
-
   function Ring(options) {
     Base.call(this, options);
   }
-
   util.inherits(Ring, Base);
   Ring.prototype._start = function (addShapeHandle, refreshHandle) {
     var options = util.merge(this.options, {
-      textStyle: {color: '#07a'},
+      textStyle: { color: '#07a' },
       backgroundColor: 'rgba(250, 250, 250, 0.8)',
       effect: {
         x: this.canvasWidth / 2,
@@ -8763,7 +8637,7 @@ define('zrender/loadingEffect/Ring', [
     var r = effectOption.r - 6;
     var color = effectOption.color;
     var darkColor = zrColor.lift(color, 0.1);
-    var shapeRing = new RingShape({highlightStyle: util.clone(effectOption)});
+    var shapeRing = new RingShape({ highlightStyle: util.clone(effectOption) });
     var shapeList = [];
     var clolrList = zrColor.getGradientColors([
       '#ff6400',
@@ -8853,8 +8727,7 @@ define('zrender/loadingEffect/Ring', [
     }, effectOption.timeInterval);
   };
   return Ring;
-});
-define('zrender/loadingEffect/Spin', [
+});define('zrender/loadingEffect/Spin', [
   'require',
   './Base',
   '../tool/util',
@@ -8867,11 +8740,9 @@ define('zrender/loadingEffect/Spin', [
   var zrColor = require('../tool/color');
   var zrArea = require('../tool/area');
   var SectorShape = require('../shape/Sector');
-
   function Spin(options) {
     Base.call(this, options);
   }
-
   util.inherits(Spin, Base);
   Spin.prototype._start = function (addShapeHandle, refreshHandle) {
     var options = util.merge(this.options, {
@@ -8936,8 +8807,7 @@ define('zrender/loadingEffect/Spin', [
     }, effectOption.timeInterval);
   };
   return Spin;
-});
-define('zrender/loadingEffect/Whirling', [
+});define('zrender/loadingEffect/Whirling', [
   'require',
   './Base',
   '../tool/util',
@@ -8952,11 +8822,9 @@ define('zrender/loadingEffect/Whirling', [
   var RingShape = require('../shape/Ring');
   var DropletShape = require('../shape/Droplet');
   var CircleShape = require('../shape/Circle');
-
   function Whirling(options) {
     Base.call(this, options);
   }
-
   util.inherits(Whirling, Base);
   Whirling.prototype._start = function (addShapeHandle, refreshHandle) {
     var options = util.merge(this.options, {
@@ -9024,8 +8892,7 @@ define('zrender/loadingEffect/Whirling', [
     }, effectOption.timeInterval);
   };
   return Whirling;
-});
-define('echarts/theme/macarons', [], function () {
+});define('echarts/theme/macarons', [], function () {
   var theme = {
     color: [
       '#2ec7c9',
@@ -9075,9 +8942,9 @@ define('echarts/theme/macarons', [], function () {
       backgroundColor: 'rgba(50,50,50,0.5)',
       axisPointer: {
         type: 'line',
-        lineStyle: {color: '#008acd'},
-        crossStyle: {color: '#008acd'},
-        shadowStyle: {color: 'rgba(200,200,200,0.2)'}
+        lineStyle: { color: '#008acd' },
+        crossStyle: { color: '#008acd' },
+        shadowStyle: { color: 'rgba(200,200,200,0.2)' }
       }
     },
     dataZoom: {
@@ -9085,13 +8952,13 @@ define('echarts/theme/macarons', [], function () {
       fillerColor: 'rgba(182,162,222,0.2)',
       handleColor: '#008acd'
     },
-    grid: {borderColor: '#eee'},
+    grid: { borderColor: '#eee' },
     categoryAxis: {
-      axisLine: {lineStyle: {color: '#008acd'}},
-      splitLine: {lineStyle: {color: ['#eee']}}
+      axisLine: { lineStyle: { color: '#008acd' } },
+      splitLine: { lineStyle: { color: ['#eee'] } }
     },
     valueAxis: {
-      axisLine: {lineStyle: {color: '#008acd'}},
+      axisLine: { lineStyle: { color: '#008acd' } },
       splitArea: {
         show: true,
         areaStyle: {
@@ -9101,10 +8968,10 @@ define('echarts/theme/macarons', [], function () {
           ]
         }
       },
-      splitLine: {lineStyle: {color: ['#eee']}}
+      splitLine: { lineStyle: { color: ['#eee'] } }
     },
     polar: {
-      axisLine: {lineStyle: {color: '#ddd'}},
+      axisLine: { lineStyle: { color: '#ddd' } },
       splitArea: {
         show: true,
         areaStyle: {
@@ -9114,21 +8981,21 @@ define('echarts/theme/macarons', [], function () {
           ]
         }
       },
-      splitLine: {lineStyle: {color: '#ddd'}}
+      splitLine: { lineStyle: { color: '#ddd' } }
     },
     timeline: {
-      lineStyle: {color: '#008acd'},
+      lineStyle: { color: '#008acd' },
       controlStyle: {
-        normal: {color: '#008acd'},
-        emphasis: {color: '#008acd'}
+        normal: { color: '#008acd' },
+        emphasis: { color: '#008acd' }
       },
       symbol: 'emptyCircle',
       symbolSize: 3
     },
     bar: {
       itemStyle: {
-        normal: {barBorderRadius: 5},
-        emphasis: {barBorderRadius: 5}
+        normal: { barBorderRadius: 5 },
+        emphasis: { barBorderRadius: 5 }
       }
     },
     line: {
@@ -9159,24 +9026,24 @@ define('echarts/theme/macarons', [], function () {
     map: {
       itemStyle: {
         normal: {
-          areaStyle: {color: '#ddd'},
-          label: {textStyle: {color: '#d87a80'}}
+          areaStyle: { color: '#ddd' },
+          label: { textStyle: { color: '#d87a80' } }
         },
-        emphasis: {areaStyle: {color: '#fe994e'}}
+        emphasis: { areaStyle: { color: '#fe994e' } }
       }
     },
-    force: {itemStyle: {normal: {linkStyle: {color: '#1e90ff'}}}},
+    force: { itemStyle: { normal: { linkStyle: { color: '#1e90ff' } } } },
     chord: {
       itemStyle: {
         normal: {
           borderWidth: 1,
           borderColor: 'rgba(128, 128, 128, 0.5)',
-          chordStyle: {lineStyle: {color: 'rgba(128, 128, 128, 0.5)'}}
+          chordStyle: { lineStyle: { color: 'rgba(128, 128, 128, 0.5)' } }
         },
         emphasis: {
           borderWidth: 1,
           borderColor: 'rgba(128, 128, 128, 0.5)',
-          chordStyle: {lineStyle: {color: 'rgba(128, 128, 128, 0.5)'}}
+          chordStyle: { lineStyle: { color: 'rgba(128, 128, 128, 0.5)' } }
         }
       }
     },
@@ -9203,19 +9070,18 @@ define('echarts/theme/macarons', [], function () {
       axisTick: {
         splitNumber: 10,
         length: 15,
-        lineStyle: {color: 'auto'}
+        lineStyle: { color: 'auto' }
       },
       splitLine: {
         length: 22,
-        lineStyle: {color: 'auto'}
+        lineStyle: { color: 'auto' }
       },
-      pointer: {width: 5}
+      pointer: { width: 5 }
     },
-    textStyle: {fontFamily: '微软雅黑, Arial, Verdana, sans-serif'}
+    textStyle: { fontFamily: '微软雅黑, Arial, Verdana, sans-serif' }
   };
   return theme;
-});
-define('echarts/theme/infographic', [], function () {
+});define('echarts/theme/infographic', [], function () {
   var theme = {
     color: [
       '#C1232B',
@@ -9273,8 +9139,8 @@ define('echarts/theme/infographic', [], function () {
           color: '#27727B',
           type: 'dashed'
         },
-        crossStyle: {color: '#27727B'},
-        shadowStyle: {color: 'rgba(200,200,200,0.3)'}
+        crossStyle: { color: '#27727B' },
+        shadowStyle: { color: 'rgba(200,200,200,0.3)' }
       }
     },
     dataZoom: {
@@ -9282,14 +9148,14 @@ define('echarts/theme/infographic', [], function () {
       fillerColor: 'rgba(181,195,52,0.2)',
       handleColor: '#27727B'
     },
-    grid: {borderWidth: 0},
+    grid: { borderWidth: 0 },
     categoryAxis: {
-      axisLine: {lineStyle: {color: '#27727B'}},
-      splitLine: {show: false}
+      axisLine: { lineStyle: { color: '#27727B' } },
+      splitLine: { show: false }
     },
     valueAxis: {
-      axisLine: {show: false},
-      splitArea: {show: false},
+      axisLine: { show: false },
+      splitArea: { show: false },
       splitLine: {
         lineStyle: {
           color: ['#ccc'],
@@ -9298,7 +9164,7 @@ define('echarts/theme/infographic', [], function () {
       }
     },
     polar: {
-      axisLine: {lineStyle: {color: '#ddd'}},
+      axisLine: { lineStyle: { color: '#ddd' } },
       splitArea: {
         show: true,
         areaStyle: {
@@ -9308,13 +9174,13 @@ define('echarts/theme/infographic', [], function () {
           ]
         }
       },
-      splitLine: {lineStyle: {color: '#ddd'}}
+      splitLine: { lineStyle: { color: '#ddd' } }
     },
     timeline: {
-      lineStyle: {color: '#27727B'},
+      lineStyle: { color: '#27727B' },
       controlStyle: {
-        normal: {color: '#27727B'},
-        emphasis: {color: '#27727B'}
+        normal: { color: '#27727B' },
+        emphasis: { color: '#27727B' }
       },
       symbol: 'emptyCircle',
       symbolSize: 3
@@ -9324,9 +9190,9 @@ define('echarts/theme/infographic', [], function () {
         normal: {
           borderWidth: 2,
           borderColor: '#fff',
-          lineStyle: {width: 3}
+          lineStyle: { width: 3 }
         },
-        emphasis: {borderWidth: 0}
+        emphasis: { borderWidth: 0 }
       },
       symbol: 'circle',
       symbolSize: 3.5
@@ -9350,7 +9216,7 @@ define('echarts/theme/infographic', [], function () {
           borderWidth: 1,
           borderColor: 'rgba(200,200,200,0.5)'
         },
-        emphasis: {borderWidth: 0}
+        emphasis: { borderWidth: 0 }
       },
       symbol: 'star4',
       symbolSize: 4
@@ -9362,27 +9228,27 @@ define('echarts/theme/infographic', [], function () {
     map: {
       itemStyle: {
         normal: {
-          areaStyle: {color: '#ddd'},
-          label: {textStyle: {color: '#C1232B'}}
+          areaStyle: { color: '#ddd' },
+          label: { textStyle: { color: '#C1232B' } }
         },
         emphasis: {
-          areaStyle: {color: '#fe994e'},
-          label: {textStyle: {color: 'rgb(100,0,0)'}}
+          areaStyle: { color: '#fe994e' },
+          label: { textStyle: { color: 'rgb(100,0,0)' } }
         }
       }
     },
-    force: {itemStyle: {normal: {linkStyle: {color: '#27727B'}}}},
+    force: { itemStyle: { normal: { linkStyle: { color: '#27727B' } } } },
     chord: {
       itemStyle: {
         normal: {
           borderWidth: 1,
           borderColor: 'rgba(128, 128, 128, 0.5)',
-          chordStyle: {lineStyle: {color: 'rgba(128, 128, 128, 0.5)'}}
+          chordStyle: { lineStyle: { color: 'rgba(128, 128, 128, 0.5)' } }
         },
         emphasis: {
           borderWidth: 1,
           borderColor: 'rgba(128, 128, 128, 0.5)',
-          chordStyle: {lineStyle: {color: 'rgba(128, 128, 128, 0.5)'}}
+          chordStyle: { lineStyle: { color: 'rgba(128, 128, 128, 0.5)' } }
         }
       }
     },
@@ -9417,7 +9283,7 @@ define('echarts/theme/infographic', [], function () {
       axisTick: {
         splitNumber: 2,
         length: 5,
-        lineStyle: {color: '#fff'}
+        lineStyle: { color: '#fff' }
       },
       axisLabel: {
         textStyle: {
@@ -9427,7 +9293,7 @@ define('echarts/theme/infographic', [], function () {
       },
       splitLine: {
         length: '5%',
-        lineStyle: {color: '#fff'}
+        lineStyle: { color: '#fff' }
       },
       pointer: {
         width: '40%',
@@ -9455,11 +9321,10 @@ define('echarts/theme/infographic', [], function () {
         }
       }
     },
-    textStyle: {fontFamily: '微软雅黑, Arial, Verdana, sans-serif'}
+    textStyle: { fontFamily: '微软雅黑, Arial, Verdana, sans-serif' }
   };
   return theme;
-});
-define('zrender/dep/excanvas', ['require'], function (require) {
+});define('zrender/dep/excanvas', ['require'], function (require) {
   if (!document.createElement('canvas').getContext) {
     (function () {
       var m = Math;
@@ -9471,30 +9336,24 @@ define('zrender/dep/excanvas', ['require'], function (require) {
       var Z = 10;
       var Z2 = Z / 2;
       var IE_VERSION = +navigator.userAgent.match(/MSIE ([\d.]+)?/)[1];
-
       function getContext() {
         return this.context_ || (this.context_ = new CanvasRenderingContext2D_(this));
       }
-
       var slice = Array.prototype.slice;
-
       function bind(f, obj, var_args) {
         var a = slice.call(arguments, 2);
         return function () {
           return f.apply(obj, a.concat(slice.call(arguments)));
         };
       }
-
       function encodeHtmlAttribute(s) {
         return String(s).replace(/&/g, '&amp;').replace(/"/g, '&quot;');
       }
-
       function addNamespace(doc, prefix, urn) {
         if (!doc.namespaces[prefix]) {
           doc.namespaces.add(prefix, urn, '#default#VML');
         }
       }
-
       function addNamespacesAndStylesheet(doc) {
         addNamespace(doc, 'g_vml_', 'urn:schemas-microsoft-com:vml');
         addNamespace(doc, 'g_o_', 'urn:schemas-microsoft-com:office:office');
@@ -9504,7 +9363,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           ss.cssText = 'canvas{display:inline-block;overflow:hidden;' + 'text-align:left;width:300px;height:150px}';
         }
       }
-
       addNamespacesAndStylesheet(document);
       var G_vmlCanvasManager_ = {
         init: function (opt_doc) {
@@ -9540,7 +9398,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           return el;
         }
       };
-
       function onPropertyChange(e) {
         var el = e.srcElement;
         switch (e.propertyName) {
@@ -9556,7 +9413,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
             break;
         }
       }
-
       function onResize(e) {
         var el = e.srcElement;
         if (el.firstChild) {
@@ -9564,7 +9420,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           el.firstChild.style.height = el.clientHeight + 'px';
         }
       }
-
       G_vmlCanvasManager_.init();
       var decToHex = [];
       for (var i = 0; i < 16; i++) {
@@ -9591,7 +9446,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           ]
         ];
       }
-
       function matrixMultiply(m1, m2) {
         var result = createMatrixIdentity();
         for (var x = 0; x < 3; x++) {
@@ -9605,7 +9459,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         }
         return result;
       }
-
       function copyState(o1, o2) {
         o2.fillStyle = o1.fillStyle;
         o2.lineCap = o1.lineCap;
@@ -9625,7 +9478,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         o2.scaleY_ = o1.scaleY_;
         o2.lineScale_ = o1.lineScale_;
       }
-
       var colorData = {
         aliceblue: '#F0F8FF',
         antiquewhite: '#FAEBD7',
@@ -9759,7 +9611,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         whitesmoke: '#F5F5F5',
         yellowgreen: '#9ACD32'
       };
-
       function getRgbHslContent(styleString) {
         var start = styleString.indexOf('(', 3);
         var end = styleString.indexOf(')', start + 1);
@@ -9769,15 +9620,12 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         }
         return parts;
       }
-
       function percent(s) {
         return parseFloat(s) / 100;
       }
-
       function clamp(v, min, max) {
         return Math.min(max, Math.max(min, v));
       }
-
       function hslToRgb(parts) {
         var r, g, b, h, s, l;
         h = parseFloat(parts[0]) / 360 % 360;
@@ -9796,7 +9644,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         }
         return '#' + decToHex[Math.floor(r * 255)] + decToHex[Math.floor(g * 255)] + decToHex[Math.floor(b * 255)];
       }
-
       function hueToRgb(m1, m2, h) {
         if (h < 0)
           h++;
@@ -9811,9 +9658,7 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         else
           return m1;
       }
-
       var processStyleCache = {};
-
       function processStyle(styleString) {
         if (styleString in processStyleCache) {
           return processStyleCache[styleString];
@@ -9846,7 +9691,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           alpha: alpha
         };
       }
-
       var DEFAULT_STYLE = {
         style: 'normal',
         variant: 'normal',
@@ -9855,7 +9699,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         family: '微软雅黑'
       };
       var fontStyleCache = {};
-
       function processFontStyle(styleString) {
         if (fontStyleCache[styleString]) {
           return fontStyleCache[styleString];
@@ -9876,7 +9719,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           family: fontFamily || DEFAULT_STYLE.family
         };
       }
-
       function getComputedStyle(style, element) {
         var computedStyle = {};
         for (var p in style) {
@@ -9898,20 +9740,16 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         }
         return computedStyle;
       }
-
       function buildStyle(style) {
         return style.style + ' ' + style.variant + ' ' + style.weight + ' ' + style.size + 'px \'' + style.family + '\'';
       }
-
       var lineCapMap = {
         'butt': 'flat',
         'round': 'round'
       };
-
       function processLineCap(lineCap) {
         return lineCapMap[lineCap] || 'square';
       }
-
       function CanvasRenderingContext2D_(canvasElement) {
         this.m_ = createMatrixIdentity();
         this.mStack_ = [];
@@ -9941,7 +9779,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         this.scaleY_ = 1;
         this.lineScale_ = 1;
       }
-
       var contextPrototype = CanvasRenderingContext2D_.prototype;
       contextPrototype.clearRect = function () {
         if (this.textMeasureEl_) {
@@ -9992,7 +9829,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         self.currentX_ = p.x;
         self.currentY_ = p.y;
       }
-
       contextPrototype.quadraticCurveTo = function (aCPx, aCPy, aX, aY) {
         var cp = getCoords(this, aCPx, aCPy);
         var p = getCoords(this, aX, aY);
@@ -10222,7 +10058,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         }
         lineStr.push('<g_vml_:stroke', ' opacity="', opacity, '"', ' joinstyle="', ctx.lineJoin, '"', ' miterlimit="', ctx.miterLimit, '"', ' endcap="', processLineCap(ctx.lineCap), '"', ' weight="', lineWidth, 'px"', ' color="', color, '" />');
       }
-
       function appendFill(ctx, lineStr, min, max) {
         var fillStyle = ctx.fillStyle;
         var arcScaleX = ctx.scaleX_;
@@ -10293,12 +10128,11 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           lineStr.push('<g_vml_:fill color="', color, '" opacity="', opacity, '" />');
         }
       }
-
       contextPrototype.fill = function () {
         this.stroke(true);
       };
       contextPrototype.closePath = function () {
-        this.currentPath_.push({type: 'close'});
+        this.currentPath_.push({ type: 'close' });
       };
       function getCoords(ctx, aX, aY) {
         var m = ctx.m_;
@@ -10324,7 +10158,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
       function matrixIsFinite(m) {
         return isFinite(m[0][0]) && isFinite(m[0][1]) && isFinite(m[1][0]) && isFinite(m[1][1]) && isFinite(m[2][0]) && isFinite(m[2][1]);
       }
-
       function setM(ctx, m, updateLineScale) {
         if (!matrixIsFinite(m)) {
           return;
@@ -10337,7 +10170,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           ctx.lineScale_ = sqrt(abs(det));
         }
       }
-
       contextPrototype.translate = function (aX, aY) {
         var m1 = [
           [
@@ -10524,7 +10356,7 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         } catch (ex) {
         }
         this.textMeasureEl_.appendChild(doc.createTextNode(text));
-        return {width: this.textMeasureEl_.offsetWidth};
+        return { width: this.textMeasureEl_.offsetWidth };
       };
       contextPrototype.clip = function () {
       };
@@ -10543,7 +10375,6 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         this.r1_ = 0;
         this.colors_ = [];
       }
-
       CanvasGradient_.prototype.addColorStop = function (aOffset, aColor) {
         aColor = processStyle(aColor);
         this.colors_.push({
@@ -10572,11 +10403,9 @@ define('zrender/dep/excanvas', ['require'], function (require) {
         this.width_ = image.width;
         this.height_ = image.height;
       }
-
       function throwException(s) {
         throw new DOMException_(s);
       }
-
       function assertImageIsValid(img) {
         if (!img || img.nodeType != 1 || img.tagName != 'IMG') {
           throwException('TYPE_MISMATCH_ERR');
@@ -10585,12 +10414,10 @@ define('zrender/dep/excanvas', ['require'], function (require) {
           throwException('INVALID_STATE_ERR');
         }
       }
-
       function DOMException_(s) {
         this.code = this[s];
         this.message = s + ': DOM Exception ' + this.code;
       }
-
       var p = DOMException_.prototype = new Error();
       p.INDEX_SIZE_ERR = 1;
       p.DOMSTRING_SIZE_ERR = 2;
@@ -10619,8 +10446,7 @@ define('zrender/dep/excanvas', ['require'], function (require) {
     G_vmlCanvasManager = false;
   }
   return G_vmlCanvasManager;
-});
-define('zrender/mixin/Eventful', ['require'], function (require) {
+});define('zrender/mixin/Eventful', ['require'], function (require) {
   var Eventful = function () {
     this._handlers = {};
   };
@@ -10748,8 +10574,7 @@ define('zrender/mixin/Eventful', ['require'], function (require) {
     return this;
   };
   return Eventful;
-});
-define('zrender/tool/log', [
+});define('zrender/tool/log', [
   'require',
   '../config'
 ], function (require) {
@@ -10767,14 +10592,12 @@ define('zrender/tool/log', [
       }
     }
   };
-});
-define('zrender/tool/guid', [], function () {
+});define('zrender/tool/guid', [], function () {
   var idStart = 2311;
   return function () {
     return 'zrender__' + idStart++;
   };
-});
-define('zrender/Handler', [
+});define('zrender/Handler', [
   'require',
   './config',
   './tool/env',
@@ -11037,19 +10860,16 @@ define('zrender/Handler', [
       this.painter.clearHover();
     }
   };
-
   function bind2Arg(handler, context) {
     return function (arg1, arg2) {
       return handler.call(context, arg1, arg2);
     };
   }
-
   function bind3Arg(handler, context) {
     return function (arg1, arg2, arg3) {
       return handler.call(context, arg1, arg2, arg3);
     };
   }
-
   function initDomHandler(instance) {
     var len = domHandlerNames.length;
     while (len--) {
@@ -11057,7 +10877,6 @@ define('zrender/Handler', [
       instance['_' + name + 'Handler'] = bind2Arg(domHandlers[name], instance);
     }
   }
-
   var Handler = function (root, storage, painter) {
     Eventful.call(this);
     this.root = root;
@@ -11267,13 +11086,13 @@ define('zrender/Handler', [
     };
   }();
   var MOBILE_TOUCH_OFFSETS = [
-    {x: 10},
-    {x: -20},
+    { x: 10 },
+    { x: -20 },
     {
       x: 10,
       y: 10
     },
-    {y: -20}
+    { y: -20 }
   ];
   Handler.prototype._mobileFindFixed = function (event) {
     this._lastHover = null;
@@ -11321,7 +11140,6 @@ define('zrender/Handler', [
     }
     return false;
   }
-
   Handler.prototype._zrenderEventFixed = function (event, isTouch) {
     if (event.zrenderFixed) {
       return event;
@@ -11346,8 +11164,7 @@ define('zrender/Handler', [
   };
   util.merge(Handler.prototype, Eventful.prototype, true);
   return Handler;
-});
-define('zrender/Painter', [
+});define('zrender/Painter', [
   'require',
   './config',
   './tool/util',
@@ -11362,14 +11179,11 @@ define('zrender/Painter', [
   var log = require('./tool/log');
   var BaseLoadingEffect = require('./loadingEffect/Base');
   var Layer = require('./Layer');
-
   function returnFalse() {
     return false;
   }
-
   function doNothing() {
   }
-
   function isLayerValid(layer) {
     if (!layer) {
       return false;
@@ -11382,7 +11196,6 @@ define('zrender/Painter', [
     }
     return true;
   }
-
   var Painter = function (root, storage) {
     this.root = root;
     root.style['-webkit-tap-highlight-color'] = 'transparent';
@@ -11851,8 +11664,7 @@ define('zrender/Painter', [
     };
   };
   return Painter;
-});
-define('zrender/Storage', [
+});define('zrender/Storage', [
   'require',
   './tool/util',
   './Group'
@@ -11865,7 +11677,6 @@ define('zrender/Storage', [
     normal: 'down',
     update: false
   };
-
   function shapeCompareFunc(a, b) {
     if (a.zlevel == b.zlevel) {
       if (a.z == b.z) {
@@ -11875,7 +11686,6 @@ define('zrender/Storage', [
     }
     return a.zlevel - b.zlevel;
   }
-
   var Storage = function () {
     this._elements = {};
     this._hoverElements = [];
@@ -12110,8 +11920,7 @@ define('zrender/Storage', [
     this._elements = this._renderList = this._roots = this._hoverElements = null;
   };
   return Storage;
-});
-define('zrender/animation/Animation', [
+});define('zrender/animation/Animation', [
   'require',
   './Clip',
   '../tool/color',
@@ -12197,7 +12006,6 @@ define('zrender/animation/Animation', [
           self._update();
         }
       }
-
       this._time = new Date().getTime();
       requestAnimationFrame(step);
     },
@@ -12219,15 +12027,12 @@ define('zrender/animation/Animation', [
   function _defaultGetter(target, key) {
     return target[key];
   }
-
   function _defaultSetter(target, key, value) {
     target[key] = value;
   }
-
   function _interpolateNumber(p0, p1, percent) {
     return (p1 - p0) * percent + p0;
   }
-
   function _interpolateArray(p0, p1, percent, out, arrDim) {
     var len = p0.length;
     if (arrDim == 1) {
@@ -12243,7 +12048,6 @@ define('zrender/animation/Animation', [
       }
     }
   }
-
   function _isArrayLike(data) {
     switch (typeof data) {
       case 'undefined':
@@ -12252,7 +12056,6 @@ define('zrender/animation/Animation', [
     }
     return typeof data.length !== 'undefined';
   }
-
   function _catmullRomInterpolateArray(p0, p1, p2, p3, t, t2, t3, out, arrDim) {
     var len = p0.length;
     if (arrDim == 1) {
@@ -12268,13 +12071,11 @@ define('zrender/animation/Animation', [
       }
     }
   }
-
   function _catmullRomInterpolate(p0, p1, p2, p3, t, t2, t3) {
     var v0 = (p2 - p0) * 0.5;
     var v1 = (p3 - p1) * 0.5;
     return (2 * (p1 - p2) + v0 + v1) * t3 + (-3 * (p1 - p2) - 2 * v0 - v1) * t2 + v0 * t + p1;
   }
-
   function _cloneValue(value) {
     if (_isArrayLike(value)) {
       var len = value.length;
@@ -12291,14 +12092,12 @@ define('zrender/animation/Animation', [
       return value;
     }
   }
-
   function rgba2String(rgba) {
     rgba[0] = Math.floor(rgba[0]);
     rgba[1] = Math.floor(rgba[1]);
     rgba[2] = Math.floor(rgba[2]);
     return 'rgba(' + rgba.join(',') + ')';
   }
-
   var Animator = function (target, loop, getter, setter) {
     this._tracks = {};
     this._target = target;
@@ -12498,8 +12297,7 @@ define('zrender/animation/Animation', [
     }
   };
   return Animation;
-});
-define('zrender/tool/vector', [], function () {
+});define('zrender/tool/vector', [], function () {
   var ArrayCtor = typeof Float32Array === 'undefined' ? Array : Float32Array;
   var vector = {
     create: function (x, y) {
@@ -12613,8 +12411,7 @@ define('zrender/tool/vector', [], function () {
   vector.dist = vector.distance;
   vector.distSquare = vector.distanceSquare;
   return vector;
-});
-define('zrender/tool/matrix', [], function () {
+});define('zrender/tool/matrix', [], function () {
   var ArrayCtor = typeof Float32Array === 'undefined' ? Array : Float32Array;
   var matrix = {
     create: function () {
@@ -12708,8 +12505,7 @@ define('zrender/tool/matrix', [], function () {
     }
   };
   return matrix;
-});
-define('zrender/loadingEffect/Base', [
+});define('zrender/loadingEffect/Base', [
   'require',
   '../tool/util',
   '../shape/Text',
@@ -12720,11 +12516,9 @@ define('zrender/loadingEffect/Base', [
   var RectangleShape = require('../shape/Rectangle');
   var DEFAULT_TEXT = 'Loading...';
   var DEFAULT_TEXT_FONT = 'normal 16px Arial';
-
   function Base(options) {
     this.setOptions(options);
   }
-
   Base.prototype.createTextShape = function (textStyle) {
     return new TextShape({
       highlightStyle: util.merge({
@@ -12757,11 +12551,9 @@ define('zrender/loadingEffect/Base', [
     function addShapeHandle(param) {
       painter.storage.addHover(param);
     }
-
     function refreshHandle() {
       painter.refreshHover();
     }
-
     this.loadingTimer = this._start(addShapeHandle, refreshHandle);
   };
   Base.prototype._start = function () {
@@ -12815,8 +12607,7 @@ define('zrender/loadingEffect/Base', [
     };
   };
   return Base;
-});
-define('zrender/Layer', [
+});define('zrender/Layer', [
   'require',
   './mixin/Transformable',
   './tool/util',
@@ -12826,11 +12617,9 @@ define('zrender/Layer', [
   var util = require('./tool/util');
   var vmlCanvasManager = window['G_vmlCanvasManager'];
   var config = require('./config');
-
   function returnFalse() {
     return false;
   }
-
   function createDom(id, type, painter) {
     var newDom = document.createElement(type);
     var width = painter.getWidth();
@@ -12845,7 +12634,6 @@ define('zrender/Layer', [
     newDom.setAttribute('data-zr-dom-id', id);
     return newDom;
   }
-
   var Layer = function (id, painter) {
     this.id = id;
     this.dom = createDom(id, 'canvas', painter);
@@ -12940,8 +12728,7 @@ define('zrender/Layer', [
   };
   util.merge(Layer.prototype, Transformable.prototype);
   return Layer;
-});
-define('zrender/shape/Text', [
+});define('zrender/shape/Text', [
   'require',
   '../tool/area',
   './Base',
@@ -13051,8 +12838,7 @@ define('zrender/shape/Text', [
   };
   require('../tool/util').inherits(Text, Base);
   return Text;
-});
-define('zrender/shape/Rectangle', [
+});define('zrender/shape/Rectangle', [
   'require',
   './Base',
   '../tool/util'
@@ -13159,8 +12945,7 @@ define('zrender/shape/Rectangle', [
   };
   require('../tool/util').inherits(Rectangle, Base);
   return Rectangle;
-});
-define('zrender/tool/area', [
+});define('zrender/tool/area', [
   'require',
   './util',
   './curve'
@@ -13175,7 +12960,6 @@ define('zrender/tool/area', [
   var _textHeightCacheCounter = 0;
   var TEXT_CACHE_MAX = 5000;
   var PI2 = Math.PI * 2;
-
   function normalizeRadian(angle) {
     angle %= PI2;
     if (angle < 0) {
@@ -13183,7 +12967,6 @@ define('zrender/tool/area', [
     }
     return angle;
   }
-
   function isInside(shape, area, x, y) {
     if (!area || !shape) {
       return false;
@@ -13209,7 +12992,6 @@ define('zrender/tool/area', [
         return false;
     }
   }
-
   function _mathMethod(shape, area, x, y) {
     var zoneType = shape.type;
     switch (zoneType) {
@@ -13248,18 +13030,15 @@ define('zrender/tool/area', [
         return isInsideRect(area.x, area.y, area.width, area.height, x, y);
     }
   }
-
   function _buildPathMethod(shape, context, area, x, y) {
     context.beginPath();
     shape.buildPath(context, area);
     context.closePath();
     return context.isPointInPath(x, y);
   }
-
   function isOutside(shape, area, x, y) {
     return !isInside(shape, area, x, y);
   }
-
   function isInsideLine(x0, y0, x1, y1, lineWidth, x, y) {
     if (lineWidth === 0) {
       return false;
@@ -13280,7 +13059,6 @@ define('zrender/tool/area', [
     var _s = tmp * tmp / (_a * _a + 1);
     return _s <= _l / 2 * _l / 2;
   }
-
   function isInsideCubicStroke(x0, y0, x1, y1, x2, y2, x3, y3, lineWidth, x, y) {
     if (lineWidth === 0) {
       return false;
@@ -13292,7 +13070,6 @@ define('zrender/tool/area', [
     var d = curve.cubicProjectPoint(x0, y0, x1, y1, x2, y2, x3, y3, x, y, null);
     return d <= _l / 2;
   }
-
   function isInsideQuadraticStroke(x0, y0, x1, y1, x2, y2, lineWidth, x, y) {
     if (lineWidth === 0) {
       return false;
@@ -13304,7 +13081,6 @@ define('zrender/tool/area', [
     var d = curve.quadraticProjectPoint(x0, y0, x1, y1, x2, y2, x, y, null);
     return d <= _l / 2;
   }
-
   function isInsideArcStroke(cx, cy, r, startAngle, endAngle, anticlockwise, lineWidth, x, y) {
     if (lineWidth === 0) {
       return false;
@@ -13336,7 +13112,6 @@ define('zrender/tool/area', [
     }
     return angle >= startAngle && angle <= endAngle || angle + PI2 >= startAngle && angle + PI2 <= endAngle;
   }
-
   function isInsidePolyline(points, lineWidth, x, y) {
     var lineWidth = Math.max(lineWidth, 10);
     for (var i = 0, l = points.length - 1; i < l; i++) {
@@ -13350,24 +13125,19 @@ define('zrender/tool/area', [
     }
     return false;
   }
-
   function isInsideRing(cx, cy, r0, r, x, y) {
     var d = (x - cx) * (x - cx) + (y - cy) * (y - cy);
     return d < r * r && d > r0 * r0;
   }
-
   function isInsideRect(x0, y0, width, height, x, y) {
     return x >= x0 && x <= x0 + width && y >= y0 && y <= y0 + height;
   }
-
   function isInsideCircle(x0, y0, r, x, y) {
     return (x - x0) * (x - x0) + (y - y0) * (y - y0) < r * r;
   }
-
   function isInsideSector(cx, cy, r0, r, startAngle, endAngle, anticlockwise, x, y) {
     return isInsideArcStroke(cx, cy, (r0 + r) / 2, startAngle, endAngle, anticlockwise, r - r0, x, y);
   }
-
   function isInsidePolygon(points, x, y) {
     var N = points.length;
     var w = 0;
@@ -13381,7 +13151,6 @@ define('zrender/tool/area', [
     }
     return w !== 0;
   }
-
   function windingLine(x0, y0, x1, y1, x, y) {
     if (y > y0 && y > y1 || y < y0 && y < y1) {
       return 0;
@@ -13394,7 +13163,6 @@ define('zrender/tool/area', [
     var x_ = t * (x1 - x0) + x0;
     return x_ > x ? dir : 0;
   }
-
   var roots = [
     -1,
     -1,
@@ -13404,13 +13172,11 @@ define('zrender/tool/area', [
     -1,
     -1
   ];
-
   function swapExtrema() {
     var tmp = extrema[0];
     extrema[0] = extrema[1];
     extrema[1] = tmp;
   }
-
   function windingCubic(x0, y0, x1, y1, x2, y2, x3, y3, x, y) {
     if (y > y0 && y > y1 && y > y2 && y > y3 || y < y0 && y < y1 && y < y2 && y < y3) {
       return 0;
@@ -13457,7 +13223,6 @@ define('zrender/tool/area', [
       return w;
     }
   }
-
   function windingQuadratic(x0, y0, x1, y1, x2, y2, x, y) {
     if (y > y0 && y > y1 && y > y2 || y < y0 && y < y1 && y < y2) {
       return 0;
@@ -13491,7 +13256,6 @@ define('zrender/tool/area', [
       }
     }
   }
-
   function windingArc(cx, cy, r, startAngle, endAngle, anticlockwise, x, y) {
     y -= cy;
     if (y > r || y < -r) {
@@ -13540,7 +13304,6 @@ define('zrender/tool/area', [
     }
     return w;
   }
-
   function isInsidePath(pathArray, lineWidth, brushType, x, y) {
     var w = 0;
     var xi = 0;
@@ -13657,7 +13420,6 @@ define('zrender/tool/area', [
     }
     return w !== 0;
   }
-
   function getTextWidth(text, textFont) {
     var key = text + ':' + textFont;
     if (_textWidthCache[key]) {
@@ -13681,7 +13443,6 @@ define('zrender/tool/area', [
     }
     return width;
   }
-
   function getTextHeight(text, textFont) {
     var key = text + ':' + textFont;
     if (_textHeightCache[key]) {
@@ -13702,7 +13463,6 @@ define('zrender/tool/area', [
     }
     return height;
   }
-
   return {
     isInside: isInside,
     isOutside: isOutside,
@@ -13718,8 +13478,7 @@ define('zrender/tool/area', [
     isInsideCubicStroke: isInsideCubicStroke,
     isInsideQuadraticStroke: isInsideQuadraticStroke
   };
-});
-define('zrender/shape/Base', [
+});define('zrender/shape/Base', [
   'require',
   '../tool/matrix',
   '../tool/guid',
@@ -13737,7 +13496,6 @@ define('zrender/shape/Base', [
   var log = require('../tool/log');
   var Transformable = require('../mixin/Transformable');
   var Eventful = require('../mixin/Eventful');
-
   function _fillText(ctx, text, x, y, textFont, textAlign, textBaseline) {
     if (textFont) {
       ctx.font = textFont;
@@ -13762,7 +13520,6 @@ define('zrender/shape/Base', [
       y += lineHeight;
     }
   }
-
   function _getTextRect(text, x, y, textFont, textAlign, textBaseline) {
     var area = require('../tool/area');
     var width = area.getTextWidth(text, textFont);
@@ -13793,7 +13550,6 @@ define('zrender/shape/Base', [
       height: lineHeight * text.length
     };
   }
-
   var Base = function (options) {
     options = options || {};
     this.id = options.id || guid();
@@ -14126,8 +13882,7 @@ define('zrender/shape/Base', [
   util.merge(Base.prototype, Transformable.prototype, true);
   util.merge(Base.prototype, Eventful.prototype, true);
   return Base;
-});
-define('zrender/tool/curve', [
+});define('zrender/tool/curve', [
   'require',
   './vector'
 ], function (require) {
@@ -14139,25 +13894,20 @@ define('zrender/tool/curve', [
   var _v0 = vector.create();
   var _v1 = vector.create();
   var _v2 = vector.create();
-
   function isAroundZero(val) {
     return val > -EPSILON && val < EPSILON;
   }
-
   function isNotAroundZero(val) {
     return val > EPSILON || val < -EPSILON;
   }
-
   function cubicAt(p0, p1, p2, p3, t) {
     var onet = 1 - t;
     return onet * onet * (onet * p0 + 3 * t * p1) + t * t * (t * p3 + 3 * onet * p2);
   }
-
   function cubicDerivativeAt(p0, p1, p2, p3, t) {
     var onet = 1 - t;
     return 3 * (((p1 - p0) * onet + 2 * (p2 - p1) * t) * onet + (p3 - p2) * t * t);
   }
-
   function cubicRootAt(p0, p1, p2, p3, val, roots) {
     var a = p3 + 3 * (p1 - p2) - p0;
     var b = 3 * (p2 - p1 * 2 + p0);
@@ -14227,7 +13977,6 @@ define('zrender/tool/curve', [
     }
     return n;
   }
-
   function cubicExtrema(p0, p1, p2, p3, extrema) {
     var b = 6 * p2 - 12 * p1 + 6 * p0;
     var a = 9 * p1 + 3 * p3 - 3 * p0 - 9 * p2;
@@ -14258,7 +14007,6 @@ define('zrender/tool/curve', [
     }
     return n;
   }
-
   function cubicSubdivide(p0, p1, p2, p3, t, out) {
     var p01 = (p1 - p0) * t + p0;
     var p12 = (p2 - p1) * t + p1;
@@ -14275,7 +14023,6 @@ define('zrender/tool/curve', [
     out[6] = p23;
     out[7] = p3;
   }
-
   function cubicProjectPoint(x0, y0, x1, y1, x2, y2, x3, y3, x, y, out) {
     var t;
     var interval = 0.005;
@@ -14322,16 +14069,13 @@ define('zrender/tool/curve', [
     }
     return Math.sqrt(d);
   }
-
   function quadraticAt(p0, p1, p2, t) {
     var onet = 1 - t;
     return onet * (onet * p0 + 2 * t * p1) + t * t * p2;
   }
-
   function quadraticDerivativeAt(p0, p1, p2, t) {
     return 2 * ((1 - t) * (p1 - p0) + t * (p2 - p1));
   }
-
   function quadraticRootAt(p0, p1, p2, val, roots) {
     var a = p0 - 2 * p1 + p2;
     var b = 2 * (p1 - p0);
@@ -14365,7 +14109,6 @@ define('zrender/tool/curve', [
     }
     return n;
   }
-
   function quadraticExtremum(p0, p1, p2) {
     var divider = p0 + p2 - 2 * p1;
     if (divider === 0) {
@@ -14374,7 +14117,6 @@ define('zrender/tool/curve', [
       return (p0 - p1) / divider;
     }
   }
-
   function quadraticSubdivide(p0, p1, p2, t, out) {
     var p01 = (p1 - p0) * t + p0;
     var p12 = (p2 - p1) * t + p1;
@@ -14386,7 +14128,6 @@ define('zrender/tool/curve', [
     out[4] = p12;
     out[5] = p2;
   }
-
   function quadraticProjectPoint(x0, y0, x1, y1, x2, y2, x, y, out) {
     var t;
     var interval = 0.005;
@@ -14433,7 +14174,6 @@ define('zrender/tool/curve', [
     }
     return Math.sqrt(d);
   }
-
   return {
     cubicAt: cubicAt,
     cubicDerivativeAt: cubicDerivativeAt,
@@ -14448,8 +14188,7 @@ define('zrender/tool/curve', [
     quadraticSubdivide: quadraticSubdivide,
     quadraticProjectPoint: quadraticProjectPoint
   };
-});
-define('zrender/mixin/Transformable', [
+});define('zrender/mixin/Transformable', [
   'require',
   '../tool/matrix',
   '../tool/vector'
@@ -14463,15 +14202,12 @@ define('zrender/mixin/Transformable', [
   ];
   var mTranslate = matrix.translate;
   var EPSILON = 0.00005;
-
   function isAroundZero(val) {
     return val > -EPSILON && val < EPSILON;
   }
-
   function isNotAroundZero(val) {
     return val > EPSILON || val < -EPSILON;
   }
-
   var Transformable = function () {
     if (!this.position) {
       this.position = [
@@ -14626,8 +14362,7 @@ define('zrender/mixin/Transformable', [
     }
   };
   return Transformable;
-});
-define('zrender/Group', [
+});define('zrender/Group', [
   'require',
   './tool/guid',
   './tool/util',
@@ -14752,13 +14487,11 @@ define('zrender/Group', [
   util.merge(Group.prototype, Transformable.prototype, true);
   util.merge(Group.prototype, Eventful.prototype, true);
   return Group;
-});
-define('zrender/animation/Clip', [
+});define('zrender/animation/Clip', [
   'require',
   './easing'
 ], function (require) {
   var Easing = require('./easing');
-
   function Clip(options) {
     this._targetPool = options.target || {};
     if (!(this._targetPool instanceof Array)) {
@@ -14775,7 +14508,6 @@ define('zrender/animation/Clip', [
     this.ondestroy = options.ondestroy;
     this.onrestart = options.onrestart;
   }
-
   Clip.prototype = {
     step: function (time) {
       var percent = (time - this._startTime) / this._life;
@@ -14812,8 +14544,7 @@ define('zrender/animation/Clip', [
     constructor: Clip
   };
   return Clip;
-});
-define('zrender/animation/easing', [], function () {
+});define('zrender/animation/easing', [], function () {
   var easing = {
     Linear: function (k) {
       return k;
@@ -14999,8 +14730,7 @@ define('zrender/animation/easing', [], function () {
     }
   };
   return easing;
-});
-define('echarts/chart/base', [
+});define('echarts/chart/base', [
   'require',
   'zrender/shape/Image',
   '../util/shape/Icon',
@@ -15033,11 +14763,9 @@ define('echarts/chart/base', [
   var EdgeBundling = require('../layout/EdgeBundling');
   var zrUtil = require('zrender/tool/util');
   var zrArea = require('zrender/tool/area');
-
   function isCoordAvailable(coord) {
     return coord.x != null && coord.y != null;
   }
-
   function Base(ecTheme, messageCenter, zr, option, myChart) {
     ComponentBase.call(this, ecTheme, messageCenter, zr, option, myChart);
     var self = this;
@@ -15076,7 +14804,6 @@ define('echarts/chart/base', [
       }
     };
   }
-
   Base.prototype = {
     setCalculable: function (shape) {
       shape.dragEnableTime = this.ecTheme.DRAG_ENABLE_TIME || ecConfig.DRAG_ENABLE_TIME;
@@ -15534,7 +15261,7 @@ define('echarts/chart/base', [
       var shapeList = this._markLine(seriesIndex, markLine);
       var isLarge = markLine.large;
       if (isLarge) {
-        var shapeBundle = new ShapeBundle({style: {shapeList: shapeList}});
+        var shapeBundle = new ShapeBundle({ style: { shapeList: shapeList } });
         var firstShape = shapeList[0];
         if (firstShape) {
           zrUtil.merge(shapeBundle.style, firstShape.style);
@@ -15611,7 +15338,7 @@ define('echarts/chart/base', [
             }
           }
           color = color == null ? this.zr.getColor(seriesIndex) : color;
-          data[i].tooltip = data[i].tooltip || mpOption.tooltip || {trigger: 'item'};
+          data[i].tooltip = data[i].tooltip || mpOption.tooltip || { trigger: 'item' };
           data[i].name = data[i].name != null ? data[i].name : '';
           data[i].value = value;
           itemShape = this.getSymbolShape(mpOption, seriesIndex, data[i], i, data[i].name, this.parsePercent(data[i].x, zrWidth), this.parsePercent(data[i].y, zrHeight), 'pin', color, 'rgba(0,0,0,0)', 'horizontal');
@@ -15646,7 +15373,6 @@ define('echarts/chart/base', [
           mlOption[key]
         ];
       }
-
       return function (seriesIndex, mlOption) {
         var serie = this.series[seriesIndex];
         var component = this.component;
@@ -15679,7 +15405,7 @@ define('echarts/chart/base', [
                 continue;
               }
             }
-            mlData[0].tooltip = mergeData.tooltip || mlOption.tooltip || {trigger: 'item'};
+            mlData[0].tooltip = mergeData.tooltip || mlOption.tooltip || { trigger: 'item' };
             mlData[0].name = mlData[0].name || '';
             mlData[1].name = mlData[1].name || '';
             mlData[0].value = value;
@@ -16139,7 +15865,7 @@ define('echarts/chart/base', [
     clearEffectShape: function (clearMotionBlur) {
       var effectList = this.effectList;
       if (this.zr && effectList && effectList.length > 0) {
-        clearMotionBlur && this.zr.modLayer(ecConfig.EFFECT_ZLEVEL, {motionBlur: false});
+        clearMotionBlur && this.zr.modLayer(ecConfig.EFFECT_ZLEVEL, { motionBlur: false });
         this.zr.delShape(effectList);
         for (var i = 0; i < effectList.length; i++) {
           if (effectList[i].effectAnimator) {
@@ -16195,8 +15921,7 @@ define('echarts/chart/base', [
   };
   zrUtil.inherits(Base, ComponentBase);
   return Base;
-});
-define('zrender/shape/Circle', [
+});define('zrender/shape/Circle', [
   'require',
   './Base',
   '../tool/util'
@@ -16234,8 +15959,7 @@ define('zrender/shape/Circle', [
   };
   require('../tool/util').inherits(Circle, Base);
   return Circle;
-});
-define('echarts/util/accMath', [], function () {
+});define('echarts/util/accMath', [], function () {
   function accDiv(arg1, arg2) {
     var s1 = arg1.toString();
     var s2 = arg2.toString();
@@ -16250,7 +15974,6 @@ define('echarts/util/accMath', [], function () {
     }
     return (s1.replace('.', '') - 0) / (s2.replace('.', '') - 0) * Math.pow(10, m);
   }
-
   function accMul(arg1, arg2) {
     var s1 = arg1.toString();
     var s2 = arg2.toString();
@@ -16265,7 +15988,6 @@ define('echarts/util/accMath', [], function () {
     }
     return (s1.replace('.', '') - 0) * (s2.replace('.', '') - 0) / Math.pow(10, m);
   }
-
   function accAdd(arg1, arg2) {
     var r1 = 0;
     var r2 = 0;
@@ -16280,19 +16002,16 @@ define('echarts/util/accMath', [], function () {
     var m = Math.pow(10, Math.max(r1, r2));
     return (Math.round(arg1 * m) + Math.round(arg2 * m)) / m;
   }
-
   function accSub(arg1, arg2) {
     return accAdd(arg1, -arg2);
   }
-
   return {
     accDiv: accDiv,
     accMul: accMul,
     accAdd: accAdd,
     accSub: accSub
   };
-});
-define('echarts/util/shape/Icon', [
+});define('echarts/util/shape/Icon', [
   'require',
   'zrender/tool/util',
   'zrender/shape/Star',
@@ -16302,7 +16021,6 @@ define('echarts/util/shape/Icon', [
   'zrender/shape/Base'
 ], function (require) {
   var zrUtil = require('zrender/tool/util');
-
   function _iconMark(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16321,7 +16039,6 @@ define('echarts/util/shape/Icon', [
     ctx.moveTo(x + 13 * dx, y + 10 * dy);
     ctx.lineTo(x + 13 * dx, y + style.height);
   }
-
   function _iconMarkUndo(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16338,7 +16055,6 @@ define('echarts/util/shape/Icon', [
     ctx.moveTo(x + 10 * dx, y + 13 * dy);
     ctx.lineTo(x + style.width, y + 13 * dy);
   }
-
   function _iconMarkClear(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16361,7 +16077,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + 13 * dx, y + style.height);
     ctx.lineTo(x + style.width, y + 5 * dy);
   }
-
   function _iconDataZoom(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16377,7 +16092,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + style.width, y + 3 * dy);
     ctx.lineTo(x + 8 * dx, y + 3 * dy);
   }
-
   function _iconDataZoomReset(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16396,7 +16110,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + 14 * dx, y + 13 * dy);
     ctx.lineTo(x + 10 * dx, y + style.height);
   }
-
   function _iconRestore(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16414,7 +16127,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + style.width, y + 4 * dy);
     ctx.lineTo(x + 11 * dx, y + 5 * dy);
   }
-
   function _iconLineChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16428,7 +16140,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + 11 * dx, y + 11 * dy);
     ctx.lineTo(x + 15 * dx, y + 2 * dy);
   }
-
   function _iconBarChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16450,7 +16161,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + 12 * dx, y + 9 * dy);
     ctx.lineTo(x + 12 * dx, y + 14 * dy);
   }
-
   function _iconPieChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16467,7 +16177,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + r, y + r);
     ctx.lineWidth = 1.5;
   }
-
   function _iconFunnelChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16491,7 +16200,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + 8 * dx, y + 15 * dy);
     ctx.lineTo(x + 7 * dx, y + 15 * dy);
   }
-
   function _iconForceChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16514,7 +16222,6 @@ define('echarts/util/shape/Icon', [
     ctx.arc(x + 14 * dx, y + 10 * dy, r, 0, Math.PI * 3);
     ctx.lineWidth = 1.5;
   }
-
   function _iconChordChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16528,7 +16235,6 @@ define('echarts/util/shape/Icon', [
     ctx.arc(x + width, y + height, r, Math.PI, Math.PI / 2 * 3);
     ctx.lineWidth = 1.5;
   }
-
   function _iconStackChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16541,7 +16247,6 @@ define('echarts/util/shape/Icon', [
       ctx.rect(x, y + dy * len + delta, width, 2);
     }
   }
-
   function _iconTiledChart(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16554,7 +16259,6 @@ define('echarts/util/shape/Icon', [
       ctx.rect(x + dx * len + delta, y, 2, height);
     }
   }
-
   function _iconDataView(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16573,7 +16277,6 @@ define('echarts/util/shape/Icon', [
     ctx.moveTo(x + 3 * dx, y + 12 * dx);
     ctx.lineTo(x + 9 * dx, y + 12 * dx);
   }
-
   function _iconSave(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16594,7 +16297,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + 10 * dx, y + 11 * dy);
     ctx.lineTo(x + 6 * dx, y + 11 * dy);
   }
-
   function _iconCross(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16605,7 +16307,6 @@ define('echarts/util/shape/Icon', [
     ctx.moveTo(x + width / 2, y);
     ctx.lineTo(x + width / 2, y + height);
   }
-
   function _iconCircle(ctx, style) {
     var width = style.width / 2;
     var height = style.height / 2;
@@ -16614,12 +16315,10 @@ define('echarts/util/shape/Icon', [
     ctx.arc(style.x + width, style.y + height, r, 0, Math.PI * 2);
     ctx.closePath();
   }
-
   function _iconRectangle(ctx, style) {
     ctx.rect(style.x, style.y, style.width, style.height);
     ctx.closePath();
   }
-
   function _iconTriangle(ctx, style) {
     var width = style.width / 2;
     var height = style.height / 2;
@@ -16632,7 +16331,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x, y - symbolSize);
     ctx.closePath();
   }
-
   function _iconDiamond(ctx, style) {
     var width = style.width / 2;
     var height = style.height / 2;
@@ -16646,7 +16344,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x, y - symbolSize);
     ctx.closePath();
   }
-
   function _iconArrow(ctx, style) {
     var x = style.x;
     var y = style.y;
@@ -16658,7 +16355,6 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + 8 * dx, y);
     ctx.closePath();
   }
-
   function _iconStar(ctx, style) {
     var StarShape = require('zrender/shape/Star');
     var width = style.width / 2;
@@ -16670,7 +16366,6 @@ define('echarts/util/shape/Icon', [
       n: style.n || 5
     });
   }
-
   function _iconHeart(ctx, style) {
     var HeartShape = require('zrender/shape/Heart');
     HeartShape.prototype.buildPath(ctx, {
@@ -16680,7 +16375,6 @@ define('echarts/util/shape/Icon', [
       b: style.height * 0.8
     });
   }
-
   function _iconDroplet(ctx, style) {
     var DropletShape = require('zrender/shape/Droplet');
     DropletShape.prototype.buildPath(ctx, {
@@ -16690,7 +16384,6 @@ define('echarts/util/shape/Icon', [
       b: style.height * 0.8
     });
   }
-
   function _iconPin(ctx, style) {
     var x = style.x;
     var y = style.y - style.height / 2 * 1.5;
@@ -16701,22 +16394,18 @@ define('echarts/util/shape/Icon', [
     ctx.lineTo(x + width, y + height + r * 1.5);
     ctx.closePath();
   }
-
   function _iconImage(ctx, style, refreshNextFrame) {
     var ImageShape = require('zrender/shape/Image');
-    this._imageShape = this._imageShape || new ImageShape({style: {}});
+    this._imageShape = this._imageShape || new ImageShape({ style: {} });
     for (var name in style) {
       this._imageShape.style[name] = style[name];
     }
     this._imageShape.brush(ctx, false, refreshNextFrame);
   }
-
   var Base = require('zrender/shape/Base');
-
   function Icon(options) {
     Base.call(this, options);
   }
-
   Icon.prototype = {
     type: 'icon',
     iconLibrary: {
@@ -16811,8 +16500,7 @@ define('echarts/util/shape/Icon', [
   };
   zrUtil.inherits(Icon, Base);
   return Icon;
-});
-define('echarts/util/shape/MarkLine', [
+});define('echarts/util/shape/MarkLine', [
   'require',
   'zrender/shape/Base',
   './Icon',
@@ -16833,7 +16521,6 @@ define('echarts/util/shape/MarkLine', [
   var dashedLineTo = require('zrender/shape/util/dashedLineTo');
   var zrUtil = require('zrender/tool/util');
   var curveTool = require('zrender/tool/curve');
-
   function MarkLine(options) {
     Base.call(this, options);
     if (this.style.curveness > 0) {
@@ -16843,7 +16530,6 @@ define('echarts/util/shape/MarkLine', [
       this.updatePoints(this.highlightStyle);
     }
   }
-
   MarkLine.prototype = {
     type: 'mark-line',
     brush: function (ctx, isHighlight) {
@@ -16975,8 +16661,7 @@ define('echarts/util/shape/MarkLine', [
   };
   zrUtil.inherits(MarkLine, Base);
   return MarkLine;
-});
-define('echarts/util/shape/Symbol', [
+});define('echarts/util/shape/Symbol', [
   'require',
   'zrender/shape/Base',
   'zrender/shape/Polygon',
@@ -16987,11 +16672,9 @@ define('echarts/util/shape/Symbol', [
   var PolygonShape = require('zrender/shape/Polygon');
   var polygonInstance = new PolygonShape({});
   var zrUtil = require('zrender/tool/util');
-
   function Symbol(options) {
     Base.call(this, options);
   }
-
   Symbol.prototype = {
     type: 'symbol',
     buildPath: function (ctx, style) {
@@ -17077,8 +16760,7 @@ define('echarts/util/shape/Symbol', [
   };
   zrUtil.inherits(Symbol, Base);
   return Symbol;
-});
-define('zrender/shape/Polyline', [
+});define('zrender/shape/Polyline', [
   'require',
   './Base',
   './util/smoothSpline',
@@ -17148,8 +16830,7 @@ define('zrender/shape/Polyline', [
   };
   require('../tool/util').inherits(Polyline, Base);
   return Polyline;
-});
-define('zrender/shape/ShapeBundle', [
+});define('zrender/shape/ShapeBundle', [
   'require',
   './Base',
   '../tool/util'
@@ -17225,8 +16906,7 @@ define('zrender/shape/ShapeBundle', [
   };
   require('../tool/util').inherits(ShapeBundle, Base);
   return ShapeBundle;
-});
-define('echarts/util/ecAnimation', [
+});define('echarts/util/ecAnimation', [
   'require',
   'zrender/tool/util',
   'zrender/tool/curve',
@@ -17234,7 +16914,6 @@ define('echarts/util/ecAnimation', [
 ], function (require) {
   var zrUtil = require('zrender/tool/util');
   var curveTool = require('zrender/tool/curve');
-
   function pointList(zr, oldShape, newShape, duration, easing) {
     var newPointList = newShape.style.pointList;
     var newPointListLen = newPointList.length;
@@ -17262,7 +16941,7 @@ define('echarts/util/ecAnimation', [
         oldPointList[newPointListLen - 1] = zrUtil.clone(newPointList[newPointListLen - 1]);
         oldPointList[newPointListLen - 2] = zrUtil.clone(newPointList[newPointListLen - 2]);
       }
-      oldShape = {style: {pointList: oldPointList}};
+      oldShape = { style: { pointList: oldPointList } };
     }
     oldPointList = oldShape.style.pointList;
     var oldPointListLen = oldPointList.length;
@@ -17275,7 +16954,7 @@ define('echarts/util/ecAnimation', [
     }
     zr.addShape(newShape);
     newShape.__animating = true;
-    zr.animate(newShape.id, 'style').when(duration, {pointList: newPointList}).during(function () {
+    zr.animate(newShape.id, 'style').when(duration, { pointList: newPointList }).during(function () {
       if (newShape.updateControlPoints) {
         newShape.updateControlPoints(newShape.style);
       }
@@ -17283,7 +16962,6 @@ define('echarts/util/ecAnimation', [
       newShape.__animating = false;
     }).start(easing);
   }
-
   function cloneStyle(target, source) {
     var len = arguments.length;
     for (var i = 2; i < len; i++) {
@@ -17291,7 +16969,6 @@ define('echarts/util/ecAnimation', [
       target.style[prop] = source.style[prop];
     }
   }
-
   function rectangle(zr, oldShape, newShape, duration, easing) {
     var newShapeStyle = newShape.style;
     if (!oldShape) {
@@ -17317,7 +16994,7 @@ define('echarts/util/ecAnimation', [
     newShape.position = oldShape.position;
     zr.addShape(newShape);
     if (newPosition[0] != oldShape.position[0] || newPosition[1] != oldShape.position[1]) {
-      zr.animate(newShape.id, '').when(duration, {position: newPosition}).start(easing);
+      zr.animate(newShape.id, '').when(duration, { position: newPosition }).start(easing);
     }
     newShape.__animating = true;
     zr.animate(newShape.id, 'style').when(duration, {
@@ -17329,7 +17006,6 @@ define('echarts/util/ecAnimation', [
       newShape.__animating = false;
     }).start(easing);
   }
-
   function candle(zr, oldShape, newShape, duration, easing) {
     if (!oldShape) {
       var y = newShape.style.y;
@@ -17348,11 +17024,10 @@ define('echarts/util/ecAnimation', [
     newShape.style.y = oldShape.style.y;
     zr.addShape(newShape);
     newShape.__animating = true;
-    zr.animate(newShape.id, 'style').when(duration, {y: newY}).done(function () {
+    zr.animate(newShape.id, 'style').when(duration, { y: newY }).done(function () {
       newShape.__animating = false;
     }).start(easing);
   }
-
   function ring(zr, oldShape, newShape, duration, easing) {
     var x = newShape.style.x;
     var y = newShape.style.y;
@@ -17384,12 +17059,11 @@ define('echarts/util/ecAnimation', [
     } else {
       newShape.style.r0 = newShape.style.r;
       zr.addShape(newShape);
-      zr.animate(newShape.id, 'style').when(duration, {r0: r0}).done(function () {
+      zr.animate(newShape.id, 'style').when(duration, { r0: r0 }).done(function () {
         newShape.__animating = false;
       }).start(easing);
     }
   }
-
   function sector(zr, oldShape, newShape, duration, easing) {
     if (!oldShape) {
       if (newShape._animationAdd != 'r') {
@@ -17400,7 +17074,7 @@ define('echarts/util/ecAnimation', [
           }
         };
       } else {
-        oldShape = {style: {r0: newShape.style.r}};
+        oldShape = { style: { r0: newShape.style.r } };
       }
     }
     var startAngle = newShape.style.startAngle;
@@ -17415,7 +17089,6 @@ define('echarts/util/ecAnimation', [
       newShape.__animating = false;
     }).start(easing);
   }
-
   function text(zr, oldShape, newShape, duration, easing) {
     if (!oldShape) {
       oldShape = {
@@ -17437,7 +17110,6 @@ define('echarts/util/ecAnimation', [
       newShape.__animating = false;
     }).start(easing);
   }
-
   function polygon(zr, oldShape, newShape, duration, easing) {
     var rect = require('zrender/shape/Polygon').prototype.getRect(newShape.style);
     var x = rect.x + rect.width / 2;
@@ -17461,7 +17133,6 @@ define('echarts/util/ecAnimation', [
       newShape.__animating = false;
     }).start(easing);
   }
-
   function ribbon(zr, oldShape, newShape, duration, easing) {
     if (!oldShape) {
       oldShape = {
@@ -17491,20 +17162,18 @@ define('echarts/util/ecAnimation', [
       newShape.__animating = false;
     }).start(easing);
   }
-
   function gaugePointer(zr, oldShape, newShape, duration, easing) {
     if (!oldShape) {
-      oldShape = {style: {angle: newShape.style.startAngle}};
+      oldShape = { style: { angle: newShape.style.startAngle } };
     }
     var angle = newShape.style.angle;
     newShape.style.angle = oldShape.style.angle;
     zr.addShape(newShape);
     newShape.__animating = true;
-    zr.animate(newShape.id, 'style').when(duration, {angle: angle}).done(function () {
+    zr.animate(newShape.id, 'style').when(duration, { angle: angle }).done(function () {
       newShape.__animating = false;
     }).start(easing);
   }
-
   function icon(zr, oldShape, newShape, duration, easing, delay) {
     newShape.style._x = newShape.style.x;
     newShape.style._y = newShape.style.y;
@@ -17535,7 +17204,6 @@ define('echarts/util/ecAnimation', [
       rectangle(zr, oldShape, newShape, duration, easing);
     }
   }
-
   function line(zr, oldShape, newShape, duration, easing) {
     if (!oldShape) {
       oldShape = {
@@ -17563,7 +17231,6 @@ define('echarts/util/ecAnimation', [
       newShape.__animating = false;
     }).start(easing);
   }
-
   function markline(zr, oldShape, newShape, duration, easing) {
     easing = easing || 'QuinticOut';
     newShape.__animating = true;
@@ -17578,13 +17245,13 @@ define('echarts/util/ecAnimation', [
     var y2 = newShapeStyle.yEnd;
     if (newShapeStyle.curveness > 0) {
       newShape.updatePoints(newShapeStyle);
-      var obj = {p: 0};
+      var obj = { p: 0 };
       var x1 = newShapeStyle.cpX1;
       var y1 = newShapeStyle.cpY1;
       var newXArr = [];
       var newYArr = [];
       var subdivide = curveTool.quadraticSubdivide;
-      zr.animation.animate(obj).when(duration, {p: 1}).during(function () {
+      zr.animation.animate(obj).when(duration, { p: 1 }).during(function () {
         subdivide(x0, x1, x2, obj.p, newXArr);
         subdivide(y0, y1, y2, obj.p, newYArr);
         newShapeStyle.cpX1 = newXArr[1];
@@ -17603,7 +17270,6 @@ define('echarts/util/ecAnimation', [
       }).done(animationDone).start(easing);
     }
   }
-
   return {
     pointList: pointList,
     rectangle: rectangle,
@@ -17618,8 +17284,7 @@ define('echarts/util/ecAnimation', [
     line: line,
     markline: markline
   };
-});
-define('echarts/util/ecEffect', [
+});define('echarts/util/ecEffect', [
   'require',
   '../util/ecData',
   'zrender/shape/Circle',
@@ -17642,7 +17307,6 @@ define('echarts/util/ecEffect', [
   var Polyline = require('zrender/shape/Polyline');
   var vec2 = require('zrender/tool/vector');
   var canvasSupported = require('zrender/tool/env').canvasSupported;
-
   function point(zr, effectList, shape, zlevel) {
     var effect = shape.effect;
     var color = effect.color || shape.style.strokeColor || shape.style.color;
@@ -17702,7 +17366,7 @@ define('echarts/util/ecEffect', [
       effectShape.style.y -= shape.style.height / 2 * 1.5;
     }
     var duration = (effect.period + Math.random() * 10) * 100;
-    zr.modShape(shape.id, {invisible: true});
+    zr.modShape(shape.id, { invisible: true });
     var centerX = effectShape.style.x + effectShape.style.width / 2 / devicePixelRatio;
     var centerY = effectShape.style.y + effectShape.style.height / 2 / devicePixelRatio;
     if (effect.type === 'scale') {
@@ -17726,13 +17390,12 @@ define('echarts/util/ecEffect', [
         zr.delShape(effectShape.id);
       }).start();
     } else {
-      zr.animate(effectShape.id, 'style', effect.loop).when(duration, {y: effectShape.style.y - distance}).when(duration * 2, {y: effectShape.style.y}).done(function () {
+      zr.animate(effectShape.id, 'style', effect.loop).when(duration, { y: effectShape.style.y - distance }).when(duration * 2, { y: effectShape.style.y }).done(function () {
         shape.effect.show = false;
         zr.delShape(effectShape.id);
       }).start();
     }
   }
-
   function largePoint(zr, effectList, shape, zlevel) {
     var effect = shape.effect;
     var color = effect.color || shape.style.strokeColor || shape.style.color;
@@ -17761,7 +17424,7 @@ define('echarts/util/ecEffect', [
     });
     effectList.push(effectShape);
     zr.addShape(effectShape);
-    zr.modShape(shape.id, {invisible: true});
+    zr.modShape(shape.id, { invisible: true });
     var duration = Math.round(effect.period * 100);
     var clip1 = {};
     var clip2 = {};
@@ -17775,7 +17438,6 @@ define('echarts/util/ecEffect', [
       zr.animate(effectShape.id, 'style', true).when(duration, clip1).when(duration * 2, clip2).when(duration * 3, clip1).when(duration * 4, clip1).delay(Math.random() * duration * i).start();
     }
   }
-
   function line(zr, effectList, shape, zlevel, isLarge) {
     var effect = shape.effect;
     var shapeStyle = shape.style;
@@ -17831,10 +17493,10 @@ define('echarts/util/ecEffect', [
         }
         distanceList.push(totalDist);
       }
-      var obj = {p: 0};
-      var animator = zr.animation.animate(obj, {loop: effect.loop});
+      var obj = { p: 0 };
+      var animator = zr.animation.animate(obj, { loop: effect.loop });
       for (var i = 0; i < distanceList.length; i++) {
-        animator.when(distanceList[i] * effect.period, {p: i});
+        animator.when(distanceList[i] * effect.period, { p: i });
       }
       animator.during(function () {
         var i = Math.floor(obj.p);
@@ -17876,7 +17538,7 @@ define('echarts/util/ecEffect', [
       if (shape.style.curveness > 0) {
         var x1 = shapeStyle.cpX1 - offset;
         var y1 = shapeStyle.cpY1 - offset;
-        effectShape.effectAnimator = zr.animation.animate(effectShape, {loop: effect.loop}).when(duration, {p: 1}).during(function (target, t) {
+        effectShape.effectAnimator = zr.animation.animate(effectShape, { loop: effect.loop }).when(duration, { p: 1 }).during(function (target, t) {
           effectShape.style.x = curveTool.quadraticAt(x0, x1, x2, t);
           effectShape.style.y = curveTool.quadraticAt(y0, y1, y2, t);
           if (!isLarge) {
@@ -17884,7 +17546,7 @@ define('echarts/util/ecEffect', [
           }
         }).done(effectDone).start();
       } else {
-        effectShape.effectAnimator = zr.animation.animate(effectShape.style, {loop: effect.loop}).when(duration, {
+        effectShape.effectAnimator = zr.animation.animate(effectShape.style, { loop: effect.loop }).when(duration, {
           x: x2,
           y: y2
         }).during(function () {
@@ -17897,10 +17559,9 @@ define('echarts/util/ecEffect', [
     }
     return effectShape;
   }
-
   function largeLine(zr, effectList, shape, zlevel) {
     var effectShape = new ShapeBundle({
-      style: {shapeList: []},
+      style: { shapeList: [] },
       zlevel: zlevel,
       hoverable: false
     });
@@ -17933,7 +17594,7 @@ define('echarts/util/ecEffect', [
     };
     if (maxDuration) {
       effectShape.__dummy = 0;
-      var animator = zr.animate(effectShape.id, '', effect.loop).when(maxDuration, {__dummy: 1}).during(function () {
+      var animator = zr.animate(effectShape.id, '', effect.loop).when(maxDuration, { __dummy: 1 }).during(function () {
         zr.modShape(effectShape);
       }).done(function () {
         shape.effect.show = false;
@@ -17946,15 +17607,13 @@ define('echarts/util/ecEffect', [
       };
     }
   }
-
   return {
     point: point,
     largePoint: largePoint,
     line: line,
     largeLine: largeLine
   };
-});
-define('echarts/component/base', [
+});define('echarts/component/base', [
   'require',
   '../config',
   '../util/ecData',
@@ -17968,7 +17627,6 @@ define('echarts/component/base', [
   var ecQuery = require('../util/ecQuery');
   var number = require('../util/number');
   var zrUtil = require('zrender/tool/util');
-
   function Base(ecTheme, messageCenter, zr, option, myChart) {
     this.ecTheme = ecTheme;
     this.messageCenter = messageCenter;
@@ -17994,7 +17652,6 @@ define('echarts/component/base', [
     };
     messageCenter && messageCenter.bind(ecConfig.EVENT.LEGEND_HOVERLINK, this._onlegendhoverlink);
   }
-
   Base.prototype = {
     canvasSupported: require('zrender/tool/env').canvasSupported,
     _getZ: function (zWhat) {
@@ -18131,8 +17788,7 @@ define('echarts/component/base', [
     getPrecision: number.getPrecision
   };
   return Base;
-});
-define('echarts/layout/EdgeBundling', [
+});define('echarts/layout/EdgeBundling', [
   'require',
   '../data/KDTree',
   'zrender/tool/vector'
@@ -18144,7 +17800,6 @@ define('echarts/layout/EdgeBundling', [
   var v2Dist = vec2.dist;
   var v2Copy = vec2.copy;
   var v2Clone = vec2.clone;
-
   function squaredDistance(a, b) {
     a = a.array;
     b = b.array;
@@ -18154,7 +17809,6 @@ define('echarts/layout/EdgeBundling', [
     var w = b[3] - a[3];
     return x * x + y * y + z * z + w * w;
   }
-
   function CoarsenedEdge(group) {
     this.points = [
       group.mp0,
@@ -18162,7 +17816,6 @@ define('echarts/layout/EdgeBundling', [
     ];
     this.group = group;
   }
-
   function Edge(edge) {
     var points = edge.points;
     if (points[0][1] < points[1][1] || edge instanceof CoarsenedEdge) {
@@ -18188,7 +17841,6 @@ define('echarts/layout/EdgeBundling', [
     this.edge = edge;
     this.group = null;
   }
-
   Edge.prototype.getStartPoint = function () {
     return this._startPoint;
   };
@@ -18201,7 +17853,6 @@ define('echarts/layout/EdgeBundling', [
     this.mp1 = v2Create();
     this.ink = 0;
   }
-
   BundledEdgeGroup.prototype.addEdge = function (edge) {
     edge.group = this;
     this.edgeList.push(edge);
@@ -18215,7 +17866,6 @@ define('echarts/layout/EdgeBundling', [
     this.maxTurningAngle = Math.PI / 4;
     this.maxIteration = 20;
   }
-
   EdgeBundling.prototype = {
     constructor: EdgeBundling,
     run: function (rawEdges) {
@@ -18234,11 +17884,9 @@ define('echarts/layout/EdgeBundling', [
         }
       }
       var newEdges = [];
-
       function pointApproxEqual(p0, p1) {
         return v2DistSquare(p0, p1) < 1e-10;
       }
-
       function cleanEdgePoints(edgePoints, rawEdgePoints) {
         var res = [];
         var off = 0;
@@ -18252,7 +17900,6 @@ define('echarts/layout/EdgeBundling', [
         }
         return res;
       }
-
       var buildNewEdges = function (groups, fromEdgePoints) {
         var newEdgePoints;
         for (var i = 0; i < groups.length; i++) {
@@ -18451,8 +18098,7 @@ define('echarts/layout/EdgeBundling', [
     }()
   };
   return EdgeBundling;
-});
-define('zrender/shape/Star', [
+});define('zrender/shape/Star', [
   'require',
   '../tool/math',
   './Base',
@@ -18530,8 +18176,7 @@ define('zrender/shape/Star', [
   };
   require('../tool/util').inherits(Star, Base);
   return Star;
-});
-define('zrender/shape/Heart', [
+});define('zrender/shape/Heart', [
   'require',
   './Base',
   './util/PathProxy',
@@ -18577,8 +18222,7 @@ define('zrender/shape/Heart', [
   };
   require('../tool/util').inherits(Heart, Base);
   return Heart;
-});
-define('zrender/shape/Droplet', [
+});define('zrender/shape/Droplet', [
   'require',
   './Base',
   './util/PathProxy',
@@ -18623,34 +18267,27 @@ define('zrender/shape/Droplet', [
   };
   require('../tool/util').inherits(Droplet, Base);
   return Droplet;
-});
-define('zrender/tool/math', [], function () {
+});define('zrender/tool/math', [], function () {
   var _radians = Math.PI / 180;
-
   function sin(angle, isDegrees) {
     return Math.sin(isDegrees ? angle * _radians : angle);
   }
-
   function cos(angle, isDegrees) {
     return Math.cos(isDegrees ? angle * _radians : angle);
   }
-
   function degreeToRadian(angle) {
     return angle * _radians;
   }
-
   function radianToDegree(angle) {
     return angle / _radians;
   }
-
   return {
     sin: sin,
     cos: cos,
     degreeToRadian: degreeToRadian,
     radianToDegree: radianToDegree
   };
-});
-define('zrender/shape/util/PathProxy', [
+});define('zrender/shape/util/PathProxy', [
   'require',
   '../../tool/vector'
 ], function (require) {
@@ -18808,8 +18445,7 @@ define('zrender/shape/util/PathProxy', [
   };
   PathProxy.PathSegment = PathSegment;
   return PathProxy;
-});
-define('zrender/shape/Line', [
+});define('zrender/shape/Line', [
   'require',
   './Base',
   './util/dashedLineTo',
@@ -18849,8 +18485,7 @@ define('zrender/shape/Line', [
   };
   require('../tool/util').inherits(Line, Base);
   return Line;
-});
-define('zrender/shape/BezierCurve', [
+});define('zrender/shape/BezierCurve', [
   'require',
   './Base',
   '../tool/util'
@@ -18900,8 +18535,7 @@ define('zrender/shape/BezierCurve', [
   };
   require('../tool/util').inherits(BezierCurve, Base);
   return BezierCurve;
-});
-define('zrender/shape/util/dashedLineTo', [], function () {
+});define('zrender/shape/util/dashedLineTo', [], function () {
   var dashPattern = [
     5,
     5
@@ -18933,8 +18567,7 @@ define('zrender/shape/util/dashedLineTo', [], function () {
     }
     ctx.lineTo(x2, y2);
   };
-});
-define('zrender/shape/Polygon', [
+});define('zrender/shape/Polygon', [
   'require',
   './Base',
   './util/smoothSpline',
@@ -19032,27 +18665,23 @@ define('zrender/shape/Polygon', [
   };
   require('../tool/util').inherits(Polygon, Base);
   return Polygon;
-});
-define('echarts/util/shape/normalIsCover', [], function () {
+});define('echarts/util/shape/normalIsCover', [], function () {
   return function (x, y) {
     var originPos = this.transformCoordToLocal(x, y);
     x = originPos[0];
     y = originPos[1];
     return this.isCoverRect(x, y);
   };
-});
-define('zrender/shape/util/smoothSpline', [
+});define('zrender/shape/util/smoothSpline', [
   'require',
   '../../tool/vector'
 ], function (require) {
   var vector = require('../../tool/vector');
-
   function interpolate(p0, p1, p2, p3, t, t2, t3) {
     var v0 = (p2 - p0) * 0.5;
     var v1 = (p3 - p1) * 0.5;
     return (2 * (p1 - p2) + v0 + v1) * t3 + (-3 * (p1 - p2) - 2 * v0 - v1) * t2 + v0 * t + p1;
   }
-
   return function (points, isLoop, constraint) {
     var len = points.length;
     var ret = [];
@@ -19088,8 +18717,7 @@ define('zrender/shape/util/smoothSpline', [
     }
     return ret;
   };
-});
-define('zrender/shape/util/smoothBezier', [
+});define('zrender/shape/util/smoothBezier', [
   'require',
   '../../tool/vector'
 ], function (require) {
@@ -19162,13 +18790,11 @@ define('zrender/shape/util/smoothBezier', [
     }
     return cps;
   };
-});
-define('echarts/util/ecQuery', [
+});define('echarts/util/ecQuery', [
   'require',
   'zrender/tool/util'
 ], function (require) {
   var zrUtil = require('zrender/tool/util');
-
   function query(optionTarget, optionLocation) {
     if (typeof optionTarget == 'undefined') {
       return;
@@ -19188,7 +18814,6 @@ define('echarts/util/ecQuery', [
     }
     return optionTarget;
   }
-
   function deepQuery(ctrList, optionLocation) {
     var finalOption;
     for (var i = 0, l = ctrList.length; i < l; i++) {
@@ -19198,7 +18823,6 @@ define('echarts/util/ecQuery', [
       }
     }
   }
-
   function deepMerge(ctrList, optionLocation) {
     var finalOption;
     var len = ctrList.length;
@@ -19214,18 +18838,15 @@ define('echarts/util/ecQuery', [
     }
     return finalOption;
   }
-
   return {
     query: query,
     deepQuery: deepQuery,
     deepMerge: deepMerge
   };
-});
-define('echarts/util/number', [], function () {
+});define('echarts/util/number', [], function () {
   function _trim(str) {
     return str.replace(/^\s+/, '').replace(/\s+$/, '');
   }
-
   function parsePercent(value, maxValue) {
     if (typeof value === 'string') {
       if (_trim(value).match(/%$/)) {
@@ -19235,14 +18856,12 @@ define('echarts/util/number', [], function () {
     }
     return value;
   }
-
   function parseCenter(zr, center) {
     return [
       parsePercent(center[0], zr.getWidth()),
       parsePercent(center[1], zr.getHeight())
     ];
   }
-
   function parseRadius(zr, radius) {
     if (!(radius instanceof Array)) {
       radius = [
@@ -19256,7 +18875,6 @@ define('echarts/util/number', [], function () {
       parsePercent(radius[1], zrSize)
     ];
   }
-
   function addCommas(x) {
     if (isNaN(x)) {
       return '-';
@@ -19264,7 +18882,6 @@ define('echarts/util/number', [], function () {
     x = (x + '').split('.');
     return x[0].replace(/(\d{1,3})(?=(?:\d{3})+(?!\d))/g, '$1,') + (x.length > 1 ? '.' + x[1] : '');
   }
-
   function getPrecision(val) {
     var e = 1;
     var count = 0;
@@ -19274,7 +18891,6 @@ define('echarts/util/number', [], function () {
     }
     return count;
   }
-
   return {
     parsePercent: parsePercent,
     parseCenter: parseCenter,
@@ -19282,20 +18898,17 @@ define('echarts/util/number', [], function () {
     addCommas: addCommas,
     getPrecision: getPrecision
   };
-});
-define('echarts/data/KDTree', [
+});define('echarts/data/KDTree', [
   'require',
   './quickSelect'
 ], function (require) {
   var quickSelect = require('./quickSelect');
-
   function Node(axis, data) {
     this.left = null;
     this.right = null;
     this.axis = axis;
     this.data = data;
   }
-
   var KDTree = function (points, dimension) {
     if (!points.length) {
       return;
@@ -19447,18 +19060,15 @@ define('echarts/data/KDTree', [
     return output;
   };
   return KDTree;
-});
-define('echarts/data/quickSelect', ['require'], function (require) {
+});define('echarts/data/quickSelect', ['require'], function (require) {
   function defaultCompareFunc(a, b) {
     return a - b;
   }
-
   function swapElement(list, idx0, idx1) {
     var tmp = list[idx0];
     list[idx0] = list[idx1];
     list[idx1] = tmp;
   }
-
   function select(list, left, right, nth, compareFunc) {
     var pivotIdx = left;
     while (right > left) {
@@ -19483,7 +19093,6 @@ define('echarts/data/quickSelect', ['require'], function (require) {
     }
     return left;
   }
-
   function quickSelect(list, left, right, nth, compareFunc) {
     if (arguments.length <= 3) {
       nth = left;
@@ -19497,10 +19106,8 @@ define('echarts/data/quickSelect', ['require'], function (require) {
     }
     return select(list, left, right, nth, compareFunc);
   }
-
   return quickSelect;
-});
-define('echarts/component/dataView', [
+});define('echarts/component/dataView', [
   'require',
   './base',
   '../config',
@@ -19510,7 +19117,6 @@ define('echarts/component/dataView', [
   var Base = require('./base');
   var ecConfig = require('../config');
   var zrUtil = require('zrender/tool/util');
-
   function DataView(ecTheme, messageCenter, zr, option, myChart) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     this.dom = myChart.dom;
@@ -19543,7 +19149,6 @@ define('echarts/component/dataView', [
       this._tDom.attachEvent('onmouseup', this._stop);
     }
   }
-
   DataView.prototype = {
     type: ecConfig.COMPONENT_TYPE_DATAVIEW,
     _lang: [
@@ -19675,7 +19280,7 @@ define('echarts/component/dataView', [
       this.hide();
       var self = this;
       setTimeout(function () {
-        self.messageCenter && self.messageCenter.dispatch(ecConfig.EVENT.DATA_VIEW_CHANGED, null, {option: self.option}, self.myChart);
+        self.messageCenter && self.messageCenter.dispatch(ecConfig.EVENT.DATA_VIEW_CHANGED, null, { option: self.option }, self.myChart);
       }, self.canvasSupported ? 800 : 100);
     },
     _contentToOption: function (content) {
@@ -19817,8 +19422,7 @@ define('echarts/component/dataView', [
   zrUtil.inherits(DataView, Base);
   require('../component').define('dataView', DataView);
   return DataView;
-});
-define('echarts/util/shape/Cross', [
+});define('echarts/util/shape/Cross', [
   'require',
   'zrender/shape/Base',
   'zrender/shape/Line',
@@ -19828,11 +19432,9 @@ define('echarts/util/shape/Cross', [
   var Base = require('zrender/shape/Base');
   var LineShape = require('zrender/shape/Line');
   var zrUtil = require('zrender/tool/util');
-
   function Cross(options) {
     Base.call(this, options);
   }
-
   Cross.prototype = {
     type: 'cross',
     buildPath: function (ctx, style) {
@@ -19853,8 +19455,7 @@ define('echarts/util/shape/Cross', [
   };
   zrUtil.inherits(Cross, Base);
   return Cross;
-});
-define('zrender/shape/Sector', [
+});define('zrender/shape/Sector', [
   'require',
   '../tool/math',
   '../tool/computeBoundingBox',
@@ -19936,8 +19537,7 @@ define('zrender/shape/Sector', [
   };
   require('../tool/util').inherits(Sector, Base);
   return Sector;
-});
-define('echarts/util/shape/Candle', [
+});define('echarts/util/shape/Candle', [
   'require',
   'zrender/shape/Base',
   'zrender/tool/util',
@@ -19945,11 +19545,9 @@ define('echarts/util/shape/Candle', [
 ], function (require) {
   var Base = require('zrender/shape/Base');
   var zrUtil = require('zrender/tool/util');
-
   function Candle(options) {
     Base.call(this, options);
   }
-
   Candle.prototype = {
     type: 'candle',
     _numberOrder: function (a, b) {
@@ -19984,15 +19582,13 @@ define('echarts/util/shape/Candle', [
   };
   zrUtil.inherits(Candle, Base);
   return Candle;
-});
-define('zrender/tool/computeBoundingBox', [
+});define('zrender/tool/computeBoundingBox', [
   'require',
   './vector',
   './curve'
 ], function (require) {
   var vec2 = require('./vector');
   var curve = require('./curve');
-
   function computeBoundingBox(points, min, max) {
     if (points.length === 0) {
       return;
@@ -20021,7 +19617,6 @@ define('zrender/tool/computeBoundingBox', [
     max[0] = right;
     max[1] = bottom;
   }
-
   function computeCubeBezierBoundingBox(p0, p1, p2, p3, min, max) {
     var xDim = [];
     curve.cubicExtrema(p0[0], p1[0], p2[0], p3[0], xDim);
@@ -20044,7 +19639,6 @@ define('zrender/tool/computeBoundingBox', [
     max[0] = right;
     max[1] = bottom;
   }
-
   function computeQuadraticBezierBoundingBox(p0, p1, p2, min, max) {
     var t1 = curve.quadraticExtremum(p0[0], p1[0], p2[0]);
     var t2 = curve.quadraticExtremum(p0[1], p1[1], p2[1]);
@@ -20061,7 +19655,6 @@ define('zrender/tool/computeBoundingBox', [
     max[0] = Math.max(p0[0], p2[0], x1, x2);
     max[1] = Math.max(p0[1], p2[1], y1, y2);
   }
-
   var start = vec2.create();
   var end = vec2.create();
   var extremity = vec2.create();
@@ -20110,8 +19703,7 @@ define('zrender/tool/computeBoundingBox', [
   computeBoundingBox.quadraticBezier = computeQuadraticBezierBoundingBox;
   computeBoundingBox.arc = computeArcBoundingBox;
   return computeBoundingBox;
-});
-define('echarts/util/shape/Chain', [
+});define('echarts/util/shape/Chain', [
   'require',
   'zrender/shape/Base',
   './Icon',
@@ -20124,11 +19716,9 @@ define('echarts/util/shape/Chain', [
   var dashedLineTo = require('zrender/shape/util/dashedLineTo');
   var zrUtil = require('zrender/tool/util');
   var matrix = require('zrender/tool/matrix');
-
   function Chain(options) {
     Base.call(this, options);
   }
-
   Chain.prototype = {
     type: 'chain',
     brush: function (ctx, isHighlight) {
@@ -20238,8 +19828,7 @@ define('echarts/util/shape/Chain', [
   };
   zrUtil.inherits(Chain, Base);
   return Chain;
-});
-define('zrender/shape/Ring', [
+});define('zrender/shape/Ring', [
   'require',
   './Base',
   '../tool/util'
@@ -20277,8 +19866,7 @@ define('zrender/shape/Ring', [
   };
   require('../tool/util').inherits(Ring, Base);
   return Ring;
-});
-define('echarts/component/axis', [
+});define('echarts/component/axis', [
   'require',
   './base',
   'zrender/shape/Line',
@@ -20296,14 +19884,12 @@ define('echarts/component/axis', [
   var ecData = require('../util/ecData');
   var zrUtil = require('zrender/tool/util');
   var zrColor = require('zrender/tool/color');
-
   function Axis(ecTheme, messageCenter, zr, option, myChart, axisType) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     this.axisType = axisType;
     this._axisList = [];
     this.refresh(option);
   }
-
   Axis.prototype = {
     type: ecConfig.COMPONENT_TYPE_AXIS,
     axisBase: {
@@ -20436,7 +20022,7 @@ define('echarts/component/axis', [
     },
     reformOption: function (opt) {
       if (!opt || opt instanceof Array && opt.length === 0) {
-        opt = [{type: ecConfig.COMPONENT_TYPE_AXIS_VALUE}];
+        opt = [{ type: ecConfig.COMPONENT_TYPE_AXIS_VALUE }];
       } else if (!(opt instanceof Array)) {
         opt = [opt];
       }
@@ -20517,8 +20103,7 @@ define('echarts/component/axis', [
   zrUtil.inherits(Axis, Base);
   require('../component').define('axis', Axis);
   return Axis;
-});
-define('echarts/component/grid', [
+});define('echarts/component/grid', [
   'require',
   './base',
   'zrender/shape/Rectangle',
@@ -20541,12 +20126,10 @@ define('echarts/component/grid', [
     borderColor: '#ccc'
   };
   var zrUtil = require('zrender/tool/util');
-
   function Grid(ecTheme, messageCenter, zr, option, myChart) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     this.refresh(option);
   }
-
   Grid.prototype = {
     type: ecConfig.COMPONENT_TYPE_GRID,
     getX: function () {
@@ -20654,8 +20237,7 @@ define('echarts/component/grid', [
   zrUtil.inherits(Grid, Base);
   require('../component').define('grid', Grid);
   return Grid;
-});
-define('echarts/component/dataZoom', [
+});define('echarts/component/dataZoom', [
   'require',
   './base',
   'zrender/shape/Rectangle',
@@ -20686,7 +20268,6 @@ define('echarts/component/dataZoom', [
   };
   var ecDate = require('../util/date');
   var zrUtil = require('zrender/tool/util');
-
   function DataZoom(ecTheme, messageCenter, zr, option, myChart) {
     Base.call(this, ecTheme, messageCenter, zr, option, myChart);
     var self = this;
@@ -20713,9 +20294,6 @@ define('echarts/component/dataZoom', [
     }
     this._syncData();
   }
-
-  window._dataZoomStartDate = "";
-  window._dataZoomEndDate = "";
   DataZoom.prototype = {
     type: ecConfig.COMPONENT_TYPE_DATAZOOM,
     _buildShape: function () {
@@ -21212,7 +20790,7 @@ define('echarts/component/dataZoom', [
         }
       }
       if (!this._isSilence && (this.zoomOption.realtime || dispatchNow)) {
-        this.messageCenter.dispatch(ecConfig.EVENT.DATA_ZOOM, null, {zoom: this._zoom}, this.myChart);
+        this.messageCenter.dispatch(ecConfig.EVENT.DATA_ZOOM, null, { zoom: this._zoom }, this.myChart);
       }
     },
     _synScatterData: function (seriesIndex, data) {
@@ -21317,10 +20895,8 @@ define('echarts/component/dataZoom', [
           end: min + gap * this._zoom.end / 100
         };
       } else if (axisType == 'time') {
-
         max = min + gap * this._zoom.end / 100;
         min = min + gap * this._zoom.start / 100;
-
         var formatter = ecDate.getAutoFormatter(min, max).formatter;
         return {
           start: ecDate.format(formatter, min),
@@ -21364,10 +20940,6 @@ define('echarts/component/dataZoom', [
       }
       if (this.zoomOption.showDetail) {
         var detail = this._getDetail();
-        window._dataZoomEndDate = "";
-        window._dataZoomStartDate = "";
-        window._dataZoomStartDate = detail.start.split('-')[1].split('\n')[1].trim() + '-' + detail.start.split('-')[0].trim() + '-' + detail.start.split('-')[1].split('\n')[0].trim();
-        window._dataZoomEndDate = detail.end.split('-')[1].split('\n')[1].trim() + '-' + detail.end.split('-')[0].trim() + '-' + detail.end.split('-')[1].split('\n')[0].trim();
         this._startShape.style.text = this._startShape.highlightStyle.text = detail.start;
         this._endShape.style.text = this._endShape.highlightStyle.text = detail.end;
         this._startShape.style.textPosition = this._startShape.highlightStyle.textPosition;
@@ -21393,7 +20965,7 @@ define('echarts/component/dataZoom', [
       status.dragOut = true;
       status.dragIn = true;
       if (!this._isSilence && !this.zoomOption.realtime) {
-        this.messageCenter.dispatch(ecConfig.EVENT.DATA_ZOOM, null, {zoom: this._zoom}, this.myChart);
+        this.messageCenter.dispatch(ecConfig.EVENT.DATA_ZOOM, null, { zoom: this._zoom }, this.myChart);
       }
       status.needRefresh = false;
       this.isDragend = false;
@@ -21533,8 +21105,7 @@ define('echarts/component/dataZoom', [
   zrUtil.inherits(DataZoom, Base);
   require('../component').define('dataZoom', DataZoom);
   return DataZoom;
-});
-define('echarts/component/categoryAxis', [
+});define('echarts/component/categoryAxis', [
   'require',
   './base',
   'zrender/shape/Text',
@@ -21583,7 +21154,7 @@ define('echarts/component/categoryAxis', [
       interval: 'auto',
       rotate: 0,
       margin: 8,
-      textStyle: {color: '#333'}
+      textStyle: { color: '#333' }
     },
     splitLine: {
       show: true,
@@ -21605,7 +21176,6 @@ define('echarts/component/categoryAxis', [
   };
   var zrUtil = require('zrender/tool/util');
   var zrArea = require('zrender/tool/area');
-
   function CategoryAxis(ecTheme, messageCenter, zr, option, myChart, axisBase) {
     if (option.data.length < 1) {
       console.error('option.data.length < 1.');
@@ -21618,7 +21188,6 @@ define('echarts/component/categoryAxis', [
     }
     this.refresh(option);
   }
-
   CategoryAxis.prototype = {
     type: ecConfig.COMPONENT_TYPE_AXIS_CATEGORY,
     _getReformedLabel: function (idx) {
@@ -22081,8 +21650,7 @@ define('echarts/component/categoryAxis', [
   zrUtil.inherits(CategoryAxis, Base);
   require('../component').define('categoryAxis', CategoryAxis);
   return CategoryAxis;
-});
-define('echarts/component/valueAxis', [
+});define('echarts/component/valueAxis', [
   'require',
   './base',
   'zrender/shape/Text',
@@ -22135,7 +21703,7 @@ define('echarts/component/valueAxis', [
       show: true,
       rotate: 0,
       margin: 8,
-      textStyle: {color: '#333'}
+      textStyle: { color: '#333' }
     },
     splitLine: {
       show: true,
@@ -22157,7 +21725,6 @@ define('echarts/component/valueAxis', [
   };
   var ecDate = require('../util/date');
   var zrUtil = require('zrender/tool/util');
-
   function ValueAxis(ecTheme, messageCenter, zr, option, myChart, axisBase, series) {
     if (!series || series.length === 0) {
       console.err('option.series.length == 0.');
@@ -22171,7 +21738,6 @@ define('echarts/component/valueAxis', [
     }
     this.refresh(option, series);
   }
-
   ValueAxis.prototype = {
     type: ecConfig.COMPONENT_TYPE_AXIS_VALUE,
     _buildShape: function () {
@@ -22774,8 +22340,7 @@ define('echarts/component/valueAxis', [
   zrUtil.inherits(ValueAxis, Base);
   require('../component').define('valueAxis', ValueAxis);
   return ValueAxis;
-});
-define('echarts/util/date', [], function () {
+});define('echarts/util/date', [], function () {
   var _timeGap = [
     {
       formatter: 'hh : mm : ss',
@@ -22858,7 +22423,6 @@ define('echarts/util/date', [], function () {
       value: 3600000 * 24 * 380
     }
   ];
-
   function getAutoFormatter(min, max, splitNumber) {
     splitNumber = splitNumber > 1 ? splitNumber : 2;
     var curValue;
@@ -22885,11 +22449,9 @@ define('echarts/util/date', [], function () {
       gapValue: gapValue
     };
   }
-
   function s2d(v) {
     return v < 10 ? '0' + v : v;
   }
-
   function format(formatter, value) {
     if (formatter == 'week' || formatter == 'month' || formatter == 'quarter' || formatter == 'half-year' || formatter == 'year') {
       formatter = 'MM - dd\nyyyy';
@@ -22915,40 +22477,32 @@ define('echarts/util/date', [], function () {
     formatter = formatter.replace('s', s);
     return formatter;
   }
-
   function nextMonday(value) {
     value = getNewDate(value);
     value.setDate(value.getDate() + 8 - value.getDay());
     return value;
   }
-
   function nextNthPerNmonth(value, nth, nmon) {
     value = getNewDate(value);
     value.setMonth(Math.ceil((value.getMonth() + 1) / nmon) * nmon);
     value.setDate(nth);
     return value;
   }
-
   function nextNthOnMonth(value, nth) {
     return nextNthPerNmonth(value, nth, 1);
   }
-
   function nextNthOnQuarterYear(value, nth) {
     return nextNthPerNmonth(value, nth, 3);
   }
-
   function nextNthOnHalfYear(value, nth) {
     return nextNthPerNmonth(value, nth, 6);
   }
-
   function nextNthOnYear(value, nth) {
     return nextNthPerNmonth(value, nth, 12);
   }
-
   function getNewDate(value) {
     return value instanceof Date ? value : new Date(typeof value == 'string' ? value.replace(/-/g, '/') : value);
   }
-
   return {
     getAutoFormatter: getAutoFormatter,
     getNewDate: getNewDate,
@@ -22960,8 +22514,7 @@ define('echarts/util/date', [], function () {
     nextNthOnHalfYear: nextNthOnHalfYear,
     nextNthOnYear: nextNthOnYear
   };
-});
-define('echarts/util/smartSteps', [], function () {
+});define('echarts/util/smartSteps', [], function () {
   var mySteps = [
     10,
     20,
@@ -22983,19 +22536,15 @@ define('echarts/util/smartSteps', [], function () {
   var MATH_FLOOR = MT.floor;
   var MATH_CEIL = MT.ceil;
   var MATH_ABS = MT.abs;
-
   function MATH_LOG(n) {
     return MT.log(MATH_ABS(n)) / MT.LN10;
   }
-
   function MATH_POW(n) {
     return MT.pow(10, n);
   }
-
   function MATH_ISINT(n) {
     return n === MATH_FLOOR(n);
   }
-
   function smartSteps(min, max, section, opts) {
     custOpts = opts || {};
     custSteps = custOpts.steps || mySteps;
@@ -23031,7 +22580,6 @@ define('echarts/util/smartSteps', [], function () {
     }
     return coreCalc(min, max, section);
   }
-
   function makeResult(newMin, newMax, section, expon) {
     expon = expon || 0;
     var expStep = expNum((newMax - newMin) / section, -1);
@@ -23086,7 +22634,6 @@ define('echarts/util/smartSteps', [], function () {
       pnts: points
     };
   }
-
   function expNum(num, digit, byFloor) {
     digit = MATH_ROUND(digit % 10) || 2;
     if (digit < 0) {
@@ -23111,7 +22658,6 @@ define('echarts/util/smartSteps', [], function () {
       e: expon
     };
   }
-
   function expFixTo(expnum1, expnum2, byFloor) {
     var deltaExp = expnum2.e - expnum1.e;
     if (deltaExp) {
@@ -23120,7 +22666,6 @@ define('echarts/util/smartSteps', [], function () {
       expnum1.c = byFloor ? MATH_FLOOR(expnum1.c) : MATH_CEIL(expnum1.c);
     }
   }
-
   function expFixMin(expnum1, expnum2, byFloor) {
     if (expnum1.e < expnum2.e) {
       expFixTo(expnum2, expnum1, byFloor);
@@ -23128,7 +22673,6 @@ define('echarts/util/smartSteps', [], function () {
       expFixTo(expnum1, expnum2, byFloor);
     }
   }
-
   function getCeil(num, rounds) {
     rounds = rounds || mySteps;
     num = expNum(num);
@@ -23148,7 +22692,6 @@ define('echarts/util/smartSteps', [], function () {
     num.c = rounds[i];
     return num;
   }
-
   function coreCalc(min, max, section) {
     var step;
     var secs = section || +custSecs.slice(-1);
@@ -23178,7 +22721,6 @@ define('echarts/util/smartSteps', [], function () {
     }
     return makeResult(expMin.c, expMax.c, secs, expMax.e);
   }
-
   function look4sections(expMin, expMax) {
     var section;
     var tmpStep, tmpMin, tmpMax;
@@ -23209,7 +22751,6 @@ define('echarts/util/smartSteps', [], function () {
     expMax.c = reference.max;
     return section < 3 ? section * 2 : section;
   }
-
   function look4step(expMin, expMax, secs) {
     var span;
     var tmpMax;
@@ -23234,7 +22775,6 @@ define('echarts/util/smartSteps', [], function () {
     expMax.c = tmpMax;
     return tmpStep;
   }
-
   function tryForInt(min, max, section, expMin, expMax, secs) {
     var span = expMax.c - expMin.c;
     var step = span / secs * MATH_POW(expMax.e);
@@ -23259,7 +22799,6 @@ define('echarts/util/smartSteps', [], function () {
     }
     return secs;
   }
-
   function forInteger(min, max, section) {
     section = section || 5;
     if (minLocked) {
@@ -23276,7 +22815,6 @@ define('echarts/util/smartSteps', [], function () {
     }
     return makeResult(min, max, section);
   }
-
   function forSpan0(min, max, section) {
     section = section || 5;
     var delta = MT.min(MATH_ABS(max / section), section) / 2.1;
@@ -23290,7 +22828,6 @@ define('echarts/util/smartSteps', [], function () {
     }
     return coreCalc(min, max, section);
   }
-
   function cross0(min, max, newMin, newMax) {
     if (min >= 0 && newMin < 0) {
       newMax -= newMin;
@@ -23304,12 +22841,10 @@ define('echarts/util/smartSteps', [], function () {
       newMax
     ];
   }
-
   function decimals(num) {
     num = (+num).toFixed(15).split('.');
     return num.pop().replace(/0+$/, '').length;
   }
-
   function singleLocked(min, max, emin, emax) {
     if (minLocked) {
       var expMin = expNum(min, 4, 1);
@@ -23337,7 +22872,6 @@ define('echarts/util/smartSteps', [], function () {
       emax.c = expMax.c;
     }
   }
-
   function bothLocked(min, max, section) {
     var trySecs = section ? [section] : custSecs;
     var span = max - min;
@@ -23416,10 +22950,8 @@ define('echarts/util/smartSteps', [], function () {
     expMax.c = MATH_ROUND(expMax.c + reference.delta / 2);
     return makeResult(expMin.c, expMax.c, reference.secs, expSpan.e);
   }
-
   return smartSteps;
-});
-define('echarts/util/smartLogSteps', [
+});define('echarts/util/smartLogSteps', [
   'require',
   './number'
 ], function (require) {
@@ -23460,7 +22992,6 @@ define('echarts/util/smartLogSteps', [
   var absMin;
   var absMax;
   var tickList;
-
   function smartLogSteps(opts) {
     clearStaticVariables();
     custOpts = opts || {};
@@ -23471,11 +23002,9 @@ define('echarts/util/smartLogSteps', [
       clearStaticVariables()
     ][0];
   }
-
   function clearStaticVariables() {
     logPositive = custOpts = logMappingOffset = lnBase = absMin = absMax = splitNumber = tickList = logLabelBase = logLabelMode = null;
   }
-
   function reformSetting() {
     logLabelBase = custOpts.logLabelBase;
     if (logLabelBase == null) {
@@ -23515,7 +23044,6 @@ define('echarts/util/smartLogSteps', [
     absMin < EPSILON && (absMin = EPSILON);
     absMax < EPSILON && (absMax = EPSILON);
   }
-
   function makeTicksList() {
     tickList = [];
     var maxDataLog = fixAccurate(mathLog(absMax) / lnBase);
@@ -23546,7 +23074,6 @@ define('echarts/util/smartLogSteps', [
         tickList.push(mathPow(logLabelBase, n));
       }
     }
-
     function detailAnalysis() {
       var minDecimal = toDecimalFrom4Hex(minExpon, 0);
       var endDecimal = minDecimal + 2;
@@ -23565,20 +23092,16 @@ define('echarts/util/smartLogSteps', [
         tickList.push(mathPow(10, h) * mathPow(2, k));
       }
     }
-
     function toDecimalFrom4Hex(h, k) {
       return h * 3 + k;
     }
-
     function toK(decimal) {
       return decimal - toH(decimal) * 3;
     }
-
     function toH(decimal) {
       return mathFloor(fixAccurate(decimal / 3));
     }
   }
-
   function makeResult() {
     var resultTickList = [];
     for (var i = 0, len = tickList.length; i < len; i++) {
@@ -23602,7 +23125,6 @@ define('echarts/util/smartLogSteps', [
       dataMappingMethods: dataMappingMethods
     };
   }
-
   function makeLabelFormatter() {
     if (logLabelMode === 'exponent') {
       var myLogLabelBase = logLabelBase;
@@ -23627,7 +23149,6 @@ define('echarts/util/smartLogSteps', [
       };
     }
   }
-
   function makeDataMappingMethods() {
     var myLogPositive = logPositive;
     var myLogMappingOffset = logMappingOffset;
@@ -23659,15 +23180,12 @@ define('echarts/util/smartLogSteps', [
       }
     };
   }
-
   function fixAccurate(result) {
     return +Number(+result).toFixed(14);
   }
-
   function formatNumber(num) {
     return Number(num).toFixed(15).replace(/\.?0*$/, '');
   }
-
   function makeSuperscriptExponent(exponent) {
     exponent = formatNumber(Math.round(exponent));
     var result = [];
@@ -23677,10 +23195,8 @@ define('echarts/util/smartLogSteps', [
     }
     return result.join('');
   }
-
   function aroundZero(val) {
     return val > -EPSILON && val < EPSILON;
   }
-
   return smartLogSteps;
 });

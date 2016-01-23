@@ -12,7 +12,7 @@
     "classnames": "2.2.0",
     "crypto-js": "3.1.5",
     "css-loader": "0.18.0",
-    "echarts": "git+https://github.com/ecomfe/echarts.git#7c93a59f537d71648c01428c807428d7f046f954",
+    "echarts": "git+https://github.com/ecomfe/echarts.git#3e6096c7e9548494453c64ecbff39c0c84bc16d5",
     "eslint": "1.9.0",
     "eslint-plugin-react": "3.11.2",
     "extract-text-webpack-plugin": "0.8.2",

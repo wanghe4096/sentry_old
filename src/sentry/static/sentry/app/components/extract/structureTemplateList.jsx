@@ -14,7 +14,7 @@ import StructureTemplateItem from 'components/extract/structureTemplateItem'
 import ExtractorTemplateStore from 'stores/extract/extractorTemplateStore';
 
 
-const StructureTemplate = React.createClass({
+const StructureTemplateList = React.createClass({
   mixins: [
     Reflux.connect(ExtractorTemplateStore, 'list'),
     Reflux.listenTo(ExtractorTemplateStore, 'onTemplateChange')
@@ -66,4 +66,4 @@ const StructureTemplate = React.createClass({
   }
 });
 
-export default StructureTemplate;
+export default StructureTemplateList;

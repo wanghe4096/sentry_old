@@ -24,48 +24,34 @@ const TemplateChart = React.createClass({
   },
 
   getOption() {
-    window.xxx = this.state.data;
-
-    const values = this.state.data.map((template) => {
-      return template.events.length
-    });
-    const xNames = this.state.data.map((x, i) => {
-      return "T" + i
-    });
-
-    console.log('values:',values,xNames);
-
     let option = {
-      toolbox: {
-        show: false
+      tooltip : {
+        trigger: 'item',
+        formatter: "{a} <br/>{b} : {c} ({d}%)"
       },
-      tooltip:{
-        show:true
+      legend: {
+        orient: 'vertical',
+        left: 'left',
+        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
       },
-      xAxis: [
+      series : [
         {
-          type: 'category',
-          data: xNames
-        }
-      ],
-      yAxis: [
-        {
-          name: 'events',
-          type: 'value',
-          axisLabel: {
-            formatter: '{value}'
-          }
-        }
-      ],
-      series: [
-        {
-          name: '匹配数',
-          type: 'bar',
-          data: values,
+          name: '规则匹配数',
+          type: 'pie',
+          radius : '55%',
+          center: ['50%', '60%'],
+          data:[
+            {value:335, name:'template 1'},
+            {value:310, name:'template 2'},
+            {value:234, name:'template 3'},
+            {value:135, name:'template 4'},
+            {value:1548, name:'template 5'}
+          ],
           itemStyle: {
-            normal: {
-              opacity: 0.5,
-              color: '#50A035' //'#25A6F7'
+            emphasis: {
+              shadowBlur: 10,
+              shadowOffsetX: 0,
+              shadowColor: 'rgba(0, 0, 0, 0.5)'
             }
           }
         }
@@ -97,8 +83,7 @@ const TemplateChart = React.createClass({
 
   render() {
     return (
-      <div ref="wrap" className="chart-wrap">
-      </div>
+      <div ref="wrap" className="chart-wrap"></div>
     )
   }
 });
