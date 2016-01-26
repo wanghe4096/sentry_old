@@ -19,10 +19,10 @@ const BorderMenu = createClass({
     organization: PropTypes.Organization
   },
 
-  //foldHandler() {
-  //  let $menu = $(this.refs.menu);
-  //  $menu.toggleClass('bt-menu-open');
-  //},
+  foldHandler() {
+    let $menu = $(this.refs.menu);
+    $menu.toggleClass('bt-menu-open');
+  },
 
   render() {
 
@@ -42,7 +42,7 @@ const BorderMenu = createClass({
               </a>
               <ul>
                 <li><a href="#">定义抽取规则</a></li>
-                <li><a href="#">事件类型管理</a></li>
+                <li><a href="/streamtype">事件类型管理</a></li>
                 <li><a href="#">项目管理/我参与的项目</a></li>
                 <li><a href="#">Tag管理</a></li>
                 <li><a href="#">账号设置</a></li>

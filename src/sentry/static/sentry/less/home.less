@@ -15,7 +15,7 @@
 
   .bt-nav{
     visibility: visible;
-    padding-top: 50px;
+    padding-top: 30px;
     opacity: 1;
     transition:all 0.5s ease-in-out 0.5s;
     -moz-transition:all 0.5s ease-in-out 0.5s;
@@ -166,4 +166,30 @@
     }
 
   }
+}
+
+//bt-nav transition
+.bt-nav {
+}
+
+.bt-nav-enter {
+  opacity: .2;
+  transition: opacity 1s;
+}
+
+.bt-nav-enter-active {
+  opacity: 1;
+}
+
+.bt-nav-leave {
+  opacity: 1;
+  transition: all .5s ease-in;
+}
+
+.bt-nav-leave-active {
+  opacity: 0;
+}
+
+.bt-nav-hide{
+  display: none;
 }
