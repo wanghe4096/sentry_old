@@ -72,8 +72,15 @@ const StreamTypeList = React.createClass({
 
   getInitialState() {
     return {
-      streamList: []
+      streamList: [],
+      activeNav: 'hosts',
     }
+  },
+
+  toggleStreamType(nav) {
+    this.setState({
+      activeNav: nav
+    });
   },
 
   onStatChange(stream) {
@@ -116,6 +123,7 @@ const StreamTypeList = React.createClass({
   render() {
 
     const showFileOverlay = !!HmStatusStore.status.activeStream;
+    let activeNav = this.state.activeNav;
 
     return (
       <div
@@ -134,14 +142,14 @@ const StreamTypeList = React.createClass({
              </div>
             */}
             <ul className="nav nav-tabs border-bottom">
-              <li className="active">
-                <a href="javascript:;">{t('hosts')}</a>
+              <li className={activeNav === 'hosts' && 'active'}>
+                <a onClick={this.toggleStreamType.bind(this, 'hosts')}>{t('hosts')}</a>
               </li>
-              <li className="">
-                <a href="javascript:;">{t('hostGroup')}</a>
+              <li className={activeNav === 'hostgroup' && 'active'}>
+                <a onClick={this.toggleStreamType.bind(this, 'hostgroup')}>{t('hostGroup')}</a>
               </li>
-              <li className="">
-                <a href="javascript:;">{t('extract')}</a>
+              <li className={activeNav === 'extract' && 'active'}>
+                <a onClick={this.toggleStreamType.bind(this, 'extract')}>{t('extract')}</a>
               </li>
             </ul>
           </div>
