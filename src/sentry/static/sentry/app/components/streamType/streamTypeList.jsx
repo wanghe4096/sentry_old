@@ -58,29 +58,6 @@ const StreamTypeItem = React.createClass({
           <li><strong>{t('Latest Updated')}:</strong> {updateTime} </li>
           <li><strong>{t('Created Time')}:</strong> {createdTime}</li>
         </ul>
-
-        {/*
-        <div className="box">
-          <div className="box-header">
-            <div className="pull-right actions hidden-xs">
-              <a className="leave-team">
-                {t('Leave Team')}
-              </a>
-              <a className="team-settings" href={urlPrefix + '/teams/' + team.slug + '/settings/'}>
-                {t('Team Settings')}
-              </a>
-            </div>
-            <h3>{team.name}</h3>
-          </div>
-          <div className="box-content">
-            <table className="table project-list">
-              <tbody>{sortArray(team.projects, function(o) {
-                return o.name;
-              }).map(this.renderProject)}</tbody>
-            </table>
-          </div>
-        </div>
-        */}
       </li>
     );
   }
@@ -146,7 +123,27 @@ const StreamTypeList = React.createClass({
       >
         <div className="list-wrap stream-list">
           <div className="list-head">
+            {/*
             <h5>{t('Stream List')}</h5>
+            */}
+            {/*
+             <div className="btn-group btn-group-justified">
+               <a href="javascript:;" className="btn btn-all-events active">{t('hosts')}</a>
+               <a href="javascript:;" className="btn btn-middle btn-bookmarks">{t('hostGroup')}</a>
+               <a href="javascript:;" className="btn btn-assigned">{t('extract')}</a>
+             </div>
+            */}
+            <ul className="nav nav-tabs border-bottom">
+              <li className="active">
+                <a href="javascript:;">{t('hosts')}</a>
+              </li>
+              <li className="">
+                <a href="javascript:;">{t('hostGroup')}</a>
+              </li>
+              <li className="">
+                <a href="javascript:;">{t('extract')}</a>
+              </li>
+            </ul>
           </div>
           <ul>
             { this.renderBody() }

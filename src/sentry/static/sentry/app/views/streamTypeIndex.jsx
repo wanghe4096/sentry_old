@@ -8,7 +8,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
-import StreamTypeList from './../components/streamType/streamTypeList';
+import StreamTypeList from '../components/streamType/streamTypeList';
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import HostList from 'components/streamType/hostList';
 import {t} from 'app/locale';
@@ -96,17 +96,6 @@ const StreamTypeIndex = React.createClass({
           >
             { this.state.showManageOverlay && (<StreamTypeList/>) }
           </ReactCSSTransitionGroup>
-          {/*
-          <ReactCSSTransitionGroup
-            transitionName="file-list-ani"
-            component="div"
-            className="file-list-overlay"
-            transitionEnterTimeout={500}
-            transitionLeaveTimeout={500}
-          >
-            { showFileOverlay && (<FileList />) }
-          </ReactCSSTransitionGroup>
-          */}
           <div className="col-md-8">
             <HostList />
           </div>

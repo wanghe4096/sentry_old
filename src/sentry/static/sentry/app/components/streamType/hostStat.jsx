@@ -39,7 +39,7 @@ const HostStat = React.createClass({
             })
           }
         </div>
-        {/*tag
+        {/*  ==========show tag=========
         <div className="box streamtype-box">
           <div className="box-header clearfix">
             <div className="row">
