@@ -5,6 +5,14 @@ company: LogInsight
 email_ : wangh@loginsight.cn
 """
 
+
+# -*- coding: utf-8 -*-
+"""
+author : wanghe
+company: LogInsight
+email_ : wangh@loginsight.cn
+"""
+
 from __future__ import absolute_import
 
 from rest_framework import serializers, status
@@ -26,37 +34,10 @@ from sentry.utils.apidocs import scenario, attach_scenarios
 import  datetime
 import hashlib
 
-@scenario('CreateNewHost')
-def create_new_host_scenario(runner):
-    runner.request(
-        method='POST',
-        path='/hosts/' % runner.org.slug,
-        data={
-            'host_nme': 'demo_host',
-            'system': 'os',
-            'distver': 'v3.1'
-        }
-    )
-
-
-@scenario('ListHosts')
-def list_hosts_scenario(runner):
-    runner.request(
-        method='GET',
-       path='/hosts/'
-    )
-
-def generate_host_key(result):
-    m = hashlib.md5()
-    m.update(str(datetime.datetime.now())+str(result))
-    host_key = m.hexdigest()
-    return host_key
-
 
 class HostIndexEndpoint(HostEndpoint):
     doc_section = DocSection.HOSTS
 
-    @attach_scenarios([list_hosts_scenario])
     def get(self, request):
         """
         List an Organization's hosts
@@ -150,7 +131,7 @@ class LogAgentHostIndexEndpoint(Endpoint,
         # return Response(list(host_list))
 
     def post(self, request,  *args, **kwargs):
-        result = request.DATA
+        result = request.POST
         user = User.objects.get(userkey=result['user_key'])
         org_mem = OrganizationMember.objects.get(user=user)
         org = Organization.objects.get(id=org_mem.organization_id)
@@ -174,6 +155,5 @@ class LogAgentHostIndexEndpoint(Endpoint,
             #     event=AuditLogEntryEvent.AGENT_HOST_ADD,
             #     data= 'agent add host',
             # )
-
-            return Response({'host_key': hk}, status=200)
-        return Response({'msg': 'fail'}, status=500)
+            return Response({'msg': 'ok'}, status=201)
+        return Response({'msg': 'fail'}, status=501)

@@ -34,7 +34,7 @@ class UserkeyEndpoint(Endpoint,
     授权方式: basic auth (username/password)
     描述: 更新USER_KEY
     """
-    authentication_classes = [QuietBasicAuthentication]
+    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
 
     # XXX: it's not quite clear if this should be documented or not at
@@ -48,8 +48,16 @@ class UserkeyEndpoint(Endpoint,
         return Response(resp)
 
     def post(self, request):
-        user = User.objects.get(username=request.user.username)
-        user_key = generate_user_key(user)
-        if User.objects.filter(username=request.user.username).update(userkey=user_key):
-            return Response({'msg': 'ok'})
-        return Response({'msg': 'failed'})
+        # user = User.objects.get(username=request.user.username)
+        # user_key = generate_user_key(user)
+        # if User.objects.filter(username=request.user.username).update(userkey=user_key):
+        #     return Response({'msg': 'ok'})
+        # return Response({'msg': 'failed'})
+        print 'request.data ', request.DATA
+        result = request.DATA
+        print 'username = ', result['username']
+        print 'password= ', result['password']
+        user = User.objects.get(username=result['username'])
+        resp = {'user_key': user.userkey}
+        print 'resp=', resp
+        return Response(resp)
