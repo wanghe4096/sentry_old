@@ -119,7 +119,7 @@ const StreamTypeList = React.createClass({
 
     return (
       <div
-        className={`stream-list-container streamtype-container ${showFileOverlay ? `pull`:``}`}
+        className={`stream-list-container streamtype-container ${showFileOverlay ? ``:``}`}
       >
         <div className="list-wrap stream-list">
           <div className="list-head">

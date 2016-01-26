@@ -29,7 +29,7 @@ const HostItem = React.createClass({
 
   getInitialState() {
     return {
-      active: false
+      active: false,
     }
   },
 
@@ -96,7 +96,7 @@ const HostList = React.createClass({
       return (
         <div className="box empty-stream">
           <span className="icon icon-exclamation"/>
-          <p>{t('Sorry, no host match your account.')}</p>
+          <p>{t('Sorry, no streamtype match your account.')}</p>
         </div>
       );
     } else {
@@ -120,12 +120,12 @@ const HostList = React.createClass({
           <h5>{t('StreamType')}</h5>
 
           <button className="btn btn-sm btn-default pull-right" onClick={this.addHostHandler}>
-            <span className="glyphicon glyphicon-plus"></span>
+            <span className="fa fa-pencil"></span>
             {t('edit')}
           </button>
 
           <button className="btn btn-sm btn-default pull-right" onClick={this.addHostHandler}>
-            <span className="glyphicon glyphicon-plus"></span>
+            <span className="fa fa-plus"></span>
             {t('add streamtype')}
           </button>
 
