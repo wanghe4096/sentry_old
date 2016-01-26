@@ -67,21 +67,26 @@ from .endpoints.team_stats import TeamStatsEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
 from .endpoints.store_auth import RegisterEndpoint
 from .endpoints.store_streams import StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
+from .endpoints.stream_index import StreamIndexEndpoint
 from .endpoints.demo_exception import DemoExceptionEndpoint
 from .endpoints.store_streams import LogFilesView
 from .endpoints.user_key import UserkeyEndpoint
 from .endpoints.host_index import HostIndexEndpoint, LogAgentHostIndexEndpoint
+from .endpoints.logfiles_index import LogfileIndexEndpoint
+from .endpoints.logevents import LogEventIndexEndpoint
 urlpatterns = patterns(
     '',
     #  loginsight  Register User
     url(r'^register', RegisterEndpoint.as_view(), name='sentry-api-0-register'),
     url(r'user_key', UserkeyEndpoint.as_view(), name='sentry-api-0-user-key'),
-    url(r'^streams', StreamView.as_view(), name='sentry-api-0-streams'),
-    url(r'^host-type', HostTypeView.as_view(), name='sentry-api-0-host-type'),
-    url(r'^stream-type', StreamTypeView.as_view(), name='sentry-api-0-stream-type'),
-    url(r'^tags', TagView.as_view(), name='sentry-api-0-tags'),
-    url(r'^logfiles', LogFilesView.as_view(), name='sentry-api-0-logfiles'),
-    url(r'^logevents', LogEventView.as_view(), name='sentry-api-0-events'),
+    # url(r'^streams', StreamView.as_view(), name='sentry-api-0-streams'),
+    url(r'^streams', StreamIndexEndpoint.as_view(), name='sentry-api-0-streams'),
+    # url(r'^host-type', HostTypeView.as_view(), name='sentry-api-0-host-type'),
+    # url(r'^stream-type', StreamTypeView.as_view(), name='sentry-api-0-stream-type'),
+    # url(r'^tags', TagView.as_view(), name='sentry-api-0-tags'),
+    # url(r'^logfiles', LogFilesView.as_view(), name='sentry-api-0-logfiles'),
+    url(r'^logfiles', LogfileIndexEndpoint.as_view(), name='sentry-api-0-logfiles'),
+    url(r'^logevents', LogEventIndexEndpoint.as_view(), name='sentry-api-0-events'),
     url(r'^create_demo', DemoExceptionEndpoint.as_view(), name='sentry-api-0-create-demo'),
     url(r'^hosts', HostIndexEndpoint.as_view(), name='sentry-api-0-hosts'),
     url(r'^agent/hosts', LogAgentHostIndexEndpoint.as_view(), name='sentry-api-0-agent-hosts'),

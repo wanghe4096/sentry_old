@@ -44,6 +44,7 @@ class DocSection(Enum):
     EVENTS = 'Events'
     ORGANIZATIONS = 'Organizations'
     HOSTS = 'Hosts'
+    STREAMS = 'Streams'
     PROJECTS = 'Projects'
     RELEASES = 'Releases'
     TEAMS = 'Teams'
