@@ -65,22 +65,27 @@ from .endpoints.team_groups_trending import TeamGroupsTrendingEndpoint
 from .endpoints.team_project_index import TeamProjectIndexEndpoint
 from .endpoints.team_stats import TeamStatsEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
-from .endpoints.register import RegisterEndpoint
-from .endpoints.host_stream import HostView, StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
-from .endpoints.demo_exception import DemoExceptionView
-from .endpoints.host_stream import LogFilesView
+from .endpoints.store_auth import RegisterEndpoint
+from .endpoints.store_streams import StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
+from .endpoints.demo_exception import DemoExceptionEndpoint
+from .endpoints.store_streams import LogFilesView
+from .endpoints.user_key import UserkeyEndpoint
+from .endpoints.host_index import HostIndexEndpoint, LogAgentHostIndexEndpoint
 urlpatterns = patterns(
     '',
     #  loginsight  Register User
     url(r'^register', RegisterEndpoint.as_view(), name='sentry-api-0-register'),
-    url(r'^hosts', HostView.as_view(), name='sentry-api-0-hosts'),
+    url(r'user_key', UserkeyEndpoint.as_view(), name='sentry-api-0-user-key'),
     url(r'^streams', StreamView.as_view(), name='sentry-api-0-streams'),
     url(r'^host-type', HostTypeView.as_view(), name='sentry-api-0-host-type'),
     url(r'^stream-type', StreamTypeView.as_view(), name='sentry-api-0-stream-type'),
     url(r'^tags', TagView.as_view(), name='sentry-api-0-tags'),
     url(r'^logfiles', LogFilesView.as_view(), name='sentry-api-0-logfiles'),
     url(r'^logevents', LogEventView.as_view(), name='sentry-api-0-events'),
-    url(r'^create_demo', DemoExceptionView.as_view(), name='sentry-api-0-create-demo'),
+    url(r'^create_demo', DemoExceptionEndpoint.as_view(), name='sentry-api-0-create-demo'),
+    url(r'^hosts', HostIndexEndpoint.as_view(), name='sentry-api-0-hosts'),
+    url(r'^agent/hosts', LogAgentHostIndexEndpoint.as_view(), name='sentry-api-0-agent-hosts'),
+
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),

@@ -26,10 +26,10 @@ class ProjectDocsPlatformEndpoint(ProjectEndpoint):
             raise ResourceDoesNotExist
 
         project_key = ProjectKey.get_default(project)
-
-        return Response({
+        resp = {
             'id': data['id'],
             'name': data['name'],
             'html': replace_keys(data['html'], project_key),
             'link': data['link'],
-        })
+        }
+        return Response(resp)
