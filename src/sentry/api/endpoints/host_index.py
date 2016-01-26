@@ -17,8 +17,11 @@ from sentry.api.serializers.models.host import HostSerializer
 from sentry.models.organizationmember import OrganizationMember
 from sentry.models.organization import Organization
 from sentry.models import (
-    AuditLogEntryEvent, Host
+    AuditLogEntryEvent, Host, User
 )
+from sentry.api.authentication import QuietBasicAuthentication
+
+from sentry.api.base import Endpoint
 from sentry.utils.apidocs import scenario, attach_scenarios
 import  datetime
 import hashlib
@@ -117,5 +120,58 @@ class HostIndexEndpoint(HostEndpoint):
                 event=AuditLogEntryEvent.HOST_ADD,
                 data=host.get_audit_log_data(),
             )
+            return Response({'msg': 'ok'}, status=201)
+        return Response({'msg': 'fail'}, status=501)
+
+
+
+
+from rest_framework import mixins
+from rest_framework import generics
+
+
+class LogAgentHostIndexEndpoint(Endpoint,
+                                mixins.ListModelMixin,
+                                mixins.CreateModelMixin,
+                                generics.GenericAPIView):
+
+    authentication_classes = []
+    permission_classes = []
+
+    def get(self, request, *args, **kwargs):
+        result = request.GET
+        user = User.objects.get(userkey=result['user_key'])
+        host_list = list(Host.objects.filter(user_id=user.id))
+        print list(host_list)
+
+        return Response(serialize(
+            host_list, user, HostSerializer()))
+        # return Response(list(host_list))
+
+    def post(self, request,  *args, **kwargs):
+        result = request.POST
+        user = User.objects.get(userkey=result['user_key'])
+        org_mem = OrganizationMember.objects.get(user=user)
+        org = Organization.objects.get(id=org_mem.organization_id)
+        hk = generate_host_key(result)
+        if not Host.objects.filter(host_key=hk):
+            host = Host.objects.create(
+                host_name=result['host_name'],
+                host_key=generate_host_key(result),
+                host_type=result['host_type'],
+                system=result['system'],
+                distver=result['distver'],
+                last_time=str(datetime.datetime.now()),
+                create_time=str(datetime.datetime.now()),
+                user_id=user.id,
+                organization=org,
+            )
+            # self.create_audit_entry(
+            #     request=request,
+            #     organization=org,
+            #     target_object=host.id,
+            #     event=AuditLogEntryEvent.AGENT_HOST_ADD,
+            #     data= 'agent add host',
+            # )
             return Response({'msg': 'ok'}, status=201)
         return Response({'msg': 'fail'}, status=501)

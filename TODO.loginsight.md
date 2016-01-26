@@ -13,7 +13,7 @@
     'user_key': '234asdfaj32sfhasdf234123'
    }
 
-## 更新USER_KEY 
+## 更新USER_KEY
     POST /api/0/user_key
     request:
     {
@@ -24,15 +24,15 @@
     {
         'msg': 'ok/failed'
     }
-    
+
 ## 获取主机列表
     - request
         GET /api/0/hosts
         {
-            'user_key': 
+            'user_key':
         }
 
-    - response 
+    - response
       [
           {
             "distver": "3.2.1",
@@ -51,12 +51,27 @@
             "id": "2"
           }
       ]
-
+## 更新主机列表
+    - request 
+    GET /api/0/hosts
+    {
+        
+        'host_name':  '主机名'
+        'host_type': '主机类型'
+        'system':  '操作系统类型'
+        'distver': '系统版本号'
+    }
+    
+    - response 
+    {
+        'msg': 'ok'
+    }
+    
 ## AGENT 注册主机
     - request
         POST /api/0/agent/hosts
         {
-            "user_key": 
+            "user_key":
             "host_key":
             "host_type":
             "system":
@@ -67,7 +82,7 @@
         {
             'msg': 'ok/failed'
         }
-        
+
 获取配置文件
    - request
        GET /api/0/agent_config
@@ -75,7 +90,7 @@
             "user_key": ""
             "host_key": ""
        }
-   
+
    - response
        {
         "config": "config content"
@@ -89,13 +104,13 @@
         "config": "config content"
     }
     agent_config = (name(128char), config,  host_id(fk))
-    
+
 ## 获取文件列表
    - request
    GET /api/0/logfiles?stream_id=1
-   
+
    - response
-   
+
    [
       {
         "file_name": "access.log",
@@ -114,13 +129,13 @@
         "size": 807799
       }
    ]
-   
-## 获取 events 
+
+## 获取 events
    - request
    GET /api/0/logevents
    {
-        "file_id": 
-        "event_offset": 
+        "file_id":
+        "event_offset":
         "event_count":
    }
    - response
@@ -142,14 +157,14 @@
             "size": "101"
           }
    ]
-   
-## 获取stream 
+
+## 获取stream
    - request
    GET /api/0/streams
     {
-        "host_id": 
+        "host_id":
     }
-    
+
    - response
    [
       {
@@ -166,30 +181,30 @@
         "create_timestamp": "2016-01-18 14:15:48.308715",
         "host_id": 1,
         "id": 2,
-        "size": 78176, 
+        "size": 78176,
       }
   ]
-  
+
 ## 更新stream group
     - request
         POST /api/0/stream-group
         {
             'name': 'stream_group_name',
             'source': [{
-                stream_id, .... 
+                stream_id, ....
             }],
-            "last_timestamp": 
-            "create_timestamp" 
-            'options':{ 
+            "last_timestamp":
+            "create_timestamp"
+            'options':{
                 'extract_template': true,
-                 'sort_by_time': true, 
-                 'regex: true, 
+                 'sort_by_time': true,
+                 'regex: true,
                  'exception_monitor: true,
                  'sort_by_domain: true,
-                 'others: true 
+                 'others: true
                  }
         }
-     - response 
+     - response
         {
             'msg': 'ok/failed'
         }
@@ -197,4 +212,3 @@
  GET  /api/0/streams/templates
 
  POST /api/0/streams/templates
-
