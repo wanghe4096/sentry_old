@@ -19,12 +19,11 @@ from sentry.models.organization import Organization
 from sentry.models import (
     AuditLogEntryEvent, Host, User
 )
-from sentry.api.authentication import QuietBasicAuthentication
-
 from sentry.api.base import Endpoint
 from sentry.utils.apidocs import scenario, attach_scenarios
-import  datetime
-import hashlib
+from sentry.conf.server import *
+import datetime
+import requests
 
 @scenario('CreateNewHost')
 def create_new_host_scenario(runner):
@@ -121,6 +120,11 @@ class HostIndexEndpoint(HostEndpoint):
                 data=host.get_audit_log_data(),
             )
 
+            url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, request.user.id, host.id)
+            host_obj = {"host_key": host.host_key, "user_id": request.user.id, "tenant_id": request.user.id}
+            resp = requests.post(url, data=host_obj)
+            print 'aaaaaaaaaaa = ', type(resp.status_code)
+
             return Response({'msg': 'ok'}, status=201)
         return Response({'msg': 'fail'}, status=501)
 
@@ -131,10 +135,7 @@ from rest_framework import mixins
 from rest_framework import generics
 
 
-class LogAgentHostIndexEndpoint(Endpoint,
-                                mixins.ListModelMixin,
-                                mixins.CreateModelMixin,
-                                generics.GenericAPIView):
+class LogAgentHostIndexEndpoint(Endpoint):
 
     authentication_classes = []
     permission_classes = []
@@ -147,7 +148,6 @@ class LogAgentHostIndexEndpoint(Endpoint,
 
         return Response(serialize(
             host_list, user, HostSerializer()))
-        # return Response(list(host_list))
 
     def post(self, request,  *args, **kwargs):
         result = request.DATA
@@ -175,5 +175,15 @@ class LogAgentHostIndexEndpoint(Endpoint,
             #     data= 'agent add host',
             # )
 
+            url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
+            print 'url=', url
+            host_obj = {"host_key": host.host_key, "user_id": user.id, "tenant_id": user.id}
+            print 'host_obj = ', host_obj
+            resp = requests.post(url, data=host_obj)
+            print 'resp=====', resp.text
+            # print 'aaaaaaaaaaa = ', type(resp.status_code)
+            # print host.host_key
+            if resp.status_code > 300:
+                return Response({'msg': 'failed to post stoarge server.'}, status=500)
             return Response({'host_key': hk}, status=200)
         return Response({'msg': 'fail'}, status=500)
