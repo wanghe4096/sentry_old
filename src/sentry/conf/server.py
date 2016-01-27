@@ -52,7 +52,7 @@ else:
 
 sys.path.insert(0, os.path.normpath(os.path.join(PROJECT_ROOT, os.pardir)))
 
-STORAGE_API_BASE_URL = 'http://192.168.200.245:8080/api/v1'
+STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
 
 DATABASES = {
     'default': {
