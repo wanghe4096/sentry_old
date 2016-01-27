@@ -28,21 +28,21 @@ import requests
 @scenario('CreateNewHost')
 def create_new_host_scenario(runner):
     runner.request(
-        method='POST',
-        path='/hosts/' % runner.org.slug,
-        data={
-            'host_nme': 'demo_host',
-            'system': 'os',
-            'distver': 'v3.1'
-        }
+            method='POST',
+            path='/hosts/' % runner.org.slug,
+            data={
+                'host_nme': 'demo_host',
+                'system': 'os',
+                'distver': 'v3.1'
+            }
     )
 
 
 @scenario('ListHosts')
 def list_hosts_scenario(runner):
     runner.request(
-        method='GET',
-       path='/hosts/'
+            method='GET',
+            path='/hosts/'
     )
 
 def generate_host_key(result):
@@ -71,11 +71,11 @@ class HostIndexEndpoint(HostEndpoint):
         # based endpoints
 
         host_list = list(Host.objects.filter(
-            user=request.user
+                user=request.user
         ).order_by('host_name', 'system'))
 
         return Response(serialize(
-            host_list, request.user, HostSerializer()))
+                host_list, request.user, HostSerializer()))
 
     @attach_scenarios([create_new_host_scenario])
     def post(self, request):
@@ -102,28 +102,29 @@ class HostIndexEndpoint(HostEndpoint):
         hk = generate_host_key(result)
         if not Host.objects.filter(host_key=hk):
             host = Host.objects.create(
-                host_name=result['host_name'],
-                host_key=generate_host_key(result),
-                host_type=result['host_type'],
-                system=result['system'],
-                distver=result['distver'],
-                last_time=str(datetime.datetime.now()),
-                create_time=str(datetime.datetime.now()),
-                user_id=request.user.id,
-                organization=org,
+                    host_name=result['host_name'],
+                    host_key=generate_host_key(result),
+                    host_type=result['host_type'],
+                    system=result['system'],
+                    distver=result['distver'],
+                    last_time=str(datetime.datetime.now()),
+                    create_time=str(datetime.datetime.now()),
+                    user_id=request.user.id,
+                    organization=org,
             )
             self.create_audit_entry(
-                request=request,
-                organization=org,
-                target_object=host.id,
-                event=AuditLogEntryEvent.HOST_ADD,
-                data=host.get_audit_log_data(),
+                    request=request,
+                    organization=org,
+                    target_object=host.id,
+                    event=AuditLogEntryEvent.HOST_ADD,
+                    data=host.get_audit_log_data(),
             )
 
             url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, request.user.id, host.id)
             host_obj = {"host_key": host.host_key, "user_id": request.user.id, "tenant_id": request.user.id}
             resp = requests.post(url, data=host_obj)
-            print 'aaaaaaaaaaa = ', type(resp.status_code)
+            if resp.status_code > 300 :
+                return Response({'msg': 'failed to post stoarge server.'}, status=500)
 
             return Response({'msg': 'ok'}, status=201)
         return Response({'msg': 'fail'}, status=501)
@@ -147,7 +148,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
         print list(host_list)
 
         return Response(serialize(
-            host_list, user, HostSerializer()))
+                host_list, user, HostSerializer()))
 
     def post(self, request,  *args, **kwargs):
         result = request.DATA
@@ -157,15 +158,15 @@ class LogAgentHostIndexEndpoint(Endpoint):
         hk = generate_host_key(result)
         if not Host.objects.filter(host_key=hk):
             host = Host.objects.create(
-                host_name=result['host_name'],
-                host_key=generate_host_key(result),
-                host_type=result['host_type'],
-                system=result['system'],
-                distver=result['distver'],
-                last_time=str(datetime.datetime.now()),
-                create_time=str(datetime.datetime.now()),
-                user_id=user.id,
-                organization=org,
+                    host_name=result['host_name'],
+                    host_key=generate_host_key(result),
+                    host_type=result['host_type'],
+                    system=result['system'],
+                    distver=result['distver'],
+                    last_time=str(datetime.datetime.now()),
+                    create_time=str(datetime.datetime.now()),
+                    user_id=user.id,
+                    organization=org,
             )
             # self.create_audit_entry(
             #     request=request,
@@ -178,11 +179,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
             url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
             print 'url=', url
             host_obj = {"host_key": host.host_key, "user_id": user.id, "tenant_id": user.id}
-            print 'host_obj = ', host_obj
             resp = requests.post(url, data=host_obj)
-            print 'resp=====', resp.text
-            # print 'aaaaaaaaaaa = ', type(resp.status_code)
-            # print host.host_key
             if resp.status_code > 300:
                 return Response({'msg': 'failed to post stoarge server.'}, status=500)
             return Response({'host_key': hk}, status=200)
