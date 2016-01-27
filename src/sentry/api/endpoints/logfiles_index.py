@@ -9,10 +9,10 @@ email_ : wangh@loginsight.cn
 from __future__ import absolute_import
 from rest_framework.response import Response
 from sentry.api.bases.logfile import LogFileEndpoint
-from sentry.api.base import Endpoint
+from sentry.conf.server import *
 import requests
 
-STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
+#STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
 # STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
 
 

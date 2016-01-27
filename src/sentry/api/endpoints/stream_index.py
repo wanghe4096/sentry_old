@@ -10,9 +10,11 @@ email_ : wangh@loginsight.cn
 from __future__ import absolute_import
 from rest_framework.response import Response
 from sentry.api.bases.stream import StreamEndpoint
+from sentry.conf.server import *
 import requests
 
-STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
+
+# STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
 # STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
 
 
@@ -42,10 +44,7 @@ class StreamIndexEndpoint(StreamEndpoint):
                 stream_id = stream[0]
                 stream_name = stream[1]
                 obj = stream[3]
-                stream_obj['' \
-                           '' \
-                           '' \
-                           'id'] = stream_id
+                stream_obj['id'] = stream_id
                 stream_obj['stream_name'] = stream_name
                 stream_obj['create_timestamp'] = obj.get('create_time', 'null')
                 stream_obj['last_timestamp'] = obj.get('modify_time', 'null')

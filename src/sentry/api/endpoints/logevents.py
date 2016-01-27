@@ -10,9 +10,10 @@ from __future__ import absolute_import
 from rest_framework.response import Response
 from sentry.api.bases import Endpoint
 from sentry.api.bases.logevent import LogEventEndpoint
+from sentry.conf.server import *
 import requests
 
-STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
+# STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
 # STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
 
 
@@ -38,7 +39,8 @@ class LogEventIndexEndpoint(LogEventEndpoint):
         file_id = result.get('file_id', '0')
         print 'stream_id = ', stream_id
 
-        url = "%s/u/%s/nodes/%s/streams/%s/files/%s/content/?fid=%s&event_offset=%s&event_count=%s" % (STORAGE_API_BASE_URL,
+        url = "%s/u/%s/nodes/%s/streams/%s/files/%s/content/?fid=%s&event_offset=%s&event_count=%s" \
+                                                    % (STORAGE_API_BASE_URL,
                                                     request.user.id,
                                                     host_id,
                                                     stream_id,
