@@ -11,25 +11,32 @@ import {Link} from 'react-router';
 import {t} from 'app/locale';
 import LoadingIndicator from 'components/loadingIndicator';
 import LoadingError from 'components/loadingError';
+import CodeMirror from 'codemirror';
+import _ from 'underscore';
 
 import EventsStore from 'stores/extract/eventsStore';
 import EventAction from 'actions/extract/eventsAction'
 
-const EventItem = React.createClass({
-  getInitialState() {
-    return {}
-  },
+require('codemirror/addon/selection/active-line');
+require('codemirror/addon/display/placeholder.js');
+require('codemirror/lib/codemirror.css');
 
-  render() {
-    return (
-      <li className="event-item">
-        <pre>
-          {this.props.payload}
-        </pre>
-      </li>
-    )
-  }
-});
+//
+//const EventItem = React.createClass({
+//  getInitialState() {
+//    return {}
+//  },
+//
+//  render() {
+//    return (
+//      <li className="event-item">
+//        <div className="code">
+//          {this.props.payload}
+//        </div>
+//      </li>
+//    )
+//  }
+//});
 
 const EventList = React.createClass({
   mixins: [
@@ -45,9 +52,32 @@ const EventList = React.createClass({
   },
 
   componentWillMount() {
-
     // mock
     EventAction.fetch();
+  },
+
+  getValue() {
+    return _.reduce(this.state.events, (memo, event) => {
+      return memo + event.payload + '\n';
+    }, '');
+  },
+
+  componentDidUpdate() {
+    if (this.codemirror) {
+      this.codemirror.setValue(this.getValue());
+    }
+  },
+
+  componentDidMount() {
+
+    this.codemirror = CodeMirror(this.refs.codeView, {
+      lineNumbers: true,
+      readOnly: 'nocursor',
+      styleActiveLine: true,
+      viewportMargin: Infinity,
+      value: this.getValue(),
+      mode: "javascript"
+    });
   },
 
   renderBody(){
@@ -71,25 +101,42 @@ const EventList = React.createClass({
           <p>{t('Sorry, not found.')}</p>
         </div>
       );
-    } else {
-      return this.state.events.map((event, i) => {
-        return (
-          <EventItem {...event} key={i}/>
-        )
-      });
     }
+    //else {
+    //  return this.state.events.map((event, i) => {
+    //    return (
+    //      <li className="event-item" key={i}>
+    //        <i className="line">{i}</i>
+    //        <div className="code">
+    //          {this.props.payload}
+    //        </div>
+    //      </li>
+    //    )
+    //  });
+    //}
   },
 
-  render(){
+  render() {
 
     // todo: 做loading more 状态
     return (
-      <div className="events-view">
-        <ul>
-          { this.renderBody() }
-        </ul>
-        <div className="load-more">
-          <div className="btn btn-sm btn-default more-btn">{t('Load more')}</div>
+      <div className="result-view box">
+        <div className="box-header">
+          <div className="pull-right actions">
+            <a className="btn btn-sm btn-default">
+              load next 50 events
+              <span className="icon-skip-forward" />
+            </a>
+          </div>
+          <h3>{t('Matched events')}</h3>
+        </div>
+        <div className="events-view">
+          <div ref="codeView">
+            { this.renderBody() }
+          </div>
+          <div className="load-more hide">
+            <div className="btn btn-sm btn-default more-btn">{t('Load more')}</div>
+          </div>
         </div>
       </div>
     );

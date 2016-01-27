@@ -63,6 +63,7 @@ var config = {
       'flot/jquery.flot.stack',
       'flot/jquery.flot.time',
       'flot-tooltip/jquery.flot.tooltip',
+      'codemirror',
       'vendor/simple-slider/simple-slider'
     ],
 
@@ -73,6 +74,7 @@ var config = {
 
   },
   module: {
+    noParse: 'node_modules',
     loaders: [
       {
         test: /\.jsx?$/,
@@ -97,6 +99,10 @@ var config = {
         test: /\.less$/,
         include: path.join(__dirname, staticPrefix),
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
+      },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader'
       },
       {
         test: /\.(woff|woff2|ttf|eot|svg|png|gif|ico|jpg)($|\?)/,

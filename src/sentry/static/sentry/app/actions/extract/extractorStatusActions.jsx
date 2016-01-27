@@ -7,6 +7,10 @@
 
 import Reflux from 'reflux';
 
-const ExtractorStatusActions = Reflux.createActions(['setTimeRange']);
+const ExtractorStatusActions = Reflux.createActions([
+  'setTimeRange',
+  'setRunedStatus',
+  'setRuningStatus'
+]);
 
 export default ExtractorStatusActions;

@@ -23,13 +23,11 @@ const ExtractorEvents = React.createClass({
     const action = this.props.params.action;
 
     return (
-      <div >
-        <div className="chart-view">
+      <div className="extractor-events">
+        <div className="chart-view box">
           <EventChart streamId={streamId} action={action}/>
         </div>
-        <div className="result-view">
-          <EventList />
-        </div>
+        <EventList />
       </div>
     )
   }

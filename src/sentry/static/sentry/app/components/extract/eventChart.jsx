@@ -49,10 +49,10 @@ const EventChart = React.createClass({
         }
       ],
       grid: {
-        left: 20,
-        right: 20,
-        bottom: 30,
-        top:20
+        left: '15%',
+        right: '15%',
+        bottom: '10%',
+        top:'10%'
       },
       xAxis: [
         {

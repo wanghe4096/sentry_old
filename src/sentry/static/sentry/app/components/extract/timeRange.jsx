@@ -8,17 +8,26 @@
 
 import React from 'react';
 import Reflux from 'reflux';
+import moment from 'moment';
+import { DateRange } from 'react-date-range';
+import {Modal} from 'react-bootstrap';
+import {t} from '../../locale';
 import ExtractorStatus from 'stores/extract/extractorStatusStore';
 
 const TimeRange = React.createClass({
   mixins: [
-    Reflux.listenTo(ExtractorStatus,'onStatusChange')
+    Reflux.listenTo(ExtractorStatus, 'onStatusChange')
   ],
 
   getInitialState() {
     return {
-      startAt: null,
-      endAt: null
+      showDialog: false,
+      startAt: new Date(),
+      endAt: new Date('2016-2-30'),
+      ranges: {
+        'Today': [moment(), moment()],
+        'Yesterday': [moment().subtract(1, 'days'), moment().subtract(1, 'days')]
+      }
     }
   },
 
@@ -30,13 +39,45 @@ const TimeRange = React.createClass({
     });
   },
 
+  handleSelect() {
+    console.log('range chang!!');
+  },
+
+  hideHandler() {
+    this.setState({
+      showDialog: false
+    })
+  },
+
   render() {
-    const startAt = moment(this.state.startAt).format('YYYY-MM-DD HH:mm');
-    const endAt = moment(this.state.endAt).format('YYYY-MM-DD HH:mm');
+    const startAt = moment(this.state.startAt).format('YYYY-MM-DD');
+    const endAt = moment(this.state.endAt).format('YYYY-MM-DD');
+
+    let label = startAt == endAt ? startAt : `${startAt} ${t(' To ')} ${endAt}`;
 
     return (
-      <div className="time-range pull-right">
-        Time range:<span className="time">{startAt}</span>-<span className="time">{endAt}</span>
+      <div className="date-range pull-right" onClick={() => {
+          this.setState({showDialog:true})
+        }}>
+        { t('Time range') } : { label }
+        <Modal
+          keyboard={true}
+          show={this.state.showDialog}
+          onHide={this.hideHandler}>
+          <Modal.Header closeButton={true}>
+            <Modal.Title>{t('Time range')}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <DateRange
+              onInit={this.handleSelect}
+              onChange={this.handleSelect}
+            />
+            <Modal.Footer>
+              <button type="reset" className="btn btn-sm btn-default">{t('Reset')}</button>
+              <button className="btn btn-sm btn-primary">{t('Done')}</button>
+            </Modal.Footer>
+          </Modal.Body>
+        </Modal>
       </div>
     )
   }

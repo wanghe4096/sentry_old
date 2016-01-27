@@ -28,7 +28,7 @@ ExtractorActions.run.listen(function (streamId, action) {
       action: action,
       stream_id: streamId,
       template: 'xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx|xxxxxx',
-      matched_total: _.random(event_len,100),
+      matched_total: _.random(event_len, 100),
       events: (() => {
         let events = [];
         let event_i = 0;
@@ -51,7 +51,9 @@ ExtractorActions.run.listen(function (streamId, action) {
     mockData.unshift(template);
   }
 
-  this.success(mockData);
+  setTimeout(()=> {
+    this.success(mockData);
+  }, 1000);
 
 });
 

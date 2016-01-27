@@ -15,6 +15,7 @@ import _ from 'underscore';
 import StructureTemplateList from 'components/extract/structureTemplateList'
 import TemplateChart from 'components/extract/templateChart';
 import EventList from 'components/extract/eventList';
+import TemplateEdiror from 'components/extract/templateEdiror';
 
 const ExtractorRole = React.createClass({
   getInitialState() {
@@ -57,13 +58,15 @@ const ExtractorRole = React.createClass({
 
     return (
       <div className="extract-role">
-        <div className="chart-view">
-          <div className="template-chart-wrap pull-left"></div>
-          <div className="template-editor-wrap"></div>
+        <div className="chart-view box">
+          <div className="template-chart-wrap pull-left">
+            <TemplateChart />
+          </div>
+          <div className="template-editor-wrap">
+            <TemplateEdiror />
+          </div>
         </div>
-        <div className="result-view">
-          { this.renderBody() }
-        </div>
+        { this.renderBody() }
       </div>
     )
   }

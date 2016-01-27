@@ -9,44 +9,52 @@ import React from 'react';
 import Reflux from 'reflux';
 import echarts from 'echarts';
 import _ from 'underscore';
-
+import {t} from 'app/locale';
+import LoadingIndicator from 'components/loadingIndicator';
 import ExtractorTemplateStore from 'stores/extract/extractorTemplateStore'
+import ExtractorStatus from 'stores/extract/extractorStatusStore';
+import ExtractorStatusActions from 'actions/extract/extractorStatusActions';
 
 const TemplateChart = React.createClass({
   mixins: [
+    Reflux.listenTo(ExtractorStatus, 'onStatusChange'),
     Reflux.connect(ExtractorTemplateStore, 'data') // todo:需要考虑加载失败的情况,最好给个提示
   ],
 
   getInitialState() {
     return {
+      isRuning:false, // running 与 loading 是两个概念!!
       data: []
     }
   },
 
+  onStatusChange(status) {
+    this.setState({
+      isRuning: status.isRuning
+    });
+  },
+
   getOption() {
+
+    const values = this.state.data.map((template, i) => {
+      return {
+        value: template.events.length,
+        name: 'template ' + i
+      }
+    });
+
     let option = {
-      tooltip : {
+      tooltip: {
         trigger: 'item',
         formatter: "{a} <br/>{b} : {c} ({d}%)"
       },
-      legend: {
-        orient: 'vertical',
-        left: 'left',
-        data: ['直接访问','邮件营销','联盟广告','视频广告','搜索引擎']
-      },
-      series : [
+      series: [
         {
           name: '规则匹配数',
           type: 'pie',
-          radius : '55%',
+          radius: '55%',
           center: ['50%', '60%'],
-          data:[
-            {value:335, name:'template 1'},
-            {value:310, name:'template 2'},
-            {value:234, name:'template 3'},
-            {value:135, name:'template 4'},
-            {value:1548, name:'template 5'}
-          ],
+          data: values,
           itemStyle: {
             emphasis: {
               shadowBlur: 10,
@@ -69,21 +77,44 @@ const TemplateChart = React.createClass({
 
   componentDidUpdate() {
 
-    this.chart.setOption(this.getOption());
-
+    if (!this.chart) {
+      this.chart = this.initChart();
+    }
+    this.chart && this.chart.setOption(this.getOption());
   },
 
   componentDidMount() {
+    this.chart = this.initChart();
+    this.chart && this.chart.setOption(this.getOption());
+  },
 
-    this.chart = echarts.init(this.refs.wrap);
-
-    // 使用刚指定的配置项和数据显示图表。
-    this.chart.setOption(this.getOption());
+  initChart() {
+    if (this.state.data.length) {
+      return echarts.init(this.refs.wrap);
+    }
   },
 
   render() {
+
+    if(this.state.isRuning){
+      return (
+        <div className="running-stat-box">
+          <LoadingIndicator />
+        </div>
+      )
+    }
+
+    if (!this.state.data.length) {
+      return (
+        <div className="box empty-stream">
+          <span className="icon icon-exclamation"/>
+          <p>{t('Sorry, not found.')}</p>
+        </div>
+      )
+    }
+
     return (
-      <div ref="wrap" className="chart-wrap"></div>
+      <div ref="wrap" className="chart-wrap"/>
     )
   }
 });

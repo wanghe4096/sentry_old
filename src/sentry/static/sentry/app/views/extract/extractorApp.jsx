@@ -35,8 +35,7 @@ const ExtractorApp = React.createClass({
   mixins: [
     OrganizationState,
     Reflux.listenTo(ExtractorConfigStore, 'onConfigChange'),
-    Reflux.listenTo(ExtractorTemplateStore, 'onTemplateChange')
-    //Reflux.listenTo(StreamChartStore, 'onStreamChartDataChange')
+    Reflux.listenTo(ExtractorStatus, 'onStatusChange')
   ],
 
   getInitialState() {
@@ -47,7 +46,7 @@ const ExtractorApp = React.createClass({
       error: false,
       loading: false,
       isRuned: false,
-      runing: false
+      isRuning: false, // running 与 loading 是两个概念!!
     }
   },
 
@@ -62,33 +61,28 @@ const ExtractorApp = React.createClass({
   },
 
   onConfigChange(config) {
-
-    if (config.last_extracted_at) {
-      this.setState({
-        loading: false,
-        isRuned: true
-      });
-    } else {
-      this.setState({
-        loading: false
-      });
-    }
+    this.setState({
+      loading: false
+    });
   },
 
-  onTemplateChange() {
-
+  onStatusChange(status) {
     this.setState({
-      runing: false
-    })
-
+      isRuning: status.isRuning
+    });
   },
 
   runBtnHandler() {
 
-    this.setState({
-      runing: true,
-      isRuned: true
-    });
+    const org = this.getOrganization();
+    const {streamId,action} = this.props.params;
+    const rolePath = `/${org.slug}/extract/${streamId}/${action}/role/`;
+    const isRoleActive = this.props.history.isActive(rolePath);
+
+    !isRoleActive && this.props.history.pushState(null, rolePath);
+
+    // runing 状态必须在此更改为true,除非action内可以设置 status store
+    ExtractorStatusActions.setRuningStatus(true);
 
     setTimeout(() => {
       ExtractorActions.run(this.state.streamId, this.state.action);
@@ -97,7 +91,7 @@ const ExtractorApp = React.createClass({
   },
 
   renderControlView() {
-    window.x = this.props;
+
     const org = this.getOrganization();
     const {streamId,action} = this.props.params;
 
@@ -105,7 +99,6 @@ const ExtractorApp = React.createClass({
 
     return (
       <div className="control-group clearfix">
-        { false && !this.state.isRuned && (<TimeRange />) }
         <div className="btn-toolbar pull-right">
           <div className="btn-group btn-group-sm tab-btn">
             <IndexLink className="btn btn-default" to={`${basePath}/`} activeClassName="btn-primary">
@@ -115,15 +108,19 @@ const ExtractorApp = React.createClass({
               {t('Role')}
             </Link>
           </div>
-          { this.state.runing ?
+          { this.state.isRuning ?
             (
-              <button className="btn btn-sm" disabled>{t('Runing')}</button>
+              <button className="btn btn-sm btn-run" disabled>{t('Runing')}</button>
             ) :
             (
-              <button onClick={this.runBtnHandler} className="btn btn-sm btn-success">{t('Run')}</button>
+              <button
+                onClick={this.runBtnHandler}
+                className="btn btn-sm btn-success btn-run"
+              >{t('Run')}</button>
             )
           }
         </div>
+        <TimeRange />
       </div>
     )
   },
@@ -131,14 +128,12 @@ const ExtractorApp = React.createClass({
   render() {
 
     if (this.state.loading) {
-      console.log('loading;');
       return (
         <div className="box">
           <LoadingIndicator />
         </div>
       )
     } else if (this.state.error) {
-      console.log('error');
       return (
         <LoadingError
           message={t('Load initial Data failed')}
@@ -151,7 +146,7 @@ const ExtractorApp = React.createClass({
       <DocumentTitle title="storage">
         <div className="extractor-container">
           <div className="sub-header">
-            <h5 className="pull-left">{t('Log Structure')}</h5>
+            <div className="nav pull-left">{t('Log Structure')}</div>
             { this.renderControlView() }
           </div>
           { React.cloneElement(this.props.children) }
