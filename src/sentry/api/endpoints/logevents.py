@@ -39,7 +39,7 @@ class LogEventIndexEndpoint(LogEventEndpoint):
         file_id = result.get('file_id', '0')
         print 'stream_id = ', stream_id
 
-        url = "%s/u/%s/nodes/%s/streams/%s/files/%s/content/?fid=%s&event_offset=%s&event_count=%s" \
+        url = "%s/u/%s/nodes/%s/streams/%s/files/%s/content/?fid=%s&offset=%s&len=%s" \
                                                     % (STORAGE_API_BASE_URL,
                                                     request.user.id,
                                                     host_id,
@@ -49,7 +49,6 @@ class LogEventIndexEndpoint(LogEventEndpoint):
                                                     event_offset,
                                                     event_count
                                                     )
-        print 'url = ', url
         r = requests.get(url)
         print r
         if r.status_code == 200:
@@ -57,9 +56,7 @@ class LogEventIndexEndpoint(LogEventEndpoint):
             print resp['content']
             event_list = []
             for ctx in resp['content']:
-                print 'ctx= ', ctx
                 payload_list = ctx[1].split('\n')
-                print 'payload list ===', payload_list
                 i= int(event_offset)
                 for payload in payload_list:
                     event_obj = {
