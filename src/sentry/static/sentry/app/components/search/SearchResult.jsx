@@ -6,7 +6,7 @@ import SearchBar from './SearchBar';
 import FieldStatistics from 'components/field-analyzers/FieldStatistics';
 import  LegacyHistogram  from 'components/search/LegacyHistogram';
 import FieldQuickValues from 'components/field-analyzers/FieldQuickValues';
-import FieldGraphs from 'components/field-analyzers/FieldGraphs';
+//import FieldGraphs from 'components/field-analyzers/FieldGraphs';
 import ResultTable from './ResultTable';
 import SearchStore from 'stores/search/SearchStore';
 require('!script!../../../public/javascripts/jquery-2.1.1.min.js');
@@ -120,6 +120,7 @@ const SearchResult = React.createClass({
                 <div className="col-md-9 col-sm-12" id="main-content-sidebar">
                     <FieldStatistics ref="fieldStatisticsComponent"/>
                     <FieldQuickValues ref="fieldQuickValuesComponent"/>
+
                     <LegacyHistogram formattedHistogram={this.props.formattedHistogram}
                                      histogram={this.props.histogram}
                                      isStreamSearch={this.props.searchInStream !== null}/>

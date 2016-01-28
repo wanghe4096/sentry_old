@@ -3,8 +3,9 @@ import ReactDOM from 'react-dom';
 import {Button} from 'react-bootstrap';
 import QuickValuesVisualization from 'components/visualizations/QuickValuesVisualization';
 import FieldQuickValuesStore from 'stores/field-analyzers/FieldQuickValuesStore';
+
 import UIUtils from '../../utils/UIUtils';
-var quickJson =[];
+var quickJson = [];
 const FieldQuickValues = React.createClass({
     propTypes: {
         permissions: PropTypes.arrayOf(React.PropTypes.string),
