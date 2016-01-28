@@ -123,7 +123,7 @@ const EventList = React.createClass({
       <div className="result-view box">
         <div className="box-header">
           <div className="pull-right actions">
-            <a className="btn btn-sm btn-default">
+            <a className="btn btn-sm btn-default hide">
               load next 50 events
               <span className="icon-skip-forward" />
             </a>

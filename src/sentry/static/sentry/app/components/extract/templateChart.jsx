@@ -39,7 +39,7 @@ const TemplateChart = React.createClass({
     const values = this.state.data.map((template, i) => {
       return {
         value: template.events.length,
-        name: 'template ' + i
+        name: 'Role ' + i
       }
     });
 
@@ -52,7 +52,7 @@ const TemplateChart = React.createClass({
         {
           name: '规则匹配数',
           type: 'pie',
-          selectedMode: 'single',
+          //selectedMode: 'single',
           radius: '55%',
           center: ['50%', '60%'],
           data: values,
@@ -76,23 +76,29 @@ const TemplateChart = React.createClass({
 
   },
 
+  bindChartEvt() {
+    this.chart && this.chart.on('mouseover', function (e) {
+
+      // todo: 凑合的实现方式
+      if (window.xxEditor && window.xxEditor.codemirror) {
+        window.xxEditor.codemirror.setCursor(e.dataIndex);
+      }
+    })
+  },
+
   componentDidUpdate() {
 
     if (!this.chart) {
       this.chart = this.initChart();
     }
     this.chart && this.chart.setOption(this.getOption());
-    this.chart && this.chart.on('pieselected', function () {
-      console.log(arguments);
-    });
+    this.chart && this.bindChartEvt();
   },
 
   componentDidMount() {
     this.chart = this.initChart();
     this.chart && this.chart.setOption(this.getOption());
-    this.chart && this.chart.on('pieselected', function () {
-      console.log(arguments);
-    });
+    this.chart && this.bindChartEvt();
   },
 
   initChart() {
@@ -124,7 +130,7 @@ const TemplateChart = React.createClass({
     }
 
     return (
-      <div ref="wrap" className="chart-wrap" />
+      <div ref="wrap" className="chart-wrap"/>
     )
   }
 });

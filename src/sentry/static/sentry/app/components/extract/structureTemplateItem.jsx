@@ -28,6 +28,7 @@ const StructureTemplateItem = React.createClass({
   initCodemirror() {
     this.codemirror = CodeMirror.fromTextArea(this.refs.textarea, {
       lineNumbers: true,
+      //lineWrapping:true,
       readOnly: 'nocursor',
       styleActiveLine: true,
       viewportMargin: Infinity,
@@ -45,7 +46,7 @@ const StructureTemplateItem = React.createClass({
     const events = this.props.events.join('\n');
 
     return (
-      <div className="template-item">
+      <div className={`template-item ${!this.state.folded && 'unfold'}`}>
         <div className="template-val" onClick={this.toggleFoldHandler}>
           <i className="fold-icon"/>
           <div className="text">{this.props.template }</div>

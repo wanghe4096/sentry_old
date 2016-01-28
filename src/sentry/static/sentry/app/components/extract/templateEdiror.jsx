@@ -20,6 +20,7 @@ import ExtractorTemplateStore from 'stores/extract/extractorTemplateStore';
 import ExtractorStatus from 'stores/extract/extractorStatusStore';
 import ExtractorStatusActions from 'actions/extract/extractorStatusActions';
 import ExtractorActions from 'actions/extract/extractorActions';
+import AlertActions from 'actions/alertActions';
 
 const TemplateEdiror = React.createClass({
   mixins: [
@@ -28,7 +29,7 @@ const TemplateEdiror = React.createClass({
   ],
 
   getInitialState() {
-    window.xx = this;
+    window.xxEditor = this;
     return {
       isRuning: false,
       isRuned: false,
@@ -123,6 +124,7 @@ const TemplateEdiror = React.createClass({
     const plainValue = this.codemirror.getValue();
     let values = plainValue.split('\n');
     console.log(values);
+    AlertActions.addAlert('Save success', 'success', 3000);
   },
 
   render (){
@@ -136,9 +138,22 @@ const TemplateEdiror = React.createClass({
       <div className="template-editor">
         <div ref="editor" className="editor"></div>
         <div className="control-btn pull-right">
-          <a className={`btn btn-save btn-sm ${btnStatusClass}`} onClick={this.saveHandler}>
-            {t('Save template')}
-          </a>
+          <div className="btn-group btn-group-sm btn-save clearfix">
+            <button type="button" className="btn btn-default" onClick={this.saveHandler}>
+              {t('Save')}
+            </button>
+            <button
+              className="btn btn-default dropdown-toggle"
+              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span className="caret"/>
+            </button>
+            <ul className="dropdown-menu-right dropdown-menu">
+              <li role="separator" className="divider"></li>
+              <li><a>Load xxx1</a></li>
+              <li><a>Load xxx1</a></li>
+              <li><a>Load xxx1</a></li>
+            </ul>
+          </div>
         </div>
       </div>
     )

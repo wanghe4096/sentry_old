@@ -22,7 +22,7 @@ ExtractorActions.run.listen(function (streamId, action) {
 
   let mockData = [];
   let i = 0;
-  while (i++ < 10) {
+  while (i++ < 9) {
     const event_len = _.random(1, 6);
     let template = {
       action: action,
@@ -53,7 +53,7 @@ ExtractorActions.run.listen(function (streamId, action) {
 
   setTimeout(()=> {
     this.success(mockData);
-  }, 1000);
+  }, 200);
 
 });
 

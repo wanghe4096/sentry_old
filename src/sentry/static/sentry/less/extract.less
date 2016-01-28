@@ -38,6 +38,11 @@
       font-weight: 600;
       color: #394359;
     }
+    .sub {
+      font-weight: normal;
+      font-size: 14px;
+      margin-left: 10px;
+    }
   }
 
   // ::: structure
@@ -208,15 +213,18 @@
           }
         }
       }
-      .save-btn {
 
-      }
     }
   }
 
   .template-view {
     .template-item {
       padding-left: 12px;
+      &.unfold {
+        .fold-icon:after {
+          content: "\25BE";
+        }
+      }
     }
     .template-val {
       position: relative;
@@ -239,12 +247,9 @@
       }
     }
     .template-info {
-      &.unfold {
-        display: block;
-      }
       .CodeMirror {
         .CodeMirror-gutters {
-          background: transparent;
+          background: #fff;
         }
       }
     }
