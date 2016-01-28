@@ -13,12 +13,11 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import HostList from 'components/streamType/hostList';
 import {t} from 'app/locale';
 
-import HostStore from 'stores/storage/hostStore';
-import HostAction from 'actions/storage/hostAction';
-import StreamAction from 'actions/storage/streamAction';
-import FileAction from 'actions/storage/fileAction';
-import HmStatusStore from 'stores/storage/hostManageStatusStore';
-import HmStatusAction from 'actions/storage/hostManageStatusAction';
+import HostStore from 'stores/streamtype/streamtypeStore';
+import HostAction from 'actions/streamtype/hostAction';
+import StreamAction from 'actions/streamtype/streamAction';
+import HmStatusStore from 'stores/streamtype/hostManageStatusStore';
+import HmStatusAction from 'actions/streamtype/hostManageStatusAction';
 
 import HostStat from 'components/streamType/hostStat';
 import FileList from 'components/streamType/fileList';

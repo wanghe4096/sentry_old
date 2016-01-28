@@ -12,13 +12,12 @@ import LoadingIndicator from 'components/loadingIndicator';
 import LoadingError from 'components/loadingError';
 import {t} from 'app/locale';
 
-import HostStore from 'stores/storage/hostStore';
-import HostAction from 'actions/storage/hostAction';
-import StreamStore from 'stores/storage/streamStore'
-import HmStatusStore from 'stores/storage/hostManageStatusStore';
-import HmStatusAction from 'actions/storage/hostManageStatusAction';
-
-import GroupCheckBox from 'components/stream/groupCheckBox';
+import HostStore from 'stores/streamtype/streamtypeStore';
+import HostAction from 'actions/streamtype/hostAction';
+import StreamStore from 'stores/streamtype/streamStore'
+import HmStatusStore from 'stores/streamtype/hostManageStatusStore';
+import HmStatusAction from 'actions/streamtype/hostManageStatusAction';
+import GroupCheckBox from '../streamType/groupCheckBox';
 
 const HostItem = React.createClass({
   displayName: 'HostItem',
@@ -48,16 +47,17 @@ const HostItem = React.createClass({
     return (
       <li className={`list-item streamtype-item ${this.state.active ? 'active' : ''}`} onClick={this.onClickHandler}>
         <label className="checkbox">
-          <GroupCheckBox />
+          <GroupCheckBox id={this.props.id}/>
         </label>
         <h5 className="item-name">
           {this.props.host_name}
         </h5>
-        <span>desc:</span>
+        <span className="item-desc"><strong>desc:</strong>{this.props.desc}</span>
         <ul className="clearfix props-list">
           <li><strong>{t('Host ID')}:</strong> {this.props.id} </li>
           <li><strong>{t('Distver')}:</strong> {this.props.distver} </li>
           <li><strong>{t('System')}:</strong> {this.props.system} </li>
+          <li><strong>{t('Extract')}:</strong> {this.props.extract} </li>
         </ul>
       </li>
     );
@@ -116,10 +116,22 @@ const HostList = React.createClass({
 
     return (
       <div className="list-wrap host-list">
-        <div className="list-head">
+        <div className="list-head streamtype-select-all">
+
+          <div className="checkbox">
+            <input type="checkbox" className="chk-select-all"
+                   onChange={this.onSelectAll}
+                   checked={this.state.pageSelected} />
+          </div>
+
           <h5>{t('StreamType')}</h5>
 
-          <button className="btn btn-sm btn-default pull-right" onClick={this.addHostHandler}>
+          <button className="btn btn-sm btn-default pull-right" onClick={this.deleteHostHandler}>
+            <span className="fa fa-times"></span>
+            {t('delete')}
+          </button>
+
+          <button className="btn btn-sm btn-default pull-right" onClick={this.removeHostHandler}>
             <span className="fa fa-pencil"></span>
             {t('edit')}
           </button>

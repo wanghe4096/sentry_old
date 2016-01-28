@@ -14,12 +14,12 @@ import LoadingError from 'components/loadingError';
 import {t} from 'app/locale';
 import moment from 'moment';
 
-import HostStore from 'stores/storage/hostStore';
-import HostAction from 'actions/storage/hostAction';
-import StreamStore from 'stores/storage/streamStore';
-import StreamAction from 'actions/storage/streamAction';
-import HmStatusStore from 'stores/storage/hostManageStatusStore';
-import HmStatusAction from 'actions/storage/hostManageStatusAction';
+import HostStore from 'stores/streamtype/streamtypeStore';
+import HostAction from 'actions/streamtype/hostAction';
+import StreamStore from 'stores/streamtype/streamStore';
+import StreamAction from 'actions/streamtype/streamAction';
+import HmStatusStore from 'stores/streamtype/hostManageStatusStore';
+import HmStatusAction from 'actions/streamtype/hostManageStatusAction';
 
 const StreamTypeItem = React.createClass({
   mixins: [
