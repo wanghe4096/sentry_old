@@ -2,10 +2,10 @@ from rest_framework import serializers
 from sentry.models.host_stream import Host, Stream, StreamType, HostType, Tag, LogEvent, LogFile
 
 
-class HostSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Host
-        fields = ('id', 'host_name', 'host_key', 'system', 'distver',  'host_type', 'user', )
+# class HostSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = Host
+#         fields = ('id', 'host_name', 'host_key', 'system', 'distver',  'host_type', 'user', )
 
 
 class TagSerializer(serializers.ModelSerializer):

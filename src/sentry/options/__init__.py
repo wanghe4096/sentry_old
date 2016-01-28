@@ -15,7 +15,7 @@ from .manager import (  # NOQA
 )
 
 __all__ = (
-    'get', 'set', 'delete', 'register', 'UnknownOption',
+    'get', 'set', 'delete', 'regxister', 'UnknownOption',
 )
 
 default_store = OptionsStore()

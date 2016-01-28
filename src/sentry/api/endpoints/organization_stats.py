@@ -89,14 +89,14 @@ class OrganizationStatsEndpoint(OrganizationEndpoint, StatsMixin):
         else:
             raise ValueError('Invalid stat: %s' % stat)
 
-        print 'keys===', keys
+        # print 'keys===', keys
         data = tsdb.get_range(
             model=stat_model,
             keys=keys,
             **self._parse_args(request)
         )
         if not group:
-            print 'data =====', organization.id
+            # print 'data =====', organization.id
             data = data[organization.id]
 
         return Response(data)

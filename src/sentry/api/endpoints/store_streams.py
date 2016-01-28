@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
-from django.shortcuts import render
+__author__ = 'wanghe'
+__company__ = 'LogInsight'
+__email__ = 'wangh@loginsight.cn'
 
 # Create your views here.
 from sentry.api.serializers.models.host_stream import (
-    HostSerializer, TagSerializer,
-    HostTypeSerializer, StreamSerializer, StreamTypeSerializer, LogEventSerializer, LogFileSerializer)
+    TagSerializer,HostTypeSerializer, StreamSerializer, StreamTypeSerializer, LogEventSerializer, LogFileSerializer)
 
 from sentry.models.host_stream import (
     Host, HostType, Stream, StreamType, Tag, LogEvent, LogFile
@@ -14,88 +15,9 @@ from rest_framework import mixins
 from rest_framework import generics
 from sentry.api.base import Endpoint
 import os
-import requests
+import datetime
 import random
-class HostView(Endpoint,
-               mixins.ListModelMixin,
-               mixins.CreateModelMixin,
-               generics.GenericAPIView):
-    """
-      GET /hosts
-    """
-    serializer_class = HostSerializer
-    queryset = Host.objects.all()
 
-    # authentication_classes = [QuietBasicAuthentication]
-    permission_classes = ()
-
-    def get(self, request, *args, **kwargs):
-        # if request.user.username == 'AnonymousUser':
-        #     return Response({'msg': 'Invalid user'})
-        #
-        # self.queryset = Host.objects.filter(user=request.user)
-        # return self.list(request, *args, **kwargs)
-
-        result = [{'id':'1',
-                   'host_name': "a23d650bee@centos",
-                   'host_key': "2e092f112aa23d650bee15aa6d2582ce",
-                   'system': "centos",
-                   'distver': "3.2.1",
-                   'host_type': 'web服务器'},
-                  {'id':'2',
-                   'host_name': "a2adf65asdf0bee@centos",
-                   'host_key': "7104fc4c8c34e40e555bf9b75f591aea",
-                   'system': "centos",
-                   'distver': "3.1.0",
-                   'host_type': 'web服务器'
-                   },
-                  {'id':'3',
-                   'host_name': "92eecbab@opensuse",
-                   'host_key': "b34f9859db111b092eecbab0da47d958",
-                   'system': "opensuse",
-                   'distver': "3.1.0",
-                   'host_type': '代理服务器'},
-                  {'id':'4',
-                   'host_name': "b34252aasd432agcjej@ubuntu",
-                   'host_key': "d35fa7d6fa22252e27f5ca562514c67745",
-                   'system': "linux",
-                   'distver': "3.1.0",
-                   "host_type":"代理服务器"},
-                  {'id':'5',
-                   'host_name': "b34223252agcjej@ubuntu",
-                   'host_key': "d35fa7d6fa222e27f5c25a562514c643",
-                   'system': "Ubuntu",
-                   'distver': "3.1.0",
-                   "host_type":"代理服务器"},
-                    {'id':'6',
-                   'host_name': "b342524a5gcjej@ubuntu",
-                   'host_key': "d35fa7d6fa222e27f245ca562514c6235",
-                   'system': "linux",
-                   'distver': "3.1.0",
-                   "host_type":"代理服务器"},
-                  {'id':'7',
-                   'host_name': "b34252ag2c533@ubuntu",
-                   'host_key': "d35fa7d6fa222e27f5ca562556114c6743",
-                   'system': "Ubuntu",
-                   'distver': "3.1.0",
-                   "host_type":"代理服务器"}]
-        return Response(result)
-
-    def post(self, request, *args, **kwargs):
-        host_type_s = request.POST.get('host_type', '')
-        host_name = request.POST.get('host_name', '')
-        host_key = request.POST.get('host_key', '')
-        system = request.POST.get('system', '')
-        distver = request.POST.get('distver', '')
-        host_type_obj = HostType.objects.get(host_type=host_type_s, user=request.user)
-        if not host_type_obj:
-            return Response({'msg': 'Invalid Host type'})
-
-        host = Host(host_name = host_name, host_type=host_type_obj, host_key=host_key, system = system, distver = distver, user=request.user)
-        if Host.objects.filter(host_key=host_key):
-            return Response({'msg': 'Host has exists!'})
-        host.save()
-        return Response({'msg': 'Success to add host'})
 
 
 class HostTypeView(Endpoint,
@@ -136,9 +58,10 @@ class HostTypeView(Endpoint,
         # return self.create(request, *args, **kwargs)
 
 
-class TagView(mixins.ListModelMixin,
-                     mixins.CreateModelMixin,
-                     generics.GenericAPIView):
+class TagView(Endpoint,
+              mixins.ListModelMixin,
+              mixins.CreateModelMixin,
+              generics.GenericAPIView):
     """
     GET /tags
     param: none
@@ -156,7 +79,8 @@ class TagView(mixins.ListModelMixin,
         return self.create(request, *args, **kwargs)
 
 
-class StreamTypeView(mixins.ListModelMixin,
+class StreamTypeView(Endpoint,
+                     mixins.ListModelMixin,
                      mixins.CreateModelMixin,
                      generics.GenericAPIView):
     """
@@ -340,14 +264,11 @@ class StreamView(Endpoint,
         return Response({'msg': 'Stream has existed'})
 
 
-import datetime
-
 class LogFilesView(Endpoint,
-                mixins.ListModelMixin,
-               mixins.CreateModelMixin,
-               generics.GenericAPIView):
+                   mixins.ListModelMixin,
+                   mixins.CreateModelMixin,
+                   generics.GenericAPIView):
 
-    # authentication_classes = [QuietBasicAuthentication]
     permission_classes = ()
     serializer_class = LogFileSerializer
     queryset = LogFile.objects.all()
