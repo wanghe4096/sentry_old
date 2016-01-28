@@ -72,7 +72,8 @@ class OptionsManager(object):
         >>> options.set('option', 'value')
         """
         opt = self.lookup_key(key)
-
+        logger.info('opt === ')
+        logger.info(opt)
         # If an option isn't able to exist in the store, we can't set it at runtime
         assert not (opt.flags & FLAG_NOSTORE), '%r cannot be changed at runtime' % key
         # Enforce immutability on key

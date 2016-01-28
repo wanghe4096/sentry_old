@@ -1,3 +1,7 @@
+# -*- coding: utf-8 -*-
+__author__ = 'wanghe'
+__company__ = 'LogInsight'
+__email__ = 'wangh@loginsight.cn'
 
 from sentry.models.organizationmember import OrganizationMember
 from sentry.models.organization import Organization
@@ -6,7 +10,7 @@ from sentry.utils import load_demo
 from rest_framework.response import Response
 
 
-class DemoExceptionView(Endpoint):
+class DemoExceptionEndpoint(Endpoint):
     """
       POST /demo_exception
     """

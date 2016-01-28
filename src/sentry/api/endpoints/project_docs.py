@@ -6,12 +6,15 @@ from sentry import options
 from sentry.api.bases.project import ProjectEndpoint
 from sentry.models import ProjectKey
 
+import logging
+
+logger = logging.getLogger('sentry')
+
 
 class ProjectDocsEndpoint(ProjectEndpoint):
     def get(self, request, project):
         data = options.get('sentry:docs')
         project_key = ProjectKey.get_default(project)
-
         context = {
             'platforms': data['platforms'],
         }

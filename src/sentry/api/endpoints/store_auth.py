@@ -1,12 +1,15 @@
+# -*- coding: utf-8 -*-
+"""
+__author__ = 'wanghe'
+__company__ = 'LogInsight'
+__email__ = 'wangh@loginsight.cn'
+"""
 from __future__ import absolute_import
 from rest_framework.response import Response
 from sentry.api.authentication import QuietBasicAuthentication
 from sentry.api.base import Endpoint
 from sentry.models.user import User
 from django.http.response import HttpResponse
-from rest_framework import mixins
-from rest_framework import generics
-import simplejson as json
 import hashlib
 
 
@@ -38,7 +41,6 @@ class RegisterEndpoint(Endpoint):
     """
 
     authentication_classes = [QuietBasicAuthentication]
-
     permission_classes = ()
 
     # XXX: it's not quite clear if this should be documented or not at
