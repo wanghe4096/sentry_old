@@ -19,6 +19,7 @@ import CodeMirror from 'codemirror';
 import ExtractorTemplateStore from 'stores/extract/extractorTemplateStore';
 import ExtractorStatus from 'stores/extract/extractorStatusStore';
 import ExtractorStatusActions from 'actions/extract/extractorStatusActions';
+import ExtractorActions from 'actions/extract/extractorActions';
 
 const TemplateEdiror = React.createClass({
   mixins: [
@@ -50,34 +51,22 @@ const TemplateEdiror = React.createClass({
     // todo: 疑问!!! 不管是否运行过,editor 内不应该显示之前的规则?
     //ExtractorTemplateStore.fetch();
     const val = this.getValue();
-    console.log('init val:', val);
     this.setState({
       plainValue: val
     });
   },
 
-  //shouldComponentUpdate(){
-  //
-  //},
-
   componentWillUpdate(nextProps, nextState) {
-    const val = this.getValue();
+
     if (nextState.list !== this.state.list) {
-      console.log('!important list changed');
+      const val = this.getValue(nextState.list);
       this.setState({
         plainValue: val
-      })
-    }else{
-      console.log('!importantk,list not changed');
+      });
+      this.codemirror.setValue(val);
     }
-    console.log('componentWillUpdate:', val);
   },
 
-  componentDidUpdate() {
-    if (this.codemirror) {
-      this.codemirror.setValue(this.state.plainValue);
-    }
-  },
 
   componentDidMount() {
     this.codemirror = CodeMirror(this.refs.editor, {
@@ -85,29 +74,33 @@ const TemplateEdiror = React.createClass({
       styleActiveLine: true,
       viewportMargin: Infinity,
       value: this.state.plainValue,
-      placeholder: t('Please enter Extractor Role'),
-      mode: "javascript"
-    });
-
-    //CodeMirror.signal('change',function(){
-    //  console.log(arguments);
-    //})
-    this.codemirror.on('change', (codemirror, changeObj) => {
-      if (['paste', 'cut', '+input', '+delete'].indexOf(changeObj.origin) !== -1) {
-        var currentPlainValue = codemirror.getValue();
-        console.log('change +input && +remove:', changeObj.origin, currentPlainValue);
-        //console.log(currentPlainValue !== this.state.plainValue, this.state.plainValue, changeObj);
-        this.setState({
-          saveBtnActive: currentPlainValue !== this.state.plainValue
-        })
-      } else {
-        console.log('\n !!!!unknown changeObj:', changeObj.origin);
-        return 'xxx';
-
+      placeholder: t('Please enter Extractor Role or Run'),
+      mode: "javascript",
+      extraKeys: {
+        'Cmd-Enter': (cm) => {
+          ExtractorActions.run(this.props.streamId, this.props.action);
+          ExtractorStatusActions.setRuningStatus()
+        }
       }
-
-      //console.log(currentPlainValue);
     });
+
+    window.codemirror = this.codemirror;
+
+    this.codemirror.on('change', (codemirror, changeObj) => {
+      var currentPlainValue = codemirror.getValue();
+      this.setState({
+        saveBtnActive: !!$.trim(currentPlainValue).length
+      });
+    });
+
+    this.codemirror.focus();
+
+    this.codemirror.setCursor(1);
+
+    //this.codemirror.on('keyHandled', (codemirror, name, event) => {
+    //  console.log('keyHandled:', name, event);
+    //});
+
   },
 
   onStatusChange(status) {
@@ -117,8 +110,8 @@ const TemplateEdiror = React.createClass({
     });
   },
 
-  getValue() {
-    return this.state.list.map((templateObj) => {
+  getValue(list = this.state.list) {
+    return list.map((templateObj) => {
       return templateObj.template;
     }).join('\n');
   },

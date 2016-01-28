@@ -7,37 +7,56 @@
 
 import React from 'react';
 import Reflux from 'reflux';
+import _ from 'underscore';
+import CodeMirror from 'codemirror';
 
 const StructureTemplateItem = React.createClass({
   getInitialState() {
-    return {}
+    return {
+      folded: true
+    }
   },
 
-  renderEvents() {
-    return this.props.events.map((event, i) => {
-      return (
-        <li className="event-item" key={i}>
-          { String.raw`${event}` }
-        </li>
-      )
+  componentDidMount() {
+    !this.state.folded && this.initCodemirror();
+  },
+
+  componentDidUpdate() {
+    !this.state.folded && this.initCodemirror();
+  },
+
+  initCodemirror() {
+    this.codemirror = CodeMirror.fromTextArea(this.refs.textarea, {
+      lineNumbers: true,
+      readOnly: 'nocursor',
+      styleActiveLine: true,
+      viewportMargin: Infinity,
+      mode: "javascript"
     });
   },
 
-  onChangeHandler() {
-    console.log('on change');
+  toggleFoldHandler() {
+    this.setState({
+      folded: !this.state.folded
+    })
   },
 
   render() {
+    const events = this.props.events.join('\n');
+
     return (
       <div className="template-item">
-        <div className="template-val">
-          <pre>{this.props.template }</pre>
+        <div className="template-val" onClick={this.toggleFoldHandler}>
+          <i className="fold-icon"/>
+          <div className="text">{this.props.template }</div>
         </div>
-        <div className="template-info">
-          <ul className="matched_events">
-            { this.renderEvents() }
-          </ul>
-        </div>
+        {
+          !this.state.folded && (
+            <div className="template-info">
+              <textarea ref="textarea" className="matched_events" value={ events } readOnly/>
+            </div>
+          )
+        }
       </div>
     )
   }

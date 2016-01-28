@@ -5,7 +5,7 @@
 }
 
 .running-stat-box {
-  position: absolute;
+  position: absolute !important;
   top: 0;
   right: 0;
   bottom: 0;
@@ -214,43 +214,39 @@
     }
   }
 
-  .structure-template {
-    .result-head {
-      padding: 10px;
-      border-bottom: 1px solid #efefef;
-      h4 {
-        margin: 0;
-        padding: 0;
+  .template-view {
+    .template-item {
+      padding-left: 12px;
+    }
+    .template-val {
+      position: relative;
+      padding: 3px 0;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      .fold-icon {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        font-style: normal;
+        color: #999;
+        &:after {
+          content: "\25B8";
+        }
+      }
+      .text {
+        line-height: 30px;
+        padding-left: 20px;
       }
     }
-
-    .template-list {
-      margin-top: 20px;
-    }
-
-    .template-item {
-      margin-bottom: 30px;
-    }
-
     .template-info {
-
-    }
-
-    .matched_events {
-      margin: 0;
-      padding: 0;
-    }
-
-    .event-item {
-      padding: 0;
-      margin: 5px 0;
-      list-style: none;
-      word-break: break-word;
-      font-size: 13px;
-      line-height: 1.6;
-      background: transparent;
-      color: #333;
+      &.unfold {
+        display: block;
+      }
+      .CodeMirror {
+        .CodeMirror-gutters {
+          background: transparent;
+        }
+      }
     }
   }
-
 }

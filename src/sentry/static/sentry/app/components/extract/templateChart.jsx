@@ -23,7 +23,7 @@ const TemplateChart = React.createClass({
 
   getInitialState() {
     return {
-      isRuning:false, // running 与 loading 是两个概念!!
+      isRuning: false, // running 与 loading 是两个概念!!
       data: []
     }
   },
@@ -52,6 +52,7 @@ const TemplateChart = React.createClass({
         {
           name: '规则匹配数',
           type: 'pie',
+          selectedMode: 'single',
           radius: '55%',
           center: ['50%', '60%'],
           data: values,
@@ -81,22 +82,31 @@ const TemplateChart = React.createClass({
       this.chart = this.initChart();
     }
     this.chart && this.chart.setOption(this.getOption());
+    this.chart && this.chart.on('pieselected', function () {
+      console.log(arguments);
+    });
   },
 
   componentDidMount() {
     this.chart = this.initChart();
     this.chart && this.chart.setOption(this.getOption());
+    this.chart && this.chart.on('pieselected', function () {
+      console.log(arguments);
+    });
   },
 
   initChart() {
-    if (this.state.data.length) {
-      return echarts.init(this.refs.wrap);
+    if (this.state.data.length && !this.echarts) {
+      window.zzz = echarts.init(this.refs.wrap);
+      return window.zzz;
+    } else {
+      return this.echarts;
     }
   },
 
   render() {
-
-    if(this.state.isRuning){
+    window.ss = this;
+    if (this.state.isRuning) {
       return (
         <div className="running-stat-box">
           <LoadingIndicator />
@@ -114,7 +124,7 @@ const TemplateChart = React.createClass({
     }
 
     return (
-      <div ref="wrap" className="chart-wrap"/>
+      <div ref="wrap" className="chart-wrap" />
     )
   }
 });
