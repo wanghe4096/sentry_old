@@ -56,7 +56,7 @@ const SearchSidebar = React.createClass({
                 this.setState({showActions: !this.state.showActions});
             },
             render() {
-                let toggleClassName = 'fa fa-fw open-analyze-field ';
+                let toggleClassName = 'fa open-analyze-field ';
                 toggleClassName += this.state.showActions ? 'open-analyze-field-active fa-caret-down' : 'fa-caret-right';
 
                 return (
@@ -65,7 +65,7 @@ const SearchSidebar = React.createClass({
                             <i className={toggleClassName}
                                onClick={this._toggleShowActions}></i>
                         </div>
-                        <div style={{marginLeft: 25}}>
+                        <div style={{marginLeft: 20}}>
                             <Input type="checkbox"
                                    label={this.props.field.name}
                                    checked={this.props.selected}
@@ -108,27 +108,27 @@ const SearchSidebar = React.createClass({
             });
 
         return (
-            <div className="content-col" ref="sidebar">
+            <div className="content-col search-sidebar" ref="sidebar">
                 <div ref="header">
-                    <div className="content-col row" ref="sidebar">
+                    <div className="content-col clearfix" ref="sidebar">
 
-                        <h3>字段</h3>
+                        <h4>字段</h4>
 
-                        <div className="input-group input-group-sm" style={{marginTop: 5, marginBottom: 5}}>
-                                <span className="input-group-btn  col-md-4">
-                                    <button type="button" className="btn btn-default"
+                        <div className="input-group input-group-sm clearfix" style={{marginTop: 5, marginBottom: 5}}>
+                                <span className="input-group-btn  col-md-4 no-p-l-r">
+                                    <button type="button" className="btn btn-default btn-sm"
                                             onClick={() => this._updateFieldSelection('default')}>默认
                                     </button>
-                                    <button type="button" className="btn btn-default"
+                                    <button type="button" className="btn btn-default btn-sm"
                                             onClick={() => this._updateFieldSelection('all')}>全选
                                     </button>
                                 </span>
-                            <input type="text" className="form-control  col-md-7" placeholder="过滤条件"
+                            <input type="text" className="form-control col-md-7 input-sm" placeholder="过滤条件"
                                    onChange={(event) => this.setState({fieldFilter: event.target.value})}
                                    value={this.state.fieldFilter}/>
                         </div>
                     </div>
-                    <div ref="fields" style={{overflowY: 'scroll'}}>
+                    <div ref="fields" className="search-sidebar-filter">
                         <ul className="search-result-fields">
                             {messageFields}
                         </ul>

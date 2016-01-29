@@ -94,7 +94,7 @@ const ResultTable = React.createClass({
         var selectedColumns = this._fieldColumns();
         return (
             <div className="content-col">
-                <h1 className="pull-left">日志</h1>
+                <h4 className="pull-left">日志</h4>
 
                 <ButtonGroup bsSize='small' className="pull-right">
                     <Button title="展开所有日志" onClick={this.expandAll}><i

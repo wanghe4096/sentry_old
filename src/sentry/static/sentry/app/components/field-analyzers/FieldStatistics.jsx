@@ -121,7 +121,7 @@ const FieldStatistics = React.createClass({
                             {this.state.autoReload ? "Stop reloading" : "Reload automatically"}
                         </Button>
                     </div>
-                    <h1>Field Statistics</h1>
+                    <h4>Field Statistics</h4>
 
                     <div className="table-responsive">
                         <table className="table table-striped table-bordered table-hover table-condensed">
@@ -143,7 +143,7 @@ const FieldStatistics = React.createClass({
             );
         } else if (!this.state.statsLoadPending.isEmpty()) {
             content = (<div className="content-col">
-                <h1>Field Statistics <i className="fa fa-spin fa-spinner"></i></h1>
+                <h4>Field Statistics <i className="fa fa-spin fa-spinner"></i></h4>
             </div>);
         }
 

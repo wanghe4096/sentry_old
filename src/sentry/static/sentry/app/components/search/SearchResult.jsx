@@ -104,7 +104,7 @@ const SearchResult = React.createClass({
     },
     render(){
         return (
-            <div id="main-content-search" className="row">
+            <div id="main-content-search" className="">
                 <div ref="opa" className="col-md-3 col-sm-12" id="sidebar">
                     <div ref="oma" id="sidebar-affix">
                         <SearchSidebar fields={this._fields()}

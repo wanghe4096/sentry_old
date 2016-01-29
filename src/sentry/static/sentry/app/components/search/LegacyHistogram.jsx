@@ -127,7 +127,7 @@ var LegacyHistogram = React.createClass({
             </ul>
         );
         return (<div className="content-col">
-                <h1>图表</h1>
+                <h4>图表</h4>
                 {resolutionSelector}
                 <div id="chart">
                     <svg height="250px" width="1200px"></svg>

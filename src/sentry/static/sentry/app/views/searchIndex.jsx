@@ -13,7 +13,7 @@ var formattedHistogramJson = require('./formattedHistogram.json');
 const SearchIndex = React.createClass({
     render() {
         var style = {
-            'marginTop': '30px'
+            'marginTop': '20px'
         };
 
         var query = "";
