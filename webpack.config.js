@@ -11,10 +11,14 @@ if (process.env.SENTRY_STATIC_DIST_PATH) {
     distPath = process.env.SENTRY_STATIC_DIST_PATH;
 }
 
+var node_modules = path.resolve(__dirname, 'node_modules');
+
 var babelQuery = {
   plugins: [],
   extra: {}
 };
+
+console.log(' ==== webpack start build ==== \n');
 
 // only extract po files if we need to
 if (process.env.SENTRY_EXTRACT_TRANSLATIONS === '1') {
@@ -74,7 +78,7 @@ var config = {
 
   },
   module: {
-    noParse: 'node_modules',
+    noParse: [],
     loaders: [
       {
         test: /\.jsx?$/,
@@ -112,6 +116,10 @@ var config = {
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
+    // new webpack.ProgressPlugin(function handler(percentage, msg) {
+    //   console.log(percentage, msg);
+    // }),
+    // new webpack.optimize.OccurenceOrderPlugin(), // 24.79s-24.89s | 25.54s-26.07s
     new webpack.optimize.DedupePlugin(),
     new webpack.ProvidePlugin({
       $: 'jquery',
@@ -126,15 +134,15 @@ var config = {
     alias: {
       'flot': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot'),
       'flot-tooltip': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot-tooltip'),
-      components:path.join(__dirname, staticPrefix, 'app/components'),
-      actions:path.join(__dirname, staticPrefix, 'app/actions'),
-      stores:path.join(__dirname, staticPrefix, 'app/stores'),
-      views:path.join(__dirname, staticPrefix, 'app/views'),
-      mixins:path.join(__dirname, staticPrefix, 'app/mixins'),
-      app:path.join(__dirname, staticPrefix, 'app')
+      'components':path.join(__dirname, staticPrefix, 'app/components'),
+      'actions':path.join(__dirname, staticPrefix, 'app/actions'),
+      'stores':path.join(__dirname, staticPrefix, 'app/stores'),
+      'views':path.join(__dirname, staticPrefix, 'app/views'),
+      'mixins':path.join(__dirname, staticPrefix, 'app/mixins'),
+      'app':path.join(__dirname, staticPrefix, 'app')
     },
     modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
-    extensions: ['', '.jsx', '.js', '.json']
+    extensions: ['.jsx', '.js', '.json','']
   },
   output: {
     path: distPath,
@@ -142,8 +150,11 @@ var config = {
     libraryTarget: 'var',
     library: 'exports',
     sourceMapFilename: '[name].js.map',
-  },
-  devtool: 'source-map'
+  }
 };
+
+if( /^dev/.test(process.env.node_env) ){
+  config.devtool === 'eval';
+}
 
 module.exports = config;

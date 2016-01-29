@@ -21,7 +21,7 @@ const App = React.createClass({
   },
 
   componentWillMount() {
-
+    
     this.api.request('/internal/health/', {
       success: (data) => {
         if (data && data.problems) {

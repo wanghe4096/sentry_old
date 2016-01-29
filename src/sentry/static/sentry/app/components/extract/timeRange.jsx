@@ -49,11 +49,16 @@ const TimeRange = React.createClass({
     })
   },
 
+  onInitDateRange(obj) {
+    console.log(obj);
+  },
+
   render() {
     const startAt = moment(this.state.startAt).format('YYYY-MM-DD');
     const endAt = moment(this.state.endAt).format('YYYY-MM-DD');
 
     let label = startAt == endAt ? startAt : `${startAt} ${t(' To ')} ${endAt}`;
+    // xxx111
 
     return (
       <div className="date-range pull-right" onClick={() => {
@@ -69,7 +74,9 @@ const TimeRange = React.createClass({
           </Modal.Header>
           <Modal.Body>
             <DateRange
-              onInit={this.handleSelect}
+              date="2015/12/11"
+              firstDayOfWeek={moment.localeData().firstDayOfWeek()}
+              onInit={this.onInitDateRange}
               onChange={this.handleSelect}
             />
             <Modal.Footer>
