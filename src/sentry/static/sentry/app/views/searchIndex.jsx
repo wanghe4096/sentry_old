@@ -23,7 +23,19 @@ const SearchIndex = React.createClass({
             },
         };
     },
+
+    getQueryString: function (name) {
+        var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+        var r = window.location.search.substr(1).match(reg);
+        if (r != null)return unescape(r[2]);
+        return "";
+    },
     searchLog: function () {
+        var page = this.getQueryString("page");
+        if (page == "") {
+            page = 1;
+        }
+        var query = this.getQueryString("q");
         $.get("http://192.168.1.80:9200/user02-2016.01.29", function (result) {
             let obj = {};
             obj.messages = [];
@@ -40,7 +52,11 @@ const SearchIndex = React.createClass({
                 }
             }
 
-            $.get("http://192.168.1.80:9200/user02-2016.01.29/_search", function (searchResult) {
+            var url = "http://192.168.1.80:9200/user02-2016.01.29/_search?from=" + page;
+            if (query != "") {
+                url += "&q=" + query;
+            }
+            $.get(url, function (searchResult) {
                 obj.total_results = searchResult.hits.total;
                 for (var i = 0; i < searchResult.hits.hits.length; i++) {
                     var fieldObj = {};

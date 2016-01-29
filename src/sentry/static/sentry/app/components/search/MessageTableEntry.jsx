@@ -28,6 +28,7 @@ const MessageTableEntry = React.createClass({
         return false;
     },
     possiblyHighlight(fieldName){
+        debugger;
         const origValue = this.props.message.fields[fieldName];
         if (origValue === undefined) {
             return '';
