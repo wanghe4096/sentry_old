@@ -25,18 +25,14 @@ const SearchBar = React.createClass({
     render() {
         return (
             <div className="row no-bm">
-                <div className="col-md-12" id="universalsearch-container">
+                <div className="col-md-12 searchbar" id="universalsearch-container">
                     <form ref="searchForm"
                           className="universalsearch-form"
                           action=""
                           method="GET"
                           onSubmit={this._prepareSearch}>
                         <div id="search-container">
-                            <Button type="submit" bsStyle="success" className="pull-left">
-                                <i className="fa fa-search"></i>
-                            </Button>
-
-                            <div className="col-md-11">
+                            <div className="col-md-12">
                                 <Input type="text"
                                        ref="query"
                                        name="q"
@@ -44,6 +40,9 @@ const SearchBar = React.createClass({
                                        onChange={this._queryChanged}
                                        placeholder=""/>
                             </div>
+                            <Button type="submit" bsStyle="success" className="pull-left">
+                                <i className="fa fa-search"></i>
+                            </Button>
                         </div>
                     </form>
                 </div>
