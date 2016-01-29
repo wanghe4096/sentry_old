@@ -39,7 +39,7 @@ const TemplateChart = React.createClass({
     const values = this.state.data.map((template, i) => {
       return {
         value: template.events.length,
-        name: 'Role ' + i
+        name: 'Role ' + (i+1)
       }
     });
 
