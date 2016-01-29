@@ -1,5 +1,5 @@
 /**
- * Title: templateEdiror.jsx
+ * Title: templateEditor.jsx
  * Author: bold
  * Date: 1/25/16.
  * Description: 。
@@ -22,7 +22,7 @@ import ExtractorStatusActions from 'actions/extract/extractorStatusActions';
 import ExtractorActions from 'actions/extract/extractorActions';
 import AlertActions from 'actions/alertActions';
 
-const TemplateEdiror = React.createClass({
+const TemplateEditor = React.createClass({
   mixins: [
     Reflux.connect(ExtractorTemplateStore, 'list'),
     Reflux.listenTo(ExtractorStatus, 'onStatusChange')
@@ -160,4 +160,4 @@ const TemplateEdiror = React.createClass({
   }
 });
 
-export default TemplateEdiror;
+export default TemplateEditor;

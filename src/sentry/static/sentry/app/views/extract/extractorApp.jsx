@@ -145,7 +145,7 @@ const ExtractorApp = React.createClass({
     const {streamId,action} = this.props.params;
 
     return (
-      <DocumentTitle title="storage">
+      <DocumentTitle title="extractor">
         <div className="extractor-container">
           <div className="sub-header">
             <div className="nav pull-left">
