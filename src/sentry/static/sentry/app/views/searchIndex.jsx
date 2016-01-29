@@ -7,7 +7,6 @@ import SearchStore from 'stores/search/SearchStore';
 import SearchResult from 'components/search/SearchResult';
 import SearchBar from 'components/search/SearchBar';
 import Immutable from 'immutable';
-var json = require('./searchresult.json');
 var historramJson = require('./historram.json');
 var formattedHistogramJson = require('./formattedHistogram.json');
 const SearchIndex = React.createClass({
@@ -24,7 +23,7 @@ const SearchIndex = React.createClass({
             },
         };
     },
-    componentDidMount(){
+    searchLog: function () {
         $.get("http://192.168.1.80:9200/user02-2016.01.29", function (result) {
             let obj = {};
             obj.messages = [];
@@ -40,10 +39,37 @@ const SearchIndex = React.createClass({
                     obj.all_fields.push({name: key, standard_selected: false});
                 }
             }
-            this.setState({
-                result: obj,
-            });
+
+            $.get("http://192.168.1.80:9200/user02-2016.01.29/_search", function (searchResult) {
+                obj.total_results = searchResult.hits.total;
+                for (var i = 0; i < searchResult.hits.hits.length; i++) {
+                    var fieldObj = {};
+                    for (var key in searchResult.hits.hits[i]._source) {
+                        fieldObj[key] = searchResult.hits.hits[i]._source[key];
+                    }
+                    obj.messages.push({
+                        id: searchResult.hits.hits[i]._id,
+                        timestamp: searchResult.hits.hits[0]._source['timestamp'],
+                        filtered_fields: fieldObj,
+                        formatted_fields: fieldObj,
+                        fields: fieldObj,
+                        index: searchResult.hits.hits[i]._index,
+                        source_node_id: "",
+                        source_input_id: "",
+                        stream_ids: [],
+                        highlight_ranges: null
+                    })
+                }
+                debugger;
+                this.setState({
+                    result: obj,
+                });
+            }.bind(this));
+
         }.bind(this));
+    },
+    componentDidMount(){
+        this.searchLog()
     },
     render() {
         var style = {
