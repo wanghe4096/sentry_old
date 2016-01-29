@@ -11,7 +11,7 @@ import _ from 'underscore';
 var SearchStore = require('../../stores/search/SearchStore');
 
 import resultHistogram from '../../legacy/result-histogram';
-import NVD3Chart from 'react-nvd3';
+//import NVD3Chart from 'react-nvd3';
 // Hue-manatee. We tried to be sorry, but aren't.
 var LegacyHistogram = React.createClass({
     RESOLUTIONS: ['year', 'quarter', 'month', 'week', 'day', 'hour', 'minute'],

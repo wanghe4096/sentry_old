@@ -1,7 +1,7 @@
 import React, {PropTypes} from 'react';
 import Immutable from 'immutable';
 import {Panel, ListGroup, ListGroupItem} from 'react-bootstrap';
-import crossfilter from 'crossfilter';
+//import crossfilter from 'crossfilter';
 import d3 from 'd3';
 
 const D3Utils = require('../../utils/D3Utils');
