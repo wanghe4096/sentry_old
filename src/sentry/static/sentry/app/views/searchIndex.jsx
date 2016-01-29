@@ -11,18 +11,48 @@ var json = require('./searchresult.json');
 var historramJson = require('./historram.json');
 var formattedHistogramJson = require('./formattedHistogram.json');
 const SearchIndex = React.createClass({
+    getInitialState: function () {
+        return {
+            result: {
+                messages: [],
+                fields: [],
+                total_results: "",
+                from: "",
+                to: "",
+                all_fields: "",
+                filter: ""
+            },
+        };
+    },
+    componentDidMount(){
+        $.get("http://192.168.1.80:9200/user02-2016.01.29", function (result) {
+            let obj = {};
+            obj.messages = [];
+            obj.fields = [];
+            obj.total_results = [];
+            obj.from = "";
+            obj.to = "";
+            obj.all_fields = [];
+            filter: "";
+            for (var key in result["user02-2016.01.29"].mappings["oneapm-nginx-access-geoip"].properties) {
+                if (key.startsWith("@") == false) {
+                    obj.fields.push({name: key, standard_selected: false});
+                    obj.all_fields.push({name: key, standard_selected: false});
+                }
+            }
+            this.setState({
+                result: obj,
+            });
+        }.bind(this));
+    },
     render() {
         var style = {
             'marginTop': '30px'
         };
-
         var query = "";
         var builtQuery = "";
 
-        var searchResult = json;
-        //if (searchResult) {
-        //    searchResult = JSON.parse(searchResult);
-        //}
+        var searchResult = this.state.result;
 
         var histogram = historramJson;
         //if (histogram) {
@@ -54,6 +84,7 @@ const SearchIndex = React.createClass({
             searchInStream = JSON.parse(searchInStream);
             SearchStore.searchInStream = searchInStream;
         }
+
         return (
             <div id="main-content-search" style={style} className="row">
                 <SearchBar/>
