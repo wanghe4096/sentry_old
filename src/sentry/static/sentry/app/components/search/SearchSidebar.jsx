@@ -56,36 +56,16 @@ const SearchSidebar = React.createClass({
                 this.setState({showActions: !this.state.showActions});
             },
             render() {
-                let toggleClassName = 'fa open-analyze-field ';
-                toggleClassName += this.state.showActions ? 'open-analyze-field-active fa-caret-down' : 'fa-caret-right';
+                // let toggleClassName = 'fa open-analyze-field ';
+                //toggleClassName += this.state.showActions ? 'open-analyze-field-active fa-caret-down' : 'fa-caret-right';
 
                 return (
                     <li>
-                        <div className="pull-left">
-                            <i className={toggleClassName}
-                               onClick={this._toggleShowActions}></i>
-                        </div>
                         <div style={{marginLeft: 20}}>
                             <Input type="checkbox"
                                    label={this.props.field.name}
                                    checked={this.props.selected}
                                    onChange={() => this.props.onToggled(this.props.field.name)}/>
-
-                            {this.state.showActions &&
-                            <div className="analyze-field">
-                                <ButtonGroup bsSize="xsmall">
-                                    <Button onClick={() => this.props.onFieldSelectedForStats(this.props.field.name)}>
-                                        Statistics
-                                    </Button>
-                                    <Button
-                                        onClick={() => this.props.onFieldSelectedForQuickValues(this.props.field.name)}>
-                                        Quick values
-                                    </Button>
-                                    <Button onClick={() => this.props.onFieldSelectedForGraph(this.props.field.name)}>
-                                        Generate chart
-                                    </Button>
-                                </ButtonGroup>
-                            </div>}
                         </div>
                     </li>
                 );

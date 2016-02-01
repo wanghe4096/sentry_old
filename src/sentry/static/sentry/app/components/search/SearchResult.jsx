@@ -78,7 +78,6 @@ const SearchResult = React.createClass({
         this.refs.fieldQuickValuesComponent.addFieldQuickValues(field);
     },
     addFieldStatistics(field) {
-        debugger;
         this.refs.fieldStatisticsComponent.addFieldStatistics(field);
     },
     onFieldToggled(fieldName) {
