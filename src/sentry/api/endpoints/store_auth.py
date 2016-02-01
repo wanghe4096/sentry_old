@@ -49,7 +49,6 @@ class RegisterEndpoint(Endpoint):
     queryset = User.objects.all()
 
     def get(self, request):
-        print 'user=', request.user
         user = User.objects.filter(username=request.user)[0]
         return Response(user.userkey)
 
