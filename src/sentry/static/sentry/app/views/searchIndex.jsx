@@ -46,7 +46,7 @@ const SearchIndex = React.createClass({
             obj.all_fields = [];
             filter: "";
             for (var key in result["user02-2016.01.29"].mappings["oneapm-nginx-access-geoip"].properties) {
-                if (key.startsWith("@") == false) {
+                if (key.startsWith("@") == false && key != "geoip" ) {
                     obj.fields.push({name: key, standard_selected: false});
                     obj.all_fields.push({name: key, standard_selected: false});
                 }
