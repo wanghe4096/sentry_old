@@ -137,24 +137,9 @@ const TemplateEditor = React.createClass({
     return (
       <div className="template-editor">
         <div ref="editor" className="editor"></div>
-        <div className="control-btn pull-right">
-          <div className="btn-group btn-group-sm btn-save clearfix">
-            <button type="button" className="btn btn-default" onClick={this.saveHandler}>
-              {t('Save')}
-            </button>
-            <button
-              className="btn btn-default dropdown-toggle"
-              data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              <span className="caret"/>
-            </button>
-            <ul className="dropdown-menu-right dropdown-menu">
-              <li role="separator" className="divider"></li>
-              <li><a>Load xxx1</a></li>
-              <li><a>Load xxx1</a></li>
-              <li><a>Load xxx1</a></li>
-            </ul>
-          </div>
-        </div>
+        <button type="button" className="btn btn-default btn-sm btn-save" onClick={this.saveHandler}>
+          {t('Save Role')}
+        </button>
       </div>
     )
   }

@@ -15,8 +15,8 @@ import _ from 'underscore';
 
 import StructureTemplateList from 'components/extract/structureTemplateList'
 import TemplateChart from 'components/extract/templateChart';
-import EventList from 'components/extract/eventList';
 import TemplateEditor from 'components/extract/templateEditor';
+import EventList from 'components/extract/eventList';
 import ExtractorStatus from 'stores/extract/extractorStatusStore';
 
 const ExtractorRole = React.createClass({

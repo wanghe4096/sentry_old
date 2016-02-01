@@ -13,7 +13,6 @@
 }
 
 .sa-extract {
-
   .CodeMirror {
     height: auto;
   }
@@ -60,7 +59,7 @@
 
     .chart-view {
       height: 220px;
-      margin-bottom: 20px;
+      margin: 0;
       border-top: 0;
       border-top-left-radius: 0;
       border-top-right-radius: 0;
@@ -107,7 +106,7 @@
     }
 
     .result-view {
-
+      margin-top: 20px;
     }
 
     .load-config {
@@ -182,7 +181,63 @@
 
   }
 
+  .extract-role-overlay {
+    position: fixed;
+    top: -350px;
+    right: 0;
+    left: 50px;
+    background-color: #eee;
+    overflow-y: auto;
+    z-index: 5;
+    transition: transform 500ms ease;
+    .close-overlay-btn {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      z-index: 5;
+      background: #eee;
+      color: #333;
+      padding: 0 9px;
+      border: 1px solid #ccc;
+    }
+  }
+
+  .extract-role-ani-enter {
+    transform: translateY(-350px) translateZ(0);
+  }
+
+  .extract-role-ani-enter.extract-role-ani-enter-active {
+    transform: translateY(0) translateZ(0);
+  }
+
+  .extract-role-ani-leave {
+    transform: translateY(0) translateZ(0);
+  }
+
+  .extract-role-ani-leave.extract-role-ani-leave-active {
+    transform: translateY(-350px) translateZ(0);
+  }
+
   .extract-role {
+    position: relative;
+    padding: 0 15px 20px 30px;
+
+    .panel-head {
+      padding: 10px 0;
+      .panel-tit {
+        padding: 0;
+        margin: 0;
+        text-transform: capitalize;
+      }
+    }
+
+    .control-buttons {
+      position: relative;
+      //margin: 15px 0 0;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+    }
+
     .template-chart-wrap {
       position: relative;
       width: 400px;
@@ -197,24 +252,17 @@
         position: relative;
         height: 100%;
         .editor {
-          margin-right: 140px;
+          //margin-right: 140px;
           height: 100%;
           border-right: #ddd;
           .CodeMirror {
             height: 100%;
           }
         }
-        .control-btn {
+        .btn-save {
           position: absolute;
-          right: 0;
-          bottom: 0;
-          width: 140px;
-
-          .btn-save {
-            padding: 4px 0;
-            display: block;
-            margin: 10px 10px 20px;
-          }
+          top: -35px;
+          right: -1px;
         }
       }
 

@@ -77,6 +77,13 @@ var config = {
     'sentry': 'less/sentry.less'
 
   },
+  output: {
+    path: distPath,
+    filename: '[name].js',
+    libraryTarget: 'var',
+    library: 'exports',
+    sourceMapFilename: '[name].js.map',
+  },
   module: {
     noParse: [],
     loaders: [
@@ -101,7 +108,11 @@ var config = {
       },
       {
         test: /\.less$/,
-        include: path.join(__dirname, staticPrefix),
+        exclude: /sentry\.less$/,
+        loader: 'style/useable!css!less'
+      },
+      {
+        test: /sentry\.less$/,
         loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
       },
       {
@@ -113,6 +124,21 @@ var config = {
         loader: 'file-loader?name=' + '[name].[ext]'
       }
     ]
+  },
+  resolve: {
+    alias: {
+      'flot': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot'),
+      'flot-tooltip': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot-tooltip'),
+      'components':path.join(__dirname, staticPrefix, 'app/components'),
+      'actions':path.join(__dirname, staticPrefix, 'app/actions'),
+      'stores':path.join(__dirname, staticPrefix, 'app/stores'),
+      'views':path.join(__dirname, staticPrefix, 'app/views'),
+      'mixins':path.join(__dirname, staticPrefix, 'app/mixins'),
+      'app':path.join(__dirname, staticPrefix, 'app'),
+      'css':path.join(__dirname, staticPrefix, 'less'),
+    },
+    modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
+    extensions: ['.jsx', '.js', '.json','']
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
@@ -130,27 +156,6 @@ var config = {
     }),
     new ExtractTextPlugin('[name].css')
   ],
-  resolve: {
-    alias: {
-      'flot': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot'),
-      'flot-tooltip': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot-tooltip'),
-      'components':path.join(__dirname, staticPrefix, 'app/components'),
-      'actions':path.join(__dirname, staticPrefix, 'app/actions'),
-      'stores':path.join(__dirname, staticPrefix, 'app/stores'),
-      'views':path.join(__dirname, staticPrefix, 'app/views'),
-      'mixins':path.join(__dirname, staticPrefix, 'app/mixins'),
-      'app':path.join(__dirname, staticPrefix, 'app')
-    },
-    modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
-    extensions: ['.jsx', '.js', '.json','']
-  },
-  output: {
-    path: distPath,
-    filename: '[name].js',
-    libraryTarget: 'var',
-    library: 'exports',
-    sourceMapFilename: '[name].js.map',
-  }
 };
 
 if( /^dev/.test(process.env.node_env) ){

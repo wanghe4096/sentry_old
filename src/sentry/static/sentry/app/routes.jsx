@@ -41,8 +41,8 @@ import Stream from 'views/stream';
 import ExtractApp from 'views/extract/extractApp';
 import ExtractIndex from 'views/extract/extractIndex';
 import ExtractorApp from 'views/extract/extractorApp'
-import ExtractorEvents from 'views/extract/extractorEvents'
-import ExtractorRole from 'views/extract/extractorRole';
+//import ExtractorEvents from 'views/extract/extractorEvents'
+//import ExtractorRole from 'views/extract/extractorRole';
 
 import OrganizationStore from 'stores/organizationStore';
 
@@ -85,10 +85,7 @@ let routes = (
 
       <Route path="extract" component={ExtractApp} >
         <IndexRoute component={ExtractIndex} />
-        <Route path=":streamId/:action" component={ExtractorApp} >
-          <IndexRoute component={ExtractorEvents} />
-          <Route path="role" component={ExtractorRole} />
-        </Route>
+        <Route path=":streamId/:action" component={ExtractorApp} />
       </Route>
 
 
