@@ -5,7 +5,7 @@
 {% load sentry_features %}
 {% load sentry_helpers %}
 {% load sentry_react %}
-
+{% load sentry_env %}
 {% load sentry_status %}
 {% get_sentry_version %}
 
@@ -195,6 +195,8 @@
           </div>
         </div>
         {% endblock %}
+            <H1>{% env 'A' as a %}</H1>
+            {%if a %} <h1> {{a}} </h1> {% endif %}
 
         {% block content_after %}
         {% endblock %}
