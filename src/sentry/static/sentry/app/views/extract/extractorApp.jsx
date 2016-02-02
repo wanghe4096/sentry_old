@@ -161,7 +161,8 @@ const ExtractorApp = React.createClass({
           <ReactCSSTransitionGroup
             transitionName="extract-role-ani"
             className="extract-role-overlay"
-            transitionEnterTimeout={30000}
+            //transitionAppear={true}
+            transitionEnterTimeout={5000}
             transitionLeaveTimeout={500}
           >
             {

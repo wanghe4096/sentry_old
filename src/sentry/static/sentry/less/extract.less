@@ -183,10 +183,9 @@
 
   .extract-role-overlay {
     position: fixed;
-    top: 0;
+    top:0;
     right: 0;
-    left: 50px;
-    background-color: #eee;
+    left:0;
     z-index: 5;
     .close-overlay-btn {
       position: absolute;
@@ -198,19 +197,35 @@
       padding: 0 9px;
       border: 1px solid #ccc;
     }
+    //.extract-role-ani-enter{
+    //  transition: transform 30s ease-in;
+    //}
+    &>div{
+      position: absolute;
+      top:-350px;
+      right: 0;
+      left: 50px;
+      background-color: #eee;
+      z-index: 5;
+      //opacity:0.01;
+    }
   }
 
   .extract-role-ani-enter {
-    transition: transform 30s ease-in;
-    transform: translateY(-350px);
+    //top:0;
+    transition: all 5s ease-in;
+    transform: translateY(350px);
+    //background: red;
   }
 
   .extract-role-ani-enter.extract-role-ani-enter-active {
+    opacity:1;
     transform: translateY(0);
+    //background: blue;
   }
 
   .extract-role-ani-leave {
-    transition: transform 500ms ease;
+    transition: all 500ms ease;
     transform: translateY(0) translateZ(0);
   }
 
