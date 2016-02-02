@@ -1,0 +1,325 @@
+// structure app
+
+.CodeMirror pre.CodeMirror-placeholder {
+  color: #999;
+}
+
+.running-stat-box {
+  position: absolute !important;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.sa-extract {
+  .CodeMirror {
+    height: auto;
+  }
+
+  .laert {
+    border: none;
+    box-shadow: none;
+  }
+
+  .empty-stream {
+    border: none;
+  }
+
+  .alert.alert-block.alert-error {
+    margin-top: 30px;
+  }
+
+  .sub-header {
+    border-bottom: 1px solid #D6DBE4;
+    margin-bottom: 0;
+    .nav {
+      font-weight: 600;
+      color: #394359;
+    }
+    .sub {
+      font-weight: normal;
+      font-size: 14px;
+      margin-left: 10px;
+    }
+  }
+
+  .extract-index-body {
+    margin-top: 10px;
+  }
+
+  // ::: structure
+  .extractor-container {
+
+    .breadcrumb {
+      padding: 8px 15px 8px 0;
+      background-color: transparent;
+      font-size: 14px;
+    }
+
+    .chart-view {
+      height: 220px;
+      margin: 0;
+      border-top: 0;
+      border-top-left-radius: 0;
+      border-top-right-radius: 0;
+    }
+
+    .control-group {
+
+      .date-range {
+        margin-right: 20px;
+        font-size: 13px;
+        line-height: 30px;
+        cursor: pointer;
+      }
+
+      .btn-toolbar {
+
+      }
+
+      .tab-btn {
+        .btn {
+          padding: 4px 20px;
+        }
+        .btn-default.btn-primary {
+          color: #fff;
+        }
+      }
+      .btn-run {
+        min-width: 80px;
+      }
+    }
+
+    .time-range {
+      font-size: 15px;
+      line-height: 28px;
+      .time {
+        margin: 0 4px;
+        background-color: #aaa;
+        font-size: 13px;
+        display: inline-block;
+        padding: 0 10px;
+        color: #fff;
+        cursor: no-drop;
+      }
+    }
+
+    .result-view {
+      margin-top: 20px;
+    }
+
+    .load-config {
+      line-height: 28px;
+      font-size: 15px;
+      span {
+        color: #aaa;
+      }
+      .loading {
+        opacity: .5;
+        display: inline-block;
+        margin: 0 10px;
+        width: 16px;
+        height: 16px;
+        background: url('../images/loading-sm.gif');
+        background-size: cover;
+        vertical-align: middle;
+      }
+    }
+
+    .events-view {
+      position: relative;
+      overflow-x: auto;
+
+      //ul {
+      //  position: relative;
+      //  padding: 5px 0 0;
+      //  margin: 10px 0 0;
+      //}
+      //.gutters {
+      //  position: absolute;
+      //  left: 0;
+      //  top: 0;
+      //  bottom: 0;
+      //  width: 38px;
+      //  border-right: 1px solid #ddd;
+      //  background-color: #f7f7f7;
+      //  white-space: nowrap;
+      //}
+      //.event-item {
+      //  list-style: none;
+      //  margin: 10px 10px 10px 50px;
+      //  padding: 0;
+      //  .line{
+      //    position: absolute;
+      //    left:0;
+      //    padding: 0 3px 0 5px;
+      //    width: 28px;
+      //    text-align: right;
+      //    color: #999;
+      //    white-space: nowrap;
+      //  }
+      //  .code {
+      //    font-size: 13px;
+      //    line-height: 1.4;
+      //    white-space: nowrap;
+      //  }
+      //}
+
+      .load-more {
+        padding: 50px 0 100px;
+        text-align: center;
+        .more-btn {
+          padding: 8px 50px;
+        }
+      }
+    }
+
+    .chart-wrap {
+      height: 100%;
+    }
+
+  }
+
+  .extract-role-overlay {
+    position: fixed;
+    top:0;
+    right: 0;
+    left:0;
+    z-index: 5;
+    .close-overlay-btn {
+      position: absolute;
+      right: 15px;
+      top: 10px;
+      z-index: 5;
+      background: #eee;
+      color: #333;
+      padding: 0 9px;
+      border: 1px solid #ccc;
+    }
+    //.extract-role-ani-enter{
+    //  transition: transform 30s ease-in;
+    //}
+    &>div{
+      position: absolute;
+      top:-350px;
+      right: 0;
+      left: 50px;
+      background-color: #eee;
+      z-index: 5;
+      //opacity:0.01;
+    }
+  }
+
+  .extract-role-ani-enter {
+    //top:0;
+    transition: all 5s ease-in;
+    transform: translateY(350px);
+    //background: red;
+  }
+
+  .extract-role-ani-enter.extract-role-ani-enter-active {
+    opacity:1;
+    transform: translateY(0);
+    //background: blue;
+  }
+
+  .extract-role-ani-leave {
+    transition: all 500ms ease;
+    transform: translateY(0) translateZ(0);
+  }
+
+  .extract-role-ani-leave.extract-role-ani-leave-active {
+    transform: translateY(-350px) translateZ(0);
+  }
+
+  .extract-role {
+    position: relative;
+    padding: 0 15px 20px 30px;
+
+    .panel-head {
+      padding: 10px 0;
+      .panel-tit {
+        padding: 0;
+        margin: 0;
+        text-transform: capitalize;
+      }
+    }
+
+    .control-buttons {
+      position: relative;
+      //margin: 15px 0 0;
+      border-bottom: 1px solid #ccc;
+      padding-bottom: 15px;
+    }
+
+    .template-chart-wrap {
+      position: relative;
+      width: 400px;
+      height: 100%;
+    }
+
+    .template-editor-wrap {
+      margin-left: 400px;
+      border-left: 1px solid #D6DBE4;
+      height: 100%;
+      .template-editor {
+        position: relative;
+        height: 100%;
+        .editor {
+          //margin-right: 140px;
+          height: 100%;
+          border-right: #ddd;
+          .CodeMirror {
+            height: 100%;
+          }
+        }
+        .btn-save {
+          position: absolute;
+          top: -35px;
+          right: -1px;
+        }
+      }
+
+    }
+  }
+
+  .template-view {
+    .template-item {
+      padding-left: 12px;
+      &.unfold {
+        .fold-icon:after {
+          content: "\25BE";
+        }
+      }
+    }
+    .template-val {
+      position: relative;
+      padding: 3px 0;
+      border-bottom: 1px solid #eee;
+      cursor: pointer;
+      .fold-icon {
+        position: absolute;
+        top: 5px;
+        left: 5px;
+        font-style: normal;
+        color: #999;
+        &:after {
+          content: "\25B8";
+        }
+      }
+      .text {
+        line-height: 30px;
+        padding-left: 20px;
+      }
+    }
+    .template-info {
+      .CodeMirror {
+        .CodeMirror-gutters {
+          background: #fff;
+        }
+      }
+    }
+  }
+
+}

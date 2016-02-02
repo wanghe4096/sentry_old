@@ -166,7 +166,7 @@ const ProjectDetails = React.createClass({
     }
 
     return (
-      <DocumentTitle title="error">
+      <DocumentTitle title="Events">
         <div>
           <ProjectHeader
             activeSection={this.state.projectNavSection}
