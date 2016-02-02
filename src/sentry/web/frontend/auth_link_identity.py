@@ -19,7 +19,6 @@ auth_logger = logging.getLogger('sentry.auth')
 
 class AuthLinkIdentityView(BaseView):
     auth_required = False
-
     def get_login_form(self, request):
         return AuthenticationForm(
             request, request.POST or None,

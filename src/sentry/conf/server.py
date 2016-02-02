@@ -262,6 +262,7 @@ INSTALLED_APPS = (
     'sentry.plugins.sentry_useragents',
     'sentry.plugins.sentry_webhooks',
     'social_auth',
+    'oauth2_provider',
     'south',
     'sudo',
 
@@ -421,8 +422,8 @@ def create_partitioned_queues(name):
     exchange = Exchange(name, type='direct')
     for num in range(1):
         CELERY_QUEUES.append(Queue(
-            '{0}-{1}'.format(name, num),
-            exchange=exchange,
+                '{0}-{1}'.format(name, num),
+                exchange=exchange,
         ))
 
 create_partitioned_queues('counters')
@@ -932,6 +933,12 @@ SENTRY_WATCHERS = (
     [os.path.join(NODE_MODULES_ROOT, '.bin', 'webpack'), '-d', '--watch',
      "--config={}".format(os.path.join(PROJECT_ROOT, os.pardir, os.pardir, "webpack.config.js"))],
 )
+
+
+# OAUTH2_PROVIDER = {
+#     'SCOPES': {'example': 'This is an example scope'},
+#     # 'APPLICATION_MODEL': 'oauth.MyApplication'
+# }
 
 
 def get_raven_config():
