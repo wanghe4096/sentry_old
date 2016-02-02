@@ -52,6 +52,8 @@ else:
 
 sys.path.insert(0, os.path.normpath(os.path.join(PROJECT_ROOT, os.pardir)))
 
+STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -262,6 +264,7 @@ INSTALLED_APPS = (
     'social_auth',
     'south',
     'sudo',
+
 )
 
 STATIC_ROOT = os.path.realpath(os.path.join(PROJECT_ROOT, 'static'))
@@ -330,6 +333,11 @@ TRELLO_API_SECRET = ''
 
 BITBUCKET_CONSUMER_KEY = ''
 BITBUCKET_CONSUMER_SECRET = ''
+
+LOGINSIGHT_APP_ID='u6xCsBMivYg3;3_aof6mbH4Dgyf4ip8y11TbJtgQ'
+LOGINSIGHT_APP_SECRET='RjWCcdT0o!Kq8hPEP9wD:4PpWEEUKiSX=tYpYRKWQ7dNu9EmrT5B:oOTisuU.:xwqQXQFft;zb=ryAyk?w72GO0IK2hF9g5iY7!Q5upRvpA@1.6T_JD_bWuFRTCwnoMz'
+authorization_link = 'http://localhost:8000/o/authorize/?state=random_state_string&response_type=code&client_id=%s' % (LOGINSIGHT_APP_ID,)
+
 
 MAILGUN_API_KEY = ''
 

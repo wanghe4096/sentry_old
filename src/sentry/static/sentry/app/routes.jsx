@@ -34,26 +34,27 @@ import ReleaseNewEvents from 'views/releaseNewEvents';
 import RouteNotFound from 'views/routeNotFound';
 import SharedGroupDetails from 'views/sharedGroupDetails';
 import StorageIndex from 'views/storageIndex';
+import SearchIndex from 'views/searchIndex';
 import StorageApp from 'views/storageApp';
+import SearchApp from 'views/searchApp';
 import LogPreview from 'views/logPreview';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
 import ExtractApp from 'views/extract/extractApp';
 import ExtractIndex from 'views/extract/extractIndex';
 import ExtractorApp from 'views/extract/extractorApp'
-//import ExtractorEvents from 'views/extract/extractorEvents'
-//import ExtractorRole from 'views/extract/extractorRole';
 
 import OrganizationStore from 'stores/organizationStore';
 
 function appendTrailingSlash(nextState, replaceState) {
-  let lastChar = nextState.location.pathname.slice(-1);
-  if (lastChar !== '/') {
-    replaceState(nextState, nextState.location.pathname + '/');
-  }
+    let lastChar = nextState.location.pathname.slice(-1);
+    if (lastChar !== '/') {
+        replaceState(nextState, nextState.location.pathname + '/');
+    }
 }
 
 const defaultOrg = OrganizationStore.items[0];
+
 
 let routes = (
   <Route path="/" component={App}>
@@ -68,13 +69,14 @@ let routes = (
 
 
     <Route path="/:orgId/" component={OrganizationDetails}>
-
-      //<IndexRoute component={OrganizationTeams} />
-      //<Route path="/organizations/:orgId/issues/assigned/" component={MyIssuesAssignedToMe} />
-      //<Route path="/organizations/:orgId/issues/bookmarks/" component={MyIssuesBookmarked} />
-      //<Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
+      {
+        //<IndexRoute component={OrganizationTeams} />
+        //<Route path="/organizations/:orgId/issues/assigned/" component={MyIssuesAssignedToMe} />
+        //<Route path="/organizations/:orgId/issues/bookmarks/" component={MyIssuesBookmarked} />
+        //<Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
+        //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
+      }
       <Route path="/organizations/:orgId/stats/" component={OrganizationStats} />
-      //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
 
       <IndexRedirect to="events" />
 
@@ -85,9 +87,15 @@ let routes = (
 
       <Route path="extract" component={ExtractApp} >
         <IndexRoute component={ExtractIndex} />
-        <Route path=":streamId/:action" component={ExtractorApp} />
+        <Route path=":streamId/:action" component={ExtractorApp} >
+          <IndexRoute component={ExtractorEvents} />
+          <Route path="role" component={ExtractorRole} />
+        </Route>
       </Route>
 
+      <Route path="search" component={SearchApp}>
+        <IndexRoute component={SearchIndex}/>
+      </Route>
 
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams} />
@@ -108,7 +116,7 @@ let routes = (
               <Route path=":platform/" component={ProjectInstallPlatform}/>
             </Route>
 
-            <Route path="*" component={RouteNotFound}/>
+            <Route path="*" component={RouteNotFound} />
 
           </Route>
 

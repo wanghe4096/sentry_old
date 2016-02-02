@@ -144,6 +144,14 @@ SENTRY_TSDB = 'sentry.tsdb.redis.RedisTSDB'
 
 SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 
+##################
+# storage server #
+##################
+
+#loginsight storage server url
+
+STORAGE_SERVER = 'localhost:8000'
+
 ################
 # File storage #
 ################

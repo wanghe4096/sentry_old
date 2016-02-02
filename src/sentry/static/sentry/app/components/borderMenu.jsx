@@ -72,10 +72,10 @@ const BorderMenu = createClass({
               </li>
               <li>
                 <Link
-                    to={`/${org.slug}/storage/`}
-                    className="fa fa-database"
-                    activeClassName="active"
-                    title={t('log storage')}/>
+                  to={`/${org.slug}/storage/`}
+                  className="fa fa-database"
+                  activeClassName="active"
+                  title={t('log storage')}/>
               </li>
               <li>
                 <Link
@@ -83,6 +83,13 @@ const BorderMenu = createClass({
                   className="fa fa-random"
                   activeClassName="active"
                   title={t('structure')}/>
+              </li>
+              <li>
+                <Link
+                  to={`/${org.slug}/search/`}
+                  className="fa fa-search"
+                  activeClassName="active"
+                  title={t('search')}/>
               </li>
               <li className="hide">
                 <Link

@@ -1,0 +1,13 @@
+{
+  "time": 32,
+  "terms": {
+    "edit": 360,
+    "show": 2113,
+    "index": 7230,
+    "login": 1848
+  },
+  "missing": 459,
+  "other": 0,
+  "total": 12010,
+  "built_query": "{\"from\":0,\"query\":{\"filtered\":{\"query\":{\"match_all\":{}},\"filter\":{\"bool\":{\"must\":{\"range\":{\"timestamp\":{\"from\":\"2016-01-28 09:12:28.047\",\"to\":\"2016-01-28 09:17:28.047\",\"include_lower\":true,\"include_upper\":true}}}}}}},\"aggregations\":{\"gl2_filter\":{\"filter\":{\"bool\":{\"must\":{\"range\":{\"timestamp\":{\"from\":\"2016-01-28 09:12:28.047\",\"to\":\"2016-01-28 09:17:28.047\",\"include_lower\":true,\"include_upper\":true}}}}},\"aggregations\":{\"gl2_terms\":{\"terms\":{\"field\":\"action\",\"size\":50}},\"missing\":{\"missing\":{\"field\":\"action\"}}}}}}"
+}

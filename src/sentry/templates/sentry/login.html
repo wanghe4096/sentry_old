@@ -11,7 +11,6 @@
 {% block bordermenu %}{% endblock %}
 
 {% block auth_main %}
-
   <div class="tab-content login-body">
     <div class="align-center">
       <img src="{% asset_url "sentry" "images/logo.png" %}" class="org-avatar">
@@ -34,6 +33,9 @@
           <button type="submit" class="btn btn-success">{% trans "Login" %}</button> <a class="pull-right" style="margin-top: 9px" href="{% url 'sentry-account-recover' %}">{% trans "Lost your password?" %}</a>
         </fieldset>
       </form>
+    <div>
+    <a href="http://localhost:8000/o/authorize/?state=random_state_string&response_type=code&client_id=XlU2QXBV4p%3BC9NGfvz1BcsrZXv%3FXbrVt2Q7Q-.DJ" class="btn btn-default auth-btn auth-bitbucket"><span class="auth-icon"></span>Bitbucket</a>
+    </div>
     </div>
   </div>
 

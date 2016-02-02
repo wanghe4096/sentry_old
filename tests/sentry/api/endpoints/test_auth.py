@@ -17,7 +17,6 @@ class LoginTest(APITestCase):
 
         url = reverse('sentry-api-0-auth')
         response = self.client.post(url, format='json', HTTP_AUTHORIZATION=auth_header)
-
         assert response.status_code == 200, response.content
 
 
