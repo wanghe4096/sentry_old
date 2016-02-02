@@ -19,4 +19,7 @@ indent_size = 2
 indent_size = 2
 
 [*.md]
-trim_trailing_whitespace = false
+root = true
+
+[*]
+insert_final_newline = false
