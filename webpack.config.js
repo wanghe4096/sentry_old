@@ -109,11 +109,11 @@ var config = {
       {
         test: /\.less$/,
         exclude: /sentry\.less$/,
-        loader: 'style/useable!css!less'
+        loader: 'style/useable!css?-url&?sourceMap!less?sourceMap'
       },
       {
         test: /sentry\.less$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
+        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?!less-loader')
       },
       {
         test: /\.css$/,
@@ -160,6 +160,7 @@ var config = {
 
 if( /^dev/.test(process.env.node_env) ){
   config.devtool === 'eval';
+  config.output.pathinfo = true;
 }
 
 module.exports = config;

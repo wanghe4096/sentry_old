@@ -160,8 +160,8 @@ const ExtractorApp = React.createClass({
         <div className="extractor-container">
           <ReactCSSTransitionGroup
             transitionName="extract-role-ani"
-            component="div"
-            transitionEnterTimeout={500}
+            className="extract-role-overlay"
+            transitionEnterTimeout={30000}
             transitionLeaveTimeout={500}
           >
             {
@@ -197,7 +197,7 @@ const ExtractorRole = React.createClass({
 
   render() {
     return (
-      <div className="extract-role-overlay">
+      <div className="">
         <div className="extract-role">
           <div className="panel-head">
             <h5 className="panel-tit">{this.props.action} Role</h5>

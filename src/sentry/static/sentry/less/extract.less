@@ -183,13 +183,11 @@
 
   .extract-role-overlay {
     position: fixed;
-    top: -350px;
+    top: 0;
     right: 0;
     left: 50px;
     background-color: #eee;
-    overflow-y: auto;
     z-index: 5;
-    transition: transform 500ms ease;
     .close-overlay-btn {
       position: absolute;
       right: 15px;
@@ -203,14 +201,16 @@
   }
 
   .extract-role-ani-enter {
-    transform: translateY(-350px) translateZ(0);
+    transition: transform 30s ease-in;
+    transform: translateY(-350px);
   }
 
   .extract-role-ani-enter.extract-role-ani-enter-active {
-    transform: translateY(0) translateZ(0);
+    transform: translateY(0);
   }
 
   .extract-role-ani-leave {
+    transition: transform 500ms ease;
     transform: translateY(0) translateZ(0);
   }
 
