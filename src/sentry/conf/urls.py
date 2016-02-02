@@ -45,7 +45,7 @@ def handler_healthcheck(request):
 
 urlpatterns = patterns(
     '',
-    url(r'^admin/', include(django_admin.site.urls)),
+    # url(r'^admin/', include(django_admin.site.urls)),
     url(r'^500/', handler500, name='error-500'),
     url(r'^404/', handler404, name='error-400'),
     url(r'^_health/$', handler_healthcheck, name='healthcheck'),

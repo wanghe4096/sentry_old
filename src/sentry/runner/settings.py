@@ -27,10 +27,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'sentry.db.postgres',
         'NAME': 'sentry',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'USER': 'wanghe',
+        'PASSWORD': 'yuxuangh',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -47,7 +47,7 @@ SENTRY_USE_BIG_INTS = True
 
 # Instruct Sentry that this install intends to be run by a single organization
 # and thus various UI optimizations should be enabled.
-SENTRY_SINGLE_ORGANIZATION = True
+SENTRY_SINGLE_ORGANIZATION = False
 
 #########
 # Redis #
@@ -150,7 +150,16 @@ SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 
 #loginsight storage server url
 
-STORAGE_SERVER = 'localhost:8000'
+STORAGE_SERVER = 'http://localhost:8000'
+
+##################
+# oauth client   #
+##################
+
+LOGINSIGHT_CLIENT_ID='client_id'
+LOGINSIGHT_CLIENT_SECRET='client_secret'
+BASE_AUTHORIZE_LINK = 'http://localhost:8000/o/authorize'
+
 
 ################
 # File storage #
@@ -225,7 +234,7 @@ system.admin-email: ''
 ##############
 
 # You MUST configure the absolute URI root for Sentry:
-system.url-prefix: ''  # No trailing slash!
+system.url-prefix: 'http://localhost:9000'  # No trailing slash!
 
 
 ########
