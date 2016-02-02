@@ -1,44 +1,44 @@
 /*eslint-env node*/
 var path = require('path'),
-    webpack = require('webpack'),
-    ExtractTextPlugin = require('extract-text-webpack-plugin');
+  webpack = require('webpack'),
+  ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var staticPrefix = 'src/sentry/static/sentry',
-    distPath = staticPrefix + '/dist';
+  distPath = staticPrefix + '/dist';
 
 // this is set by setup.py sdist
 if (process.env.SENTRY_STATIC_DIST_PATH) {
-    distPath = process.env.SENTRY_STATIC_DIST_PATH;
+  distPath = process.env.SENTRY_STATIC_DIST_PATH;
 }
 
 var node_modules = path.resolve(__dirname, 'node_modules');
 
 var babelQuery = {
-    plugins: [],
-    extra: {}
+  plugins: [],
+  extra: {}
 };
 
 console.log(' ==== webpack start build ==== \n');
 
 // only extract po files if we need to
 if (process.env.SENTRY_EXTRACT_TRANSLATIONS === '1') {
-    babelQuery.plugins.push('babel-gettext-extractor');
-    babelQuery.extra.gettext = {
-        fileName: 'build/javascript.po',
-        baseDirectory: path.join(__dirname, 'src/sentry'),
-        functionNames: {
-            gettext: ['msgid'],
-            ngettext: ['msgid', 'msgid_plural', 'count'],
-            gettextComponentTemplate: ['msgid'],
-            t: ['msgid'],
-            tn: ['msgid', 'msgid_plural', 'count'],
-            tct: ['msgid']
-        },
-    };
+  babelQuery.plugins.push('babel-gettext-extractor');
+  babelQuery.extra.gettext = {
+    fileName: 'build/javascript.po',
+    baseDirectory: path.join(__dirname, 'src/sentry'),
+    functionNames: {
+      gettext: ['msgid'],
+      ngettext: ['msgid', 'msgid_plural', 'count'],
+      gettextComponentTemplate: ['msgid'],
+      t: ['msgid'],
+      tn: ['msgid', 'msgid_plural', 'count'],
+      tct: ['msgid']
+    },
+  };
 }
 
 var config = {
-<<<<<<< HEAD
+
   context: path.join(__dirname, staticPrefix),
   entry: {
     // js
@@ -71,46 +71,11 @@ var config = {
       'codemirror',
       'vendor/simple-slider/simple-slider'
     ],
-=======
-    context: path.join(__dirname, staticPrefix),
-    entry: {
-        // js
-        'app': 'app',
-        'translations': [
-            'app/translations'
-        ],
-        'vendor': [
-            'babel-core/polyfill',
-            'bootstrap/js/dropdown',
-            'bootstrap/js/tab',
-            'bootstrap/js/tooltip',
-            'bootstrap/js/alert',
-            'crypto-js/md5',
-            'jed',
-            'jquery',
-            'marked',
-            'moment',
-            'moment-timezone',
-            'raven-js',
-            'react-document-title',
-            'react-router',
-            'react-bootstrap',
-            'reflux',
-            'select2',
-            'flot/jquery.flot',
-            'flot/jquery.flot.stack',
-            'flot/jquery.flot.time',
-            'flot-tooltip/jquery.flot.tooltip',
-            'vendor/simple-slider/simple-slider'
-        ],
->>>>>>> dev
 
-        // css
-        // NOTE: this will also create an empty 'sentry.js' file
-        // TODO: figure out how to not generate this
-        'sentry': 'less/sentry.less'
-
-<<<<<<< HEAD
+    // css
+    // NOTE: this will also create an empty 'sentry.js' file
+    // TODO: figure out how to not generate this
+    'sentry': 'less/sentry.less'
   },
   output: {
     path: distPath,
@@ -121,59 +86,54 @@ var config = {
   },
   module: {
     noParse: [],
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        loader: 'babel-loader',
-        include: path.join(__dirname, staticPrefix),
-        exclude: /(vendor|node_modules)/,
-        query: babelQuery
-      },
-      {
-        test: /\.po$/,
-        loader: 'po-catalog-loader',
-        query: {
-          referenceExtensions: ['.js', '.jsx'],
-          domain: 'sentry'
-        }
-      },
-      {
-        test: /\.json$/,
-        loader: 'json-loader'
-      },
-      {
-        test: /\.less$/,
-        exclude: /sentry\.less$/,
-        loader: 'style/useable!css?-url&?sourceMap!less?sourceMap'
-      },
-      {
-        test: /sentry\.less$/,
-        loader: ExtractTextPlugin.extract('style-loader', 'css-loader?!less-loader')
-      },
-      {
-        test: /\.css$/,
-        loader: 'style-loader!css-loader'
-      },
-      {
-        test: /\.(woff|woff2|ttf|eot|svg|png|gif|ico|jpg)($|\?)/,
-        loader: 'file-loader?name=' + '[name].[ext]'
+    loaders: [{
+      test: /\.jsx?$/,
+      loader: 'babel-loader',
+      include: path.join(__dirname, staticPrefix),
+      exclude: /(vendor|node_modules)/,
+      query: babelQuery
+    }, {
+      test: /\.po$/,
+      loader: 'po-catalog-loader',
+      query: {
+        referenceExtensions: ['.js', '.jsx'],
+        domain: 'sentry'
       }
-    ]
+    }, {
+      test: /\.json$/,
+      loader: 'json-loader'
+    }, {
+      test: /\.less$/,
+      exclude: /sentry\.less$/,
+      loader: 'style/useable!css?-url&?sourceMap!less?sourceMap'
+    }, {
+      test: /sentry\.less$/,
+      loader: ExtractTextPlugin.extract('style-loader', 'css-loader?!less-loader')
+    }, {
+      test: /\.css$/,
+      loader: 'style-loader!css-loader'
+    }, {
+      test: /\.(woff|woff2|ttf|eot|svg|png|gif|ico|jpg)($|\?)/,
+      loader: 'file-loader?name=' + '[name].[ext]'
+    }, {
+      test: /\.ts$/,
+      loader: 'babel-loader!ts-loader'
+    }, ]
   },
   resolve: {
     alias: {
       'flot': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot'),
       'flot-tooltip': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot-tooltip'),
-      'components':path.join(__dirname, staticPrefix, 'app/components'),
-      'actions':path.join(__dirname, staticPrefix, 'app/actions'),
-      'stores':path.join(__dirname, staticPrefix, 'app/stores'),
-      'views':path.join(__dirname, staticPrefix, 'app/views'),
-      'mixins':path.join(__dirname, staticPrefix, 'app/mixins'),
-      'app':path.join(__dirname, staticPrefix, 'app'),
-      'css':path.join(__dirname, staticPrefix, 'less'),
+      'components': path.join(__dirname, staticPrefix, 'app/components'),
+      'actions': path.join(__dirname, staticPrefix, 'app/actions'),
+      'stores': path.join(__dirname, staticPrefix, 'app/stores'),
+      'views': path.join(__dirname, staticPrefix, 'app/views'),
+      'mixins': path.join(__dirname, staticPrefix, 'app/mixins'),
+      'app': path.join(__dirname, staticPrefix, 'app'),
+      'css': path.join(__dirname, staticPrefix, 'less'),
     },
     modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
-    extensions: ['.jsx', '.js', '.json','']
+    extensions: ['.jsx', '.js', '.json', '']
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
@@ -187,87 +147,16 @@ var config = {
       jQuery: 'jquery',
       'window.jQuery': 'jquery',
       'root.jQuery': 'jquery',
-      Raven: 'raven-js'
+      Raven: 'raven-js',
+      d3: 'd3',
+      nvd3: 'nvd3',
+      _nvd32: 'nvd3',
     }),
     new ExtractTextPlugin('[name].css')
   ],
-=======
-    },
-    module: {
-        loaders: [
-            {
-                test: /\.jsx?$/,
-                loader: 'babel-loader',
-                include: path.join(__dirname, staticPrefix),
-                exclude: /(vendor|node_modules)/,
-                query: babelQuery
-            },
-            {
-                test: /\.po$/,
-                loader: 'po-catalog-loader',
-                query: {
-                    referenceExtensions: ['.js', '.jsx'],
-                    domain: 'sentry'
-                }
-            },
-            {test: /\.css$/, loader: 'style!css'},
-            {
-                test: /\.json$/,
-                loader: 'json-loader'
-            },
-            {
-                test: /\.less$/,
-                include: path.join(__dirname, staticPrefix),
-                loader: ExtractTextPlugin.extract('style-loader', 'css-loader!less-loader')
-            },
-            {
-                test: /\.(woff|woff2|ttf|eot|svg|png|gif|ico|jpg)($|\?)/,
-                loader: 'file-loader?name=' + '[name].[ext]'
-            },
-            {test: /\.ts$/, loader: 'babel-loader!ts-loader'},
-        ]
-    },
-    plugins: [
-        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
-        new webpack.optimize.DedupePlugin(),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jQuery: 'jquery',
-            'window.jQuery': 'jquery',
-            'root.jQuery': 'jquery',
-            Raven: 'raven-js',
-            d3: 'd3',
-            nvd3: 'nvd3',
-            _nvd32: 'nvd3',
-        }),
-        new ExtractTextPlugin('[name].css')
-    ],
-    resolve: {
-        alias: {
-            'flot': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot'),
-            'flot-tooltip': path.join(__dirname, staticPrefix, 'vendor', 'jquery-flot-tooltip'),
-            components: path.join(__dirname, staticPrefix, 'app/components'),
-            actions: path.join(__dirname, staticPrefix, 'app/actions'),
-            stores: path.join(__dirname, staticPrefix, 'app/stores'),
-            views: path.join(__dirname, staticPrefix, 'app/views'),
-            mixins: path.join(__dirname, staticPrefix, 'app/mixins'),
-            app: path.join(__dirname, staticPrefix, 'app')
-        },
-        modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
-        extensions: ['', '.jsx', '.js', '.json', '.ts']
-    },
-    output: {
-        path: distPath,
-        filename: '[name].js',
-        libraryTarget: 'var',
-        library: 'exports',
-        sourceMapFilename: '[name].js.map',
-    },
-    devtool: 'source-map'
->>>>>>> dev
 };
 
-if( /^dev/.test(process.env.node_env) ){
+if (/^dev/.test(process.env.node_env)) {
   config.devtool === 'eval';
   config.output.pathinfo = true;
 }

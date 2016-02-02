@@ -51,10 +51,10 @@ const BorderMenu = createClass({
                 <li><a href="#">数据源管理（个人）</a></li>
               </ul>
               <ul>
-                <li><a href="#" className="fa fa-dashboard" /></li>
+                <li><a href="#" className="fa fa-dashboard"/></li>
                 <li><a href="#" className="fa fa-refresh">+</a></li>
-                <li><a href="#" className="fa fa-lock" /></li>
-                <li><a href="#" className="fa fa-sign-out" /></li>
+                <li><a href="#" className="fa fa-lock"/></li>
+                <li><a href="#" className="fa fa-sign-out"/></li>
               </ul>
             </nav>
           </div>
