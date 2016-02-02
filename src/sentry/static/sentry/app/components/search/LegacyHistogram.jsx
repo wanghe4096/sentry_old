@@ -54,7 +54,7 @@ var LegacyHistogram = React.createClass({
                     }
                 }
             }
-            url += "q=" + this.getQueryString("q");
+            url += "?q=" + this.getQueryString("q");
         }
 
 

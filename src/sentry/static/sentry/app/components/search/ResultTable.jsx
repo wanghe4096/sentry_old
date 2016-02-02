@@ -42,17 +42,6 @@ const ResultTable = React.createClass({
         }
         return {};
     },
-    expandAll() {
-        // If more than 30% of the messages are being expanded, show a loading indicator
-        //const expandedChangeRatio = (this.props.messages.length - this.state.expandedMessages.size) / 100;
-        //const renderLoadingIndicator = expandedChangeRatio > 0.3;
-        //
-        //const newSet = Immutable.Set(this.props.messages.map((message) => message.id));
-        //this.setState({expandedMessages: newSet, expandAllRenderAsync: renderLoadingIndicator});
-    },
-    collapseAll() {
-        this.setState({expandedMessages: Immutable.Set()});
-    },
     _handleSort(e, field, order) {
         e.preventDefault();
         SearchStore.sort(field, order);
@@ -75,10 +64,14 @@ const ResultTable = React.createClass({
         return <span>{sortLinks}</span>;
     },
     expandAll: function () {
-        console.log("1");
+        const expandedChangeRatio = (this.props.messages.length - this.state.expandedMessages.size) / 100;
+        const renderLoadingIndicator = expandedChangeRatio > 0.3;
+
+        const newSet = Immutable.Set(this.props.messages.map((message) => message.id));
+        this.setState({expandedMessages: newSet, expandAllRenderAsync: renderLoadingIndicator});
     },
     collapseAll: function () {
-        console.log("2");
+        this.setState({expandedMessages: Immutable.Set()});
     },
     _toggleMessageDetail(id) {
         let newSet;
