@@ -43,14 +43,15 @@ import Stream from 'views/stream';
 import ExtractApp from 'views/extract/extractApp';
 import ExtractIndex from 'views/extract/extractIndex';
 import ExtractorApp from 'views/extract/extractorApp'
+import ExtractorEvents from 'views/extract/extractorEvents';
 
 import OrganizationStore from 'stores/organizationStore';
 
 function appendTrailingSlash(nextState, replaceState) {
-    let lastChar = nextState.location.pathname.slice(-1);
-    if (lastChar !== '/') {
-        replaceState(nextState, nextState.location.pathname + '/');
-    }
+  let lastChar = nextState.location.pathname.slice(-1);
+  if (lastChar !== '/') {
+    replaceState(nextState, nextState.location.pathname + '/');
+  }
 }
 
 const defaultOrg = OrganizationStore.items[0];
@@ -58,14 +59,13 @@ const defaultOrg = OrganizationStore.items[0];
 
 let routes = (
   <Route path="/" component={App}>
-    
-    <IndexRedirect to={defaultOrg.slug} />
 
-    <Redirect from="/events" to={defaultOrg.slug+'/events'} />
-    <Redirect from="/storage" to={defaultOrg.slug+'/storage'} />
-    <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/" />
-    <Route path="/share/issue/:shareId/" component={SharedGroupDetails} />
+    <IndexRedirect to={defaultOrg.slug}/>
 
+    <Redirect from="/events" to={defaultOrg.slug+'/events'}/>
+    <Redirect from="/storage" to={defaultOrg.slug+'/storage'}/>
+    <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/"/>
+    <Route path="/share/issue/:shareId/" component={SharedGroupDetails}/>
 
 
     <Route path="/:orgId/" component={OrganizationDetails}>
@@ -76,20 +76,22 @@ let routes = (
         //<Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
         //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
       }
-      <Route path="/organizations/:orgId/stats/" component={OrganizationStats} />
+      <Route path="/organizations/:orgId/stats/" component={OrganizationStats}/>
 
-      <IndexRedirect to="events" />
+      <IndexRedirect to="events"/>
 
-      <Route path="storage" component={StorageApp} >
-        <IndexRoute component={StorageIndex} />
-        <Route path="preview/:logId" component={LogPreview} />
+      <Route path="storage" component={StorageApp}>
+        <IndexRoute component={StorageIndex}/>
+        <Route path="preview/:logId" component={LogPreview}/>
       </Route>
 
-      <Route path="extract" component={ExtractApp} >
-        <IndexRoute component={ExtractIndex} />
-        <Route path=":streamId/:action" component={ExtractorApp} >
-          <IndexRoute component={ExtractorEvents} />
-          <Route path="role" component={ExtractorRole} />
+      <Route path="extract" component={ExtractApp}>
+        <IndexRoute component={ExtractIndex}/>
+        <Route path=":streamId/:action" component={ExtractorApp}>
+          <IndexRoute component={ExtractorEvents}/>
+          {
+            //<Route path="role" component={ExtractorRole}/>
+          }
         </Route>
       </Route>
 
@@ -98,16 +100,16 @@ let routes = (
       </Route>
 
       <Route path="events" component={EventsIndex}>
-        <IndexRoute component={OrganizationTeams} />
+        <IndexRoute component={OrganizationTeams}/>
         <Route path=":projectId/" component={ProjectDetails}>
-          <IndexRoute component={Stream} />
+          <IndexRoute component={Stream}/>
 
-          <Route path="dashboard/" component={ProjectDashboard} />
-          <Route path="releases/" component={ProjectReleases} />
+          <Route path="dashboard/" component={ProjectDashboard}/>
+          <Route path="releases/" component={ProjectReleases}/>
           <Route name="releaseDetails" path="releases/:version/" component={ReleaseDetails}>
-            <IndexRoute component={ReleaseNewEvents} />
-            <Route path="all-events/" component={ReleaseAllEvents} />
-            <Route path="artifacts/" component={ReleaseArtifacts} />
+            <IndexRoute component={ReleaseNewEvents}/>
+            <Route path="all-events/" component={ReleaseAllEvents}/>
+            <Route path="artifacts/" component={ReleaseArtifacts}/>
           </Route>
 
           <Route path="settings/" component={ProjectSettings}>
@@ -116,20 +118,20 @@ let routes = (
               <Route path=":platform/" component={ProjectInstallPlatform}/>
             </Route>
 
-            <Route path="*" component={RouteNotFound} />
+            <Route path="*" component={RouteNotFound}/>
 
           </Route>
 
-          <Redirect from="group/:groupId/" to="issues/:groupId/" />
+          <Redirect from="group/:groupId/" to="issues/:groupId/"/>
 
           <Route path="issues/:groupId/" component={GroupDetails} ignoreScrollBehavior>
-            <IndexRoute component={GroupEventDetails} />
-            <Route path="activity/" component={GroupActivity} />
-            <Route path="events/:eventId/" component={GroupEventDetails} />
-            <Route path="events/" component={GroupEvents} />
-            <Route path="tags/" component={GroupTags} />
-            <Route path="tags/:tagKey/" component={GroupTagValues} />
-            <Route path="reports/" component={GroupUserReports} />
+            <IndexRoute component={GroupEventDetails}/>
+            <Route path="activity/" component={GroupActivity}/>
+            <Route path="events/:eventId/" component={GroupEventDetails}/>
+            <Route path="events/" component={GroupEvents}/>
+            <Route path="tags/" component={GroupTags}/>
+            <Route path="tags/:tagKey/" component={GroupTagValues}/>
+            <Route path="reports/" component={GroupUserReports}/>
           </Route>
           <Route path="*" component={RouteNotFound}/>
         </Route>
