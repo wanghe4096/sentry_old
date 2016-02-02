@@ -133,7 +133,7 @@ var config = {
       'css': path.join(__dirname, staticPrefix, 'less'),
     },
     modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
-    extensions: ['.jsx', '.js', '.json', '']
+    extensions: ['.jsx', '.js', '.json', '.ts', '']
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),
