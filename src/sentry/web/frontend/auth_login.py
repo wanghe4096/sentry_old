@@ -14,6 +14,8 @@ from sentry.models import AuthProvider, Organization
 from sentry.web.forms.accounts import AuthenticationForm, RegistrationForm
 from sentry.web.frontend.base import BaseView
 from sentry.utils.auth import get_login_redirect
+from django.conf import settings
+
 
 ERR_NO_SSO = _('The organization does not exist or does not have Single Sign-On enabled.')
 
@@ -105,6 +107,8 @@ class AuthLoginView(BaseView):
             'login_form': login_form,
             'register_form': register_form,
             'CAN_REGISTER': can_register,
+            'client_id': settings.LOGINSIGHT_CLIENT_ID,
+            'client_secret': settings.LOGINSIGHT_CLIENT_SECRET,
         }
         return self.respond('sentry/login.html', context)
 
