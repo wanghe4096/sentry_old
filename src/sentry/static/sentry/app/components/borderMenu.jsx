@@ -19,9 +19,52 @@ const BorderMenu = createClass({
     organization: PropTypes.Organization
   },
 
+  getInitialState() {
+    return {
+      app: [
+        {
+          path: 'events',
+          iconClassName: 'fa fa-home',
+          title: t('Events')
+        },
+        {
+          path: 'storage',
+          iconClassName: 'fa fa-database',
+          title: t('Log storage')
+        },
+        {
+          path: 'extract',
+          iconClassName: 'fa fa-random',
+          title: t('Log extract')
+        },
+        {
+          path: 'search',
+          iconClassName: 'fa fa-search',
+          title: t('Search')
+        }
+      ]
+    }
+  },
+
   foldHandler() {
     let $menu = $(this.refs.menu);
     $menu.toggleClass('bt-menu-open');
+  },
+
+  renderAppIcon() {
+    let org = this.context.organization || OrganizationStore.items[0];
+
+    return this.state.app.map((app, i) => {
+      return (
+        <li key={i}>
+          <Link
+            to={`/${org.slug}/${app.path}/`}
+            activeClassName="active"
+            className={app.iconClassName}
+            title={app.title}/>
+        </li>
+      )
+    });
   },
 
   render() {
@@ -63,40 +106,9 @@ const BorderMenu = createClass({
         <div className="left-nav clearfix">
           <div className="left-primary-nav">
             <ul id="myTab">
-              <li>
-                <Link
-                  to={`/${org.slug}/events/`}
-                  activeClassName="active"
-                  className="fa fa-home"
-                  title={t('issues')}/>
-              </li>
-              <li>
-                <Link
-                  to={`/${org.slug}/storage/`}
-                  className="fa fa-database"
-                  activeClassName="active"
-                  title={t('log storage')}/>
-              </li>
-              <li>
-                <Link
-                  to={`/${org.slug}/extract/`}
-                  className="fa fa-random"
-                  activeClassName="active"
-                  title={t('structure')}/>
-              </li>
-              <li>
-                <Link
-                  to={`/${org.slug}/search/`}
-                  className="fa fa-search"
-                  activeClassName="active"
-                  title={t('search')}/>
-              </li>
-              <li className="hide">
-                <Link
-                  to={`/`}
-                  className="fa fa-times"
-                  title="Error Report"/>
-              </li>
+              {
+                this.renderAppIcon()
+              }
             </ul>
           </div>
         </div>
