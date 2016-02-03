@@ -36,8 +36,10 @@ HostAction.fetch.listen(function () {
 
 HostAction.add.listen(function (data) {
   const mockData = {
-    id: 'id-' + moment().format('YYYY-MM-DD-HH:mm:ss') + '-' + _.random(0, 999999),
-    host_name: '创建于' + moment().format('YYYY-MM-DD HH:mm:ss') + '的临时host',
+    desc: '这是对streamtype的描述',
+    extract: 'name',
+    id: 'id-' + moment().format('YYYY-MM-DD-HH:mm:ss') +'-'+_.random(0,999999),
+    host_name: '创建于' + moment().format('YYYY-MM-DD HH:mm:ss') + '的streamtype',
     host_type: 'xxxxx-host_type',
     distver: "3.1.0",
     host_key: "yyyy",
