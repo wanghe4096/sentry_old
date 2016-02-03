@@ -6,14 +6,19 @@
  */
 
 import React,{createClass} from 'react';
+import Reflux from 'reflux';
 import {History,IndexLink,Link} from 'react-router';
-import OrganizationStore from '../stores/organizationStore';
+import OrganizationStore from 'stores/organizationStore';
 import PropTypes from '../proptypes';
 import {t} from '../locale';
+import ConfigStore from 'stores/configStore';
 
 const BorderMenu = createClass({
 
-  mixins: [History],
+  mixins: [
+    History,
+    Reflux.listenTo(ConfigStore, 'onConfigChange')
+  ],
 
   contextTypes: {
     organization: PropTypes.Organization
@@ -22,6 +27,7 @@ const BorderMenu = createClass({
   getInitialState() {
     window.qqq = this;
     return {
+      user: ConfigStore.config.user || {},
       folded: true,
       app: [
         {
@@ -46,6 +52,12 @@ const BorderMenu = createClass({
         }
       ]
     }
+  },
+
+  onConfigChange(config) {
+    this.setState({
+      user: config.user
+    });
   },
 
   foldHandler() {
@@ -100,6 +112,7 @@ const BorderMenu = createClass({
 
     let org = this.context.organization || OrganizationStore.items[0];
     let menuClass = " bt-menu-open";
+
     return (
       <div className="leftbar clearfix">
         <div className="op-info-left-panel clearfix">
@@ -109,7 +122,7 @@ const BorderMenu = createClass({
                 <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/org-logo-normal.png`}
                      className="op-avatar"/>
                 <div className="username-info">
-                  <div>John.Smith</div>
+                  <div>{this.state.user.name}</div>
                   <div className="font-bold user-link">用户权限</div>
                 </div>
               </a>
