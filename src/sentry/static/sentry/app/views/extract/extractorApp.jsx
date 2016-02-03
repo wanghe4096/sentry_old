@@ -267,8 +267,8 @@ const ExtractorRole = React.createClass({
     return (
       <div className="role-layer">
         <div className="layer-backdrop"></div>
-        <button type="button" className="close close-overlay-btn" onClick={this.props.closeHandler}>
-          {t('fold')}
+        <button type="button" className="close-overlay-btn" onClick={this.props.closeHandler}>
+          <span className="fa fa-chevron-up"></span>
         </button>
         <div className="layer-head">
           <h5 className="tit">{this.props.action} Role</h5>
