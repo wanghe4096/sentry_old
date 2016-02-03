@@ -23,8 +23,13 @@ const BorderMenu = createClass({
     return {
       app: [
         {
-          path: 'events',
+          path: 'home',
           iconClassName: 'fa fa-home',
+          title: t('Home')
+        },
+        {
+          path: 'events',
+          iconClassName: 'fa fa-bug',
           title: t('Events')
         },
         {
@@ -32,11 +37,6 @@ const BorderMenu = createClass({
           iconClassName: 'fa fa-database',
           title: t('Log storage')
         },
-        // {
-        //   path: 'extract',
-        //   iconClassName: 'fa fa-random',
-        //   title: t('Log extract')
-        // },
         {
           path: 'search',
           iconClassName: 'fa fa-search',
