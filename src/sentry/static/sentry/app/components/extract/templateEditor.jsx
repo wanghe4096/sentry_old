@@ -135,12 +135,7 @@ const TemplateEditor = React.createClass({
     }
 
     return (
-      <div className="template-editor">
-        <div ref="editor" className="editor"></div>
-        <button type="button" className="btn btn-default btn-sm btn-save" onClick={this.saveHandler}>
-          {t('Save Role')}
-        </button>
-      </div>
+      <div ref="editor" className="template-editor"></div>
     )
   }
 });

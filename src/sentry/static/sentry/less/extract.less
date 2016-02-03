@@ -13,10 +13,6 @@
 }
 
 .sa-extract {
-  .CodeMirror {
-    height: auto;
-  }
-
   .laert {
     border: none;
     box-shadow: none;
@@ -130,49 +126,6 @@
     .events-view {
       position: relative;
       overflow-x: auto;
-
-      //ul {
-      //  position: relative;
-      //  padding: 5px 0 0;
-      //  margin: 10px 0 0;
-      //}
-      //.gutters {
-      //  position: absolute;
-      //  left: 0;
-      //  top: 0;
-      //  bottom: 0;
-      //  width: 38px;
-      //  border-right: 1px solid #ddd;
-      //  background-color: #f7f7f7;
-      //  white-space: nowrap;
-      //}
-      //.event-item {
-      //  list-style: none;
-      //  margin: 10px 10px 10px 50px;
-      //  padding: 0;
-      //  .line{
-      //    position: absolute;
-      //    left:0;
-      //    padding: 0 3px 0 5px;
-      //    width: 28px;
-      //    text-align: right;
-      //    color: #999;
-      //    white-space: nowrap;
-      //  }
-      //  .code {
-      //    font-size: 13px;
-      //    line-height: 1.4;
-      //    white-space: nowrap;
-      //  }
-      //}
-
-      .load-more {
-        padding: 50px 0 100px;
-        text-align: center;
-        .more-btn {
-          padding: 8px 50px;
-        }
-      }
     }
 
     .chart-wrap {
@@ -181,65 +134,63 @@
 
   }
 
-  .extract-role-overlay {
+  .role-layer {
     position: fixed;
-    top:0;
+    top: 0;
     right: 0;
-    left:0;
+    left: 50px;
+    padding: 0 15px 0 30px;
     z-index: 5;
+
+    &.overlay-enter {
+      transform: translate3d(0, -100%, 0);
+    }
+
+    &.overlay-enter-active {
+      transition: transform .35s ease-out;
+      transform: none;
+    }
+
+    &.overlay-leave {
+      transform: none;
+    }
+
+    &.overlay-leave-active {
+      transition: transform .5s;
+      transform: translate3d(0, -100%, 0);
+    }
+
+    .layer-backdrop {
+      display: block;
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      background: #eee;
+      opacity: .95;
+    }
+
     .close-overlay-btn {
       position: absolute;
-      right: 15px;
-      top: 10px;
-      z-index: 5;
+      left: 50%;
+      bottom: -25px;
+      margin-left: -90px;
+      padding: 0 80px;
+      border: 1px solid #ccc;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px;
+      border-top: 0;
       background: #eee;
       color: #333;
-      padding: 0 9px;
-      border: 1px solid #ccc;
-    }
-    //.extract-role-ani-enter{
-    //  transition: transform 30s ease-in;
-    //}
-    &>div{
-      position: absolute;
-      top:-350px;
-      right: 0;
-      left: 50px;
-      background-color: #eee;
       z-index: 5;
-      //opacity:0.01;
+      outline: none;
     }
-  }
 
-  .extract-role-ani-enter {
-    //top:0;
-    transition: all 5s ease-in;
-    transform: translateY(350px);
-    //background: red;
-  }
-
-  .extract-role-ani-enter.extract-role-ani-enter-active {
-    opacity:1;
-    transform: translateY(0);
-    //background: blue;
-  }
-
-  .extract-role-ani-leave {
-    transition: all 500ms ease;
-    transform: translateY(0) translateZ(0);
-  }
-
-  .extract-role-ani-leave.extract-role-ani-leave-active {
-    transform: translateY(-350px) translateZ(0);
-  }
-
-  .extract-role {
-    position: relative;
-    padding: 0 15px 20px 30px;
-
-    .panel-head {
+    .layer-head {
+      position: relative;
       padding: 10px 0;
-      .panel-tit {
+      .tit {
         padding: 0;
         margin: 0;
         text-transform: capitalize;
@@ -249,14 +200,23 @@
     .control-buttons {
       position: relative;
       //margin: 15px 0 0;
-      border-bottom: 1px solid #ccc;
+      //border-bottom: 1px solid #ccc;
       padding-bottom: 15px;
+    }
+
+    .box {
+      background: #fff !important;
+      border: 1px solid #D6DBE4 !important;
+      border-radius: 3px !important;
+      margin: 0 0 20px !important;
+      box-shadow: 0 1px 0 rgba(0, 0, 0, 0.03) !important;
     }
 
     .template-chart-wrap {
       position: relative;
       width: 400px;
       height: 100%;
+      background-color: #fff;
     }
 
     .template-editor-wrap {
@@ -266,18 +226,9 @@
       .template-editor {
         position: relative;
         height: 100%;
-        .editor {
-          //margin-right: 140px;
+        border-right: #ddd;
+        .CodeMirror {
           height: 100%;
-          border-right: #ddd;
-          .CodeMirror {
-            height: 100%;
-          }
-        }
-        .btn-save {
-          position: absolute;
-          top: -35px;
-          right: -1px;
         }
       }
 
