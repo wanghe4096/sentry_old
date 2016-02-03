@@ -42,17 +42,6 @@ const ResultTable = React.createClass({
         }
         return {};
     },
-    expandAll() {
-        // If more than 30% of the messages are being expanded, show a loading indicator
-        //const expandedChangeRatio = (this.props.messages.length - this.state.expandedMessages.size) / 100;
-        //const renderLoadingIndicator = expandedChangeRatio > 0.3;
-        //
-        //const newSet = Immutable.Set(this.props.messages.map((message) => message.id));
-        //this.setState({expandedMessages: newSet, expandAllRenderAsync: renderLoadingIndicator});
-    },
-    collapseAll() {
-        this.setState({expandedMessages: Immutable.Set()});
-    },
     _handleSort(e, field, order) {
         e.preventDefault();
         SearchStore.sort(field, order);
@@ -75,10 +64,14 @@ const ResultTable = React.createClass({
         return <span>{sortLinks}</span>;
     },
     expandAll: function () {
-        console.log("1");
+        const expandedChangeRatio = (this.props.messages.length - this.state.expandedMessages.size) / 100;
+        const renderLoadingIndicator = expandedChangeRatio > 0.3;
+
+        const newSet = Immutable.Set(this.props.messages.map((message) => message.id));
+        this.setState({expandedMessages: newSet, expandAllRenderAsync: renderLoadingIndicator});
     },
     collapseAll: function () {
-        console.log("2");
+        this.setState({expandedMessages: Immutable.Set()});
     },
     _toggleMessageDetail(id) {
         let newSet;
@@ -94,7 +87,7 @@ const ResultTable = React.createClass({
         var selectedColumns = this._fieldColumns();
         return (
             <div className="content-col">
-                <h1 className="pull-left">日志</h1>
+                <h4 className="pull-left">日志</h4>
 
                 <ButtonGroup bsSize='small' className="pull-right">
                     <Button title="展开所有日志" onClick={this.expandAll}><i

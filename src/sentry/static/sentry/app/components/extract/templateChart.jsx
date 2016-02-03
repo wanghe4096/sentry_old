@@ -122,7 +122,7 @@ const TemplateChart = React.createClass({
 
     if (!this.state.data.length) {
       return (
-        <div className="box empty-stream">
+        <div className="empty-stream">
           <span className="icon icon-exclamation"/>
           <p>{t('Sorry, not found.')}</p>
         </div>

@@ -16,7 +16,7 @@ require('!script!../../../public/javascripts/bootstrap.min.js');
 const SearchResult = React.createClass({
     getInitialState() {
         //const initialFields = SearchStore.fields;
-        const initialFields = Immutable.Map({message: 'message', source: 'source'});
+        const initialFields = Immutable.Map({message: 'message'});
         SearchStore.fields = initialFields;
         return {
             selectedFields: this.sortFields(initialFields),
@@ -41,18 +41,7 @@ const SearchResult = React.createClass({
     },
 
     _fields() {
-        return [
-            {name: "action"},
-            {name: "controller"},
-            {name: "http_method"},
-            {name: "http_response_code"},
-            {name: "message"},
-            {name: "method"},
-            {name: "resource"},
-            {name: "source"},
-            {name: "took_ms"},
-            {name: "user_id"},
-        ];
+        return this.props.result[this.state.showAllFields ? 'all_fields' : 'fields'];
     },
 
     predefinedFieldSelection: function (setName) {
@@ -61,7 +50,7 @@ const SearchResult = React.createClass({
         } else if (setName === 'all') {
             this.updateSelectedFields(Immutable.Set(this._fields().map(field => field.name)));
         } else if (setName === 'default') {
-            this.updateSelectedFields(Immutable.Set(['message', 'source']));
+            this.updateSelectedFields(Immutable.Set(['message']));
         }
     },
 
@@ -89,7 +78,6 @@ const SearchResult = React.createClass({
         this.refs.fieldQuickValuesComponent.addFieldQuickValues(field);
     },
     addFieldStatistics(field) {
-        debugger;
         this.refs.fieldStatisticsComponent.addFieldStatistics(field);
     },
     onFieldToggled(fieldName) {
@@ -104,7 +92,7 @@ const SearchResult = React.createClass({
     },
     render(){
         return (
-            <div id="main-content-search" className="row">
+            <div id="main-content-search" className="">
                 <div ref="opa" className="col-md-3 col-sm-12" id="sidebar">
                     <div ref="oma" id="sidebar-affix">
                         <SearchSidebar fields={this._fields()}

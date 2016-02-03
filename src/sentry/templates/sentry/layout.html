@@ -157,49 +157,54 @@
     </header>
     {% endblock %}
 
-    {% if organization and request.user.is_authenticated and project %}
-    {% block sub-header %}
-    <div class="sub-header">
-      <div class="container">
-        <div class="pull-right">
-          {% block header_action %}{% endblock %}
+    <div class="sub-app">
+
+      {% if organization and request.user.is_authenticated and project %}
+      {% block sub-header %}
+      <div class="sub-header">
+        <div class="container">
+          <div class="pull-right">
+            {% block header_action %}{% endblock %}
+          </div>
+          <div id="blk_projectselect"></div>
+          <script>
+            $(function(){
+              ReactDOM.render(React.createFactory(Sentry.ProjectSelector)({
+                        organization: {% serialize_detailed_org organization %},
+              projectId: '{{ project.slug }}'
+            }), document.getElementById('blk_projectselect'));
+            });
+          </script>
         </div>
-        <div id="blk_projectselect"></div>
-        <script>
-        $(function(){
-          ReactDOM.render(React.createFactory(Sentry.ProjectSelector)({
-            organization: {% serialize_detailed_org organization %},
-            projectId: '{{ project.slug }}'
-          }), document.getElementById('blk_projectselect'));
-        });
-        </script>
       </div>
-    </div>
-    {% endblock %}
-    {% endif %}
+      {% endblock %}
+      {% endif %}
 
-    <div class="container">
-      {% block above_content %}{% endblock %}
-      <div class="content">
-        {% block content_before %}
-        {% endblock %}
-        {% block content %}
-        <div class="row" id="blk_content">
-          <div class="col-md-2">
-            {% block sidebar %}
-            {% endblock %}
+
+      <div class="container">
+        {% block above_content %}{% endblock %}
+        <div class="content">
+          {% block content_before %}
+          {% endblock %}
+          {% block content %}
+          <div class="row" id="blk_content">
+            <div class="col-md-2">
+              {% block sidebar %}
+              {% endblock %}
+            </div>
+            <div class="col-md-10" id="blk_main">
+              {% block main %}
+              {% endblock %}
+            </div>
           </div>
-          <div class="col-md-10" id="blk_main">
-            {% block main %}
-            {% endblock %}
-          </div>
+
         </div>
         {% endblock %}
-            <H1>{% env 'A' as a %}</H1>
-            {%if a %} <h1> {{a}} </h1> {% endif %}
-
-        {% block content_after %}
-        {% endblock %}
+          <H1>{% env 'A' as a %}</H1>
+          {%if a %} <h1> {{a}} </h1> {% endif %}
+          {% block content_after %}
+          {% endblock %}
+        </div>
       </div>
     </div>
     <!--
