@@ -7,69 +7,205 @@ import SearchStore from 'stores/search/SearchStore';
 import SearchResult from 'components/search/SearchResult';
 import SearchBar from 'components/search/SearchBar';
 import Immutable from 'immutable';
-var json = require('./searchresult.json');
 var historramJson = require('./historram.json');
 var formattedHistogramJson = require('./formattedHistogram.json');
 const SearchIndex = React.createClass({
-    render() {
-        var style = {
-            'marginTop': '30px'
-        };
+        getInitialState: function () {
+            return {
+                result: {
+                    messages: [],
+                    fields: [],
+                    total_results: "",
+                    from: "",
+                    to: "",
+                    all_fields: "",
+                    filter: ""
+                },
+            };
+        },
 
-        var query = "";
-        var builtQuery = "";
+        getQueryString: function (name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null)return unescape(r[2]);
+            return "";
+        },
+        searchLog: function () {
+            var page = this.getQueryString("page");
+            if (page == "") {
+                page = 1;
+            }
+            var query = this.getQueryString("q");
+            $.get("http://192.168.1.80:9200/user02-2016.01.29", function (result) {
+                let obj = {};
+                obj.messages = [];
+                obj.fields = [];
+                obj.total_results = [];
+                obj.from = "";
+                obj.to = "";
+                obj.all_fields = [];
+                filter: "";
+                for (var key in result["user02-2016.01.29"].mappings["oneapm-nginx-access-geoip"].properties) {
+                    if (key.startsWith("@") == false && key != "geoip") {
+                        obj.fields.push({name: key, standard_selected: false});
+                        obj.all_fields.push({name: key, standard_selected: false});
+                    }
+                }
 
-        var searchResult = json;
-        //if (searchResult) {
-        //    searchResult = JSON.parse(searchResult);
-        //}
+                var data = {};
 
-        var histogram = historramJson;
-        //if (histogram) {
-        //    histogram = JSON.parse(histogram);
-        //}
+                var url = "http://192.168.1.80:9200/user02-2016.01.29/_search?from=" + page;
+                if (query != "") {
+                    url += "&q=" + query;
+                }
 
-        var formattedHistogram = formattedHistogramJson;
-        //if (formattedHistogram) {
-        //    formattedHistogram = JSON.parse(formattedHistogram);
-        //}
+                if (this.getQueryString("startDate") != "" && this.getQueryString("endDate") == "") {
+                    data = {
+                        "query": {
+                            "filtered": {
+                                "filter": {
+                                    "range": {
+                                        "@timestamp": {
+                                            "gte": this.getQueryString("startDate"),
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else if (this.getQueryString("startDate") == "" && this.getQueryString("endDate") != "") {
+                    data = {
+                        "query": {
+                            "filtered": {
+                                "filter": {
+                                    "range": {
+                                        "@timestamp": {
+                                            "lte": this.getQueryString("endDate")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else if (this.getQueryString("startDate") == "" && this.getQueryString("endDate") != "") {
+                    data = {
+                        "query": {
+                            "filtered": {
+                                "filter": {
+                                    "range": {
+                                        "@timestamp": {
+                                            "gte": this.getQueryString("startDate"),
+                                            "lte": this.getQueryString("endDate")
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                } else {
+                    data = {query: {match_all: {}}}
+                }
+                var str = JSON.stringify(data);
+                $.post(url, str, function (searchResult) {
+                    obj.total_results = searchResult.hits.total;
+                    for (var i = 0; i < searchResult.hits.hits.length; i++) {
+                        var fieldObj = {};
+                        for (var key in searchResult.hits.hits[i]._source) {
+                            fieldObj[key] = searchResult.hits.hits[i]._source[key];
+                        }
+                        obj.messages.push({
+                            id: searchResult.hits.hits[i]._id,
+                            timestamp: searchResult.hits.hits[0]._source['timestamp'],
+                            filtered_fields: fieldObj,
+                            formatted_fields: fieldObj,
+                            fields: fieldObj,
+                            index: searchResult.hits.hits[i]._index,
+                            source_node_id: "",
+                            source_input_id: "",
+                            stream_ids: [],
+                            highlight_ranges: null
+                        })
+                    }
+                    this.setState({
+                        result: obj,
+                    });
+                }.bind(this));
+                //$.ajax({
+                //    context: this,
+                //    url: url,
+                //    'type': 'POST',
+                //    'data': str,
+                //    'contentType': 'application/json',
+                //    success: function (searchResult) {
+                //
+                //    }
+                //});
 
-        var streams = "[]";
-        if (streams) {
-            streams = JSON.parse(streams);
+            }.bind(this));
+        },
+        componentDidMount()
+        {
+            this.searchLog()
         }
+        ,
+        render()
+        {
+            var style = {
+                'marginTop': '20px'
+            };
+            var query = "";
+            var builtQuery = "";
 
-        var inputs = "[]";
-        if (inputs) {
-            inputs = JSON.parse(inputs);
-        }
+            var searchResult = this.state.result;
 
-        var nodes = "[]";
-        if (nodes) {
-            nodes = JSON.parse(nodes);
-        }
+            var histogram = historramJson;
+            //if (histogram) {
+            //    histogram = JSON.parse(histogram);
+            //}
 
-        var searchInStream = "[]";
-        if (searchInStream) {
-            searchInStream = JSON.parse(searchInStream);
-            SearchStore.searchInStream = searchInStream;
+            var formattedHistogram = formattedHistogramJson;
+            //if (formattedHistogram) {
+            //    formattedHistogram = JSON.parse(formattedHistogram);
+            //}
+
+            var streams = "[]";
+            if (streams) {
+                streams = JSON.parse(streams);
+            }
+
+            var inputs = "[]";
+            if (inputs) {
+                inputs = JSON.parse(inputs);
+            }
+
+            var nodes = "[]";
+            if (nodes) {
+                nodes = JSON.parse(nodes);
+            }
+
+            var searchInStream = "[]";
+            if (searchInStream) {
+                searchInStream = JSON.parse(searchInStream);
+                SearchStore.searchInStream = searchInStream;
+            }
+
+            return (
+                <div id="main-content-search" style={style} className="row">
+                    <SearchBar/>
+                    <SearchResult query={query}
+                                  builtQuery={builtQuery}
+                                  result={searchResult}
+                                  histogram={histogram}
+                                  formattedHistogram={formattedHistogram}
+                                  streams={Immutable.Map(streams)}
+                                  inputs={Immutable.Map(inputs)}
+                                  nodes={Immutable.Map(nodes)}
+                                  searchInStream={searchInStream}
+                    />
+                </div>
+            );
         }
-        return (
-            <div id="main-content-search" style={style} className="row">
-                <SearchBar/>
-                <SearchResult query={query}
-                              builtQuery={builtQuery}
-                              result={searchResult}
-                              histogram={histogram}
-                              formattedHistogram={formattedHistogram}
-                              streams={Immutable.Map(streams)}
-                              inputs={Immutable.Map(inputs)}
-                              nodes={Immutable.Map(nodes)}
-                              searchInStream={searchInStream}
-                />
-            </div>
-        );
-    }
-});
+    })
+    ;
 
 export default SearchIndex;

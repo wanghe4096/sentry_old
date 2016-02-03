@@ -11,6 +11,9 @@ import UIUtils from '../../utils/UIUtils';
 import momentHelper from '../../legacy/moment-helper.js';
 import SavedSearchesActions from 'actions/search/SavedSearchesActions';
 
+var DatePicker = require('react-datepicker');
+require('react-datepicker/dist/react-datepicker.css');
+
 const SearchBar = React.createClass({
     _queryChanged: function () {
         SearchStore.query = this.refs.query.getValue();
@@ -19,31 +22,53 @@ const SearchBar = React.createClass({
     getInitialState() {
         this.initialSearchParams = SearchStore.getParams();
         return {
+            startDate: "",
+            endDate: "",
             query: this.initialSearchParams.query,
         };
     },
+    handleEndDateChange: function (date) {
+        this.setState({
+            endDate: date
+        });
+    },
+    handleChange: function (date) {
+        this.setState({
+            startDate: date
+        });
+    },
     render() {
         return (
-            <div className="row no-bm">
-                <div className="col-md-12" id="universalsearch-container">
+            <div className="no-bm">
+                <div className="col-md-12 searchbar no-p-l-r" id="universalsearch-container">
                     <form ref="searchForm"
                           className="universalsearch-form"
                           action=""
                           method="GET"
                           onSubmit={this._prepareSearch}>
-                        <div id="search-container">
-                            <Button type="submit" bsStyle="success" className="pull-left">
-                                <i className="fa fa-search"></i>
-                            </Button>
 
-                            <div className="col-md-11">
+                        <div id="search-container">
+                            <div className="col-md-12 searchbar no-p-l-r" id="universalsearch-container">
+                                <div className="col-md-2">
+                                    <span>开始时间</span><DatePicker name="startDate" onChange={this.handleChange}
+                                                                 selected={this.state.startDate}/>
+                                </div>
+                                <div className="col-md-2">
+                                    结束时间<DatePicker name="endDate" onChange={this.handleEndDateChange}
+                                                    selected={this.state.endDate}/>
+                                </div>
+                            </div>
+                            <div className="col-md-12">
                                 <Input type="text"
                                        ref="query"
                                        name="q"
                                        value={this.state.query}
                                        onChange={this._queryChanged}
-                                       placeholder=""/>
+                                       placeholder="search"/>
                             </div>
+                            <Button type="submit" bsStyle="success" className="pull-left">
+                                <i className="fa fa-search"></i>
+                            </Button>
                         </div>
                     </form>
                 </div>
