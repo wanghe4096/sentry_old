@@ -6,10 +6,7 @@ from oauth2_provider.compat import urlencode
 from oauth2_provider.views.generic import ProtectedResourceView
 
 from .forms import ConsumerForm, ConsumerExchangeForm, AccessTokenDataForm
-import requests
-import base64
-
-import json
+from django.conf import settings
 from collections import namedtuple
 
 ApiUrl = namedtuple('ApiUrl', 'name, url')
@@ -23,40 +20,22 @@ class ConsumerExchangeView(FormView):
     template_name = 'example/consumer-exchange.html'
 
     def get(self, request, *args, **kwargs):
-        print 'data ===', request.GET
         try:
             self.initial = {
                 'code': request.GET['code'],
                 'state': request.GET['state'],
+                'client_id': settings.LOGINSIGHT_CLIENT_ID,
+                'client_secret': settings.LOGINSIGHT_CLIENT_SECRET,
+                'token_url': settings.TOKEN_URL,
                 'redirect_url': request.build_absolute_uri(reverse('oauth-consumer-exchange'))
             }
-            # print 'initial ===', self.initial
-            # token_url = "http://localhost:8000/o/token/"
-            # code = request.GET['code']
-            # response_type='token'
-            # redirect_url = "http://localhost:8000/consumer/exchange/"
-            # client_id = 'Lzi9whmRK@;h2v0Kew_lj.8ciQPeOE5BkT!h37iU'
-            # client_secret = 'CFIMgSWdCxii5Bf?z459Yp=Y5oGAU73IVD9IoJVGaM!f02UxjqXiL7RZqLLanYb0!uDQZuwkr=tN2N1DAzaugGIDN:WBj:.zqJ9BOlzkpZFc=u3V5?6GoSRF4AS8h6Qt'
-            # headers = {'Authorization': "Basic " + base64.b64encode(client_id + ":" + client_secret)}
-            # print 'header ===', headers
-            # r = requests.post(token_url, auth=('admin', 'admin'), data = { 'code': code, 'redirect_uri': redirect_url, 'grant_type': "authorization_code"}, headers=headers)
-            # print 'fffffffff====', r.status_code, r.text
         except KeyError:
             kwargs['noparams'] = True
 
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         return self.render_to_response(self.get_context_data(form=form, **kwargs))
-        # resp = """
-        #  <li> client_id : %s </li>
-        #  <li> client_secret : %s </li>
-        #  <li> redirect url: %s </li>
-        #  <li> token url : %s </li>
-        #  <li> header : %s </li>
-        #  <hr>
-        #  %s
-        # """ %(client_id, client_secret, redirect_url, token_url, headers, r.text)
-        # return HttpResponse(resp)
+
 
 
 class ConsumerView(FormView):

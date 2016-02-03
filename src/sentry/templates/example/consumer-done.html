@@ -8,7 +8,7 @@
   </div>
 
   {% if form %}
-    <form method="post" role="form">
+    <form method="post" role="form" action="/oauth/consumer/done/">
       {{ form.non_field_errors }}
 
       <div class="col-sm-6">
@@ -37,7 +37,7 @@
           class="form-control" type="text" value="{{ form.refresh_token.value }}" readonly />
         </div>
       </div>
-      
+
       <div class="col-sm-5 col-sm-offset-1">
         <div class="row">
           <p>

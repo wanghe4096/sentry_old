@@ -693,6 +693,8 @@ SENTRY_INTERFACES = {
     'sentry.interfaces.Csp': 'sentry.interfaces.csp.Csp',
 }
 
+STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
+
 # Should users without superuser permissions be allowed to
 # make projects public
 SENTRY_ALLOW_PUBLIC_PROJECTS = True

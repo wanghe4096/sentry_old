@@ -148,9 +148,9 @@ SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 # storage server #
 ##################
 
-#loginsight storage server url
+#loginsight storage server api url
 
-STORAGE_SERVER = 'http://localhost:8000'
+STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
 
 ##################
 # oauth client   #

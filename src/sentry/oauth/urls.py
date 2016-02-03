@@ -57,7 +57,7 @@ urlpatterns = patterns(
     url(r'^o/', include('oauth2_provider.urls', namespace='oauth2_provider')),
 
     # api stuff to test server functionalities
-    url(r'^apiclient$', ApiClientView.as_view(), name='api-client'),
+    url(r'^apiclient/$', ApiClientView.as_view(), name='api-client'),
     url(r'^api/hello$', ApiEndpoint.as_view(), name='Hello'),
 
     # api v1
