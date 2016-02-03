@@ -14,7 +14,6 @@ import {Link,IndexLink} from 'react-router';
 import {t} from 'app/locale';
 import _ from 'underscore';
 import OrganizationState from 'mixins/organizationState';
-
 import TimeRange  from 'components/extract/timeRange';
 import LoadingIndicator from 'components/loadingIndicator';
 import LoadingError from 'components/loadingError';
@@ -88,20 +87,6 @@ const ExtractorApp = React.createClass({
 
   unfoldHandler() {
 
-    const org = this.getOrganization();
-    const {streamId,action} = this.props.params;
-    //const rolePath = `/${org.slug}/extract/${streamId}/${action}/role/`;
-    //const isRoleActive = this.props.history.isActive(rolePath);
-    //
-    //!isRoleActive && this.props.history.pushState(null, rolePath);
-
-    // runing 状态必须在此更改为true,除非action内可以设置 status store
-    //ExtractorStatusActions.setRuningStatus(true);
-    //
-    //setTimeout(() => {
-    //  ExtractorActions.run(this.state.streamId, this.state.action);
-    //}, 0)
-
     this.setState({
       showOverlay: true
     })
@@ -109,11 +94,6 @@ const ExtractorApp = React.createClass({
   },
 
   renderControlView() {
-
-    const org = this.getOrganization();
-    const {streamId,action} = this.props.params;
-
-    const basePath = `/${org.slug}/extract/${streamId}/${action}`;
 
     return (
       <div className="control-group clearfix">
@@ -129,29 +109,31 @@ const ExtractorApp = React.createClass({
   },
 
   renderBody() {
-    if (!this.state.isRuned) {
+
+    if (this.state.showOverlay && this.state.isRuned) {
+      switch (this.state.action) {
+        case 'structure':
+          return (
+            <StructureTemplateList />
+          );
+          break;
+        case 'grok':
+          return (
+            <div><h1>grok</h1></div>
+          );
+          break;
+        case 'reg':
+          return (
+            <div><h1>reg</h1></div>
+          );
+          break;
+      }
+    } else {
       return (
         <EventList />
       );
     }
 
-    switch (this.state.action) {
-      case 'structure':
-        return (
-          <StructureTemplateList />
-        );
-        break;
-      case 'grok':
-        return (
-          <div><h1>grok</h1></div>
-        );
-        break;
-      case 'reg':
-        return (
-          <div><h1>reg</h1></div>
-        );
-        break;
-    }
   },
 
   render() {
@@ -230,10 +212,6 @@ const ExtractorRole = React.createClass({
     });
   },
 
-  //closeBtnHandler() {
-  //  ExtractorStatusActions.setRunedStatus(false);
-  //},
-
   keyDownHandler(evt){
     if (evt.keyCode === 27) {
       this.props.closeHandler();
@@ -246,6 +224,7 @@ const ExtractorRole = React.createClass({
 
   componentWillUnmount() {
     $(document).off('keydown', this.keyDownHandler);
+    ExtractorStatusActions.setRunedStatus(false);
   },
 
   runHandler() {
