@@ -10,7 +10,7 @@ require('!script!../../../public/javascripts/bootstrap.min.js');
 
 var Page = React.createClass({
     render() {
-        var className = "btn";
+        var className = "";
         if (this.props.isActive) {
             className += "active";
         }

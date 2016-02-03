@@ -76,8 +76,8 @@ const FieldQuickValues = React.createClass({
                         <Button bsSize="small"
                                 onClick={() => this._toggleAutoReload()}>{this.state.autoReload ? "Stop reloading" : "Reload automatically"} </Button>
                     </div>
-                    <h1>Quick Values for {this.state.field} {this.state.loadPending && <i
-                        className="fa fa-spin fa-spinner"></i>}</h1>
+                    <h4>Quick Values for {this.state.field} {this.state.loadPending && <i
+                        className="fa fa-spin fa-spinner"></i>}</h4>
 
                     <div style={{maxHeight: 400, overflow: 'auto', marginTop: 10}}>{inner}</div>
                 </div>

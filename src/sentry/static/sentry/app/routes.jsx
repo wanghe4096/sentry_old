@@ -44,7 +44,7 @@ import ExtractApp from 'views/extract/extractApp';
 import ExtractIndex from 'views/extract/extractIndex';
 import ExtractorApp from 'views/extract/extractorApp'
 import ExtractorEvents from 'views/extract/extractorEvents';
-
+import HomeApp from 'views/homeApp';
 import OrganizationStore from 'stores/organizationStore';
 
 function appendTrailingSlash(nextState, replaceState) {
@@ -64,6 +64,10 @@ let routes = (
 
     <Redirect from="/events" to={defaultOrg.slug+'/events'}/>
     <Redirect from="/storage" to={defaultOrg.slug+'/storage'}/>
+    <Redirect from="/search" to={defaultOrg.slug+'/search'}/>
+    <Redirect from="/home" to={defaultOrg.slug+'/home'} />
+    <Redirect from="/streamtype" to={defaultOrg.slug+'/streamtype'} />
+
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/"/>
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails}/>
 
@@ -78,7 +82,9 @@ let routes = (
       }
       <Route path="/organizations/:orgId/stats/" component={OrganizationStats}/>
 
-      <IndexRedirect to="events"/>
+      <IndexRedirect to="home"/>
+
+      <Route path="home" component={HomeApp} />
 
       <Route path="storage" component={StorageApp}>
         <IndexRoute component={StorageIndex}/>
@@ -97,6 +103,9 @@ let routes = (
 
       <Route path="search" component={SearchApp}>
         <IndexRoute component={SearchIndex}/>
+      </Route>
+
+      <Route path="home" component={HomeApp} >
       </Route>
 
       <Route path="events" component={EventsIndex}>

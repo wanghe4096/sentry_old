@@ -64,10 +64,10 @@ const MessageTableEntry = React.createClass({
         }
     },
     _getFormattedTime(){
-        if (this.formattedTime === undefined) {
-            this.formattedTime = momentHelper.toUserTimeZone(this.props.message.fields['timestamp']).format('YYYY-MM-DD HH:mm:ss.SSS');
-        }
-
+        //if (this.formattedTime === undefined) {
+        //    this.formattedTime = momentHelper.toUserTimeZone(this.props.message.fields['timestamp']).format('YYYY-MM-DD HH:mm:ss.SSS');
+        //}
+        this.formattedTime = this.props.message.fields['timestamp'];
         return this.formattedTime;
     },
     _toggleDetail(){

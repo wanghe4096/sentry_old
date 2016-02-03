@@ -14,7 +14,6 @@ import {Link,IndexLink} from 'react-router';
 import {t} from 'app/locale';
 import _ from 'underscore';
 import OrganizationState from 'mixins/organizationState';
-
 import TimeRange  from 'components/extract/timeRange';
 import LoadingIndicator from 'components/loadingIndicator';
 import LoadingError from 'components/loadingError';
@@ -31,6 +30,8 @@ import ExtractorTemplateStore from 'stores/extract/extractorTemplateStore'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
 import TemplateChart from 'components/extract/templateChart';
 import TemplateEditor from 'components/extract/templateEditor';
+import StructureTemplateList from 'components/extract/structureTemplateList'
+import AlertActions from 'actions/alertActions';
 
 const ExtractorCss = require('css/extract.less');
 
@@ -44,7 +45,8 @@ const ExtractorApp = React.createClass({
   ],
 
   getInitialState() {
-
+    window.sss = this;
+    window.xx = ExtractorStatusActions;
     return {
       streamId: this.props.params.streamId,
       action: this.props.params.action,
@@ -52,11 +54,12 @@ const ExtractorApp = React.createClass({
       loading: false,
       isRuned: false,
       isRuning: false, // running 与 loading 是两个概念!!
+      showOverlay: false
     }
   },
 
   componentWillMount() {
-    ExtractorCss.use()
+    ExtractorCss.use();
     this.setState({
       loading: true
     });
@@ -82,57 +85,55 @@ const ExtractorApp = React.createClass({
     });
   },
 
-  runBtnHandler() {
+  unfoldHandler() {
 
-    const org = this.getOrganization();
-    const {streamId,action} = this.props.params;
-    //const rolePath = `/${org.slug}/extract/${streamId}/${action}/role/`;
-    //const isRoleActive = this.props.history.isActive(rolePath);
-    //
-    //!isRoleActive && this.props.history.pushState(null, rolePath);
-
-    // runing 状态必须在此更改为true,除非action内可以设置 status store
-    ExtractorStatusActions.setRuningStatus(true);
-
-    setTimeout(() => {
-      ExtractorActions.run(this.state.streamId, this.state.action);
-    }, 0)
+    this.setState({
+      showOverlay: true
+    })
 
   },
 
   renderControlView() {
 
-    const org = this.getOrganization();
-    const {streamId,action} = this.props.params;
-
-    const basePath = `/${org.slug}/extract/${streamId}/${action}`;
-
     return (
       <div className="control-group clearfix">
         <div className="btn-toolbar pull-right">
-          <div className="btn-group btn-group-sm tab-btn">
-            <IndexLink className="btn btn-default" to={`${basePath}/`} activeClassName="btn-primary">
-              {t('Events')}
-            </IndexLink>
-            <Link className="btn btn-default " to={`${basePath}/role`} activeClassName="btn-primary">
-              {t('Role')}
-            </Link>
-          </div>
-          { this.state.isRuning ?
-            (
-              <button className="btn btn-sm btn-run" disabled>{t('Runing')}</button>
-            ) :
-            (
-              <button
-                onClick={this.runBtnHandler}
-                className="btn btn-sm btn-success btn-run"
-              >{t('Run')}</button>
-            )
-          }
+          <button
+            onClick={this.unfoldHandler}
+            className="btn btn-sm btn-primary btn-run"
+          >{t('Role')}</button>
         </div>
         <TimeRange />
       </div>
     )
+  },
+
+  renderBody() {
+
+    if (this.state.showOverlay && this.state.isRuned) {
+      switch (this.state.action) {
+        case 'structure':
+          return (
+            <StructureTemplateList />
+          );
+          break;
+        case 'grok':
+          return (
+            <div><h1>grok</h1></div>
+          );
+          break;
+        case 'reg':
+          return (
+            <div><h1>reg</h1></div>
+          );
+          break;
+      }
+    } else {
+      return (
+        <EventList />
+      );
+    }
+
   },
 
   render() {
@@ -159,15 +160,17 @@ const ExtractorApp = React.createClass({
       <DocumentTitle title="extractor">
         <div className="extractor-container">
           <ReactCSSTransitionGroup
-            transitionName="extract-role-ani"
-            className="extract-role-overlay"
-            //transitionAppear={true}
-            transitionEnterTimeout={5000}
+            transitionName="overlay"
+            transitionEnterTimeout={350}
             transitionLeaveTimeout={500}
           >
             {
-              this.state.isRuned && (
-                <ExtractorRole action={action}/>
+              this.state.showOverlay && (
+                <ExtractorRole
+                  closeHandler={() => { this.setState({showOverlay:false}) }}
+                  streamId={streamId}
+                  action={action}
+                />
               )
             }
           </ReactCSSTransitionGroup>
@@ -182,7 +185,7 @@ const ExtractorApp = React.createClass({
             <div className="chart-view box">
               <EventChart streamId={streamId} action={action}/>
             </div>
-            <EventList />
+            { this.renderBody() }
           </div>
         </div>
       </DocumentTitle>
@@ -191,39 +194,108 @@ const ExtractorApp = React.createClass({
 });
 
 const ExtractorRole = React.createClass({
+  mixins: [
+    Reflux.listenTo(ExtractorStatus, 'onStatusChange')
+  ],
 
-  closeBtnHandler() {
+  getInitialState() {
+    return {
+      isRuning: false,
+      isRuned: false
+    }
+  },
+
+  onStatusChange(status) {
+    this.setState({
+      isRuning: status.isRuning,
+      isRuned: status.isRuned
+    });
+  },
+
+  keyDownHandler(evt){
+    if (evt.keyCode === 27) {
+      this.props.closeHandler();
+    }
+  },
+
+  componentDidMount() {
+    $(document).on('keydown', this.keyDownHandler);
+  },
+
+  componentWillUnmount() {
+    $(document).off('keydown', this.keyDownHandler);
     ExtractorStatusActions.setRunedStatus(false);
+  },
+
+  runHandler() {
+
+    // runing 状态必须在此更改为true,除非action内可以设置 status store
+    ExtractorStatusActions.setRuningStatus(true);
+
+    setTimeout(() => {
+      ExtractorActions.run(this.props.streamId, this.props.action);
+    }, 0)
+
+  },
+
+  saveHandler() {
+    AlertActions.addAlert(t('Saved!'), 'success');
   },
 
   render() {
     return (
-      <div className="">
-        <div className="extract-role">
-          <div className="panel-head">
-            <h5 className="panel-tit">{this.props.action} Role</h5>
-          </div>
-          <section className="control-buttons clearfix">
-            <button className="btn btn-sm btn-success">Run</button>
+      <div className="role-layer">
+        <div className="layer-backdrop"></div>
+        <button type="button" className="close-overlay-btn" onClick={this.props.closeHandler}>
+          <span className="fa fa-chevron-up"></span>
+        </button>
+        <div className="layer-head">
+          <h5 className="tit">{this.props.action} Role</h5>
+        </div>
+        <section className="control-buttons clearfix">
+          <div className="btn-toolbar">
+            {
+              this.state.isRuning ?
+                (<button className="btn btn-sm btn-run" disabled>{t('Runing')} ...</button>) :
+                (<button className="btn btn-sm btn-success" onClick={this.runHandler}>{t('Run')}</button>)
+            }
+            {
+              this.props.action === 'structure' && (
+                <button className="btn btn-sm btn-default" onClick={this.runHandler}>{t('Auto Extract')}</button>
+              )
+            }
+            <button className="btn btn-sm btn-default" onClick={this.saveHandler}>{t('Save Role')}</button>
             <div className="btn-group btn-group-sm">
-              <button className="btn btn-default">Load</button>
+              <button type="button" className="btn btn-default">{t('Load history')}</button>
+              <button type="button"
+                      className="btn btn-default dropdown-toggle"
+                      data-toggle="dropdown"
+                      aria-haspopup="true"
+                      aria-expanded="false">
+                <span className="caret"/>
+                <span className="sr-only">{t('Show history')}</span>
+              </button>
+              <ul className="dropdown-menu">
+                <li><a href="#">2015-12-13 14:22</a></li>
+                <li><a href="#">2015-12-13 14:22</a></li>
+                <li><a href="#">2015-12-13 14:22</a></li>
+                <li role="separator" className="divider"/>
+                <li><a href="#">2015-12-15 14:22</a></li>
+              </ul>
             </div>
-          </section>
-          <div className="chart-view box">
-            <div className="template-chart-wrap pull-left">
-              <TemplateChart />
-            </div>
-            <div className="template-editor-wrap">
-              <TemplateEditor />
-            </div>
+          </div>
+        </section>
+        <div className="chart-view box">
+          <div className="template-chart-wrap pull-left">
+            <TemplateChart />
+          </div>
+          <div className="template-editor-wrap">
+            <TemplateEditor />
           </div>
         </div>
-        <button type="button" className="close close-overlay-btn" onClick={this.closeBtnHandler}>
-          ×
-        </button>
       </div>
     )
   }
-})
+});
 
 export default ExtractorApp;

@@ -134,9 +134,6 @@ const EventList = React.createClass({
           <div ref="codeView">
             { this.renderBody() }
           </div>
-          <div className="load-more hide">
-            <div className="btn btn-sm btn-default more-btn">{t('Load more')}</div>
-          </div>
         </div>
       </div>
     );

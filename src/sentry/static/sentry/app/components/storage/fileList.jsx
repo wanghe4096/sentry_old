@@ -69,13 +69,13 @@ const FileItem = React.createClass({
           <div className="analytic">
             <ul>
               {
-                analytic.map((s, i) => {
-                  return (
-                    <li className="sl" key={i}>
-                      <div className="s" style={{top:(50-s*5)+'px'}}></div>
-                    </li>
-                  )
-                })
+                //analytic.map((s, i) => {
+                //  return (
+                //    <li className="sl" key={i}>
+                //      <div className="s" style={{top:(50-s*5)+'px'}}></div>
+                //    </li>
+                //  )
+                //})
               }
             </ul>
           </div>
