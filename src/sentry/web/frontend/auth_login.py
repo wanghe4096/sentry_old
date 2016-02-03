@@ -17,6 +17,7 @@ from sentry.utils.auth import get_login_redirect
 from django.conf import settings
 from oauth2_provider.compat import urlencode
 
+from django.contrib.auth.models import User
 
 ERR_NO_SSO = _('The organization does not exist or does not have Single Sign-On enabled.')
 
@@ -56,6 +57,7 @@ class AuthLoginView(BaseView):
         )
 
     def handle_basic_auth(self, request):
+
         can_register = features.has('auth:register') or request.session.get('can_register')
 
         op = request.POST.get('op')
@@ -126,6 +128,7 @@ class AuthLoginView(BaseView):
 
         return HttpResponseRedirect(next_uri)
 
+
     @never_cache
     @transaction.atomic
     def handle(self, request):
@@ -135,10 +138,9 @@ class AuthLoginView(BaseView):
             next_uri = reverse('sentry-auth-organization',
                                args=[org.slug])
             return HttpResponseRedirect(next_uri)
-
         op = request.POST.get('op')
         if op == 'sso' and request.POST.get('organization'):
-            auth_provider = self.get_auth_provider(request.POST['organization'])
+            auth_provider = self.get_auth_provider()
             if auth_provider:
                 next_uri = reverse('sentry-auth-organization',
                                    args=[request.POST['organization']])

@@ -4,11 +4,13 @@ from django.views.generic import FormView, TemplateView, View
 from django.shortcuts import render_to_response
 from oauth2_provider.compat import urlencode
 from oauth2_provider.views.generic import ProtectedResourceView
-
+from django.contrib.auth.models import User
+from django.contrib.auth import login
+import base64
+import requests
 from .forms import ConsumerForm, ConsumerExchangeForm, AccessTokenDataForm
 from django.conf import settings
 from collections import namedtuple
-
 ApiUrl = namedtuple('ApiUrl', 'name, url')
 
 
@@ -29,11 +31,24 @@ class ConsumerExchangeView(FormView):
                 'token_url': settings.TOKEN_URL,
                 'redirect_url': request.build_absolute_uri(reverse('oauth-consumer-exchange'))
             }
+            # data: { code: code, redirect_uri: redirect_url, grant_type: "authorization_code"},
+            # beforeSend: function(request){
+            # request.setRequestHeader("Authorization", "Basic " + btoa(client_id + ":" + client_secret));
+            # },
+
+            headers = {"Authorization", base64.b64encode(settings.LOGINSIGHT_CLIENT_ID + ":" + settings.LOGINSIGHT_CLIENT_SECRET)}
+            resp = requests.post(settings.TOKEN_URL,
+                                 data={'code': request.GET['code'],
+                                       'redirect_uri':  request.build_absolute_uri(reverse('oauth-consumer-exchange')),
+                                       'grant_type': 'authorization_code'}
+                                 )
+            print resp
         except KeyError:
             kwargs['noparams'] = True
 
         form_class = self.get_form_class()
         form = self.get_form(form_class)
+        print 'redirect_uri === ', form
         return self.render_to_response(self.get_context_data(form=form, **kwargs))
 
 

@@ -215,6 +215,8 @@ MIDDLEWARE_CLASSES = (
     'sentry.middleware.social_auth.SentrySocialAuthExceptionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'sentry.debug.middleware.DebugMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 )
 
 ROOT_URLCONF = 'sentry.conf.urls'
@@ -307,7 +309,12 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.bitbucket.BitbucketBackend',
     'social_auth.backends.contrib.trello.TrelloBackend',
     'sentry.utils.auth.EmailAuthBackend',
+    'oauth2_provider.backends.OAuth2Backend',
+
 )
+
+
+
 
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL = 'sentry.User'
 
