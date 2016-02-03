@@ -13,13 +13,14 @@ import LoadingIndicator from 'components/loadingIndicator';
 import LoadingError from 'components/loadingError';
 import {t} from 'app/locale';
 import moment from 'moment';
-
+import {Link, History} from 'react-router';
 import HostStore from 'stores/streamtype/streamtypeStore';
 import HostAction from 'actions/streamtype/hostAction';
 import StreamStore from 'stores/streamtype/streamStore';
 import StreamAction from 'actions/streamtype/streamAction';
 import HmStatusStore from 'stores/streamtype/hostManageStatusStore';
 import HmStatusAction from 'actions/streamtype/hostManageStatusAction';
+import OrganizationState from 'mixins/organizationState';
 
 const StreamTypeItem = React.createClass({
   mixins: [
@@ -60,7 +61,9 @@ const StreamTypeItem = React.createClass({
 // todo:需要考虑stream的分页 ,可能涉及到 Reflux.filter
 const StreamTypeList = React.createClass({
   mixins: [
-    Reflux.connect(StreamStore, 'streamList')
+    Reflux.connect(StreamStore, 'streamList'),
+    History,
+    OrganizationState
   ],
 
   getInitialState() {
@@ -85,6 +88,7 @@ const StreamTypeList = React.createClass({
   },
 
   renderBody() {
+    const that = this;
     if (this.state.loading) {
       return (
         <div className="box">
@@ -121,7 +125,7 @@ const StreamTypeList = React.createClass({
           );
           break;
         case 'extract':
-
+          let org = this.getOrganization();
           return [
             {
               name:'structure',
@@ -140,13 +144,31 @@ const StreamTypeList = React.createClass({
             }
           ].map((n, i) => {
             return (
-              <li className={`list-item streamtype-box`} key={i} onClick={() => {
-
-              }}>
-                <h5 className="item-name box-header">{n.name}</h5>
+              <li className={`list-item streamtype-box`} key={i} >
+                <h5 className="item-name box-header">
+                    <div style={{display:'inline-block',width:200}}>
+                      <input
+                        type="checkbox"
+                        style={{marginRight:10}}
+                        onClick={(e)=>{
+                          $(e.target)
+                            .closest('h5')
+                            .find('.btn')
+                            .toggleClass('btn-default')
+                            .toggleClass('btn-disabled');
+                        }}/>
+                      {n.name}
+                    </div>
+                    <button
+                      type="button"
+                      className="btn btn-sm btn-default"
+                      onClick={() => {
+                        this.history.pushState(null, '/'+org.slug+'/extract/01191919/structure');
+                      }}
+                      > Run</button>
+                </h5>
                 <ul className="clearfix props-list box-content">
-                  <li><input type="checkbox"/></li>
-                  <li><strong>{n.desc}</strong></li>
+                  <li><strong> {n.desc}</strong></li>
                 </ul>
               </li>
             )

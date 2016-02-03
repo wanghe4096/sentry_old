@@ -47,7 +47,6 @@ import ExtractorEvents from 'views/extract/extractorEvents';
 import HomeApp from 'views/homeApp';
 import OrganizationStore from 'stores/organizationStore';
 import StreamTypeIndex from 'views/streamTypeIndex';
-// import StreamType from 'views/streamType';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
