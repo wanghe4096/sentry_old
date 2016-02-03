@@ -105,9 +105,6 @@ let routes = (
         <IndexRoute component={SearchIndex}/>
       </Route>
 
-      <Route path="home" component={HomeApp} >
-      </Route>
-
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams}/>
         <Route path=":projectId/" component={ProjectDetails}>
