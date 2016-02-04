@@ -115,6 +115,7 @@ class AuthLoginView(BaseView):
 
     def handle_sso(self, request):
         org = request.POST.get('organization')
+        print org
         if not org:
             return HttpResponseRedirect(request.path)
 
@@ -139,8 +140,11 @@ class AuthLoginView(BaseView):
                                args=[org.slug])
             return HttpResponseRedirect(next_uri)
         op = request.POST.get('op')
+
         if op == 'sso' and request.POST.get('organization'):
-            auth_provider = self.get_auth_provider()
+            org = request.POST['organization']
+
+            auth_provider = self.get_auth_provider(request.POST.get('organization'))
             if auth_provider:
                 next_uri = reverse('sentry-auth-organization',
                                    args=[request.POST['organization']])

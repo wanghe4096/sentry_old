@@ -12,7 +12,6 @@ from sentry.auth.exceptions import IdentityNotValid
 from sentry.http import safe_urlopen, safe_urlread
 from sentry.utils import json
 from sentry.utils.http import absolute_uri
-
 ERR_INVALID_STATE = 'An error occurred while validating your request.'
 
 
