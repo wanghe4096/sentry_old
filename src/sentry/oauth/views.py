@@ -70,8 +70,8 @@ class ConsumerExchangeView(FormView):
             user.is_staff = True
 
             if not User.objects.filter(username=data['username']):
-                # if not User.objects.filter(email=data['email']):
-                user.save()
+                if not User.objects.filter(email=data['email']):
+                    user.save()
             if request.user.is_authenticated():
                 # Do something for authenticated users.
                 return HttpResponseRedirect('')
