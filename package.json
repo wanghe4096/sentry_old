@@ -65,7 +65,7 @@
     "typescript": "^1.7.5",
     "underscore": "1.8.3",
     "url-loader": "0.5.6",
-    "webpack": "1.12.14"
+    "webpack": "1.12.12"
   },
   "private": true,
   "APIMethod": "stub",
