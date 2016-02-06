@@ -74,7 +74,7 @@ class ConsumerExchangeView(FormView):
                     user.save()
             if request.user.is_authenticated():
                 # Do something for authenticated users.
-                return HttpResponseRedirect('')
+                return HttpResponseRedirect('sentry-organization-home')
             else:
                 # Do something for anonymous users.
                 user = authenticate(username=data['username'], password=data['password'])
