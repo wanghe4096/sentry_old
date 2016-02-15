@@ -12,7 +12,7 @@ from rest_framework.response import Response
 from sentry.api.bases.stream import StreamEndpoint
 from sentry.conf.server import *
 import requests
-
+import datetime
 
 # STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
 # STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
@@ -33,7 +33,6 @@ class StreamIndexEndpoint(StreamEndpoint):
         result = request.GET
         print 'result = ', result['host_id']
         url = "%s/u/%s/nodes/%s/streams" % (STORAGE_API_BASE_URL, request.user.id,  result['host_id'])
-        print 'url = ', url
         r = requests.get(url)
         print r
         if r.status_code == 200:

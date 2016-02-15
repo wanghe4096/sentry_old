@@ -215,6 +215,8 @@ MIDDLEWARE_CLASSES = (
     'sentry.middleware.social_auth.SentrySocialAuthExceptionMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'sentry.debug.middleware.DebugMiddleware',
+    'django.contrib.auth.middleware.AuthenticationMiddleware',
+    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 )
 
 ROOT_URLCONF = 'sentry.conf.urls'
@@ -262,6 +264,7 @@ INSTALLED_APPS = (
     'sentry.plugins.sentry_useragents',
     'sentry.plugins.sentry_webhooks',
     'social_auth',
+    'oauth2_provider',
     'south',
     'sudo',
 )
@@ -306,7 +309,12 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.bitbucket.BitbucketBackend',
     'social_auth.backends.contrib.trello.TrelloBackend',
     'sentry.utils.auth.EmailAuthBackend',
+    'oauth2_provider.backends.OAuth2Backend',
+
 )
+
+
+
 
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL = 'sentry.User'
 
@@ -418,8 +426,8 @@ def create_partitioned_queues(name):
     exchange = Exchange(name, type='direct')
     for num in range(1):
         CELERY_QUEUES.append(Queue(
-            '{0}-{1}'.format(name, num),
-            exchange=exchange,
+                '{0}-{1}'.format(name, num),
+                exchange=exchange,
         ))
 
 create_partitioned_queues('counters')
@@ -692,6 +700,8 @@ SENTRY_INTERFACES = {
     'sentry.interfaces.Csp': 'sentry.interfaces.csp.Csp',
 }
 
+STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
+
 # Should users without superuser permissions be allowed to
 # make projects public
 SENTRY_ALLOW_PUBLIC_PROJECTS = True
@@ -929,6 +939,12 @@ SENTRY_WATCHERS = (
     [os.path.join(NODE_MODULES_ROOT, '.bin', 'webpack'), '-d', '--watch',
      "--config={}".format(os.path.join(PROJECT_ROOT, os.pardir, os.pardir, "webpack.config.js"))],
 )
+
+
+# OAUTH2_PROVIDER = {
+#     'SCOPES': {'example': 'This is an example scope'},
+#     # 'APPLICATION_MODEL': 'oauth.MyApplication'
+# }
 
 
 def get_raven_config():

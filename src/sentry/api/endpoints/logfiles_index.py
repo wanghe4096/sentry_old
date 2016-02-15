@@ -11,7 +11,8 @@ from rest_framework.response import Response
 from sentry.api.bases.logfile import LogFileEndpoint
 from sentry.conf.server import *
 import requests
-
+import datetime
+import time
 #STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
 # STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
 
@@ -34,20 +35,19 @@ class LogfileIndexEndpoint(LogFileEndpoint):
         stream_id = result.get('stream_id', '0')
         host_id = result.get('host_id', '0')
 
-        print 'stream_id = ', stream_id
-
         url = "%s/u/%s/nodes/%s/streams/%s/files" % (STORAGE_API_BASE_URL,
                                                     request.user.id,
                                                     host_id,
                                                     result['stream_id']
                                                     )
-        print 'url = ', url
+        start_time = time.clock()
         r = requests.get(url)
-        print r
+        end_time = time.clock()
+        print 'get logfile time: ',  end_time - start_time
         if r.status_code == 200:
             resp = r.json()
-            print resp['files'][0]
             file_list = []
+            start_time = time.clock()
             for file in resp['files']:
                 file_obj = {
                     'id': '',
@@ -84,4 +84,6 @@ class LogfileIndexEndpoint(LogFileEndpoint):
                 file_obj['last_timestamp'] = tobj['modify_time']
                 file_obj['create_timestamp'] = tobj['create_time']
                 file_list.append(file_obj)
+            end_time = time.clock()
+            print 'get log file: ', end_time-start_time
         return Response(file_list)

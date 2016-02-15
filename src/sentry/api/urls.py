@@ -90,7 +90,6 @@ urlpatterns = patterns(
     url(r'^create_demo', DemoExceptionEndpoint.as_view(), name='sentry-api-0-create-demo'),
     url(r'^hosts', HostIndexEndpoint.as_view(), name='sentry-api-0-hosts'),
     url(r'^agent/hosts', LogAgentHostIndexEndpoint.as_view(), name='sentry-api-0-agent-hosts'),
-
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),

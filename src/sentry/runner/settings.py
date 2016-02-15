@@ -27,10 +27,10 @@ DATABASES = {
     'default': {
         'ENGINE': 'sentry.db.postgres',
         'NAME': 'sentry',
-        'USER': 'postgres',
-        'PASSWORD': '',
-        'HOST': '',
-        'PORT': '',
+        'USER': 'wanghe',
+        'PASSWORD': 'yuxuangh',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -148,9 +148,9 @@ SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 # storage server #
 ##################
 
-#loginsight storage server url
+#loginsight storage server api url
 
-STORAGE_SERVER = 'localhost:8000'
+STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
 
 ##################
 # oauth client   #
@@ -158,7 +158,7 @@ STORAGE_SERVER = 'localhost:8000'
 
 LOGINSIGHT_CLIENT_ID='client_id'
 LOGINSIGHT_CLIENT_SECRET='client_secret'
-OAUTH_SERVER = 'http://localhost:8000'
+BASE_AUTHORIZE_LINK = 'http://localhost:8000/o/authorize'
 
 
 ################

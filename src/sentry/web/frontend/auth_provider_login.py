@@ -4,7 +4,9 @@ from django.core.urlresolvers import reverse
 
 from sentry.auth.helper import AuthHelper
 from sentry.web.frontend.base import BaseView
+import logging
 
+logger = logging.getLogger('sentry')
 
 class AuthProviderLoginView(BaseView):
     auth_required = False

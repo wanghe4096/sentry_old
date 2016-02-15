@@ -165,6 +165,7 @@ class OrganizationAuthSettingsView(OrganizationView):
                 request, messages.ERROR,
                 ERR_NO_SSO,
             )
+            print 'org=', organization
             return HttpResponseRedirect(reverse('sentry-organization-home', args=[organization.slug]))
 
         try:
