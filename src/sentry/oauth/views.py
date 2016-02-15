@@ -34,6 +34,7 @@ class ConsumerExchangeView(FormView):
         return hash_md5.hexdigest()
 
     def get(self, request, *args, **kwargs):
+        print 'GET : ', request.GET
         try:
             self.initial = {
                 'code': request.GET['code'],
