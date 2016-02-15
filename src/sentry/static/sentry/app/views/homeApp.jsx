@@ -1,10 +1,11 @@
 import React from 'react';
 import DocumentTitle from 'react-document-title';
-import Header from '../components/header';
+import Header from 'components/header';
 import {t} from '../locale';
-import HomeHeader from '../components/home/homeHeader';
-import HomeSetDashboard from '../components/home/homesetDashboard';
+import HomeHeader from 'components/home/homeHeader';
+import HomeSetDashboard from 'components/home/homesetDashboard';
 
+const HomeCss = require('css/home.less');
 
 const HomeApp = React.createClass({
   getTitle() {
@@ -12,22 +13,18 @@ const HomeApp = React.createClass({
   },
 
   getInitialState: function() {
-    return {show: true};
+    return {};
   },
 
-  handleClick: function(event) {
-    this.setState({show: !this.state.show});
+  componentWillMount() {
+    HomeCss.use();
   },
 
-  //foldHandler() {
-  //  let $menu = $(this.refs.menu);
-  //  $menu.toggleClass('bt-nav-hide');
-  //  this.setState({show: !this.state.show});
-  //},
+  componentWillUnmount() {
+    HomeCss.unuse();
+  },
 
   render() {
-    var text = this.state.show ? '关闭' : '显示';
-    // TODO(dcramer): show additional resource links
     return (
       <DocumentTitle title={this.getTitle()}>
         <div className="app home">
@@ -40,9 +37,6 @@ const HomeApp = React.createClass({
               </section>
             </div>
           </div>
-          {/*
-          <Footer />
-          */}
         </div>
       </DocumentTitle>
     );

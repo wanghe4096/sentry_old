@@ -1,73 +1,68 @@
-.home{
-  .sub-app{
-    .content{
-      padding-left:50px;
-      .page-header{
-        padding:0 20px;
-        margin-top: -50px;
-      }
+.home {
+  .sub-app {
+    .content {
+      padding-left: 50px;
+    }
+  }
+  .home-header {
+    padding: 0 20px;
+    margin-top: -50px;
+    border-bottom: 1px solid #ccc;
+    height: 250px;
+    transition: transform 500ms;
+    &.ani-fold {
+      transform: translateY(-220px);
     }
   }
 }
 
-.home-getstart{
+.home-getstart {
   position: relative;
 
-  .bt-nav{
-    visibility: visible;
-    padding-top: 30px;
-    opacity: 1;
-    transition:all 0.5s ease-in-out 0.5s;
-    -moz-transition:all 0.5s ease-in-out 0.5s;
-    -webkit-transition:all 0.5s ease-in-out 0.5s;
-    -o-transition:all 0.5s ease-in-out 0.5s;
+  .home-getstart-nav {
+    padding: 10px 7px 1px;
     height: 100%;
+    transition: height 0.5s ease-in-out 0s;
+  }
 
-    .home-getstart-nav{
-      padding: 10px 7px 1px;
-      height:100%;
-      transition: height 0.5s ease-in-out 0s;
-    }
+  .close {
+    position: absolute;
+    top: 26px;
+    right: 6px;
+    width: 30px;
+    height: 30px;
+    font-size: 22px;
+    color: rgba(51, 51, 51, .4);
+    text-align: center;
+    line-height: 30px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%;
+    transition: all 0.5s ease-in-out 0s;
 
-    .close{
-      position: absolute;
-      top: 26px;
-      right: 6px;
-      width: 30px;
-      height: 30px;
-      font-size:22px;
-      color: rgba(51,51,51,.4);
-      text-align: center;
-      line-height: 30px;
-      -webkit-border-radius: 50%;
-      -moz-border-radius: 50%;
-      border-radius: 50%;
-      transition: all 0.5s ease-in-out 0s;
+    &:hover {
+      background-color: rgba(51, 51, 51, 0.1);
 
-      &:hover{
-        background-color: rgba(51, 51, 51, 0.1);
-
-      }
     }
   }
 
-  .bt-nav-hide{
+  .bt-nav-hide {
     padding-top: 0;
     visibility: hidden;
     opacity: 0;
     height: 0;
     transition: all 0.5s ease-in-out 0.5s;
 
-    .home-getstart-nav{
-      height:0;;
+    .home-getstart-nav {
+      height: 0;;
       transition: height 0.5s ease-in-out 0.5s;
     }
   }
 
-  .toggle{
+  .toggle {
     position: absolute;
     right: 288px;
-    bottom: -33px;
+    bottom: -36px;
     padding: 10px 24px;
     font-size: 12px;
     line-height: 1;
@@ -84,7 +79,7 @@
     color: #333;
     text-decoration: none;
 
-    &:focus{
+    &:focus {
       border-color: rgba(46, 181, 229, 0.5);
       outline: none;
       border-collapse: separate;
@@ -94,12 +89,12 @@
 }
 
 .home-getstart-nav {
-  li{
+  li {
     display: inline-block;
     margin: 0 18px 9px;
     vertical-align: top;
 
-    a{
+    a {
       display: block;
       font-weight: bold;
       padding: 8px 45px;
@@ -108,22 +103,22 @@
       //width: 180px;
       //height: 120px;
       color: #65a637;;
-      background-color: rgba(100,160,50,.1);
+      background-color: rgba(100, 160, 50, .1);
       border-radius: 3px;
 
-      &:hover{
+      &:hover {
         background-color: #65a637;
         text-decoration: none;
         color: #ffffff;
 
-        i{
+        i {
           color: #ffffff;
           opacity: .6;
           filter: alpha(opacity=60);
         }
       }
-      
-      i{
+
+      i {
         display: block;
         height: 70px;
         margin-bottom: 10px;
@@ -133,8 +128,8 @@
       }
     }
 
-    p{
-      width:180px;
+    p {
+      width: 180px;
       font-size: 12px;
       line-height: 1.6;
       margin: 10px 0 0 0;
@@ -144,23 +139,23 @@
 
 .home-dashboard-empty {
   text-align: center;
-  padding: 80px 100px;
+  padding: 50px 100px;
 
-  a{
+  a {
     display: block;
     padding: 100px;
     border: 2px dashed #ccc;
     background-color: #f3f3f3;
     color: #bbb;
 
-    &:hover{
+    &:hover {
       background-color: #f6f6f6;
       color: #999;
     }
 
-    .icon-chart{
+    .icon-chart {
 
-      .fa{
+      .fa {
         padding: 20px 30px;
       }
     }
@@ -190,6 +185,6 @@
   opacity: 0;
 }
 
-.bt-nav-hide{
+.bt-nav-hide {
   display: none;
 }

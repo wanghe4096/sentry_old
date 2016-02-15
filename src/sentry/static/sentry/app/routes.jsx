@@ -46,6 +46,7 @@ import ExtractorApp from 'views/extract/extractorApp'
 import ExtractorEvents from 'views/extract/extractorEvents';
 import HomeApp from 'views/homeApp';
 import OrganizationStore from 'stores/organizationStore';
+import StreamTypeIndex from 'views/streamTypeIndex';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -101,11 +102,10 @@ let routes = (
         </Route>
       </Route>
 
+      <Route path="kb/streamtype" component={StreamTypeIndex} />
+
       <Route path="search" component={SearchApp}>
         <IndexRoute component={SearchIndex}/>
-      </Route>
-
-      <Route path="home" component={HomeApp} >
       </Route>
 
       <Route path="events" component={EventsIndex}>

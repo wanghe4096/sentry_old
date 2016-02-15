@@ -60,12 +60,13 @@ const ExtractorApp = React.createClass({
 
   componentWillMount() {
     ExtractorCss.use();
+
     this.setState({
       loading: true
     });
+
     // todo:  runed的无法查看 events list 和 stream chart
     ExtractorConfigActions.fetch(this.props.params.streamId);
-
   },
 
   componentWillUnmount() {
