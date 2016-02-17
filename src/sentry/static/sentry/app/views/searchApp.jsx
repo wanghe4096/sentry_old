@@ -2,21 +2,25 @@ import React from 'react';
 import DocumentTitle from 'react-document-title';
 import {t} from 'app/locale';
 
+import SearchHeader from 'components/search/header';
+import SearchQuery from 'components/search/query';
+
+const css = require('css/search.less');
+
 const searchApp = React.createClass({
+  componentWillMount() {
+    css.use();
+  },
+  componentWillUnmount() {
+    css.unuse();
+  },
   render() {
     return (
       <DocumentTitle title="search">
-        <div className="sub-app sa-storage">
-          <div className="container">
-            <div className="row content">
-              <div className="col-md-12 sub-header">
-                <h5>{t('search')}</h5>
-              </div>
-              <div className="col-md-12">
-                { this.props.children }
-              </div>
-            </div>
-          </div>
+        <div className="sub-app sa-search">
+          <SearchHeader/>
+          <SearchQuery />
+          {this.props.children}
         </div>
       </DocumentTitle>
     )

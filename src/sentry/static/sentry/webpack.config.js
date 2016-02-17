@@ -130,7 +130,7 @@ var config = {
       'css': path.join(__dirname, staticPrefix, 'less'),
     },
     modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
-    extensions: ['.jsx', '.js', '.json', '.ts', '']
+    extensions: ['.jsx', '.js', '.json', '']
   },
   plugins: [
     new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.js'),

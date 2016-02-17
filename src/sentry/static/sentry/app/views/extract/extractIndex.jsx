@@ -13,7 +13,7 @@ import {t} from 'app/locale';
 import StreamTypeList from 'components/extract/streamTypeList';
 
 const ExtractIndex = React.createClass({
-  getInitialState(){
+  getInitialState() {
     return {}
   },
   render() {
@@ -41,10 +41,10 @@ const ExtractIndex = React.createClass({
                 1
               </div>
               <div role="tabpanel" className="tab-pane active" id="streamType">
-                <StreamTypeList />
+                <StreamTypeList/>
               </div>
               <div role="tabpanel" className="tab-pane" id="fav">
-3
+                3
               </div>
             </div>
 

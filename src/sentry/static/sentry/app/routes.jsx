@@ -74,11 +74,11 @@ let routes = (
     <Route path="/:orgId/" component={OrganizationDetails}>
       {
         //<IndexRoute component={OrganizationTeams} />
-      //<Route path="/organizations/:orgId/issues/assigned/" component={MyIssuesAssignedToMe} />
-      //<Route path="/organizations/:orgId/issues/bookmarks/" component={MyIssuesBookmarked} />
-      //<Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
-      //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
-    }
+        //<Route path="/organizations/:orgId/issues/assigned/" component={MyIssuesAssignedToMe} />
+        //<Route path="/organizations/:orgId/issues/bookmarks/" component={MyIssuesBookmarked} />
+        //<Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
+        //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
+      }
       <Route path="/organizations/:orgId/stats/" component={OrganizationStats}/>
 
       <IndexRedirect to="home"/>

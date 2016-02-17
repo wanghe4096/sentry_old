@@ -936,8 +936,9 @@ SENTRY_API_RESPONSE_DELAY = 0
 # XXX(dcramer): this doesn't work outside of a source distribution as the
 # webpack.config.js is not part of Sentry's datafiles
 SENTRY_WATCHERS = (
-    [os.path.join(NODE_MODULES_ROOT, '.bin', 'webpack'), '-d', '--watch',
-     "--config={}".format(os.path.join(PROJECT_ROOT, os.pardir, os.pardir, "webpack.config.js"))],
+    # FIXED :$ sentry devserver 的时候无需启动webpack ，如需跑webpack 可用 webpack -w 来单独跑
+    # [os.path.join(NODE_MODULES_ROOT, '.bin', 'webpack'), '-d', '--watch',
+    #  "--config={}".format(os.path.join(PROJECT_ROOT, os.pardir, os.pardir, "webpack.config.js"))],
 )
 
 

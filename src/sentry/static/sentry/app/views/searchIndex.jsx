@@ -6,7 +6,7 @@ import {t} from 'app/locale';
 const SearchIndex = React.createClass({
   render() {
     return (
-      <div>searchIndex</div>
+      <div >search index</div>
     )
   }
 });
