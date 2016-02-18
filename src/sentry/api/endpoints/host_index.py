@@ -22,6 +22,9 @@ from sentry.models import (
 from sentry.api.base import Endpoint
 from sentry.utils.apidocs import scenario, attach_scenarios
 from sentry.conf.server import *
+from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
+from oauth2_provider.ext.rest_framework.permissions import TokenHasScope, TokenHasReadWriteScope
+from rest_framework import permissions, views
 import datetime
 import requests
 
@@ -44,6 +47,7 @@ def list_hosts_scenario(runner):
             method='GET',
             path='/hosts/'
     )
+
 
 def generate_host_key(result):
     m = hashlib.md5()
@@ -137,13 +141,9 @@ from rest_framework import generics
 
 
 class LogAgentHostIndexEndpoint(Endpoint):
-
-    authentication_classes = []
-    permission_classes = []
-
     def get(self, request, *args, **kwargs):
         result = request.GET
-        user = User.objects.get(userkey=result['user_key'])
+        user = User.objects.get(id=result['user_id'])
         host_list = list(Host.objects.filter(user_id=user.id))
         print list(host_list)
 
@@ -152,7 +152,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
 
     def post(self, request,  *args, **kwargs):
         result = request.DATA
-        user = User.objects.get(userkey=result['user_key'])
+        user = User.objects.get(id=result['user_id'])
         org_mem = OrganizationMember.objects.get(user=user)
         org = Organization.objects.get(id=org_mem.organization_id)
         hk = generate_host_key(result)
@@ -168,13 +168,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
                     user_id=user.id,
                     organization=org,
             )
-            # self.create_audit_entry(
-            #     request=request,
-            #     organization=org,
-            #     target_object=host.id,
-            #     event=AuditLogEntryEvent.AGENT_HOST_ADD,
-            #     data= 'agent add host',
-            # )
+
 
             url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
             print 'url=', url
@@ -184,3 +178,12 @@ class LogAgentHostIndexEndpoint(Endpoint):
                 return Response({'msg': 'failed to post stoarge server.'}, status=500)
             return Response({'host_key': hk}, status=200)
         return Response({'msg': 'fail'}, status=500)
+
+
+class HelloToken(Endpoint):
+    # authentication_classes = [OAuth2Authentication]
+    # permission_classes = [TokenHasScope]
+    # required_scopes = ['read']
+
+    def get(self, request):
+        return Response("hello world")

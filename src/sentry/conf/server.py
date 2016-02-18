@@ -936,15 +936,10 @@ SENTRY_API_RESPONSE_DELAY = 0
 # XXX(dcramer): this doesn't work outside of a source distribution as the
 # webpack.config.js is not part of Sentry's datafiles
 SENTRY_WATCHERS = (
-    [os.path.join(NODE_MODULES_ROOT, '.bin', 'webpack'), '-d', '--watch',
-     "--config={}".format(os.path.join(PROJECT_ROOT, os.pardir, os.pardir, "webpack.config.js"))],
+    # Disable start webpack on debug , you can use 'webpack -w' to start webpack
+    # [os.path.join(NODE_MODULES_ROOT, '.bin', 'webpack'), '-d', '--watch',
+    #  "--config={}".format(os.path.join(PROJECT_ROOT, os.pardir, os.pardir, "webpack.config.js"))],
 )
-
-
-# OAUTH2_PROVIDER = {
-#     'SCOPES': {'example': 'This is an example scope'},
-#     # 'APPLICATION_MODEL': 'oauth.MyApplication'
-# }
 
 
 def get_raven_config():

@@ -74,22 +74,19 @@ from .endpoints.user_key import UserkeyEndpoint
 from .endpoints.host_index import HostIndexEndpoint, LogAgentHostIndexEndpoint
 from .endpoints.logfiles_index import LogfileIndexEndpoint
 from .endpoints.logevents import LogEventIndexEndpoint
+from .endpoints.host_index import HelloToken
 urlpatterns = patterns(
     '',
     #  loginsight  Register User
     url(r'^register', RegisterEndpoint.as_view(), name='sentry-api-0-register'),
     url(r'user_key', UserkeyEndpoint.as_view(), name='sentry-api-0-user-key'),
-    # url(r'^streams', StreamView.as_view(), name='sentry-api-0-streams'),
     url(r'^streams', StreamIndexEndpoint.as_view(), name='sentry-api-0-streams'),
-    # url(r'^host-type', HostTypeView.as_view(), name='sentry-api-0-host-type'),
-    # url(r'^stream-type', StreamTypeView.as_view(), name='sentry-api-0-stream-type'),
-    # url(r'^tags', TagView.as_view(), name='sentry-api-0-tags'),
-    # url(r'^logfiles', LogFilesView.as_view(), name='sentry-api-0-logfiles'),
     url(r'^logfiles', LogfileIndexEndpoint.as_view(), name='sentry-api-0-logfiles'),
     url(r'^logevents', LogEventIndexEndpoint.as_view(), name='sentry-api-0-events'),
     url(r'^create_demo', DemoExceptionEndpoint.as_view(), name='sentry-api-0-create-demo'),
     url(r'^hosts', HostIndexEndpoint.as_view(), name='sentry-api-0-hosts'),
     url(r'^agent/hosts', LogAgentHostIndexEndpoint.as_view(), name='sentry-api-0-agent-hosts'),
+    url(r'^agent/hello', HelloToken.as_view(), name='hello-token'),
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),
