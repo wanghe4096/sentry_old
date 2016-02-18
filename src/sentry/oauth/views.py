@@ -1,7 +1,5 @@
 from django.http import HttpResponse, HttpResponseRedirect
-from django.core.urlresolvers import reverse
-from django.views.generic import FormView, TemplateView, View
-from django.shortcuts import render_to_response
+from django.views.generic import FormView, TemplateView
 from oauth2_provider.compat import urlencode
 from oauth2_provider.views.generic import ProtectedResourceView
 from sentry.models.user import User
@@ -34,7 +32,6 @@ class ConsumerExchangeView(FormView):
         return hash_md5.hexdigest()
 
     def get(self, request, *args, **kwargs):
-        print 'GET : ', request.GET
         try:
             self.initial = {
                 'code': request.GET['code'],

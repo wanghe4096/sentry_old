@@ -9,7 +9,15 @@ import React from 'react';
 import DocumentTitle from 'react-document-title';
 import {t} from 'app/locale';
 
+const css = require('css/storage.less');
+
 const storageApp = React.createClass({
+  componentWillMount() {
+    css.use();
+  },
+  componentWillUnmount() {
+    css.unuse();
+  },
   render() {
     return (
       <DocumentTitle title="storage">
@@ -17,7 +25,7 @@ const storageApp = React.createClass({
           <div className="container">
             <div className="row content">
               <div className="col-md-12 sub-header">
-                <h5>{t('Log Storage')}</h5>
+                <h5> {t('Log Storage')} </h5>
               </div>
               <div className="col-md-12">
                 { this.props.children }
