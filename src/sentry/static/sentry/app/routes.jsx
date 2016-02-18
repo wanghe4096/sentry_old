@@ -37,6 +37,7 @@ import StorageIndex from 'views/storageIndex';
 import StorageApp from 'views/storageApp';
 import LogPreview from 'views/logPreview';
 import SearchIndex from 'views/searchIndex';
+import SearchVisual from 'views/searchVisual';
 import SearchApp from 'views/searchApp';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
@@ -99,8 +100,9 @@ let routes = (
 
       <Route path="kb/streamtype" component={StreamTypeIndex}/>
 
-      <Route path="search" component={SearchApp}>
+      <Route path="search/" component={SearchApp}>
         <IndexRoute component={SearchIndex}/>
+        <Route path="vs/" component={SearchVisual}/>
       </Route>
 
       <Route path="events" component={EventsIndex}>
