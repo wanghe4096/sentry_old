@@ -6,12 +6,12 @@
   }
   .home-header {
     padding: 0 20px;
-    margin-top: -50px;
+    //margin-top: -50px;
     border-bottom: 1px solid #ccc;
     height: 250px;
     transition: transform 500ms;
     &.ani-fold {
-      transform: translateY(-220px);
+      transform: translateY(-270px);
     }
   }
 }
@@ -27,7 +27,7 @@
 
   .close {
     position: absolute;
-    top: 26px;
+    top: 0;
     right: 6px;
     width: 30px;
     height: 30px;
@@ -161,30 +161,8 @@
     }
 
   }
+  &.ani-fold {
+    transform: translateY(-270px);
+  }
 }
 
-//bt-nav transition
-.bt-nav {
-}
-
-.bt-nav-enter {
-  opacity: .2;
-  transition: opacity 1s;
-}
-
-.bt-nav-enter-active {
-  opacity: 1;
-}
-
-.bt-nav-leave {
-  opacity: 1;
-  transition: all .5s ease-in;
-}
-
-.bt-nav-leave-active {
-  opacity: 0;
-}
-
-.bt-nav-hide {
-  display: none;
-}

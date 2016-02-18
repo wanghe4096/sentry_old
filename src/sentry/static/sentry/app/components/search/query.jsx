@@ -7,7 +7,7 @@ const SearchQuery = React.createClass({
     return (
       <div className="search-query">
         <div className="query-l">
-          <h5>Query:</h5>
+          <h5 className="s-tit">Query:</h5>
         </div>
         <div className="query-r">
           <div className="input-group">

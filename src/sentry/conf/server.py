@@ -936,7 +936,7 @@ SENTRY_API_RESPONSE_DELAY = 0
 # XXX(dcramer): this doesn't work outside of a source distribution as the
 # webpack.config.js is not part of Sentry's datafiles
 SENTRY_WATCHERS = (
-    # Disable start webpack on debug , you can use 'webpack -w' to start webpack
+    # Disable start webpack for devserver, you can use "webpack -w" to start webpack
     # [os.path.join(NODE_MODULES_ROOT, '.bin', 'webpack'), '-d', '--watch',
     #  "--config={}".format(os.path.join(PROJECT_ROOT, os.pardir, os.pardir, "webpack.config.js"))],
 )
