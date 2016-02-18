@@ -75,6 +75,7 @@ from .endpoints.host_index import HostIndexEndpoint, LogAgentHostIndexEndpoint
 from .endpoints.logfiles_index import LogfileIndexEndpoint
 from .endpoints.logevents import LogEventIndexEndpoint
 from .endpoints.host_index import HelloToken
+from .endpoints.host_index import AccessTokenView
 urlpatterns = patterns(
     '',
     #  loginsight  Register User
@@ -87,6 +88,7 @@ urlpatterns = patterns(
     url(r'^hosts', HostIndexEndpoint.as_view(), name='sentry-api-0-hosts'),
     url(r'^agent/hosts', LogAgentHostIndexEndpoint.as_view(), name='sentry-api-0-agent-hosts'),
     url(r'^agent/hello', HelloToken.as_view(), name='hello-token'),
+    url(r'^accesstoken', AccessTokenView.as_view(), name='access-token'),
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),

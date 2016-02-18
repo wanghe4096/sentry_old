@@ -21,7 +21,9 @@ from sentry.models import (
 )
 from sentry.api.base import Endpoint
 from sentry.utils.apidocs import scenario, attach_scenarios
+from django.conf import settings
 from sentry.conf.server import *
+from oauth2_provider.models import AccessToken
 from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
 from oauth2_provider.ext.rest_framework.permissions import TokenHasScope, TokenHasReadWriteScope
 from rest_framework import permissions, views
@@ -139,8 +141,11 @@ class HostIndexEndpoint(HostEndpoint):
 from rest_framework import mixins
 from rest_framework import generics
 
+INVALID_ACCESS_TOKEN = -1
 
 class LogAgentHostIndexEndpoint(Endpoint):
+    permission_classes = []
+
     def get(self, request, *args, **kwargs):
         result = request.GET
         user = User.objects.get(id=result['user_id'])
@@ -151,8 +156,13 @@ class LogAgentHostIndexEndpoint(Endpoint):
                 host_list, user, HostSerializer()))
 
     def post(self, request,  *args, **kwargs):
+        # validate access token
+        user_id = validate_accesstoken(request.META['HTTP_AUTHORIZATION'])
+        print 'user_id = ', user_id
+        if user_id == INVALID_ACCESS_TOKEN:
+            return Response({'msg': 'Invalid access token'})
         result = request.DATA
-        user = User.objects.get(id=result['user_id'])
+        user = User.objects.get(id=user_id)
         org_mem = OrganizationMember.objects.get(user=user)
         org = Organization.objects.get(id=org_mem.organization_id)
         hk = generate_host_key(result)
@@ -169,7 +179,6 @@ class LogAgentHostIndexEndpoint(Endpoint):
                     organization=org,
             )
 
-
             url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
             print 'url=', url
             host_obj = {"host_key": host.host_key, "user_id": user.id, "tenant_id": user.id}
@@ -180,10 +189,35 @@ class LogAgentHostIndexEndpoint(Endpoint):
         return Response({'msg': 'fail'}, status=500)
 
 
-class HelloToken(Endpoint):
-    # authentication_classes = [OAuth2Authentication]
-    # permission_classes = [TokenHasScope]
-    # required_scopes = ['read']
+def validate_accesstoken(authorization):
+        headers = {'Authorization': authorization}
+        url = settings.OAUTH_SERVER + "/api/0/access_token"
+        r = requests.get(url, headers=headers)
+        if r.status_code == 200:
+            return r.json()['user_id']
+        return INVALID_ACCESS_TOKEN
+
+
+class AccessTokenView(Endpoint):
+    authentication_classes = []
+    permission_classes = []
+    required_scopes = ['read']
 
     def get(self, request):
-        return Response("hello world")
+        # print reques
+        authorization = request.META['HTTP_AUTHORIZATION']
+        token = authorization.split(" ")[1]
+        headers = {'Authorization': authorization}
+        url = settings.OAUTH_SERVER + "/api/0/access_token"
+        r = requests.get(url, headers=headers)
+        if r.status_code != 200:
+            return Response({'ret': 'false'}) #invalid access token
+        return Response({'ret': 'true'})
+
+
+class HelloToken(Endpoint):
+    permission_classes = []
+    required_scopes = ['read']
+
+    def get(self, request):
+        return Response({'msg': "hello world"})
