@@ -33,6 +33,7 @@ class ConsumerExchangeView(FormView):
 
     def get(self, request, *args, **kwargs):
         try:
+            print request.GET
             self.initial = {
                 'code': request.GET['code'],
                 'state': request.GET['state'],

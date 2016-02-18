@@ -50,7 +50,7 @@ const HomeHeader = React.createClass({
         <div className="home-getstart clearfix">
 
           <h5>欢迎使用LogInsight</h5>
-          <a href="javascript:;" className="close" onClick={this.foldHandler}>×</a>
+          <a href="javascript:;" className="close" onClick={this.handleClick}>×</a>
           <ul className="home-getstart-nav text-center">
             <li>
               <a href="javascript:;">
