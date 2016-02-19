@@ -14,20 +14,28 @@ const SearchVisual = React.createClass({
   mixins: [PureRenderMixin],
   getDefaultProps() {
     return {
+      autoSize: false,
+      draggableHandle: '.panel-heading',
+      useCSSTransforms: true,
       rowHeight: 30,
-      cols: {
-        lg: 12,
-        md: 10,
-        sm: 6,
-        xs: 4,
-        xxs: 2
-      }
+      cols: { lg: 12, md: 10, sm: 6, xs: 4, xxs: 2 }
     };
   },
   getInitialState() {
+    window.ll = this;
     return {
       layouts: {
-        lg: this.generateLayout()
+        lg:[
+          { "x": 0, "y": 0, "w": 5, "h": 10, "i": "0" },
+          { "x": 0, "y": 6, "w": 4, "h": 9, "i": "1" },
+          { "x": 5, "y": 0, "w": 4, "h": 10, "i": "2" },
+          { "x": 4, "y": 6, "w": 4, "h": 9, "i": "3" },
+          { "x": 9, "y": 0, "w": 3, "h": 10, "i": "4" },
+          { "x": 8, "y": 6, "w": 4, "h": 9, "i": "5" },
+          { "x": 0, "y": 15, "w": 3, "h": 12, "i": "6" },
+          { "x": 3, "y": 20, "w": 3, "h": 12, "i": "7" },
+          { "x": 6, "y": 15, "w": 6, "h": 12, "i": "8" }
+        ]
       },
       currentBreakpoint: 'lg'
     };
@@ -36,46 +44,53 @@ const SearchVisual = React.createClass({
     console.log('add widget');
   },
 
-  generateLayout() {
-    // var p = this.props;
-    // return _.map(_.range(0, 25), function(item, i) {
-    //   var y = _.result(p, 'y') || Math.ceil(Math.random() * 4) + 1;
-    //   return {
-    //     x: _.random(0, 5) * 2 % 12,
-    //     y: Math.floor(i / 6) * y,
-    //     w: 2,
-    //     h: y,
-    //     i: i.toString(),
-    //     static: false
-    //   };
-    // });
-    var p = this.props;
-    const x = _.map(new Array(10), function(item, i) {
-      var minW = _.random(4, 6), minH = _.random(3, 6);
-      var maxW = _.random(minW, 6), maxH = _.random(minH, 6);
-      var w = _.random(minW, maxW);
-      var y = _.random(minH, maxH);
-      return {
-        x: i * 2 % 12, y: Math.floor(i / 6) * y, w: w, h: y, i: i.toString(),
-        minW: minW, maxW: maxW, minH: minH, maxH: maxH
-      };
-    });
-    console.log(x);
-    return x;
-  },
-
   onBreakpointChange(breakpoint) {
+    console.log(breakpoint);
     this.setState({currentBreakpoint: breakpoint});
   },
 
   onLayoutChange(layout) {
-    console.log('layout on change:', layout);
+    // console.log('layout on change:', JSON.stringify(layout));
     // this.props.onLayoutChange(layout);
   },
 
   addNewHander() {
     console.log('new')
   },
+
+  renderBody(){
+      return _.map(this.state.layouts.lg, (l, i) => {
+        return (
+          <div key={i} className="panel panel-default">
+            <div className="panel-heading">
+              <span className="panel-title">Panel
+                {i}</span>
+              <div className="btn-group pull-right">
+                <a className="h-btn">
+                  <i aria-hidden="true" className="fa fa-pencil"></i>
+                </a>
+                <div className="btn-group h-btn pull-right">
+                  <i className="fa fa-times"
+                    data-toggle="dropdown"
+                    aria-haspopup="true"
+                    aria-expanded="false"></i>
+                    <ul className="dropdown-menu">
+                      <li><label>confirm?</label></li>
+                      <li><a href="#">yes</a></li>
+                      <li><a href="#">cancel</a></li>
+                    </ul>
+                </div>
+              </div>
+            </div>
+            <div className="panel-body">
+              Panel content /
+              {i}
+            </div>
+          </div>
+        );
+      });
+  },
+
   render() {
     return (
       <DocumentTitle title="Search Visualization">
@@ -90,19 +105,8 @@ const SearchVisual = React.createClass({
             <ResponsiveReactGridLayout
               layouts={this.state.layouts}
               onBreakpointChange={this.onBreakpointChange}
-              onLayoutChange={this.onLayoutChange}
-              useCSSTransforms={true}
-              {...this.props}>
-                {
-                  _.map(this.state.layouts.lg, function(l, i) {
-                    var mins = [l.minW, l.minH], maxes = [l.maxW, l.maxH];
-                    return (
-                      <div key={i}>
-                        <span className="text">{i}/{'min:' + mins + ' - max:' + maxes} </span>
-                      </div>
-                    );
-                  })
-              }
+              onLayoutChange={this.onLayoutChange} {...this.props}>
+              { this.renderBody() }
             </ResponsiveReactGridLayout>
           </div>
         </div>
