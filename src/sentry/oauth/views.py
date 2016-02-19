@@ -54,7 +54,7 @@ class ConsumerExchangeView(FormView):
                                  )
             data = resp.json()
             token = data['access_token']
-            token_type =  data['token_type']
+            token_type = data['token_type']
             headers = {"Authorization": token_type + " " + token}
 
             resp = requests.post(settings.OAUTH_SERVER + "/api/user_info", data={'token': token}, headers=headers)
@@ -63,6 +63,7 @@ class ConsumerExchangeView(FormView):
             user_key = self.generate_user_key(data['username'], data['email'], data['password'])
             user = User(username=data['username'], email=data['email'])
             user.set_password(data['password'])
+            # user.password = data['password']
             user.userkey = user_key
             user.is_active = True
             user.is_managed = True
@@ -77,6 +78,10 @@ class ConsumerExchangeView(FormView):
             else:
                 # Do something for anonymous users.
                 user = authenticate(username=data['username'], password=data['password'])
+                print data['username']
+                print data['password']
+                if user is None:
+                    return redirect('sentry-login')
                 login(request, user)
                 return HttpResponseRedirect(get_login_redirect(request))
         except KeyError:
