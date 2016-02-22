@@ -6,6 +6,7 @@
     "url": "git://github.com/getsentry/sentry.git"
   },
   "dependencies": {
+    "echarts": "3.0.3",
     "async": "^1.5.2",
     "babel-eslint": "4.1.5",
     "bootstrap": "3.3.5",
@@ -17,7 +18,6 @@
     "css-loader": "0.18.0",
     "d3": "^3.5.14",
     "dc": "^1.7.5",
-    "echarts": "git+https://github.com/ecomfe/echarts.git#3e6096c7e9548494453c64ecbff39c0c84bc16d5",
     "eslint": "1.9.0",
     "eslint-plugin-react": "3.11.2",
     "extract-text-webpack-plugin": "0.8.2",
@@ -68,7 +68,7 @@
     "typescript": "^1.7.5",
     "underscore": "1.8.3",
     "url-loader": "0.5.6",
-    "webpack": "1.12.12"
+    "webpack": "1.12.13"
   },
   "private": true,
   "APIMethod": "stub",
@@ -90,7 +90,6 @@
     "karma": "0.13.15",
     "karma-chai": "0.1.0",
     "karma-mocha": "0.1.10",
-    "karma-phantomjs-launcher": "0.1.4",
     "karma-sinon": "1.0.4",
     "karma-sourcemap-loader": "0.3.6",
     "karma-webpack": "1.7.0",

@@ -153,9 +153,11 @@ var config = {
   ],
 };
 
-// if (/^dev/.test(process.env.node_env)) {
-  config.devtool === 'eval';
+if (/^dev/.test(process.env.node_env)) {
+    console.log('debug mode!!!!');
+    config.devtool === 'source-map';
+//  config.devtool === 'eval';
   config.output.pathinfo = true;
-// }
+}
 
 module.exports = config;
