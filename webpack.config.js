@@ -153,9 +153,9 @@ var config = {
   ],
 };
 
-if (/^dev/.test(process.env.node_env)) {
+// if (/^dev/.test(process.env.node_env)) {
   config.devtool === 'eval';
   config.output.pathinfo = true;
-}
+// }
 
 module.exports = config;

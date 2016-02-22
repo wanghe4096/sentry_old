@@ -4,7 +4,7 @@ import DocumentTitle from 'react-document-title';
 import {t} from 'app/locale';
 
 import Histogram from 'components/search/histogram';
-import ResultField from 'components/search/resultField';
+import FieldList from 'components/search/fieldList';
 import ResultBody from 'components/search/resultBody';
 
 const SearchIndex = React.createClass({
@@ -15,7 +15,7 @@ const SearchIndex = React.createClass({
           <Histogram/>
           <div className="search-result-body">
             <div className="s-container">
-              <ResultField />
+              <FieldList />
               <ResultBody />
             </div>
           </div>

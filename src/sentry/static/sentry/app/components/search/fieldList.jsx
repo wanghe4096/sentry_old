@@ -2,7 +2,15 @@ import React from 'react';
 import Reflux from 'reflux';
 import {t} from 'app/locale';
 
-const ResultField = React.createClass({
+const css = require('css/search/field-list.less');
+
+const FieldList = React.createClass({
+  componentWillMount() {
+    css.use();
+  },
+  componentWillUnmount() {
+    css.unuse();
+  },
   render() {
     return (
       <section className="fields_wrap">
@@ -54,4 +62,4 @@ const ResultField = React.createClass({
   }
 });
 
-export default ResultField;
+export default FieldList;

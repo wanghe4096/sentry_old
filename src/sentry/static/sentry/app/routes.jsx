@@ -1,6 +1,5 @@
 import React from 'react';
 import {Redirect, Route, IndexRoute, IndexRedirect} from 'react-router';
-
 import Admin from 'views/admin';
 import AdminOrganizations from 'views/adminOrganizations';
 import AdminOverview from 'views/adminOverview';
@@ -36,9 +35,11 @@ import SharedGroupDetails from 'views/sharedGroupDetails';
 import StorageIndex from 'views/storageIndex';
 import StorageApp from 'views/storageApp';
 import LogPreview from 'views/logPreview';
+import SearchApp from 'views/searchApp';
 import SearchIndex from 'views/searchIndex';
 import SearchVisual from 'views/searchVisual';
-import SearchApp from 'views/searchApp';
+import SearchVisualIndex from 'views/searchVisualIndex';
+import SearchVisualDesigner from 'views/searchVisualDesigner';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
 import ExtractApp from 'views/extract/extractApp';
@@ -101,8 +102,11 @@ let routes = (
       <Route path="kb/streamtype" component={StreamTypeIndex}/>
 
       <Route path="search/" component={SearchApp}>
-        <IndexRoute component={SearchIndex}/>
-        <Route path="vs/" component={SearchVisual}/>
+        <IndexRoute component={SearchIndex} />
+        <Route path="vs/" component={SearchVisual} >
+          <IndexRoute component={SearchVisualIndex} />
+          <Route path=":widgetId/" component={SearchVisualDesigner} />
+        </Route>
       </Route>
 
       <Route path="events" component={EventsIndex}>
