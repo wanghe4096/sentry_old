@@ -1,3 +1,24 @@
+.swap-enter {
+  transform: translateX(2000px);
+  transition: all .8s ease-out .3s;
+}
+
+.swap-enter.swap-enter-active {
+  transform: translateX(0);
+}
+
+.swap-leave {
+  // opacity: 1;
+  transform: translateX(0);
+  transition: all .8s ease-out .3s;
+}
+
+.swap-leave.swap-leave-active {
+  // opacity: 0;
+  transform: translateX(-2000px);
+}
+
+
 .sa-search {
     position: fixed;
     left: 50px;

@@ -23,7 +23,6 @@ const SearchVisualIndex = React.createClass({
     };
   },
   getInitialState() {
-    window.ll = this;
     return {
       layouts: {
         lg:[
