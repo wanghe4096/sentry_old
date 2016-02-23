@@ -44,11 +44,16 @@ const BorderMenu = createClass({
           iconClassName: 'fa fa-database',
           title: t('Log storage')
         },
-        // {
-        //   path: 'search',
-        //   iconClassName: 'fa fa-search',
-        //   title: t('Search')
-        // }
+        {
+          path: 'search',
+          iconClassName: 'fa fa-search',
+          title: t('Search')
+        },
+        {
+          path: 'dashboard',
+          iconClassName: 'fa fa-dashboard',
+          title: t('Search')
+        }
       ]
     }
   },
