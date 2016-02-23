@@ -30,6 +30,7 @@ class Host(models.Model):
     system = models.CharField(max_length=128, null=True)
     distver = models.CharField(max_length=128, null=True)
     host_type = models.CharField(max_length=128, null=True)
+    mac_addr = models.CharField(max_length=128, null=True)
     create_time = models.DateTimeField(null=True)
     last_time = models.DateTimeField(null=True)
     user = models.ForeignKey(User)
@@ -85,6 +86,9 @@ class Stream(models.Model):
     modify_timestamp = models.DateTimeField(null=True)
     create_timestamp = models.DateTimeField(null=True)
     tag = models.ForeignKey(Tag, null=True)
+    match_name = models.CharField(max_length=128, null=True)
+    stream_key = models.CharField(max_length=128, null=True)
+    alias_name = models.CharField(max_length=128, null=True)
     host = models.ForeignKey(Host)
     user = models.ForeignKey(User)
 

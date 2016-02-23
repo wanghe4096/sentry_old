@@ -19,6 +19,7 @@ from sentry.models.organization import Organization
 from sentry.models import (
     AuditLogEntryEvent, Host, User
 )
+
 from sentry.api.base import Endpoint
 from sentry.utils.apidocs import scenario, attach_scenarios
 from django.conf import settings
@@ -53,7 +54,7 @@ def list_hosts_scenario(runner):
 
 def generate_host_key(result):
     m = hashlib.md5()
-    m.update(str(datetime.datetime.now())+str(result))
+    m.update(str(result))
     host_key = m.hexdigest()
     return host_key
 
@@ -141,7 +142,6 @@ class HostIndexEndpoint(HostEndpoint):
 from rest_framework import mixins
 from rest_framework import generics
 
-INVALID_ACCESS_TOKEN = -1
 
 class LogAgentHostIndexEndpoint(Endpoint):
     permission_classes = []
@@ -157,10 +157,10 @@ class LogAgentHostIndexEndpoint(Endpoint):
 
     def post(self, request,  *args, **kwargs):
         # validate access token
-        user_id = validate_accesstoken(request.META['HTTP_AUTHORIZATION'])
-        print 'user_id = ', user_id
-        if user_id == INVALID_ACCESS_TOKEN:
+        user_id = self.validate_accesstoken(request.META['HTTP_AUTHORIZATION'], request)
+        if user_id == self.INVALID_ACCESS_TOKEN:
             return Response({'msg': 'Invalid access token'})
+
         result = request.DATA
         user = User.objects.get(id=user_id)
         org_mem = OrganizationMember.objects.get(user=user)
@@ -178,24 +178,16 @@ class LogAgentHostIndexEndpoint(Endpoint):
                     user_id=user.id,
                     organization=org,
             )
-
-            url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
-            print 'url=', url
-            host_obj = {"host_key": host.host_key, "user_id": user.id, "tenant_id": user.id}
-            resp = requests.post(url, data=host_obj)
-            if resp.status_code > 300:
-                return Response({'msg': 'failed to post stoarge server.'}, status=500)
-            return Response({'host_key': hk}, status=200)
-        return Response({'msg': 'fail'}, status=500)
-
-
-def validate_accesstoken(authorization):
-        headers = {'Authorization': authorization}
-        url = settings.OAUTH_SERVER + "/api/0/access_token"
-        r = requests.get(url, headers=headers)
-        if r.status_code == 200:
-            return r.json()['user_id']
-        return INVALID_ACCESS_TOKEN
+            return Response({'action': 'add host', 'msg': 'ok'}, status=200)
+        else:
+            # url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
+            # print 'url=', url
+            # host_obj = {"host_key": host.host_key, "user_id": user.id, "tenant_id": user.id}
+            # resp = requests.post(url, data=host_obj)
+            # if resp.status_code > 300:
+            #     return Response({'msg': 'failed to post stoarge server.'}, status=500)
+            # return Response({'host_key': hk}, status=200)
+            return Response({'action': 'add host', 'msg': 'host exists!'}, status=200)
 
 
 class AccessTokenView(Endpoint):

@@ -18,8 +18,6 @@ import os
 import datetime
 import random
 
-
-
 class HostTypeView(Endpoint,
                 mixins.ListModelMixin,
                 mixins.CreateModelMixin,
