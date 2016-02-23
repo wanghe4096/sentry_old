@@ -5,7 +5,6 @@ import _ from 'underscore';
 import {Link,IndexLink} from 'react-router';
 import PureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
 import DocumentTitle from 'react-document-title';
-
 import ReactGridLayout from 'react-grid-layout';
 
 const WidthProvider = ReactGridLayout.WidthProvider;
