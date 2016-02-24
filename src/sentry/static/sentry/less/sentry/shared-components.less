@@ -2068,7 +2068,7 @@ table.integrations {
     height: 0;
     border-left: 9px solid transparent;
     border-right: 9px solid transparent;
-    border-bottom: 9px solid rgba(52, 60, 69, 0);
+    border-bottom: 9px solid #ccc;
     content: "";
     display: block;
     position: absolute;
@@ -2077,6 +2077,10 @@ table.integrations {
     z-index: -2;
   }
 
+  &.dropdown-menu-right:before {
+    right: 12px;
+    left: auto;
+  }
   &.dropdown-menu-right:after {
     right: 13px;
     left: auto;

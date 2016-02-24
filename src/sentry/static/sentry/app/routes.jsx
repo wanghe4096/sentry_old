@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect, Route, IndexRoute, IndexRedirect} from 'react-router';
+import BlockView from 'views/blockView';
 import Admin from 'views/admin';
 import AdminOrganizations from 'views/adminOrganizations';
 import AdminOverview from 'views/adminOverview';
@@ -40,7 +41,8 @@ import SearchIndex from 'views/searchIndex';
 import SearchVisual from 'views/searchVisual';
 import SearchVisualIndex from 'views/searchVisualIndex';
 import SearchVisualDesigner from 'views/searchVisualDesigner';
-import DashboardApp from 'views/dashboardApp';
+import DashboardList from 'views/dashboardList';
+import DashboardDetail from 'views/dashboardDetail';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
 import ExtractApp from 'views/extract/extractApp';
@@ -111,7 +113,10 @@ let routes = (
         </Route>
       </Route>
 
-      <Route path="dashboard/" component={DashboardApp} />
+      <Route path="dashboard/" component={BlockView}>
+        <IndexRoute component={DashboardList} />
+        <Route path=":dashboardId/" component={DashboardDetail} />
+      </Route>
 
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams}/>

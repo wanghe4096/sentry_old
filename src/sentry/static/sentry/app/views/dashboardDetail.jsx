@@ -11,7 +11,7 @@ const WidthProvider = ReactGridLayout.WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(ReactGridLayout.Responsive);
 const css = require('css/dashboard.less');
 
-const DashboardApp = React.createClass({
+const DashboardDetail = React.createClass({
   mixins: [PureRenderMixin],
   componentWillMount() {
     css.use();
@@ -99,19 +99,58 @@ const DashboardApp = React.createClass({
     });
   },
   render() {
+    const orgId = this.props.params.orgId;
+    const newWidgetUrl = `/${orgId}/search/vs/new/`;
+    const backState = {
+      backTo:{
+        url:this.props.location.pathname,
+        title:t('Back to Dashboard')
+      }
+    };
     return (
       <DocumentTitle title="dashboard">
         <div className="sub-app sa-dashboard">
-          <ResponsiveReactGridLayout
-            layouts={this.state.layouts}
-            onBreakpointChange={this.onBreakpointChange}
-            onLayoutChange={this.onLayoutChange} {...this.props}>
-            { this.renderBody() }
-          </ResponsiveReactGridLayout>
+          <div className="dashboard-header">
+            <h5 className="app-tit">Dashboard</h5>
+            <div className="add-btn btn-group btn-group-sm">
+              <Link
+                to={`/${orgId}/dashboard/`}
+                className="btn btn-default">
+                <i className="glyphicon glyphicon-th-list" /> Dashboard List
+              </Link>
+              <Link
+                to={`/${orgId}/dashboard/new/`}
+                className="btn btn-default">
+                <i className="glyphicon glyphicon-plus" /> New Dashboard
+              </Link>
+              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i className="glyphicon glyphicon-unchecked" /> Add Widget
+              </button>
+              <ul className="dropdown-menu-right dropdown-menu">
+                <li>
+                  <Link
+                    to={newWidgetUrl}
+                    state={backState}>
+                    Design New Widget
+                  </Link>
+                </li>
+                <li role="separator" className="divider"></li>
+                <li><a href="#">Load Widget</a></li>
+              </ul>
+            </div>
+          </div>
+          <div className="dashboard-body">
+            <ResponsiveReactGridLayout
+              layouts={this.state.layouts}
+              onBreakpointChange={this.onBreakpointChange}
+              onLayoutChange={this.onLayoutChange} {...this.props}>
+              { this.renderBody() }
+            </ResponsiveReactGridLayout>
+          </div>
         </div>
       </DocumentTitle>
     )
   }
 });
 
-export default DashboardApp;
+export default DashboardDetail;

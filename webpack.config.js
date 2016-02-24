@@ -158,7 +158,7 @@ if (/^dev/.test(process.env.node_env)) {
   console.log('debug mode!!!!');
   config.devtool = 'eval';
   config.output.pathinfo = true;
-  config.plugins.push(new WebpackNotifierPlugin({title: 'Webpack',alwaysNotify: true}));
+  config.plugins.push(new WebpackNotifierPlugin({title: 'Webpack',alwaysNotify: false}));
 }
 
 module.exports = config;
