@@ -76,7 +76,7 @@ class LogAgentStreamEndpoint(Endpoint):
         if not Stream.objects.filter(stream_key=data['stream_key']):
             stream = Stream.objects.create(
                 stream_name=data['match_name'],
-                alias_name=data['alias_name'],
+                alias_name=data.get('alias_name', ''),
                 host= host,
                 user=user,
                 stream_key=data['stream_key'],

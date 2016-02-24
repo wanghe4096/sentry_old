@@ -178,7 +178,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
                     user_id=user.id,
                     organization=org,
             )
-            return Response({'action': 'add host', 'msg': 'ok'}, status=200)
+            return Response({'action': 'add host','host_key':hk,  'msg': 'ok'}, status=200)
         else:
             # url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
             # print 'url=', url
@@ -187,7 +187,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
             # if resp.status_code > 300:
             #     return Response({'msg': 'failed to post stoarge server.'}, status=500)
             # return Response({'host_key': hk}, status=200)
-            return Response({'action': 'add host', 'msg': 'host exists!'}, status=200)
+            return Response({'action': 'add host', 'host_key': hk, 'msg': 'host exists!'}, status=200)
 
 
 class AccessTokenView(Endpoint):
