@@ -9,9 +9,16 @@ import ReactGridLayout from 'react-grid-layout';
 
 const WidthProvider = ReactGridLayout.WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(ReactGridLayout.Responsive);
+const css = require('css/dashboard.less');
 
-const SearchVisualIndex = React.createClass({
+const DashboardDetail = React.createClass({
   mixins: [PureRenderMixin],
+  componentWillMount() {
+    css.use();
+  },
+  componentWillUnmount() {
+    css.unuse();
+  },
   getDefaultProps() {
     return {
       autoSize: false,
@@ -91,18 +98,48 @@ const SearchVisualIndex = React.createClass({
       );
     });
   },
-
   render() {
+    const orgId = this.props.params.orgId;
+    const newWidgetUrl = `/${orgId}/search/vs/new/`;
+    const backState = {
+      backTo:{
+        url:this.props.location.pathname,
+        title:t('Back to Dashboard')
+      }
+    };
     return (
-      <DocumentTitle title="Search Visualization">
-        <div className="search-visual-tab">
-          <div className="search-visual-head">
-            <span className="add-widget-btn" onClick={this.addNewHander}>
-              <i className="glyphicon glyphicon-unchecked"/>
-              +Add Widget
-            </span>
+      <DocumentTitle title="dashboard">
+        <div className="sub-app sa-dashboard">
+          <div className="dashboard-header">
+            <h5 className="app-tit">Dashboard</h5>
+            <div className="add-btn btn-group btn-group-sm">
+              <Link
+                to={`/${orgId}/dashboard/`}
+                className="btn btn-default">
+                <i className="glyphicon glyphicon-th-list" /> Dashboard List
+              </Link>
+              <Link
+                to={`/${orgId}/dashboard/new/`}
+                className="btn btn-default">
+                <i className="glyphicon glyphicon-plus" /> New Dashboard
+              </Link>
+              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <i className="glyphicon glyphicon-unchecked" /> Add Widget
+              </button>
+              <ul className="dropdown-menu-right dropdown-menu">
+                <li>
+                  <Link
+                    to={newWidgetUrl}
+                    state={backState}>
+                    Design New Widget
+                  </Link>
+                </li>
+                <li role="separator" className="divider"></li>
+                <li><a href="#">Load Widget</a></li>
+              </ul>
+            </div>
           </div>
-          <div className="search-visual-body">
+          <div className="dashboard-body">
             <ResponsiveReactGridLayout
               layouts={this.state.layouts}
               onBreakpointChange={this.onBreakpointChange}
@@ -116,4 +153,4 @@ const SearchVisualIndex = React.createClass({
   }
 });
 
-export default SearchVisualIndex;
+export default DashboardDetail;

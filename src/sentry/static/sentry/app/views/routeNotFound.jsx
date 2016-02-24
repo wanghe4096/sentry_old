@@ -15,7 +15,7 @@ const RouteNotFound = React.createClass({
       <DocumentTitle title={this.getTitle()}>
         <div className="app">
           <Header />
-          <div className="container">
+          <div className="container" style={{paddingTop:100}}>
             <div className="content">
               <section className="body">
                 <div className="page-header">
@@ -37,4 +37,3 @@ const RouteNotFound = React.createClass({
 });
 
 export default RouteNotFound;
-

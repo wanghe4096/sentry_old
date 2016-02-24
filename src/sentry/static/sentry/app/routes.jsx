@@ -1,5 +1,6 @@
 import React from 'react';
 import {Redirect, Route, IndexRoute, IndexRedirect} from 'react-router';
+import BlockView from 'views/blockView';
 import Admin from 'views/admin';
 import AdminOrganizations from 'views/adminOrganizations';
 import AdminOverview from 'views/adminOverview';
@@ -40,6 +41,8 @@ import SearchIndex from 'views/searchIndex';
 import SearchVisual from 'views/searchVisual';
 import SearchVisualIndex from 'views/searchVisualIndex';
 import SearchVisualDesigner from 'views/searchVisualDesigner';
+import DashboardList from 'views/dashboardList';
+import DashboardDetail from 'views/dashboardDetail';
 import EventsIndex from 'views/eventsIndex';
 import Stream from 'views/stream';
 import ExtractApp from 'views/extract/extractApp';
@@ -67,6 +70,7 @@ let routes = (
     <Redirect from="/events" to={defaultOrg.slug + '/events'}/>
     <Redirect from="/storage" to={defaultOrg.slug + '/storage'}/>
     <Redirect from="/search" to={defaultOrg.slug+'/search'}/>
+    <Redirect from="/dashboard" to={defaultOrg.slug+'/dashboard'}/>
     <Redirect from="/home" to={defaultOrg.slug + '/home'}/>
     <Redirect from="/streamtype" to={defaultOrg.slug + '/streamtype'}/>
 
@@ -109,6 +113,11 @@ let routes = (
         </Route>
       </Route>
 
+      <Route path="dashboard/" component={BlockView}>
+        <IndexRoute component={DashboardList} />
+        <Route path=":dashboardId/" component={DashboardDetail} />
+      </Route>
+
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams}/>
         <Route path=":projectId/" component={ProjectDetails}>
@@ -147,6 +156,7 @@ let routes = (
         </Route>
 
       </Route>
+      <Route path="*" component={RouteNotFound}/>
     </Route>
 
     <Route path="*" component={RouteNotFound} onEnter={appendTrailingSlash}/>

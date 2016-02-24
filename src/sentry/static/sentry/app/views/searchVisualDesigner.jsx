@@ -6,7 +6,7 @@ import {Link,IndexLink} from 'react-router';
 import Designer from 'components/search/designer';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
-
+import {t} from 'app/locale';
 
 const css = require('css/search/designer.less');
 
@@ -20,7 +20,11 @@ const SearchVisualDesigner = React.createClass({
   },
   render() {
     const widgetId = this.props.params.widgetId;
-    const backUrl = `/${this.props.params.orgId}/search/vs/`;
+    const locationState = this.props.location.state || {}
+    const backToObj = locationState.backTo || {};
+    const backUrl = backToObj.url || `/${this.props.params.orgId}/search/vs/`;
+    const backTitle = backToObj.title || t('Back to List');
+    // console.log('state:',this.props.location.state)
     return (
       <DocumentTitle title="Search Result">
         <div className="widget-design-wrap">
@@ -29,7 +33,7 @@ const SearchVisualDesigner = React.createClass({
               className="back-btn btn btn-sm btn-primary"
               to={backUrl} >
               <i className="glyphicon glyphicon-chevron-left" />
-              <span>Back to List</span>
+              <span>{backTitle}</span>
             </Link>
             <span className="designer-tit">Widget Design</span>
           </div>

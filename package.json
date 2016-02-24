@@ -79,7 +79,8 @@
     "test": "node_modules/karma/bin/karma start tests/karma.conf.js --single-run",
     "test-watch": "node_modules/karma/bin/karma start tests/karma.conf.js",
     "lint": "node_modules/.bin/eslint tests/js src/sentry/static/sentry/app --ext .jsx",
-    "server": "source env/bin/activate && nohup (sentry start && sentry celery worker -B) > /dev/null 2>&1 &",
+    "server": "source env/bin/activate && nohup sentry start > /dev/null 2>&1 &",
+    "celery": "source env/bin/activate && nohup sentry celery worker -B > /dev/null 2>&1 &",
     "start": "node_env=dev webpack -w -g"
   },
   "devDependencies": {
@@ -99,6 +100,7 @@
     "po-catalog-loader": "^1.2.0",
     "sinon": "1.17.2",
     "sinon-chai": "2.8.0",
-    "sprintf-js": "^1.0.3"
+    "sprintf-js": "^1.0.3",
+    "webpack-notifier": "^1.3.0"
   }
 }

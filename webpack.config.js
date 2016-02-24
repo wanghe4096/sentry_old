@@ -1,7 +1,8 @@
 /*eslint-env node*/
 var path = require('path'),
   webpack = require('webpack'),
-  ExtractTextPlugin = require('extract-text-webpack-plugin');
+  ExtractTextPlugin = require('extract-text-webpack-plugin'),
+  WebpackNotifierPlugin = require('webpack-notifier');
 
 var staticPrefix = 'src/sentry/static/sentry',
   distPath = staticPrefix + '/dist';
@@ -157,6 +158,7 @@ if (/^dev/.test(process.env.node_env)) {
   console.log('debug mode!!!!');
   config.devtool = 'eval';
   config.output.pathinfo = true;
+  config.plugins.push(new WebpackNotifierPlugin({title: 'Webpack',alwaysNotify: false}));
 }
 
 module.exports = config;
