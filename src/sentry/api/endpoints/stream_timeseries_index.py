@@ -22,7 +22,7 @@ class StreamTimeSeriesIndexEndpoint(Endpoint):
 
     def get(self, request):
         """
-        List an stream's hosts
+        List an stream's timeseries count
         ````````````````````````````
 
         Return a list of hosts bound to a organization.
