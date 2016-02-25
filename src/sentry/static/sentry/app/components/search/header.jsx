@@ -1,9 +1,20 @@
 import React from 'react';
 import Reflux from 'reflux';
 import {t} from 'app/locale';
+import PropTypes from 'app/proptypes';
+import {Link,IndexLink} from 'react-router';
+
+import OrganizationStore from 'stores/organizationStore';
 
 const SearchHeader = React.createClass({
+  contextTypes: {
+    organization: PropTypes.Organization
+  },
+  handlerView() {
+    // visual
+  },
   render() {
+    let org = this.context.organization;
     return (
       <div className="search-header">
         <h4 className="app-tit">{t('Search')}</h4>
@@ -34,8 +45,14 @@ const SearchHeader = React.createClass({
           </div>
         </div>
         <div className="tab-nav btn-group btn-group-sm">
-          <a className="btn btn-primary">Result</a>
-          <a className="btn btn-default">Visualization</a>
+          <IndexLink
+            className="btn btn-default"
+            activeClassName="nav-active"
+            to={`/${org.slug}/search/`}>Result</IndexLink>
+          <Link
+            className="btn btn-default"
+            activeClassName="nav-active"
+            to={`/${org.slug}/search/vs/`}>Visualization</Link>
         </div>
         <div className="time-panel clearfix">
           <button className="btn-refresh btn btn-sm btn-default">
