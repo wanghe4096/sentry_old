@@ -15,9 +15,7 @@ from sentry.models.host_stream import Stream, Host
 from sentry.conf.server import *
 import requests
 import datetime
-
-# STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
-# STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
+from django.conf import settings
 
 
 class StreamTimeSeriesIndexEndpoint(Endpoint):
@@ -29,22 +27,21 @@ class StreamTimeSeriesIndexEndpoint(Endpoint):
 
         Return a list of hosts bound to a organization.
 
-        :pparam string host id : the host id  for Host instance
+        :pparam string stream_key : the host id  for Host instance
+        :pparam string step : default 3600s
+        :pparam string count: default 20
+        :pparam string offset: default 0
         :auth: required
+        : resp.body = {
+            "start_time": //起始时间
+            "timeseries": [count, count, count]
+        }
         """
         result = request.GET
         # streams = Stream.objects.filter(host_id=result['host_id'])
         stream_list = []
-        # for stream in streams:
-        #     stream_obj = {'id':'', 'stream_name': '', 'create_timestamp': '', 'last_timestamp': '', 'size': ''}
-        #     stream_id = stream.id
-        #     stream_name = stream.stream_name
-        #     stream_obj['id'] = stream_id
-        #     stream_obj['stream_name'] = stream_name
-        #     stream_obj['create_timestamp'] = stream.create_timestamp
-        #     stream_obj['last_timestamp'] = stream.modify_timestamp
-        #     stream_obj['size'] = stream.size
-        #     stream_list.append(stream_obj)
-        return Response(stream_list)
+        uri = "/stream/timeseries/"
+        r = requests.post(settings.STORAGE_API_BASE_URL + uri,  data=result)
+        return Response(r.json())
 
 
