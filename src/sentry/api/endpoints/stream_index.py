@@ -35,24 +35,41 @@ class StreamIndexEndpoint(StreamEndpoint):
         """
         result = request.GET
         print 'result = ', result['host_id']
-        url = "%s/u/%s/nodes/%s/streams" % (STORAGE_API_BASE_URL, request.user.id,  result['host_id'])
-        r = requests.get(url)
-        print r
-        if r.status_code == 200:
-            resp = r.json()
+        if False:
+            url = "%s/u/%s/nodes/%s/streams" % (STORAGE_API_BASE_URL, request.user.id,  result['host_id'])
+            r = requests.get(url)
+            print r
+            if r.status_code == 200:
+                resp = r.json()
+                stream_list = []
+                for stream in resp['stream_list']:
+                    stream_obj = {'id':'', 'stream_name': '', 'create_timestamp': '', 'last_timestamp': '', 'size': ''}
+                    stream_id = stream[0]
+                    stream_name = stream[1]
+                    obj = stream[3]
+                    stream_obj['id'] = stream_id
+                    stream_obj['stream_name'] = stream_name
+                    stream_obj['create_timestamp'] = obj.get('create_time', 'null')
+                    stream_obj['last_timestamp'] = obj.get('modify_time', 'null')
+                    stream_obj['size'] = obj.get('size', '0')
+                    stream_list.append(stream_obj)
+            return Response(stream_list)
+        else:
+            streams = Stream.objects.filter(host_id=result['host_id'])
+            print 'stream cnt=', len(streams)
             stream_list = []
-            for stream in resp['stream_list']:
+            for stream in streams:
                 stream_obj = {'id':'', 'stream_name': '', 'create_timestamp': '', 'last_timestamp': '', 'size': ''}
-                stream_id = stream[0]
-                stream_name = stream[1]
-                obj = stream[3]
+                stream_id = stream.id
+                stream_name = stream.stream_name
                 stream_obj['id'] = stream_id
                 stream_obj['stream_name'] = stream_name
-                stream_obj['create_timestamp'] = obj.get('create_time', 'null')
-                stream_obj['last_timestamp'] = obj.get('modify_time', 'null')
-                stream_obj['size'] = obj.get('size', '0')
+                stream_obj['create_timestamp'] = stream.create_timestamp
+                stream_obj['last_timestamp'] = stream.modify_timestamp
+                stream_obj['size'] = stream.size
                 stream_list.append(stream_obj)
-        return Response(stream_list)
+            print 'stream_list = ', stream_list
+            return Response(stream_list)
 
 
 class LogAgentStreamEndpoint(Endpoint):

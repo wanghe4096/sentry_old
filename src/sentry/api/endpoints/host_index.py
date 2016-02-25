@@ -76,7 +76,6 @@ class HostIndexEndpoint(HostEndpoint):
         """
         # TODO(dcramer): this should be system-wide default for organization
         # based endpoints
-
         host_list = list(Host.objects.filter(
                 user=request.user
         ).order_by('host_name', 'system'))
