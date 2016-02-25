@@ -12,13 +12,13 @@ from sentry.api.bases.stream import StreamEndpoint
 from sentry.api.base import Endpoint
 from sentry.models.user import User
 from sentry.models.host_stream import Stream, Host
-from sentry.conf.server import *
+from django.conf import  settings
 import requests
 import datetime
 from django.conf import settings
 
 
-class StreamTimeSeriesIndexEndpoint(Endpoint):
+class StreamTimeSeriesIndexEndpoint(StreamEndpoint):
 
     def get(self, request):
         """
@@ -26,9 +26,8 @@ class StreamTimeSeriesIndexEndpoint(Endpoint):
         ````````````````````````````
 
         Return a list of hosts bound to a organization.
-
+        :pparam string host_key:
         :pparam string stream_key : the host id  for Host instance
-        :pparam string step : default 3600s
         :pparam string count: default 20
         :pparam string offset: default 0
         :auth: required
@@ -38,10 +37,15 @@ class StreamTimeSeriesIndexEndpoint(Endpoint):
         }
         """
         result = request.GET
-        # streams = Stream.objects.filter(host_id=result['host_id'])
-        stream_list = []
-        uri = "/stream/timeseries/"
-        r = requests.post(settings.STORAGE_API_BASE_URL + uri,  data=result)
+        print request.GET
+        host_key = result['host_key']
+        stream_key = result['stream_key']
+        offset = result['offset']
+        count = result['count']
+        print 'storage_server=', settings.STORAGE_SERVER
+        uri = "/api/v1/u/%s/nodes/%s/streams/%s/statistic?offset=%s&len=%s" % ('sdf', host_key, stream_key, offset, count)
+        r = requests.get(settings.STORAGE_SERVER + uri)
+        print r
         return Response(r.json())
 
 
