@@ -27,8 +27,8 @@ const TimeRange = React.createClass({
     style.unuse();
   },
   onApplyHandler(mode,data) {
-    console.log('on apply:',mode,data);
     TimeAction.set(mode,data);
+    this.props.onClose();
   },
   render() {
     // console.log('time range:',this.state.timeRange);
