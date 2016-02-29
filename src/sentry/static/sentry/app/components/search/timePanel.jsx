@@ -9,11 +9,16 @@ import TimeStore from 'stores/search/timeStore';
 import TimeAction from 'actions/search/timeAction';
 
 const TimeModal = React.createClass({
+  onClose() {
+    this.props.onClose();
+  },
   render() {
     return (
       <div className="timerange-modal">
         <div className="modal-header">
-          <button type="button" className="close">
+          <button
+            onClick={this.onClose}
+            type="button" className="close">
             <span aria-hidden="true">×</span>
             <span className="sr-only">Close</span>
           </button>
@@ -34,11 +39,27 @@ const TimePanel = React.createClass({
   mixins:[
     Reflux.connect(TimeStore,'timeRange')
   ],
-  getInitialState(){
+
+  getInitialState() {
       return {
         show_modal:false
       }
   },
+
+  keyDownHandler(evt) {
+    if (evt.keyCode === 27) {
+      this.setState({show_modal:false})
+    }
+  },
+
+  componentDidMount() {
+    $(document).on('keydown', this.keyDownHandler);
+  },
+
+  componentWillUnmount() {
+    $(document).off('keydown', this.keyDownHandler);
+  },
+
   toggleModalHandler(){
       this.setState({
         show_modal: !this.state.show_modal
@@ -83,7 +104,7 @@ const TimePanel = React.createClass({
   render() {
     return (
       <div className="time-panel clearfix">
-        <button className="btn-refresh btn btn-sm btn-default">
+        <button className="btn-refresh btn btn-sm btn-default" disabled={true}>
           <span className="glyphicon glyphicon-repeat"></span>
           <span> Auto Refresh</span>
         </button>
