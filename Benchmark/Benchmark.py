@@ -27,10 +27,13 @@ from raven import Client
 import random
 import time
 
-client = Client('http://d69d677d37d3420583f6da36490fee34:efd1133590b146febfc86916c1ebb444@localhost:9000/7')
+dsn = 'http://58420b1934d7454b8fc836a938a69d1c:9455852ae6774f52b54df9560b9482f4@localhost:9000/8'
+#client = Client('http://d69d677d37d3420583f6da36490fee34:efd1133590b146febfc86916c1ebb444@localhost:9000/7')
+client = Client(dsn=dsn)
 
 start_time = time.time()
 
+log_path = "/Users/wanghe/LogSample/syslog/syslog.log"
 class CmdStart(Command):
     """
          start 压入MESSAGE
@@ -44,7 +47,7 @@ class CmdStart(Command):
     def __init__(self):
         # for i in range(0, 1000000):
             # msg = "%d this is test event " % i
-        with open('./tmp/apache.log', 'r') as fd:
+        with open(log_path, 'r') as fd:
             self.events = fd.readlines()
 
     def run(self, count):
@@ -56,11 +59,12 @@ class CmdStart(Command):
         start_time = time.time()
         print 'start ...'
         print 'event count: ', len(self.events)
-        i = 0
-        for i in range(0, count):
-            client.captureMessage(self.events[random.randint(0, len(self.events)-1)])
+        for e in self.events:
+            # e = self.events[random.randint(0, len(self.events)-1)]
+            # print 'e = ', e
+            client.captureMessage(e)
+
         end_time = time.time()
-        print 'i= ', i
         print 'time: ', end_time - start_time
 
 
