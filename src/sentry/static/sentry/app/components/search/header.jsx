@@ -3,16 +3,14 @@ import Reflux from 'reflux';
 import {t} from 'app/locale';
 import PropTypes from 'app/proptypes';
 import {Link,IndexLink} from 'react-router';
-
+import TimePanel from 'components/search/timePanel';
 import OrganizationStore from 'stores/organizationStore';
 
 const SearchHeader = React.createClass({
   contextTypes: {
     organization: PropTypes.Organization
   },
-  handlerView() {
-    // visual
-  },
+
   render() {
     let org = this.context.organization;
     return (
@@ -28,7 +26,7 @@ const SearchHeader = React.createClass({
               <span className="caret"></span>
               <span className="sr-only">Toggle Dropdown</span>
             </button>
-            <ul className="dropdown-menu">
+            <ul className="dropdown-menu-right dropdown-menu">
               <li><a href="#">Search xxx</a></li>
               <li><a href="#">Search xxx</a></li>
               <li><a href="#">Search xxx</a></li>
@@ -54,17 +52,7 @@ const SearchHeader = React.createClass({
             activeClassName="nav-active"
             to={`/${org.slug}/search/vs/`}>Visualization</Link>
         </div>
-        <div className="time-panel clearfix">
-          <button className="btn-refresh btn btn-sm btn-default">
-            <span className="glyphicon glyphicon-repeat"></span>
-            <span> Auto Refresh</span>
-          </button>
-          <div className="time-range">
-            <span className="selector">2015-12-2 05:12:12</span>
-            <span>To</span>
-            <span className="selector">2015-12-3 06:03:01</span>
-          </div>
-        </div>
+        <TimePanel />
       </div>
     )
   }

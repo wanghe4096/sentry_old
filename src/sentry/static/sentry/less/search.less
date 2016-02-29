@@ -1,24 +1,19 @@
 .swap-enter {
-  transform: translateX(2000px);
-  transition: all .8s ease-out .3s;
+    transform: translateX(2000px);
+    transition: all 0.8s ease-out 0.3s;
 }
-
 .swap-enter.swap-enter-active {
-  transform: translateX(0);
+    transform: translateX(0);
 }
-
 .swap-leave {
-  // opacity: 1;
-  transform: translateX(0);
-  transition: all .8s ease-out .3s;
+    // opacity: 1;
+    transform: translateX(0);
+    transition: all 0.8s ease-out 0.3s;
 }
-
 .swap-leave.swap-leave-active {
-  // opacity: 0;
-  transform: translateX(-2000px);
+    // opacity: 0;
+    transform: translateX(-2000px);
 }
-
-
 .sa-search {
     position: fixed;
     left: 50px;
@@ -85,21 +80,52 @@
         }
     }
     .time-panel {
+        position: relative;
         float: right;
         margin-top: 20px;
         .btn-refresh {
             // float: right;
         }
-        .time-range {
+        .time-range-t {
             float: right;
             font-size: 13px;
             line-height: 28px;
             margin-left: 10px;
+            cursor: pointer;
             .selector {
                 border-bottom: 1px dotted #ccc;
                 margin: 0 7px;
                 cursor: pointer;
             }
+        }
+    }
+    .timerange-modal {
+        position: fixed;
+        top: 100px;
+        left: 50px;
+        right: 0;
+        min-height: 240px;
+        background-color: #fff;
+        border-top: 1px solid #ccc;
+        border-radius: 0;
+        z-index: 9;
+        &:after{
+            position: fixed;
+            left: 0;
+            right: 0;
+            top: 101px;
+            bottom: 0;
+            background: #333;
+            opacity: .7;
+            content: ' ';
+            z-index: -3;
+        }
+        .modal-header {
+            background-color: #efefef;
+            padding: 10px 15px;
+        }
+        .modal-body{
+            background-color: #efefef;
         }
     }
 }
@@ -158,7 +184,7 @@
     }
     .result-wrap {
         position: relative;
-        &:after{
+        &:after {
             position: absolute;
             top: 0;
             bottom: 0;
@@ -256,7 +282,7 @@
     background-color: #eee;
     border-top: 1px solid #ccc;
     .search-visual-head {
-        padding:10px 0px 10px 10px;
+        padding: 10px 0 10px 10px;
         .add-widget-btn {
             line-height: 18px;
             cursor: pointer;
@@ -276,17 +302,17 @@
         top: 34px;
         bottom: 0;
         overflow-y: auto;
-        .panel-heading{
+        .panel-heading {
             padding: 5px 10px;
-            .panel-title{
+            .panel-title {
                 font-size: 13px;
             }
-            .h-btn{
-                margin:0 5px;
-                color:#546076;
+            .h-btn {
+                margin: 0 5px;
+                color: #546076;
                 font-size: 15px;
                 cursor: pointer;
-                &:hover{
+                &:hover {
                     color: #000;
                 }
             }

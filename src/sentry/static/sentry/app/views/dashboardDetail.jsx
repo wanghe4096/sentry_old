@@ -6,6 +6,7 @@ import {Link,IndexLink} from 'react-router';
 import PureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
 import DocumentTitle from 'react-document-title';
 import ReactGridLayout from 'react-grid-layout';
+import DetailHeader from 'components/dashboard/detailHeader';
 
 const WidthProvider = ReactGridLayout.WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(ReactGridLayout.Responsive);
@@ -13,12 +14,6 @@ const css = require('css/dashboard.less');
 
 const DashboardDetail = React.createClass({
   mixins: [PureRenderMixin],
-  componentWillMount() {
-    css.use();
-  },
-  componentWillUnmount() {
-    css.unuse();
-  },
   getDefaultProps() {
     return {
       autoSize: false,
@@ -46,6 +41,12 @@ const DashboardDetail = React.createClass({
       currentBreakpoint: 'lg'
     };
   },
+  componentWillMount() {
+    css.use();
+  },
+  componentWillUnmount() {
+    css.unuse();
+  },
   addWidgetHandler() {
     console.log('add widget');
   },
@@ -63,7 +64,6 @@ const DashboardDetail = React.createClass({
   addNewHander() {
     console.log('new')
   },
-
   renderBody(){
     return _.map(this.state.layouts.lg, (l, i) => {
       const designerUrl = `/${this.props.params.orgId}/search/vs/w000000${i}/`;
@@ -71,23 +71,21 @@ const DashboardDetail = React.createClass({
         <div key={i} className="panel panel-default">
           <div className="panel-heading">
             <span className="panel-title">Panel
-              {i}</span>
-            <div className="btn-group pull-right">
+              {i}
               <Link to={designerUrl}
                 className="h-btn">
                 <i aria-hidden="true" className="fa fa-pencil"></i>
               </Link>
-              <div className="btn-group h-btn pull-right">
-                <i className="fa fa-times"
-                  data-toggle="dropdown"
-                  aria-haspopup="true"
-                  aria-expanded="false"></i>
-                  <ul className="dropdown-menu">
-                    <li><label>confirm?</label></li>
-                    <li><a href="#">yes</a></li>
-                    <li><a href="#">cancel</a></li>
-                  </ul>
-              </div>
+            </span>
+            <div className="more-btn btn-group pull-right">
+              <i className="glyphicon glyphicon-option-horizontal"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false" />
+                <ul className="dropdown-menu-right dropdown-menu">
+                  <li><Link to={designerUrl}>Edit</Link></li>
+                  <li><a href="#">Delete</a></li>
+                </ul>
             </div>
           </div>
           <div className="panel-body">
@@ -100,45 +98,11 @@ const DashboardDetail = React.createClass({
   },
   render() {
     const orgId = this.props.params.orgId;
-    const newWidgetUrl = `/${orgId}/search/vs/new/`;
-    const backState = {
-      backTo:{
-        url:this.props.location.pathname,
-        title:t('Back to Dashboard')
-      }
-    };
+
     return (
       <DocumentTitle title="dashboard">
         <div className="sub-app sa-dashboard">
-          <div className="dashboard-header">
-            <h5 className="app-tit">Dashboard</h5>
-            <div className="add-btn btn-group btn-group-sm">
-              <Link
-                to={`/${orgId}/dashboard/`}
-                className="btn btn-default">
-                <i className="glyphicon glyphicon-th-list" /> Dashboard List
-              </Link>
-              <Link
-                to={`/${orgId}/dashboard/new/`}
-                className="btn btn-default">
-                <i className="glyphicon glyphicon-plus" /> New Dashboard
-              </Link>
-              <button type="button" className="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <i className="glyphicon glyphicon-unchecked" /> Add Widget
-              </button>
-              <ul className="dropdown-menu-right dropdown-menu">
-                <li>
-                  <Link
-                    to={newWidgetUrl}
-                    state={backState}>
-                    Design New Widget
-                  </Link>
-                </li>
-                <li role="separator" className="divider"></li>
-                <li><a href="#">Load Widget</a></li>
-              </ul>
-            </div>
-          </div>
+          <DetailHeader orgId={orgId} />
           <div className="dashboard-body">
             <ResponsiveReactGridLayout
               layouts={this.state.layouts}

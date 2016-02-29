@@ -1,0 +1,91 @@
+.time-picker-wrap{
+    display: table;
+    width:100%;
+    &>.nav{
+        width: 200px;
+    }
+    &>.nav,&>.tab-content{
+        display: table-cell;
+    }
+}
+
+.tr-absolute-wrap{
+    width: 460px;
+    .x-chose-header{
+        font-size: 15px;
+        .c-chose-val{
+            font-weight: bold;
+            margin: 0 5px;
+            border-bottom: 1px dotted #ccc;
+        }
+    }
+}
+
+.tr-relative-wrap{
+    .table-wrap{
+        display: table;
+    }
+    .ft-sec{
+        display: table-cell;
+        vertical-align: top;
+    }
+    .ft-sec-head {
+        font-size: 15px;
+        // font-weight: bold;
+        margin-bottom:10px;
+        .e-val{
+            margin-left:5px;
+        }
+    }
+    .from-sec{
+        padding-right: 80px;
+        .r-num{
+            width:80px;
+        }
+        label{
+            font-size: 14px;
+            line-height: 18px;
+        }
+        select{
+            padding: 10px 0;
+            background: transparent;
+            border: none;
+            box-shadow: none;
+            margin-left: 10px;
+            font-size: 16px;
+        }
+    }
+}
+
+.control-btns{
+    margin-top:30px;
+}
+
+
+// component time-range
+.DayPicker-NavButton{
+    width: 3rem;
+    height: 3rem;
+}
+.DayPicker-Caption{
+    height:30px;
+    border-radius: 3px;
+    background-color: #fff;
+    select {
+        width: 50%;
+        border: none;
+        line-height: 30%;
+        height: 30px;
+        border-radius: 0;
+        background: transparent;
+    }
+}
+.DayPicker-Body{
+    background-color: #fff;
+}
+.DayPicker-NavBar {
+    position: absolute;
+    left: -40px;
+    right: -40px;
+    top: 50%;
+}

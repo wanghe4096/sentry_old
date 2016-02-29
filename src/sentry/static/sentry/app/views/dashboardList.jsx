@@ -10,22 +10,26 @@ import DocumentTitle from 'react-document-title';
 const css = require('css/dashboard.less');
 let dashboardList = [];
 let _i = 0;
-while(_i<10){
-  dashboardList.push({
-    title: 'xxxxx dashboard-' + _i,
-    desc: '啊萨法喀纳斯；的联发科那算了的能否蓝色的；饭',
-    id: 'xxxxx_' + _.random(99, 999999),
-    widget_count: _.random(1, 7),
-    created_at :+ new Date(),
-    is_fav: _i % 2 === 0,
-    update_at :+ new Date()
-  });
-  _i++;
-};
+
+(function(){
+  while(_i<10){
+    dashboardList.push({
+      title: 'xxxxx dashboard-' + _i,
+      desc: '啊萨法喀纳斯；的联发科那算了的能否蓝色的；饭',
+      id: 'xxxxx_' + _.random(99, 999999),
+      widget_count: _.random(1, 7),
+      created_at :+ new Date(),
+      is_fav: _i % 2 === 0,
+      update_at :+ new Date()
+    });
+    _i++;
+  };
+})()
 
 const AddBox = React.createClass({
   propTypes:{
-    onClose: PropTypes.func.isRequired
+    onClose: PropTypes.func.isRequired,
+    onSubmit: PropTypes.func
   },
   getInitialState() {
     return {
@@ -34,6 +38,13 @@ const AddBox = React.createClass({
   },
   submitHandler(e) {
     e.preventDefault();
+    if(this.props.onSubmit){
+      this.props.onSubmit();
+      return false;
+    }
+
+    // TODO: onSubmit 与 state.submit_ing 结合有问题！！
+
     this.setState({
       submit_ing:true
     });
@@ -45,24 +56,27 @@ const AddBox = React.createClass({
   render() {
     return (
       <li className="add-box list-item">
-        <form>
+        <form onSubmit={this.submitHandler}>
           <div className="b-name">
             <input
+              value={this.props.title}
               disabled={!!this.state.submit_ing}
               placeholder="Dashboard Title" />
           </div>
           <p className="b-desc">
             <input
+              value={this.props.desc}
               disabled={!!this.state.submit_ing}
               placeholder="Dashboard Description"  />
           </p>
           <div className="enter-btn btn-group">
             <button
-              onClick={this.submitHandler}
+              type="submit"
               disabled={!!this.state.submit_ing}
               className="btn btn-primary">
               {this.state.submit_ing?'Submit ... ':'Save'}</button>
             <button
+              type="button"
               onClick={this.props.onClose}
               disabled={!!this.state.submit_ing}
               className="btn btn-default">Cancel</button>
@@ -80,9 +94,27 @@ const DashboardItem = React.createClass({
       edit_mode:false
     }
   },
+  editHandler() {
+    this.setState({edit_mode: true});
+  },
+  removeHandler() {
+    if(confirm('确定要删除?')){
+      console.log('remove!!!');
+    }
+  },
   render() {
     const orgId = this.props.orgId;
     const itemUrl = `/${orgId}/dashboard/${this.props.id}/`;
+
+    if(this.state.edit_mode){
+      return (
+        <AddBox
+          {...this.props}
+          onClose={() => this.setState({edit_mode:false})}
+         />
+      )
+    }
+
     return (
       <li className="list-item">
         <h5 className="b-name">
@@ -107,8 +139,8 @@ const DashboardItem = React.createClass({
           <Link
             className="btn btn-default"
             to={itemUrl}>
-            <i className="glyphicon glyphicon-log-out" />
-            <span style={{marginLeft:5}}>Enter</span>
+            <i className="glyphicon glyphicon-new-window" title="Enter" />
+            <span className="hide" style={{marginLeft:5}}>Enter</span>
           </Link>
           <a className="btn btn-default">
             <i className={`glyphicon ${this.props.is_fav?'glyphicon-star':'glyphicon-star-empty'}`} />
@@ -119,8 +151,12 @@ const DashboardItem = React.createClass({
               <i className="glyphicon glyphicon-option-horizontal" />
             </a>
             <ul className="dropdown-menu">
-              <li><a href="#">Edit</a></li>
-              <li><a href="#">Delete</a></li>
+              <li><a
+                onClick={this.editHandler}
+                >Edit</a></li>
+              <li><a
+                onClick={this.removeHandler}
+                >Delete</a></li>
             </ul>
           </div>
         </div>
@@ -182,7 +218,7 @@ const DashboardList = React.createClass({
       <DocumentTitle title="dashboard">
         <div className="sub-app sa-dashboard">
           <div className="dashboard-header">
-            <h5 className="app-tit">Dashboard</h5>
+            <h5 className="app-tit" style={{borderWidth:0}}>Dashboard</h5>
             <a
               onClick={() => this.addBoxHandler(true)}
               className="add-btn btn btn-sm btn-default">
