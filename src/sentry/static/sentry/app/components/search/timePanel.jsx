@@ -23,7 +23,7 @@ const TimeModal = React.createClass({
           </div>
         </div>
         <div className="modal-body">
-          <TimeRange />
+          <TimeRange {...this.props} />
         </div>
       </div>
     )
@@ -62,7 +62,7 @@ const TimePanel = React.createClass({
         return (
           <div>
             <span className="selector">
-              {timeRange.data.value}{
+              {timeRange.data.value} {
                 {
                   's':'second',
                   'm':'minute',
@@ -93,7 +93,7 @@ const TimePanel = React.createClass({
           { this.renderBody() }
         </div>
         {
-          this.state.show_modal && (<TimeModal />)
+          this.state.show_modal && (<TimeModal onClose={() => this.setState({show_modal:false})} />)
         }
       </div>
     )
