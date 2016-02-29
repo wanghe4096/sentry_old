@@ -7,7 +7,7 @@ const timeStore = Reflux.createStore({
   data: {},
   getInitialState() {
     return {
-      type: 'relative',
+      mode: 'relative',
       data: {
         value: 1,
         unit: 'd'
@@ -22,8 +22,9 @@ const timeStore = Reflux.createStore({
     //   }
     // }
   },
-  onChange(data) {
-    this.data = data;
+  onSet(type,data) {
+    this.data.mode = type;
+    this.data.data = data;
     this.trigger(this.data);
   }
 });

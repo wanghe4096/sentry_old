@@ -24,13 +24,13 @@ const RelativeTimeSelect = React.createClass({
                 <div className="form-group">
                   <input className="form-control r-num" type="text" />
                   <select className="form-control">
-                    <option value="0" label="Seconds ago">Seconds ago</option>
-                    <option value="1" label="Minutes ago">Minutes ago</option>
-                    <option value="2" label="Hours ago">Hours ago</option>
-                    <option value="3" label="Days ago">Days ago</option>
-                    <option value="4" label="Weeks ago">Weeks ago</option>
-                    <option value="5" label="Months ago">Months ago</option>
-                    <option value="6" label="Years ago">Years ago</option>
+                    <option value="s" label="Seconds ago">Seconds ago</option>
+                    <option value="m" label="Minutes ago">Minutes ago</option>
+                    <option value="h" label="Hours ago">Hours ago</option>
+                    <option value="d" label="Days ago">Days ago</option>
+                    <option value="w" label="Weeks ago">Weeks ago</option>
+                    <option value="M" label="Months ago">Months ago</option>
+                    <option value="y" label="Years ago">Years ago</option>
                   </select>
                 </div>
               </div>

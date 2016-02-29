@@ -46,21 +46,37 @@ const TimePanel = React.createClass({
   },
   renderBody() {
     const timeRange = this.state.timeRange;
-    if(timeRange.type==='absolute'){
+    if(timeRange.mode==='absolute'){
       return (
-        <span className="selector">
-          { moment(timeRange.data.from).format(L) }
-        </span>
-        <span>To</span>
-        <span className="selector">
-          { moment(timeRange.data.to).format(L) }
+        <span>
+          <span className="selector">
+            { moment(timeRange.data.from).format('YYYY-MM-DD hh:mm:ss') }
+          </span>
+          to
+          <span className="selector">
+            { moment(timeRange.data.to).format('YYYY-MM-DD hh:mm:ss') }
+          </span>
         </span>
       )
     }else{
         return (
-          <span className="selector">
-            {timeRange.data.value}:{timeRange.data.unit}
-          </span>
+          <div>
+            <span className="selector">
+              {timeRange.data.value}{
+                {
+                  's':'second',
+                  'm':'minute',
+                  'h':'hours',
+                  'd':'day',
+                  'w':'week',
+                  'M':'month',
+                  'y':'year'
+                }[timeRange.data.unit]
+              } ago
+            </span>
+            to
+            <span className="selector">Now</span>
+          </div>
         )
     }
   },

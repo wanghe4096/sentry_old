@@ -26,22 +26,23 @@ const TimeRange = React.createClass({
   componentWillUnmount() {
     style.unuse();
   },
-  onApplyHandler(type,data) {
-    console.log('on apply:',type,data);
+  onApplyHandler(mode,data) {
+    console.log('on apply:',mode,data);
+    TimeAction.set(mode,data);
   },
   render() {
     // console.log('time range:',this.state.timeRange);
-    const timeRangeType = this.state.timeRange.type;
+    const timeRangeMode = this.state.timeRange.mode;
     return (
       <div className="time-picker-wrap">
         <ul className="nav nav-pills nav-stacked" role="tablist">
           <li role="presentation" className="hide">
             <a href="#quick" role="tab" data-toggle="tab">Quick</a>
           </li>
-          <li role="presentation" className={timeRangeType ==='relative'?`active`:''}>
+          <li role="presentation" className={timeRangeMode ==='relative'?`active`:''}>
             <a href="#relative" role="tab" data-toggle="tab">Relative</a>
           </li>
-          <li role="presentation" className={timeRangeType ==='absolute'?`active`:''}>
+          <li role="presentation" className={timeRangeMode ==='absolute'?`active`:''}>
             <a href="#absolute" role="tab" data-toggle="tab">Absolute</a>
           </li>
         </ul>
