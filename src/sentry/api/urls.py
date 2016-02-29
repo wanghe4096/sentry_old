@@ -77,6 +77,7 @@ from .endpoints.logevents import LogEventIndexEndpoint
 from .endpoints.host_index import HelloToken
 from .endpoints.host_index import AccessTokenView
 from .endpoints.stream_timeseries_index import StreamTimeSeriesIndexEndpoint
+from .endpoints.dashboard_index import DashboardIndexEndpoint
 urlpatterns = patterns(
     '',
     #  loginsight  Register User
@@ -92,6 +93,7 @@ urlpatterns = patterns(
     url(r'^agent/streams', LogAgentStreamEndpoint.as_view(), name='sentry-api-0-agent-streams'),
     url(r'^agent/hello', HelloToken.as_view(), name='hello-token'),
     url(r'^accesstoken', AccessTokenView.as_view(), name='access-token'),
+    url(r'^dashboard', DashboardIndexEndpoint.as_view(), name='log-dashboard'),
     # Auth
     url(r'^auth/$',
         AuthIndexEndpoint.as_view(),
