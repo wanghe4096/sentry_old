@@ -7,7 +7,7 @@ email_ : wangh@loginsight.cn
 
 from __future__ import absolute_import
 from sentry.api.base import Endpoint
-from sentry.models.log_dashboard import Dashboard
+from sentry.models.LogInsightDashboard import LogInsightDashboard
 from rest_framework.response import Response
 import datetime
 import ast
@@ -17,7 +17,7 @@ class DashboardIndexEndpoint(Endpoint):
     permission_classes = []
 
     def get(self, request, *args, **kwargs):
-        queryset = Dashboard.objects.filter(user=request.user)
+        queryset = LogInsightDashboard.objects.filter(user=request.user)
         dashboard_list = []
         for q in queryset:
             o = {}
@@ -34,12 +34,13 @@ class DashboardIndexEndpoint(Endpoint):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-        dashboard = Dashboard.objects.create(name=data['name'],
+        print('user_id===', request.user)
+        dashboard = LogInsightDashboard.objects.create(name=data['name'],
                                              created_at=datetime.datetime.now(),
                                              updated_at=datetime.datetime.now(),
                                              layout=data['layout'],
                                              is_fav=data['is_fav'],
-                                             user=request.user)
+                                             user_id=request.user.id)
         if dashboard:
             return Response(data, status=200)
         else:

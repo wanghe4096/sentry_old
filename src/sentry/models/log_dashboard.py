@@ -10,19 +10,19 @@ from django.db import models
 import datetime
 
 
-class Dashboard(models.Model):
+class LogDashboard(models.Model):
     name = models.CharField(max_length=512, null=True)
-    title = models.CharField(max_length=512)
     desc = models.CharField(max_length=512, null=True)
-    created_at = models.DateTimeField(default=datetime.datetime.now(), null=True)
-    updated_at = models.DateTimeField(default=datetime.datetime.now(), null=True)
+    created_at = models.DateTimeField(null=True)
+    updated_at = models.DateTimeField(null=True)
     is_fav = models.BooleanField(default=False)
     layout = models.CharField(max_length=512 * 1024)
+    config = models.CharField(max_length=512, null=True)
     user = models.ForeignKey(User)
 
     class Meta:
         app_label = 'sentry'
-        db_table = 'sentry_dashboard'
+        db_table = 'sentry_log_dashboard'
 
     def __unicode__(self):
         return self.title

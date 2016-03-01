@@ -24,7 +24,7 @@ class VisualizationIndexEndpoint(Endpoint):
         for q in queryset:
             o = {}
             o['id'] = q.id
-            o['title'] = q.title
+            o['name'] = q.name
             o['created_at'] = q.created_at
             o['updated_at'] = q.updated_at
             o['is_fav'] = q.is_fav
@@ -35,7 +35,7 @@ class VisualizationIndexEndpoint(Endpoint):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-        visualization = Visaulization.objects.create(title=data['title'],
+        visualization = Visaulization.objects.create(name=data['name'],
                                     created_at=datetime.datetime.now(),
                                     updated_at=datetime.datetime.now(),
                                     is_fav=data['is_fav'],

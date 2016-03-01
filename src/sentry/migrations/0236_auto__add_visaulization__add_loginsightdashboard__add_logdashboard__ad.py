@@ -8,8 +8,31 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Deleting model 'Dashboard'
-        db.delete_table(u'sentry_dashboard')
+        # Adding model 'Visaulization'
+        db.create_table(u'sentry_visualization', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=512)),
+            ('desc', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2016, 3, 1, 0, 0), null=True)),
+            ('updated_at', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2016, 3, 1, 0, 0), null=True)),
+            ('is_fav', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sentry.User'])),
+        ))
+        db.send_create_signal(u'sentry', ['Visaulization'])
+
+        # Adding model 'LogInsightDashboard'
+        db.create_table(u'sentry_loginsight_dashboard', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
+            ('desc', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
+            ('created_at', self.gf('django.db.models.fields.DateTimeField')(null=True)),
+            ('updated_at', self.gf('django.db.models.fields.DateTimeField')(null=True)),
+            ('is_fav', self.gf('django.db.models.fields.BooleanField')(default=False)),
+            ('layout', self.gf('django.db.models.fields.CharField')(max_length=524288)),
+            ('config', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sentry.User'])),
+        ))
+        db.send_create_signal(u'sentry', ['LogInsightDashboard'])
 
         # Adding model 'LogDashboard'
         db.create_table(u'sentry_dashboard', (
@@ -19,26 +42,52 @@ class Migration(SchemaMigration):
             ('create_timestamp', self.gf('django.db.models.fields.DateTimeField')(null=True)),
             ('last_timestamp', self.gf('django.db.models.fields.DateTimeField')(null=True)),
             ('layout', self.gf('django.db.models.fields.CharField')(max_length=524288)),
+            ('widget_count', self.gf('django.db.models.fields.IntegerField')(null=True)),
             ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sentry.User'])),
         ))
         db.send_create_signal(u'sentry', ['LogDashboard'])
 
+        # Adding model 'LogWidget'
+        db.create_table('sentry_widget', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('title', self.gf('django.db.models.fields.CharField')(max_length=512)),
+            ('x_axis', self.gf('django.db.models.fields.CharField')(max_length=1024, null=True)),
+            ('y_axis', self.gf('django.db.models.fields.CharField')(max_length=1024, null=True)),
+            ('chart_type', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
+            ('search', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sentry.Search'])),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sentry.User'])),
+        ))
+        db.send_create_signal('sentry', ['LogWidget'])
+
+        # Adding model 'Search'
+        db.create_table('sentry_search', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=1024)),
+            ('create_timestamp', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2016, 3, 1, 0, 0), null=True)),
+            ('last_timestamp', self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2016, 3, 1, 0, 0), null=True)),
+            ('query', self.gf('django.db.models.fields.CharField')(max_length=1048576, null=True)),
+            ('time_range', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
+            ('config', self.gf('django.db.models.fields.CharField')(max_length=512, null=True)),
+            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sentry.User'])),
+        ))
+        db.send_create_signal('sentry', ['Search'])
+
 
     def backwards(self, orm):
-        # Adding model 'Dashboard'
-        db.create_table(u'sentry_dashboard', (
-            ('layout', self.gf('django.db.models.fields.CharField')(max_length=524288)),
-            ('create_timestamp', self.gf('django.db.models.fields.DateTimeField')(null=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=128)),
-            ('last_timestamp', self.gf('django.db.models.fields.DateTimeField')(null=True)),
-            ('user', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['sentry.User'])),
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('desc', self.gf('django.db.models.fields.CharField')(max_length=128, null=True)),
-        ))
-        db.send_create_signal(u'sentry', ['Dashboard'])
+        # Deleting model 'Visaulization'
+        db.delete_table(u'sentry_visualization')
+
+        # Deleting model 'LogInsightDashboard'
+        db.delete_table(u'sentry_loginsight_dashboard')
 
         # Deleting model 'LogDashboard'
         db.delete_table(u'sentry_dashboard')
+
+        # Deleting model 'LogWidget'
+        db.delete_table('sentry_widget')
+
+        # Deleting model 'Search'
+        db.delete_table('sentry_search')
 
 
     models = {
@@ -107,7 +156,7 @@ class Migration(SchemaMigration):
         'sentry.broadcast': {
             'Meta': {'object_name': 'Broadcast'},
             'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'date_expires': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 7, 0, 0)', 'null': 'True', 'blank': 'True'}),
+            'date_expires': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 8, 0, 0)', 'null': 'True', 'blank': 'True'}),
             'id': ('sentry.db.models.fields.bounded.BoundedBigAutoField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True', 'db_index': 'True'}),
             'link': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
@@ -325,7 +374,8 @@ class Migration(SchemaMigration):
             'last_timestamp': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
             'layout': ('django.db.models.fields.CharField', [], {'max_length': '524288'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"})
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"}),
+            'widget_count': ('django.db.models.fields.IntegerField', [], {'null': 'True'})
         },
         u'sentry.logevent': {
             'Meta': {'object_name': 'LogEvent', 'db_table': "u'sentry_log_event'"},
@@ -354,6 +404,28 @@ class Migration(SchemaMigration):
             'stream': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sentry.Stream']", 'null': 'True'}),
             'stream_type': ('django.db.models.fields.CharField', [], {'max_length': '128', 'null': 'True'}),
             'tag': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sentry.Tag']", 'null': 'True'})
+        },
+        u'sentry.loginsightdashboard': {
+            'Meta': {'object_name': 'LogInsightDashboard', 'db_table': "u'sentry_loginsight_dashboard'"},
+            'config': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
+            'desc': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_fav': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'layout': ('django.db.models.fields.CharField', [], {'max_length': '524288'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"})
+        },
+        'sentry.logwidget': {
+            'Meta': {'object_name': 'LogWidget', 'db_table': "'sentry_widget'"},
+            'chart_type': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'search': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.Search']"}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '512'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"}),
+            'x_axis': ('django.db.models.fields.CharField', [], {'max_length': '1024', 'null': 'True'}),
+            'y_axis': ('django.db.models.fields.CharField', [], {'max_length': '1024', 'null': 'True'})
         },
         'sentry.lostpasswordhash': {
             'Meta': {'object_name': 'LostPasswordHash'},
@@ -483,6 +555,17 @@ class Migration(SchemaMigration):
             'project': ('sentry.db.models.fields.foreignkey.FlexibleForeignKey', [], {'to': "orm['sentry.Project']"}),
             'query': ('django.db.models.fields.TextField', [], {})
         },
+        'sentry.search': {
+            'Meta': {'object_name': 'Search'},
+            'config': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            'create_timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'last_timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '1024'}),
+            'query': ('django.db.models.fields.CharField', [], {'max_length': '1048576', 'null': 'True'}),
+            'time_range': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"})
+        },
         u'sentry.stream': {
             'Meta': {'object_name': 'Stream'},
             'alias_name': ('django.db.models.fields.CharField', [], {'max_length': '128', 'null': 'True'}),
@@ -572,6 +655,16 @@ class Migration(SchemaMigration):
             'id': ('sentry.db.models.fields.bounded.BoundedBigAutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'project': ('sentry.db.models.fields.foreignkey.FlexibleForeignKey', [], {'to': "orm['sentry.Project']"})
+        },
+        u'sentry.visaulization': {
+            'Meta': {'object_name': 'Visaulization', 'db_table': "u'sentry_visualization'"},
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
+            'desc': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_fav': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'title': ('django.db.models.fields.CharField', [], {'max_length': '512'}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"})
         }
     }
 

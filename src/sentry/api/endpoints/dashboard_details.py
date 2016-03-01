@@ -6,7 +6,7 @@ email_ : wangh@loginsight.cn
 """
 
 from sentry.api.base import Endpoint
-from sentry.models.log_dashboard import Dashboard
+from sentry.models.log_dashboard import LogDashboard
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
 import ast
@@ -21,7 +21,7 @@ class DashboardDetailsEndpoint(Endpoint):
         return (args, kwargs)
 
     def get(self, request, search_id, *args,  **kwargs):
-        dashboard = Dashboard.objects.get(id=search_id, user=request.user)
+        dashboard = LogDashboard.objects.get(id=search_id, user=request.user)
         if dashboard:
             return Response({'name': dashboard.name,
                              'desc': dashboard.desc,
@@ -39,7 +39,7 @@ class DashboardDetailsEndpoint(Endpoint):
         dashboard_id = self.get(request)
         if dashboard_id:
             try:
-                dashboard = Dashboard.objects.get(id=dashboard_id, user=request.user)
+                dashboard = LogDashboard.objects.get(id=dashboard_id, user=request.user)
             except ObjectDoesNotExist:
                 return Response(status=400)
             dashboard.update(id=dashboard_id,
@@ -50,7 +50,7 @@ class DashboardDetailsEndpoint(Endpoint):
             return Response(data, status=200)
 
     def delete(self, request, dashboard_id, *args, **kwargs):
-        dashboard = Dashboard.objects.get(id=dashboard_id, user=request.user)
+        dashboard = LogDashboard.objects.get(id=dashboard_id, user=request.user)
         if dashboard:
             dashboard.delete()
             return Response(status=200)

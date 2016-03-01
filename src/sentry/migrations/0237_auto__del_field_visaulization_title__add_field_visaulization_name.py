@@ -8,23 +8,23 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
-        # Deleting field 'Dashboard.updated_time'
-        db.delete_column(u'sentry_dashboard', 'updated_time')
+        # Deleting field 'Visaulization.title'
+        db.delete_column(u'sentry_visualization', 'title')
 
-        # Adding field 'Dashboard.updated_at'
-        db.add_column(u'sentry_dashboard', 'updated_at',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2016, 3, 1, 0, 0), null=True),
+        # Adding field 'Visaulization.name'
+        db.add_column(u'sentry_visualization', 'name',
+                      self.gf('django.db.models.fields.CharField')(default='aa', max_length=512),
                       keep_default=False)
 
 
     def backwards(self, orm):
-        # Adding field 'Dashboard.updated_time'
-        db.add_column(u'sentry_dashboard', 'updated_time',
-                      self.gf('django.db.models.fields.DateTimeField')(default=datetime.datetime(2016, 3, 1, 0, 0), null=True),
+        # Adding field 'Visaulization.title'
+        db.add_column(u'sentry_visualization', 'title',
+                      self.gf('django.db.models.fields.CharField')(default='aaa', max_length=512),
                       keep_default=False)
 
-        # Deleting field 'Dashboard.updated_at'
-        db.delete_column(u'sentry_dashboard', 'updated_at')
+        # Deleting field 'Visaulization.name'
+        db.delete_column(u'sentry_visualization', 'name')
 
 
     models = {
@@ -93,7 +93,7 @@ class Migration(SchemaMigration):
         'sentry.broadcast': {
             'Meta': {'object_name': 'Broadcast'},
             'date_added': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
-            'date_expires': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 8, 0, 0)', 'null': 'True', 'blank': 'True'}),
+            'date_expires': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 9, 0, 0)', 'null': 'True', 'blank': 'True'}),
             'id': ('sentry.db.models.fields.bounded.BoundedBigAutoField', [], {'primary_key': 'True'}),
             'is_active': ('django.db.models.fields.BooleanField', [], {'default': 'True', 'db_index': 'True'}),
             'link': ('django.db.models.fields.URLField', [], {'max_length': '200', 'null': 'True', 'blank': 'True'}),
@@ -107,17 +107,6 @@ class Migration(SchemaMigration):
             'date_seen': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime.now'}),
             'id': ('sentry.db.models.fields.bounded.BoundedBigAutoField', [], {'primary_key': 'True'}),
             'user': ('sentry.db.models.fields.foreignkey.FlexibleForeignKey', [], {'to': "orm['sentry.User']"})
-        },
-        u'sentry.dashboard': {
-            'Meta': {'object_name': 'Dashboard'},
-            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
-            'desc': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'is_fav': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
-            'layout': ('django.db.models.fields.CharField', [], {'max_length': '524288'}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '512'}),
-            'updated_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
-            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"})
         },
         'sentry.event': {
             'Meta': {'unique_together': "(('project', 'event_id'),)", 'object_name': 'Event', 'db_table': "'sentry_message'", 'index_together': "(('group', 'datetime'),)"},
@@ -353,6 +342,18 @@ class Migration(SchemaMigration):
             'stream_type': ('django.db.models.fields.CharField', [], {'max_length': '128', 'null': 'True'}),
             'tag': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['sentry.Tag']", 'null': 'True'})
         },
+        u'sentry.loginsightdashboard': {
+            'Meta': {'object_name': 'LogInsightDashboard', 'db_table': "u'sentry_loginsight_dashboard'"},
+            'config': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
+            'desc': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_fav': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'layout': ('django.db.models.fields.CharField', [], {'max_length': '524288'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'null': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"})
+        },
         'sentry.logwidget': {
             'Meta': {'object_name': 'LogWidget', 'db_table': "'sentry_widget'"},
             'chart_type': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
@@ -494,9 +495,9 @@ class Migration(SchemaMigration):
         'sentry.search': {
             'Meta': {'object_name': 'Search'},
             'config': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
-            'create_timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
+            'create_timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 2, 0, 0)', 'null': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'last_timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 1, 0, 0)', 'null': 'True'}),
+            'last_timestamp': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 2, 0, 0)', 'null': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '1024'}),
             'query': ('django.db.models.fields.CharField', [], {'max_length': '1048576', 'null': 'True'}),
             'time_range': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
@@ -591,6 +592,16 @@ class Migration(SchemaMigration):
             'id': ('sentry.db.models.fields.bounded.BoundedBigAutoField', [], {'primary_key': 'True'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '128'}),
             'project': ('sentry.db.models.fields.foreignkey.FlexibleForeignKey', [], {'to': "orm['sentry.Project']"})
+        },
+        u'sentry.visaulization': {
+            'Meta': {'object_name': 'Visaulization', 'db_table': "u'sentry_visualization'"},
+            'created_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 2, 0, 0)', 'null': 'True'}),
+            'desc': ('django.db.models.fields.CharField', [], {'max_length': '512', 'null': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'is_fav': ('django.db.models.fields.BooleanField', [], {'default': 'False'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '512'}),
+            'updated_at': ('django.db.models.fields.DateTimeField', [], {'default': 'datetime.datetime(2016, 3, 2, 0, 0)', 'null': 'True'}),
+            'user': ('django.db.models.fields.related.ForeignKey', [], {'to': "orm['sentry.User']"})
         }
     }
 
