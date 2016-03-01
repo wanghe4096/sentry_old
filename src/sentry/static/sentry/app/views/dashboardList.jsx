@@ -261,6 +261,7 @@ const DashboardList = React.createClass({
                 <div className="c-btn">
                   <Link
                     to={`/${this.props.params.orgId}/search/list/`}
+                    disabled={true}
                     className="btn btn-sm btn-default">
                     <i className="glyphicon glyphicon-new-window" style={{marginRight:5}} />
                     Saved Search List
@@ -274,6 +275,7 @@ const DashboardList = React.createClass({
                 <div className="c-btn">
                   <Link
                     to={`/${this.props.params.orgId}/search/history/`}
+                    disabled={true}
                     className="btn btn-sm btn-default">
                     <i className="glyphicon glyphicon-new-window" style={{marginRight:5}} />
                     Searched History

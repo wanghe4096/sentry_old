@@ -21,7 +21,7 @@ class LogDashboard(models.Model):
 
     class Meta:
         app_label = 'sentry'
-        db_table = 'sentry_log_dashboard'
+        db_table = 'sentry_dashboard'
 
     def __unicode__(self):
         return self.name

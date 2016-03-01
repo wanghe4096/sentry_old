@@ -20,9 +20,7 @@ const RelativeTimeSelect = React.createClass({
   onApply() {
     let unit = this.refs.unit.value;
     let value = +this.refs.value.value;
-    this.props.onApply('relative',{
-      unit,value
-    });
+    this.props.onApply('relative', {unit, value});
   },
   validateValue(e) {
     const val = e.target.value;
