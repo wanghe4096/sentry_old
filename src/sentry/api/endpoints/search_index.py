@@ -6,19 +6,20 @@ email_ : wangh@loginsight.cn
 """
 from sentry.models.log_search import Search
 from rest_framework.response import Response
-from sentry.api.bases.search import SearchEndpoint
 from django.core.exceptions import ObjectDoesNotExist
+from sentry.api.base import Endpoint
 import datetime
 import re
 
 
-class SearchIndexEndpoint(SearchEndpoint):
+class SearchIndexEndpoint(Endpoint):
     permission_classes = []
 
-    def get(self, request, *args, **kwargs):
-        data = request.DATA
-        if len(data) == 0:
-            search_queryset = Search.objects.filter(user=request.user)
+    def get(self, request,  *args, **kwargs):
+            try:
+                search_queryset = Search.objects.filter(user_id=request.user.id)
+            except ObjectDoesNotExist:
+                return Response(status=400)
             search_list = []
             for e in search_queryset:
                 obj = {}
@@ -31,7 +32,6 @@ class SearchIndexEndpoint(SearchEndpoint):
                 obj['config'] = e.config
                 search_list.append(obj)
             return Response(search_list, status=200)
-        return Response(status=400)
 
     def post(self, request):
         data = request.DATA
@@ -55,18 +55,14 @@ class SearchIndexEndpoint(SearchEndpoint):
         search_id = self.parse_path(request, pattern, 'search_id')
         return int(search_id)
 
-    def put(self, request, *args, **kwargs):
+    def put(self, request, search_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-
-        pattern = re.compile("/api/0/search/(?P<search_id>[^\/]+)/")
-        search_id = self.parse_path(request, pattern, 'search_id')
         try:
             search_obj = Search.objects.get(id=search_id)
         except ObjectDoesNotExist:
             search_obj = None
-
         search_obj.update(id=int(search_id),
                           name=data.get('name', ''),
                           last_timestamp=datetime.datetime.now(),
@@ -76,8 +72,7 @@ class SearchIndexEndpoint(SearchEndpoint):
                           )
         return Response(data)
 
-    def delete(self, request, *args, **kwargs):
-        search_id = self.get_search_id(request)
-        search = Search.objects.get(id=search_id)
+    def delete(self, request, search_id, *args, **kwargs):
+        search = Search.objects.get(id=search_id, user_id=request.user.id)
         search.delete()
         return Response(status=200)

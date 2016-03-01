@@ -93,11 +93,11 @@ urlpatterns = patterns(
     url(r'^agent/streams', LogAgentStreamEndpoint.as_view(), name='sentry-api-0-agent-streams'),
     url(r'^agent/hello', HelloToken.as_view(), name='hello-token'),
     url(r'^accesstoken', AccessTokenView.as_view(), name='access-token'),
-    url(r'^dashboard', DashboardIndexEndpoint.as_view(), name='sentry-log-dashboard'),
+    url(r'^dashboard/$', DashboardIndexEndpoint.as_view(), name='sentry-log-dashboard'),
     url(r'^widget/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
-    url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
+    # url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
     url(r'^search/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
-    url(r'^search/(?P<search_id>[^\/]+)/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
+    # url(r'^search/(?P<search_id>[^\/]+)/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
 
     # Auth
     url(r'^auth/$',
