@@ -55,7 +55,7 @@ class SearchIndexEndpoint(SearchEndpoint):
         search_id = self.parse_path(request, pattern, 'search_id')
         return int(search_id)
 
-    def put(self, request,  *args, **kwargs):
+    def put(self, request, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)

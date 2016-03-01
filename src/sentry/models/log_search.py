@@ -14,7 +14,7 @@ class Search(models.Model):
     name = models.CharField(max_length=1024)
     create_timestamp = models.DateTimeField(default=datetime.datetime.now(), null=True)
     last_timestamp = models.DateTimeField(default=datetime.datetime.now(), null=True)
-    query = models.CharField(max_length=1024*1024, null=True)
+    query = models.CharField(max_length=1024 * 1024, null=True)
     time_range = models.CharField(max_length=512, null=True)
     config = models.CharField(max_length=512, null=True)
     user = models.ForeignKey(User)
@@ -25,6 +25,3 @@ class Search(models.Model):
 
     def __unicode__(self):
         return self.name
-
-
-

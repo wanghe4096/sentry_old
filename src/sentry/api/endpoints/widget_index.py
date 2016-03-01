@@ -21,7 +21,7 @@ class WidgetIndexEndpoint(Endpoint):
         widget_id = self.parse_path(request, pattern, 'widget_id')
         return int(widget_id)
 
-    def convert_args(self, request, widget_id,  *args, **kwargs):
+    def convert_args(self, request, widget_id, *args, **kwargs):
         kwargs['widget_id'] = widget_id
         return (args, kwargs)
 

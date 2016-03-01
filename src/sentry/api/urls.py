@@ -66,10 +66,8 @@ from .endpoints.team_project_index import TeamProjectIndexEndpoint
 from .endpoints.team_stats import TeamStatsEndpoint
 from .endpoints.user_details import UserDetailsEndpoint
 from .endpoints.store_auth import RegisterEndpoint
-from .endpoints.store_streams import StreamView, HostTypeView, StreamTypeView, TagView, LogEventView
 from .endpoints.stream_index import StreamIndexEndpoint, LogAgentStreamEndpoint
 from .endpoints.demo_exception import DemoExceptionEndpoint
-from .endpoints.store_streams import LogFilesView
 from .endpoints.user_key import UserkeyEndpoint
 from .endpoints.host_index import HostIndexEndpoint, LogAgentHostIndexEndpoint
 from .endpoints.logfiles_index import LogfileIndexEndpoint
