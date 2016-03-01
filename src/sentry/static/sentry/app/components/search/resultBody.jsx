@@ -1,20 +1,46 @@
 import React from 'react';
 import Reflux from 'reflux';
 import {t} from 'app/locale';
-
 import ResultRawView from 'components/search/resultRawView';
 import ResultTableView from 'components/search/resultTableView';
+import SearchAction from 'actions/search/searchAction';
+import SearchStore from 'stores/search/searchStore';
+import ResultStore from 'stores/search/resultStore';
+
 
 const ResultBody = React.createClass({
+  mixins:[
+    Reflux.connect(ResultStore,'result'),
+    Reflux.listenTo(SearchStore,'onSearchParamsChange')
+  ],
   getInitialState() {
     return {
       viewerType:'raw'
     }
   },
+  onSearchParamsChange(searchParams) {
+    console.log('resultBody.jsx, on search params change:', searchParams);
+    // TODO: will call resultBody Action
+  },
   viewerTypeToggle() {
       this.setState({
         viewerType:this.state.viewerType==='raw'?'table':'raw'
       });
+  },
+  componentWillMount() {
+    // TODO 此处每次进入都得重新获取，后续需要优化
+    SearchAction.fetch(SearchStore.query, SearchStore.timeRange);
+  },
+  renderBody() {
+    if(this.state.viewerType === 'raw'){
+      return (
+        <ResultRawView result={this.state.result} />
+      )
+    }else{
+      return (
+        <ResultTableView result={this.state.result} />
+      )
+    }
   },
   render(){
     return (
@@ -45,9 +71,7 @@ const ResultBody = React.createClass({
             </a>
           </div>
         </div>
-        {
-          this.state.viewerType === 'raw' ?(<ResultRawView />):(<ResultTableView />)
-        }
+        { this.renderBody() }
       </div>
     )
   }

@@ -38,7 +38,7 @@ const SearchHeader = React.createClass({
           <div className="save-ctrl">
             <div className="btn-group btn-group-sm">
               <button type="button" className="btn btn-default">Save</button>
-              <button type="button" className="btn btn-default">New</button>
+              <button type="button" className="btn btn-default">Save as</button>
             </div>
           </div>
         </div>
