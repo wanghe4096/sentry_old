@@ -1,3 +1,4 @@
+
 # -*- coding: utf-8 -*-
 """
 author : wanghe
@@ -5,25 +6,25 @@ company: LogInsight
 email_ : wangh@loginsight.cn
 """
 
+
 from __future__ import absolute_import
 from sentry.api.base import Endpoint
-from sentry.models.log_dashboard import Dashboard
+from sentry.models.visualization import Visaulization
 from rest_framework.response import Response
 import datetime
 import ast
 
 
-class DashboardIndexEndpoint(Endpoint):
+class VisualizationIndexEndpoint(Endpoint):
     permission_classes = []
 
     def get(self, request, *args, **kwargs):
-        queryset = Dashboard.objects.filter(user=request.user)
+        queryset = Visaulization.objects.filter(user=request.user)
         dashboard_list = []
         for q in queryset:
             o = {}
             o['id'] = q.id
             o['title'] = q.title
-            o['layout'] = ast.literal_eval(q.layout)
             o['created_at'] = q.created_at
             o['updated_at'] = q.updated_at
             o['is_fav'] = q.is_fav
@@ -34,13 +35,12 @@ class DashboardIndexEndpoint(Endpoint):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-        dashboard = Dashboard.objects.create(title=data['title'],
+        visualization = Visaulization.objects.create(title=data['title'],
                                     created_at=datetime.datetime.now(),
                                     updated_at=datetime.datetime.now(),
-                                    layout=data['layout'],
                                     is_fav=data['is_fav'],
                                     user=request.user)
-        if dashboard:
+        if visualization:
             return Response(data, status=200)
         else:
             return Response(status=500)

@@ -76,6 +76,7 @@ from .endpoints.host_index import HelloToken
 from .endpoints.host_index import AccessTokenView
 from .endpoints.stream_timeseries_index import StreamTimeSeriesIndexEndpoint
 from .endpoints.dashboard_index import DashboardIndexEndpoint
+from .endpoints.visualization_index import VisualizationIndexEndpoint
 from .endpoints.widget_index import WidgetIndexEndpoint
 from .endpoints.search_index import SearchIndexEndpoint
 urlpatterns = patterns(
@@ -94,6 +95,7 @@ urlpatterns = patterns(
     url(r'^agent/hello', HelloToken.as_view(), name='hello-token'),
     url(r'^accesstoken', AccessTokenView.as_view(), name='access-token'),
     url(r'^dashboard/$', DashboardIndexEndpoint.as_view(), name='sentry-log-dashboard'),
+    url(r'^visualization/$', VisualizationIndexEndpoint.as_view(), name='sentry-log-visualization'),
     url(r'^widget/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
     # url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
     url(r'^search/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
