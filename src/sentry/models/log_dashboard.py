@@ -19,11 +19,10 @@ class LogDashboard(models.Model):
     desc = models.CharField(max_length=128, null=True)
     create_timestamp = models.DateTimeField(null=True)
     last_timestamp = models.DateTimeField(null=True)
+    is_fav = models.BooleanField(null=True)
     layout = models.CharField(max_length=512*1024)
-    widget_count = models.IntegerField(null=True)
+    time_range = models.CharField(max_length=256, null=True)
     user = models.ForeignKey(User)
-
-    # organization = models.ForeignKey(Organization, null=True)
 
     class Meta:
         app_label = 'sentry'

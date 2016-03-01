@@ -20,7 +20,6 @@ from sentry.app import raven, tsdb
 from sentry.models import ApiKey, AuditLogEntry
 from sentry.models.organization import Organization
 from sentry.models.organizationmember import OrganizationMember
-from sentry.models.auditlogentry import AuditLogEntryEvent
 from sentry.utils.cursors import Cursor
 from sentry.utils.http import absolute_uri, is_valid_origin
 from sentry import roles
@@ -61,43 +60,48 @@ class Endpoint(APIView):
     permission_classes = (NoPermission,)
     INVALID_ACCESS_TOKEN = -1
 
+    def parse_path(self, request, pattern, arg):
+        path = request.path
+        m = pattern.search(path)
+        if m:
+            return m.group(arg)
+
     def validate_accesstoken(self, authorization, request):
-            headers = {'Authorization': authorization}
-            url = settings.OAUTH_SERVER + "/api/0/access_token"
-            r = requests.get(url, headers=headers)
-            if r.status_code == 200:
-                user_id = r.json()['user_id']
-                if not User.objects.filter(id=user_id):
-                    # get user
-                    resp = requests.post(settings.OAUTH_SERVER + "/api/user_info", data={'token': authorization.split(" ")[1]}, headers=headers)
-                    print 'data = ', resp.json()
-                    data = resp.json()[0]['fields']
-                    # sync user
-                    # user_key = self.generate_user_key(resp['username'], resp['email'], resp['password'])
-                    user = User(id=user_id, username=data['username'], password=data['password'], email=data['email'])
-                    user.save()
-                    data = resp.json()[1]['fields']
-                    org = Organization.objects.create(
-                        name=data['org_name'],
-                        slug=data['org_name'],
-                    )
+        headers = {'Authorization': authorization}
+        url = settings.OAUTH_SERVER + "/api/0/access_token"
+        r = requests.get(url, headers=headers)
+        if r.status_code == 200:
+            user_id = r.json()['user_id']
+            if not User.objects.filter(id=user_id):
+                # get user
+                resp = requests.post(settings.OAUTH_SERVER + "/api/user_info", data={'token': authorization.split(" ")[1]}, headers=headers)
+                print 'data = ', resp.json()
+                data = resp.json()[0]['fields']
+                # sync user
+                # user_key = self.generate_user_key(resp['username'], resp['email'], resp['password'])
+                user = User(id=user_id, username=data['username'], password=data['password'], email=data['email'])
+                user.save()
+                data = resp.json()[1]['fields']
+                org = Organization.objects.create(
+                    name=data['org_name'],
+                    slug=data['org_name'],
+                )
 
-                    OrganizationMember.objects.create(
-                        user=user,
-                        organization=org,
-                        role=roles.get_top_dog().id,
-                    )
-                    #
-                    # self.create_audit_entry(
-                    #     request=request,
-                    #     organization=org,
-                    #     target_object=org.id,
-                    #     event=AuditLogEntryEvent.ORG_ADD,
-                    #     data=org.get_audit_log_data(),
-                    # )
-                return user_id
-            return -1
-
+                OrganizationMember.objects.create(
+                    user=user,
+                    organization=org,
+                    role=roles.get_top_dog().id,
+                )
+                #
+                # self.create_audit_entry(
+                #     request=request,
+                #     organization=org,
+                #     target_object=org.id,
+                #     event=AuditLogEntryEvent.ORG_ADD,
+                #     data=org.get_audit_log_data(),
+                # )
+            return user_id
+        return -1
 
     def build_cursor_link(self, request, name, cursor):
         querystring = u'&'.join(
@@ -167,7 +171,6 @@ class Endpoint(APIView):
 
         try:
             self.initial(request, *args, **kwargs)
-
             # Get the appropriate handler method
             if request.method.lower() in self.http_method_names:
                 handler = getattr(self, request.method.lower(),
