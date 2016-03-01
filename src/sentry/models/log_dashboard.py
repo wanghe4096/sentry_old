@@ -11,6 +11,7 @@ import datetime
 
 
 class Dashboard(models.Model):
+    name = models.CharField(max_length=512, null=True)
     title = models.CharField(max_length=512)
     desc = models.CharField(max_length=512, null=True)
     created_at = models.DateTimeField(default=datetime.datetime.now(), null=True)

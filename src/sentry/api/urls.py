@@ -78,7 +78,10 @@ from .endpoints.stream_timeseries_index import StreamTimeSeriesIndexEndpoint
 from .endpoints.dashboard_index import DashboardIndexEndpoint
 from .endpoints.visualization_index import VisualizationIndexEndpoint
 from .endpoints.widget_index import WidgetIndexEndpoint
+from .endpoints.widget_details import WidgetDetailsEndpoint
 from .endpoints.search_index import SearchIndexEndpoint
+from .endpoints.search_details import SearchDetailsEndpoint
+from .endpoints.dashboard_details import DashboardDetailsEndpoint
 urlpatterns = patterns(
     '',
     #  loginsight
@@ -95,11 +98,12 @@ urlpatterns = patterns(
     url(r'^agent/hello', HelloToken.as_view(), name='hello-token'),
     url(r'^accesstoken', AccessTokenView.as_view(), name='access-token'),
     url(r'^dashboard/$', DashboardIndexEndpoint.as_view(), name='sentry-log-dashboard'),
+    url(r'^dashboard/(?P<dashboard_id>[^\/]+)/$', DashboardDetailsEndpoint.as_view(), name='sentry-log-dashboard-details'),
     url(r'^visualization/$', VisualizationIndexEndpoint.as_view(), name='sentry-log-visualization'),
     url(r'^widget/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
-    # url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
+    url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetDetailsEndpoint.as_view(), name='sentry-log-widget-details'),
     url(r'^search/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
-    # url(r'^search/(?P<search_id>[^\/]+)/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
+    url(r'^search/(?P<search_id>[^\/]+)/$', SearchDetailsEndpoint.as_view(), name='sentry-log-search-details'),
 
     # Auth
     url(r'^auth/$',

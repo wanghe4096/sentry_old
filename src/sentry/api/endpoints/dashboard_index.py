@@ -22,7 +22,7 @@ class DashboardIndexEndpoint(Endpoint):
         for q in queryset:
             o = {}
             o['id'] = q.id
-            o['title'] = q.title
+            o['name'] = q.name
             o['layout'] = ast.literal_eval(q.layout)
             o['created_at'] = q.created_at
             o['updated_at'] = q.updated_at
@@ -34,19 +34,13 @@ class DashboardIndexEndpoint(Endpoint):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-        dashboard = Dashboard.objects.create(title=data['title'],
-                                    created_at=datetime.datetime.now(),
-                                    updated_at=datetime.datetime.now(),
-                                    layout=data['layout'],
-                                    is_fav=data['is_fav'],
-                                    user=request.user)
+        dashboard = Dashboard.objects.create(name=data['name'],
+                                             created_at=datetime.datetime.now(),
+                                             updated_at=datetime.datetime.now(),
+                                             layout=data['layout'],
+                                             is_fav=data['is_fav'],
+                                             user=request.user)
         if dashboard:
             return Response(data, status=200)
         else:
             return Response(status=500)
-
-    def put(self, request, *args, **kwargs):
-        pass
-
-    def delte(self, request, *args, **kwargs):
-        pass

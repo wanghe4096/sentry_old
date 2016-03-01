@@ -50,11 +50,6 @@ class SearchIndexEndpoint(Endpoint):
                               user=request.user)
         return Response(status=200)
 
-    def get_search_id(self, request):
-        pattern = re.compile("/api/0/search/(?P<search_id>[^\/]+)/")
-        search_id = self.parse_path(request, pattern, 'search_id')
-        return int(search_id)
-
     def put(self, request, search_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:

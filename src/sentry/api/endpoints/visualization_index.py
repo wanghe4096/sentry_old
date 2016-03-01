@@ -44,9 +44,3 @@ class VisualizationIndexEndpoint(Endpoint):
             return Response(data, status=200)
         else:
             return Response(status=500)
-
-    def put(self, request, *args, **kwargs):
-        pass
-
-    def delte(self, request, *args, **kwargs):
-        pass
