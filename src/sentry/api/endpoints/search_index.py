@@ -15,7 +15,7 @@ import re
 class SearchIndexEndpoint(Endpoint):
     permission_classes = []
 
-    def get(self, request,  *args, **kwargs):
+    def get(self, request, *args, **kwargs):
             try:
                 search_queryset = Search.objects.filter(user_id=request.user.id)
             except ObjectDoesNotExist:
