@@ -6,25 +6,10 @@ import moment from 'moment';
 import {Link,IndexLink} from 'react-router';
 import PureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
 import DocumentTitle from 'react-document-title';
+import ListStore from 'stores/dashboard/listStore';
+import ListAction from 'actions/dashboard/listAction';
 
 const css = require('css/dashboard.less');
-let dashboardList = [];
-let _i = 0;
-
-(function(){
-  while(_i<10){
-    dashboardList.push({
-      title: 'xxxxx dashboard-' + _i,
-      desc: '啊萨法喀纳斯；的联发科那算了的能否蓝色的；饭',
-      id: 'xxxxx_' + _.random(99, 999999),
-      widget_count: _.random(1, 7),
-      created_at :+ new Date(),
-      is_fav: _i % 2 === 0,
-      update_at :+ new Date()
-    });
-    _i++;
-  };
-})()
 
 const AddBox = React.createClass({
   propTypes:{
@@ -38,18 +23,16 @@ const AddBox = React.createClass({
   },
   submitHandler(e) {
     e.preventDefault();
-    if(this.props.onSubmit){
-      this.props.onSubmit();
-      return false;
-    }
-
-    // TODO: onSubmit 与 state.submit_ing 结合有问题！！
+    // if(this.props.onSubmit){
+    //   this.props.onSubmit();
+    //   return false;
+    // }
 
     this.setState({
       submit_ing:true
     });
     setTimeout(() => {
-      // mock submit success
+      
       this.props.onClose();
     }, 3 * 1000);
   },
@@ -88,7 +71,9 @@ const AddBox = React.createClass({
 });
 
 const DashboardItem = React.createClass({
-  mixins: [PureRenderMixin],
+  mixins: [
+    PureRenderMixin,
+  ],
   getInitialState() {
     return {
       edit_mode:false
@@ -166,7 +151,10 @@ const DashboardItem = React.createClass({
 })
 
 const DashboardList = React.createClass({
-  mixins: [PureRenderMixin],
+  mixins: [
+    PureRenderMixin,
+    Reflux.connect(ListStore,'list')
+  ],
   getInitialState() {
     return {
       fav_filter : false,
@@ -176,6 +164,7 @@ const DashboardList = React.createClass({
   },
   componentWillMount() {
     css.use();
+    ListAction.fetch();
   },
   componentWillUnmount() {
     css.unuse();
@@ -186,7 +175,8 @@ const DashboardList = React.createClass({
     });
   },
   renderBody() {
-    return dashboardList.map(({...prop},i) => {
+    console.log(this.state);
+    return this.state.list.map(({...prop},i) => {
 
       const title = prop.title.toLocaleLowerCase().replace(/\s+/g,'');
       const desc = prop.desc.toLocaleLowerCase().replace(/\s+/g,'');
