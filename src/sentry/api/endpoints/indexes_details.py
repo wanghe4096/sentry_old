@@ -44,10 +44,10 @@ class IndexesDetailsEndpoint(Endpoint):
             if not indexes:
                 return Response(data, status=200)
             indexes.update(name=data['name'],
-                           desc=data['desc'],
+                           desc=data.get('desc', None),
                            updated_at=datetime.datetime.now(),
-                           type=data['type'],
-                           dsn=data['dsn'])
+                           type=data.get('type', None),
+                           dsn=data.get('dsn', None))
             return Response(status=200)
         return Response(status=400)
 

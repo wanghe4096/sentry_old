@@ -11,12 +11,13 @@ import datetime
 
 
 class Search(models.Model):
-    name = models.CharField(max_length=1024)
+    name = models.CharField(max_length=1024, null=True)
     create_timestamp = models.DateTimeField(default=datetime.datetime.now(), null=True)
     last_timestamp = models.DateTimeField(default=datetime.datetime.now(), null=True)
     query = models.CharField(max_length=1024 * 1024, null=True)
     time_range = models.CharField(max_length=512, null=True)
     config = models.CharField(max_length=512, null=True)
+    desc = models.CharField(max_length=512, null=True)
     user = models.ForeignKey(User)
 
     class Meta:

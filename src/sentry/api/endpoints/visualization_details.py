@@ -50,10 +50,10 @@ class VisualizationDetailsEndpoint(Endpoint):
             if not visualization:
                 return Response(data, status=200)
             visualization.update(name=data['name'],
-                                 desc=data['desc'],
+                                 desc=data.get('desc', None),
                                  updated_at=datetime.datetime.now(),
-                                 is_fav=data['is_fav'],
-                                 layout=data['layout'])
+                                 is_fav=data.get('is_fav', None),
+                                 layout=data.get('layout', None))
             return Response(status=200)
         return Response(status=400)
 

@@ -25,11 +25,15 @@ class SearchDetailsEndpoint(Endpoint):
         except ObjectDoesNotExist:
             return Response(status=400, data={'msg': 'object does not exist!'})
         if search:
+            if search.time_range is None:
+                time_range = None
+            else:
+                time_range = ast.literal_eval(search.time_range)
             return Response({'name': search.name,
                              'create_timestamp': search.create_timestamp,
                              'last_timestamp': search.last_timestamp,
                              'query': search.query,
-                             'time_range': ast.literal_eval(search.time_range)}, status=200)
+                             'time_range': time_range}, status=200)
         else:
             return Response(status=400)
 
@@ -42,12 +46,13 @@ class SearchDetailsEndpoint(Endpoint):
                 search = Search.objects.filter(id=search_id, user=request.user)
             except ObjectDoesNotExist:
                 return Response(status=400)
+
             search.update(id=int(search_id),
                           name=data.get('name'),
                           last_timestamp=datetime.datetime.now(),
-                          query=data.get('query'),
-                          time_range=data['time_range'],
-                          config=data.get('config', ''))
+                          query=data.get('query', None),
+                          time_range=data.get('time_range', None),
+                          config=data.get('config', None))
             return Response(data, status=200)
 
     def delete(self, request, search_id, *args, **kwargs):

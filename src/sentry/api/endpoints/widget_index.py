@@ -7,6 +7,7 @@ email_ : wangh@loginsight.cn
 from sentry.api.base import Endpoint
 from sentry.models.log_widget import LogWidget
 from rest_framework.response import Response
+import ast
 
 
 class WidgetIndexEndpoint(Endpoint):
@@ -20,8 +21,14 @@ class WidgetIndexEndpoint(Endpoint):
                 o['id'] = e.id
                 o['title'] = e.title
                 o['search_id'] = e.search_id
-                o['x_axis'] = e.x_axis
-                o['y_axis'] = e.y_axis
+                if e.x_axis is not None:
+                    o['x_axis'] = ast.literal_eval(e.x_axis)
+                else:
+                    o['x_axis'] = None
+                if e.x_axis is not None:
+                    o['y_axis'] = ast.literal_eval(e.y_axis)
+                else:
+                    o['y_axis'] = None
                 o['chart_type'] = e.chart_type
                 widget_list.append(o)
             return Response(widget_list, status=200)
@@ -30,10 +37,11 @@ class WidgetIndexEndpoint(Endpoint):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-        LogWidget.objects.create(title=data['title'],
-                                 search_id=data['search_id'],
-                                 x_axis=data['x_axis'],
-                                 y_axis=data['y_axis'],
-                                 chart_type=data['chart_type'],
+        LogWidget.objects.create(title=data.get('title', None),
+                                 search_id=data.get('search_id', None),
+                                 x_axis=data.get('x_axis', None),
+                                 y_axis=data.get('y_axis', None),
+                                 chart_type=data.get('chart_type', None),
+                                 desc=data.get('desc', None),
                                  user=request.user)
         return Response({'msg': 'ok'}, status=200)

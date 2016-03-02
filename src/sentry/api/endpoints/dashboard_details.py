@@ -26,12 +26,15 @@ class DashboardDetailsEndpoint(Endpoint):
         except ObjectDoesNotExist:
             return Response(status=400, data={'msg': 'object does not exist!'})
         if dashboard:
+            layout = dashboard.layout
+            if layout is not None:
+                layout = ast.literal_eval(layout)
             return Response({'name': dashboard.name,
                              'desc': dashboard.desc,
                              'is_fav': dashboard.is_fav,
                              'created_at': dashboard.created_at,
                              'updated_at': dashboard.updated_at,
-                             'layout': ast.literal_eval(dashboard.layout)}, status=200)
+                             'layout': layout}, status=200)
         else:
             return Response(status=400)
 
@@ -45,10 +48,10 @@ class DashboardDetailsEndpoint(Endpoint):
             if not dashboard:
                 return Response(data, status=200)
             dashboard.update(name=data['name'],
-                             desc=data['desc'],
+                             desc=data.get('desc', None),
                              updated_at=datetime.datetime.now(),
-                             is_fav=data['is_fav'],
-                             layout=data['layout'])
+                             is_fav=data.get('is_fav', False),
+                             layout=data.get('layout', None))
             return Response(status=200)
         return Response(status=400)
 

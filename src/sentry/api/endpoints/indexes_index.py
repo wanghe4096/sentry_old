@@ -38,9 +38,9 @@ class IndexesIndexEndpoint(Endpoint):
         indexes = Indexes.objects.create(name=data['name'],
                                          created_at=datetime.datetime.now(),
                                          updated_at=datetime.datetime.now(),
-                                         type=data['type'],
-                                         dsn=data['dsn'],
-                                         desc=data['desc'],
+                                         type=data.get('type', None),
+                                         dsn=data.get('dsn', None),
+                                         desc=data.get('desc', None),
                                          user=request.user)
         if indexes:
             return Response(data, status=200)
