@@ -1,0 +1,31 @@
+svg {
+  font: 10px sans-serif;
+}
+
+.area {
+  fill: #ddd;
+  clip-path: url(#clip);
+}
+.axis{
+    path,
+    line {
+      fill: none;
+      stroke: #888;
+      shape-rendering: crispEdges;
+    }
+    &.x{
+        .tick{
+            fill:#666;
+        }
+    }
+}
+
+.brush .extent {
+  stroke: #fff;
+  fill-opacity: .125;
+  shape-rendering: crispEdges;
+}
+
+.bar{
+    fill: #ddd;
+}
