@@ -3,7 +3,7 @@ import DocumentTitle from 'react-document-title';
 import Header from 'components/header';
 import {t} from '../locale';
 import HomeHeader from 'components/home/homeHeader';
-import HomeSetDashboard from 'components/home/homesetDashboard';
+import HomeSetDashboard from 'components/home/homeSetDashboard';
 
 const HomeCss = require('css/home.less');
 
@@ -44,4 +44,3 @@ const HomeApp = React.createClass({
 });
 
 export default HomeApp;
-
