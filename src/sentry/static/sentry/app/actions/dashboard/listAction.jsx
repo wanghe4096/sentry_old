@@ -25,15 +25,11 @@ ListAction.fetch.listen(function() {
 
 // update item
 ListAction.update.listen(function(data) {
+  // console.log('1111111:data.id', data.id, data.id ? 'PUT': 'POST');
   var that = this;
-  new Client().request('/dashboard/', {
-    type: 'POST',
-    data: {
-      'op': data.id ? 'update': 'create',
-      'name': data.name,
-      'desc': data.desc,
-      'id': data.id
-    },
+  return new Client().request('/dashboard/', {
+    method: data.id ? 'PUT': 'POST',
+    data: data,
     success: function(data) {
       console.log('update data:',data);
     },

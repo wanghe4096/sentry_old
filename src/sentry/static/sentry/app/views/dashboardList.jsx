@@ -23,18 +23,34 @@ const AddBox = React.createClass({
   },
   submitHandler(e) {
     e.preventDefault();
-    // if(this.props.onSubmit){
-    //   this.props.onSubmit();
-    //   return false;
-    // }
 
-    this.setState({
-      submit_ing:true
-    });
-    setTimeout(() => {
+    this.setState({submit_ing: true});
 
-      this.props.onClose();
-    }, 3 * 1000);
+    // const data = _.pick(this.props,'id','desc','name','is_fav','layout','name','created_at','updated_at');
+
+    // setTimeout(() => {
+    //   this.props.onClose();
+    // }, 3 * 1000);
+    const data = {
+      name: this.refs.name.value,
+      desc: this.refs.desc.value,
+      layout: this.props.layout || null,
+      is_fav: !!this.props.is_fav // todo
+    }
+
+    if(this.props.id){
+      data.id = this.props.id
+    }
+
+
+    ListAction.update(data)
+      .done(function(){
+
+      })
+      .fail(function(){
+
+      });
+
   },
   render() {
     return (
@@ -42,13 +58,17 @@ const AddBox = React.createClass({
         <form onSubmit={this.submitHandler}>
           <div className="b-name">
             <input
-              value={this.props.title}
+              ref="name"
+              defaultValue={this.props.name}
+              onChange={() => {}}
               disabled={!!this.state.submit_ing}
               placeholder="Dashboard Title" />
           </div>
           <p className="b-desc">
             <input
-              value={this.props.desc}
+              ref="desc"
+              defaultValue={this.props.desc}
+              onChange={() => {}}
               disabled={!!this.state.submit_ing}
               placeholder="Dashboard Description"  />
           </p>
@@ -105,10 +125,10 @@ const DashboardItem = React.createClass({
         <h5 className="b-name">
           <Link
             to={itemUrl}>
-            {this.props.title}
+            {this.props.name}
           </Link>
         </h5>
-        <p className="b-desc">{this.props.desc}</p>
+        <p className="b-desc">{ this.props.desc || this.props.name }</p>
         <div className="b-wrap">
           <span className="b-f"><b>widget count:</b>{this.props.widget_count}</span>
           <span className="b-f">
@@ -178,7 +198,7 @@ const DashboardList = React.createClass({
     return this.state.list.map(({...prop},i) => {
 
       const title = prop.name.toLocaleLowerCase().replace(/\s+/g,'');
-      const desc = prop.desc.toLocaleLowerCase().replace(/\s+/g,'');
+      const desc = (prop.desc || '').toLocaleLowerCase().replace(/\s+/g,'');
       const fulltext = title + desc;
       const text_filter = this.state.text_filter;
 
