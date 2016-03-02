@@ -237,4 +237,3 @@ class AuditLogEntry(Model):
         elif self.event == AuditLogEntryEvent.AGENT_HOST_ADD:
             return 'AGENT ADD host %s (%s)' % (self.data['label'], self.data['host'])
         return ''
-
