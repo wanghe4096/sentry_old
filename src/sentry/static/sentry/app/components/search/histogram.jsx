@@ -45,20 +45,20 @@ const Histogram = React.createClass({
       x2.domain(dateExtent);
       y2.domain([0, maxPrice]);
 
-      svg.append("path")
-        .datum(data)
-        .attr("class", "area")
-        .attr("d", area2);
-      // svg.append("g")
-      //   .attr("class", "bars")
-      //   .selectAll(".bar")
-      //   .data(data)
-      //   .enter().append("rect")
-      //       .attr("class", "bar")
-      //       .attr("x", function(d) { return x2(d.date) - 3; })
-      //       .attr("width", 3)
-      //       .attr("y", function(d) { return y2(d.price); })
-      //       .attr("height", function(d) { return height2 - y2(d.price); });
+      // svg.append("path")
+      //   .datum(data)
+      //   .attr("class", "area")
+      //   .attr("d", area2);
+      svg.append("g")
+        .attr("class", "bars")
+        .selectAll(".bar")
+        .data(data)
+        .enter().append("rect")
+            .attr("class", "bar")
+            .attr("x", function(d) { return x2(d.date) - 3; })
+            .attr("width", 8)
+            .attr("y", function(d) { return y2(d.price); })
+            .attr("height", function(d) { return height2 - y2(d.price); });
 
       svg.append("g")
         .attr("class", "x axis")
