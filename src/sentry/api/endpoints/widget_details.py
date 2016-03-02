@@ -29,22 +29,22 @@ class WidgetDetailsEndpoint(Endpoint):
         else:
             return Response(status=400)
 
-    def put(self, request, *args, **kwargs):
+    def put(self, request, widget_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-        widget_id = self.get(request)
         if widget_id:
             try:
-                widget = LogWidget.objects.get(id=widget_id, user=request.user)
+                widget = LogWidget.objects.filter(id=widget_id, user=request.user)
             except ObjectDoesNotExist:
                 return Response(status=400)
             widget.update(title=data['title'],
-                          search_id=data['search_id'],
+                          search=int(data['search_id']),
                           x_axis=data['x_axis'],
                           y_axis=data['y_axis'],
                           chart_type=data['chart_type'])
             return Response(data, status=200)
+        return Response(status=400)
 
     def delete(self, request, widget_id, *args, **kwargs):
         widget = LogWidget.objects.get(id=widget_id, user=request.user)

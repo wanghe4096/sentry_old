@@ -50,27 +50,17 @@ class DashboardDetailsEndpoint(Endpoint):
         print(request.DATA)
         if len(data) == 0:
             return Response(status=400)
-        dashboard_id = self.get(request)
         if dashboard_id:
-            try:
-                dashboard = LogInsightDashboard.objects.get(id=dashboard_id, user=request.user)
-            except ObjectDoesNotExist:
-                return Response(status=400)
-            dashboard.update(id=dashboard_id,
-                             name=data['name'],
+            dashboard = LogInsightDashboard.objects.filter(id=dashboard_id, user=request.user)
+            if not dashboard:
+                return Response(data, status=200)
+            dashboard.update(name=data['name'],
                              desc=data['desc'],
-                             updated=datetime.datetime.now(),
+                             updated_at=datetime.datetime.now(),
                              is_fav=data['is_fav'],
                              layout=data['layout'])
-            return Response(data, status=200)
-        # print 'ffff=', request.DATA
-        # serializer = DashboardSerializer(data=request.DATA, partial=False)
-        #
-        # if serializer.is_valid():
-        #     dashboard = serializer.save()
-        #     return Response(serialize(dashboard, request.user))
-        #
-        # return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+            return Response(status=200)
+        return Response(status=400)
 
     def delete(self, request, dashboard_id, *args, **kwargs):
         dashboard = LogInsightDashboard.objects.get(id=dashboard_id, user=request.user)

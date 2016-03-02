@@ -38,7 +38,6 @@ class ProjectRuleDetailsEndpoint(ProjectEndpoint):
               "actions": [],
               "actionMatch": "all"
             }}
-
         """
         rule = Rule.objects.get(
             project=project,

@@ -34,10 +34,9 @@ class SearchDetailsEndpoint(Endpoint):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
-        search_id = self.get(request)
         if search_id:
             try:
-                search = Search.objects.get(id=search_id, user=request.user)
+                search = Search.objects.filter(id=search_id, user=request.user)
             except ObjectDoesNotExist:
                 return Response(status=400)
             search.update(id=int(search_id),
