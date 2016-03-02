@@ -17,7 +17,7 @@ ListAction.fetch.listen(function() {
     success: function(data) {
       that.success(data);
     },
-    error: function() {
+    error: function(e) {
       that.failed(e);
     }
   })
