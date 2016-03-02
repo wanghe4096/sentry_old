@@ -15,16 +15,6 @@ import ast
 import datetime
 
 
-class DashboardSerializer(serializers.ModelSerializer):
-    name = serializers.CharField()
-    desc = serializers.CharField()
-    is_fav = serializers.BooleanField()
-    layout = serializers.CharField()
-
-    class Meta:
-        model = LogInsightDashboard
-        fields = ('name', 'desc', 'is_fav', 'layout', )
-
 
 class DashboardDetailsEndpoint(Endpoint):
     permission_classes = []
@@ -34,7 +24,10 @@ class DashboardDetailsEndpoint(Endpoint):
         return (args, kwargs)
 
     def get(self, request, dashboard_id, *args,  **kwargs):
-        dashboard = LogInsightDashboard.objects.get(id=dashboard_id, user=request.user)
+        try:
+            dashboard = LogInsightDashboard.objects.get(id=dashboard_id, user=request.user)
+        except ObjectDoesNotExist:
+            return Response(status=400, data={'msg': 'object does not exist!'})
         if dashboard:
             return Response({'name': dashboard.name,
                              'desc': dashboard.desc,

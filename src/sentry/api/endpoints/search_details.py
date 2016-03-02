@@ -20,7 +20,10 @@ class SearchDetailsEndpoint(Endpoint):
         return (args, kwargs)
 
     def get(self, request, search_id, *args,  **kwargs):
-        search = Search.objects.get(id=search_id, user=request.user)
+        try:
+            search = Search.objects.get(id=search_id, user=request.user)
+        except ObjectDoesNotExist:
+            return Response(status=400, data={'msg': 'object does not exist!'})
         if search:
             return Response({'name': search.name,
                              'create_timestamp': search.create_timestamp,

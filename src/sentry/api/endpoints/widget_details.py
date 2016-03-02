@@ -19,7 +19,10 @@ class WidgetDetailsEndpoint(Endpoint):
         return (args, kwargs)
 
     def get(self, request, widget_id, *args,  **kwargs):
-        widget = LogWidget.objects.get(id=widget_id, user=request.user)
+        try:
+            widget = LogWidget.objects.get(id=widget_id, user=request.user)
+        except ObjectDoesNotExist:
+            return Response(status=400, data={'msg': 'widget does not exist!'})
         if widget:
             return Response({'title': widget.title,
                              'search_id': widget.search_id,

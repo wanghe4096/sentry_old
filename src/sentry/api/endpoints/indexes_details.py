@@ -9,7 +9,7 @@ email_ : wangh@loginsight.cn
 from sentry.api.base import Endpoint
 from sentry.models.log_indexes import Indexes
 from rest_framework.response import Response
-import ast
+from django.core.exceptions import ObjectDoesNotExist
 import datetime
 
 
@@ -21,7 +21,10 @@ class IndexesDetailsEndpoint(Endpoint):
         return (args, kwargs)
 
     def get(self, request, index_id, *args,  **kwargs):
-        index = Indexes.objects.get(id=index_id, user=request.user)
+        try:
+            index = Indexes.objects.get(id=index_id, user=request.user)
+        except ObjectDoesNotExist:
+            return Response(status=400, data={'msg': 'object does not exist!'})
         if index:
             return Response({'name': index.name,
                              'desc': index.desc,

@@ -9,6 +9,7 @@ email_ : wangh@loginsight.cn
 from sentry.api.base import Endpoint
 from sentry.models.visualization import Visaulization
 from rest_framework.response import Response
+from django.core.exceptions import ObjectDoesNotExist
 import ast
 import datetime
 
@@ -21,7 +22,10 @@ class VisualizationDetailsEndpoint(Endpoint):
         return (args, kwargs)
 
     def get(self, request, visualization_id, *args,  **kwargs):
-        visualization = Visaulization.objects.get(id=visualization_id, user=request.user)
+        try:
+            visualization = Visaulization.objects.get(id=visualization_id, user=request.user)
+        except ObjectDoesNotExist:
+            return Response(status=400, data={'msg': 'visualization does not exist!'})
         if visualization:
             return Response({'name': visualization.name,
                              'desc': visualization.desc,
