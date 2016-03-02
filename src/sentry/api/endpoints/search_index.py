@@ -47,7 +47,6 @@ class SearchIndexEndpoint(Endpoint):
             return Response({'msg': 'existed!'}, status=404)
         if len(data.get('name', '')) == 0:
             return Response(status=404)
-        # print('name = ', data['name'])
         Search.objects.create(name=data['name'],
                               query=data.get('query', ''),
                               config=data.get('config', ''),

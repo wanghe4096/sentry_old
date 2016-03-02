@@ -17,7 +17,7 @@ class LogInsightDashboard(models.Model):
     created_at = models.DateTimeField(null=True)
     updated_at = models.DateTimeField(null=True)
     is_fav = models.BooleanField(default=False)
-    layout = models.CharField(max_length=512 * 1024)
+    layout = models.CharField(max_length=512 * 1024, null=True)
     config = models.CharField(max_length=512, null=True)
     user = models.ForeignKey(User)
 
