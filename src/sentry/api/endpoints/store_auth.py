@@ -67,7 +67,7 @@ class RegisterEndpoint(Endpoint):
         if not User.objects.filter(username=username):
             if not User.objects.filter(email=email):
                 user.save()
-                resp = {'info':'success'}
+                resp = {'info': 'success'}
                 return HttpResponse(str(resp))
         resp = {'error': 'user exists'}
         return HttpResponse(str(resp))

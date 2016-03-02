@@ -6,7 +6,6 @@ email_ : wangh@loginsight.cn
 """
 from sentry.api.base import Endpoint
 from sentry.models.log_widget import LogWidget
-from django.core.exceptions import ObjectDoesNotExist
 from rest_framework.response import Response
 
 
@@ -38,4 +37,3 @@ class WidgetIndexEndpoint(Endpoint):
                                  chart_type=data['chart_type'],
                                  user=request.user)
         return Response({'msg': 'ok'}, status=200)
-

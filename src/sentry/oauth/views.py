@@ -18,7 +18,6 @@ import hashlib
 ApiUrl = namedtuple('ApiUrl', 'name, url')
 
 
-
 class ConsumerExchangeView(FormView):
     """
     The exchange view shows a form to manually perform the auth token swap
@@ -45,7 +44,7 @@ class ConsumerExchangeView(FormView):
 
             headers = {"Authorization": "Basic " + base64.b64encode(settings.LOGINSIGHT_CLIENT_ID + ":" + settings.LOGINSIGHT_CLIENT_SECRET)}
             data = {'code': request.GET['code'],
-                    'redirect_uri':  request.build_absolute_uri(reverse('oauth-consumer-exchange')),
+                    'redirect_uri': request.build_absolute_uri(reverse('oauth-consumer-exchange')),
                     'grant_type': 'authorization_code'}
 
             resp = requests.post(settings.TOKEN_URL,
@@ -58,8 +57,7 @@ class ConsumerExchangeView(FormView):
             headers = {"Authorization": token_type + " " + token}
 
             resp = requests.post(settings.OAUTH_SERVER + "/api/user_info", data={'token': token}, headers=headers)
-            data =  resp.json()[0]['fields']
-            print 'data = ', data
+            data = resp.json()[0]['fields']
             user_key = self.generate_user_key(data['username'], data['email'], data['password'])
             user = User(username=data['username'], email=data['email'])
             user.set_password(data['password'])
@@ -90,7 +88,6 @@ class ConsumerExchangeView(FormView):
         form_class = self.get_form_class()
         form = self.get_form(form_class)
         return self.render_to_response(self.get_context_data(form=form, **kwargs))
-
 
 
 class ConsumerView(FormView):
@@ -169,4 +166,3 @@ class ApiClientView(TemplateView):
 class ApiEndpoint(ProtectedResourceView):
     def get(self, request, *args, **kwargs):
         return HttpResponse('Hello, OAuth2!')
-

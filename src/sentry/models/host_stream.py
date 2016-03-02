@@ -55,6 +55,7 @@ class Host(models.Model):
             'last_time': str(self.last_time),
         }
 
+
 class Tag(models.Model):
     tag_name = models.CharField(max_length=128)
     user = models.ForeignKey(User)
@@ -124,18 +125,17 @@ class LogFile(models.Model):
 
 
 class LogEvent(models.Model):
-    payload = models.CharField(max_length=64*1024)
+    payload = models.CharField(max_length=64 * 1024)
     offset = models.IntegerField(null=True)
-    # stream = models.ForeignKey(Stream, null=True)
     logfile = models.ForeignKey(LogFile, null=True)
     host = models.ForeignKey(Host)
     user = models.ForeignKey(User)
     tag = models.ForeignKey(Tag, null=True)
     event_no = models.IntegerField(null=True)
+
     class Meta:
         app_label = 'sentry'
         db_table = 'sentry_log_event'
 
     def __unicode__(self):
         return self.payload
-

@@ -11,7 +11,6 @@ from django.views.decorators.http import require_http_methods
 
 from oauthlib import __version__ as OAUTHLIB_VERSION
 from oauthlib.oauth2 import Server
-
 from sentry.models.application import MyApplication
 
 
@@ -39,21 +38,6 @@ def get_system_info(request, *args, **kwargs):
     }
 
     return HttpResponse(json.dumps(data), content_type='application/json', *args, **kwargs)
-
-@csrf_exempt
-@require_http_methods(["GET"])
-def get_user_info(request, *args, **kwargs):
-    """
-    get user info include access_token
-    :param request:
-    :param args:
-    :param kwargs:
-    :return:
-
-    """
-
-    pass
-
 
 
 @csrf_exempt

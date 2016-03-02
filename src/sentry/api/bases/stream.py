@@ -9,7 +9,7 @@ from __future__ import absolute_import
 from sentry.auth import access
 from sentry.api.base import Endpoint
 from sentry.api.permissions import ScopedPermission
-from sentry.models import Host, Stream
+from sentry.models import Stream
 
 
 class StreamPermission(ScopedPermission):

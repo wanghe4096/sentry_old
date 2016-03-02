@@ -20,7 +20,7 @@ class HostSerializer(Serializer):
     host_type = serializers.CharField(max_length=200)
     system = serializers.CharField(max_length=200)
     distver = serializers.CharField(max_length=50)
-    create_time =serializers.DateTimeField()
+    create_time = serializers.DateTimeField()
     last_time = serializers.DateTimeField()
 
     def serialize(self, obj, attrs, user):
@@ -33,4 +33,3 @@ class HostSerializer(Serializer):
             'create_time': obj.create_time,
             'last_time': obj.last_time,
         }
-

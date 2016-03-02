@@ -19,7 +19,7 @@ class SearchDetailsEndpoint(Endpoint):
         kwargs['search_id'] = search_id
         return (args, kwargs)
 
-    def get(self, request, search_id, *args,  **kwargs):
+    def get(self, request, search_id, *args, **kwargs):
         try:
             search = Search.objects.get(id=search_id, user=request.user)
         except ObjectDoesNotExist:
@@ -33,7 +33,7 @@ class SearchDetailsEndpoint(Endpoint):
         else:
             return Response(status=400)
 
-    def put(self, request, search_id,  *args, **kwargs):
+    def put(self, request, search_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)

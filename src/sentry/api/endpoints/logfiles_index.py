@@ -9,12 +9,9 @@ email_ : wangh@loginsight.cn
 from __future__ import absolute_import
 from rest_framework.response import Response
 from sentry.api.bases.logfile import LogFileEndpoint
-from sentry.conf.server import *
+from django.conf import settings
 import requests
-import datetime
 import time
-#STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
-# STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
 
 
 class LogfileIndexEndpoint(LogFileEndpoint):
@@ -32,18 +29,14 @@ class LogfileIndexEndpoint(LogFileEndpoint):
         """
 
         result = request.GET
-        stream_id = result.get('stream_id', '0')
         host_id = result.get('host_id', '0')
 
-        url = "%s/u/%s/nodes/%s/streams/%s/files" % (STORAGE_API_BASE_URL,
-                                                    request.user.id,
-                                                    host_id,
-                                                    result['stream_id']
-                                                    )
+        url = "%s/u/%s/nodes/%s/streams/%s/files" % \
+              (settings.STORAGE_SERVER, request.user.id, host_id, result['stream_id'])
         start_time = time.clock()
         r = requests.get(url)
         end_time = time.clock()
-        print 'get logfile time: ',  end_time - start_time
+        print 'get logfile time: ', end_time - start_time
         if r.status_code == 200:
             resp = r.json()
             file_list = []
@@ -52,12 +45,12 @@ class LogfileIndexEndpoint(LogFileEndpoint):
                 file_obj = {
                     'id': '',
                     'host_id': '',
-                    'file_name':'',
+                    'file_name': '',
                     'file_path': '',
                     'stream_id': '',
                     'size': '',
                     'host_id': '',
-                    'create_timestamp':'',
+                    'create_timestamp': '',
                     'last_timestamp': '',
                     'access_timestamp': '',
                     'mod': '',
@@ -84,6 +77,4 @@ class LogfileIndexEndpoint(LogFileEndpoint):
                 file_obj['last_timestamp'] = tobj['modify_time']
                 file_obj['create_timestamp'] = tobj['create_time']
                 file_list.append(file_obj)
-            end_time = time.clock()
-            print 'get log file: ', end_time-start_time
         return Response(file_list)

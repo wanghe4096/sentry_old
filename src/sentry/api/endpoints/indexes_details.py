@@ -20,7 +20,7 @@ class IndexesDetailsEndpoint(Endpoint):
         kwargs['index_id'] = index_id
         return (args, kwargs)
 
-    def get(self, request, index_id, *args,  **kwargs):
+    def get(self, request, index_id, *args, **kwargs):
         try:
             index = Indexes.objects.get(id=index_id, user=request.user)
         except ObjectDoesNotExist:
@@ -35,7 +35,7 @@ class IndexesDetailsEndpoint(Endpoint):
         else:
             return Response(status=400)
 
-    def put(self, request, index_id,  *args, **kwargs):
+    def put(self, request, index_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)

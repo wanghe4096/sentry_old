@@ -11,7 +11,6 @@ from sentry.api.base import Endpoint
 from sentry.models.log_indexes import Indexes
 from rest_framework.response import Response
 import datetime
-import ast
 
 
 class IndexesIndexEndpoint(Endpoint):

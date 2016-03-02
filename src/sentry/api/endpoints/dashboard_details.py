@@ -8,12 +8,9 @@ email_ : wangh@loginsight.cn
 from sentry.api.base import Endpoint
 from sentry.models.LogInsightDashboard import LogInsightDashboard
 from rest_framework.response import Response
-from sentry.api.serializers import serialize
 from django.core.exceptions import ObjectDoesNotExist
-from rest_framework import serializers, status
 import ast
 import datetime
-
 
 
 class DashboardDetailsEndpoint(Endpoint):
@@ -23,7 +20,7 @@ class DashboardDetailsEndpoint(Endpoint):
         kwargs['dashboard_id'] = dashboard_id
         return (args, kwargs)
 
-    def get(self, request, dashboard_id, *args,  **kwargs):
+    def get(self, request, dashboard_id, *args, **kwargs):
         try:
             dashboard = LogInsightDashboard.objects.get(id=dashboard_id, user=request.user)
         except ObjectDoesNotExist:
@@ -38,7 +35,7 @@ class DashboardDetailsEndpoint(Endpoint):
         else:
             return Response(status=400)
 
-    def put(self, request, dashboard_id,  *args, **kwargs):
+    def put(self, request, dashboard_id, *args, **kwargs):
         data = request.DATA
         print(request.DATA)
         if len(data) == 0:

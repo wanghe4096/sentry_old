@@ -42,5 +42,3 @@ class StreamTimeSeriesIndexEndpoint(StreamEndpoint):
         r = requests.get(settings.STORAGE_SERVER + uri)
         print r
         return Response(r.json())
-
-

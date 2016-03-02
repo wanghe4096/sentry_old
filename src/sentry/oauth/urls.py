@@ -1,6 +1,5 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
-from django.core.urlresolvers import reverse_lazy
 from django.views.generic import TemplateView
 
 from .views import (
@@ -22,15 +21,8 @@ urlpatterns = patterns(
         view='django.contrib.auth.views.login',
         kwargs={'template_name': 'example/login.html'}
     ),
-    # url(
-    #     regex='^accounts/logout/$',
-    #     view='django.contrib.auth.views.logout',
-    #     kwargs={'next_page': reverse_lazy('home')}
-    # ),
-
     # the Django admin
     url(r'^admin/', include(admin.site.urls)),
-
     # consumer logic
     url(
         regex=r'^consumer/$',

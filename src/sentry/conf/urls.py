@@ -19,7 +19,7 @@ except ImportError:
 from django.views.defaults import page_not_found
 from django.http import HttpResponse
 
-from sentry import django_admin, status_checks
+from sentry import status_checks
 from sentry.utils import json
 from sentry.web.urls import urlpatterns as web_urlpatterns
 from sentry.web.frontend.csrf_failure import CsrfFailureView

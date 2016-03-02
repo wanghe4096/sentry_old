@@ -21,7 +21,7 @@ class VisualizationDetailsEndpoint(Endpoint):
         kwargs['visualization_id'] = visualization_id
         return (args, kwargs)
 
-    def get(self, request, visualization_id, *args,  **kwargs):
+    def get(self, request, visualization_id, *args, **kwargs):
         try:
             visualization = Visaulization.objects.get(id=visualization_id, user=request.user)
         except ObjectDoesNotExist:
@@ -41,7 +41,7 @@ class VisualizationDetailsEndpoint(Endpoint):
         else:
             return Response(status=400)
 
-    def put(self, request, visualization_id,  *args, **kwargs):
+    def put(self, request, visualization_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400)
@@ -50,10 +50,10 @@ class VisualizationDetailsEndpoint(Endpoint):
             if not visualization:
                 return Response(data, status=200)
             visualization.update(name=data['name'],
-                             desc=data['desc'],
-                             updated_at=datetime.datetime.now(),
-                             is_fav=data['is_fav'],
-                             layout=data['layout'])
+                                 desc=data['desc'],
+                                 updated_at=datetime.datetime.now(),
+                                 is_fav=data['is_fav'],
+                                 layout=data['layout'])
             return Response(status=200)
         return Response(status=400)
 

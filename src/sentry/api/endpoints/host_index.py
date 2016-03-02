@@ -7,7 +7,6 @@ email_ : wangh@loginsight.cn
 
 from __future__ import absolute_import
 
-from rest_framework import serializers, status
 from rest_framework.response import Response
 
 from sentry.api.base import DocSection
@@ -19,37 +18,24 @@ from sentry.models.organization import Organization
 from sentry.models import (
     AuditLogEntryEvent, Host, User
 )
-
 from sentry.api.base import Endpoint
 from sentry.utils.apidocs import scenario, attach_scenarios
 from django.conf import settings
-from sentry.conf.server import *
-from oauth2_provider.models import AccessToken
-from oauth2_provider.ext.rest_framework.authentication import OAuth2Authentication
-from oauth2_provider.ext.rest_framework.permissions import TokenHasScope, TokenHasReadWriteScope
-from rest_framework import permissions, views
 import datetime
 import requests
+import hashlib
+
 
 @scenario('CreateNewHost')
 def create_new_host_scenario(runner):
-    runner.request(
-            method='POST',
-            path='/hosts/' % runner.org.slug,
-            data={
-                'host_nme': 'demo_host',
-                'system': 'os',
-                'distver': 'v3.1'
-            }
-    )
+    runner.request(method='POST',
+                   path='/hosts/' % runner.org.slug,
+                   data={'host_nme': 'demo_host', 'system': 'os', 'distver': 'v3.1'})
 
 
 @scenario('ListHosts')
 def list_hosts_scenario(runner):
-    runner.request(
-            method='GET',
-            path='/hosts/'
-    )
+    runner.request(method='GET', path='/hosts/')
 
 
 def generate_host_key(result):
@@ -77,11 +63,11 @@ class HostIndexEndpoint(HostEndpoint):
         # TODO(dcramer): this should be system-wide default for organization
         # based endpoints
         host_list = list(Host.objects.filter(
-                user=request.user
+            user=request.user
         ).order_by('host_name', 'system'))
 
         return Response(serialize(
-                host_list, request.user, HostSerializer()))
+            host_list, request.user, HostSerializer()))
 
     @attach_scenarios([create_new_host_scenario])
     def post(self, request):
@@ -108,38 +94,32 @@ class HostIndexEndpoint(HostEndpoint):
         hk = generate_host_key(result)
         if not Host.objects.filter(host_key=hk):
             host = Host.objects.create(
-                    host_name=result['host_name'],
-                    host_key=generate_host_key(result),
-                    host_type=result['host_type'],
-                    system=result['system'],
-                    distver=result['distver'],
-                    last_time=str(datetime.datetime.now()),
-                    create_time=str(datetime.datetime.now()),
-                    user_id=request.user.id,
-                    organization=org,
+                host_name=result['host_name'],
+                host_key=generate_host_key(result),
+                host_type=result['host_type'],
+                system=result['system'],
+                distver=result['distver'],
+                last_time=str(datetime.datetime.now()),
+                create_time=str(datetime.datetime.now()),
+                user_id=request.user.id,
+                organization=org,
             )
             self.create_audit_entry(
-                    request=request,
-                    organization=org,
-                    target_object=host.id,
-                    event=AuditLogEntryEvent.HOST_ADD,
-                    data=host.get_audit_log_data(),
+                request=request,
+                organization=org,
+                target_object=host.id,
+                event=AuditLogEntryEvent.HOST_ADD,
+                data=host.get_audit_log_data(),
             )
 
-            url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, request.user.id, host.id)
+            url = "%s/u/%s/nodes/%s/" % (settings.STORAGE_SERVER, request.user.id, host.id)
             host_obj = {"host_key": host.host_key, "user_id": request.user.id, "tenant_id": request.user.id}
             resp = requests.post(url, data=host_obj)
-            if resp.status_code > 300 :
+            if resp.status_code > 300:
                 return Response({'msg': 'failed to post stoarge server.'}, status=500)
 
             return Response({'msg': 'ok'}, status=201)
         return Response({'msg': 'fail'}, status=501)
-
-
-
-
-from rest_framework import mixins
-from rest_framework import generics
 
 
 class LogAgentHostIndexEndpoint(Endpoint):
@@ -152,9 +132,9 @@ class LogAgentHostIndexEndpoint(Endpoint):
         print list(host_list)
 
         return Response(serialize(
-                host_list, user, HostSerializer()))
+            host_list, user, HostSerializer()))
 
-    def post(self, request,  *args, **kwargs):
+    def post(self, request, *args, **kwargs):
         # validate access token
         user_id = self.validate_accesstoken(request.META['HTTP_AUTHORIZATION'], request)
         if user_id == self.INVALID_ACCESS_TOKEN:
@@ -166,26 +146,18 @@ class LogAgentHostIndexEndpoint(Endpoint):
         org = Organization.objects.get(id=org_mem.organization_id)
         hk = generate_host_key(result)
         if not Host.objects.filter(host_key=hk):
-            host = Host.objects.create(
-                    host_name=result['host_name'],
-                    host_key=generate_host_key(result),
-                    host_type=result['host_type'],
-                    system=result['system'],
-                    distver=result['distver'],
-                    last_time=str(datetime.datetime.now()),
-                    create_time=str(datetime.datetime.now()),
-                    user_id=user.id,
-                    organization=org,
-            )
-            return Response({'action': 'add host','host_key':hk,  'msg': 'ok'}, status=200)
+            Host.objects.create(
+                host_name=result['host_name'],
+                host_key=generate_host_key(result),
+                host_type=result['host_type'],
+                system=result['system'],
+                distver=result['distver'],
+                last_time=str(datetime.datetime.now()),
+                create_time=str(datetime.datetime.now()),
+                user_id=user.id,
+                organization=org)
+            return Response({'action': 'add host', 'host_key': hk, 'msg': 'ok'}, status=200)
         else:
-            # url = "%s/u/%s/nodes/%s/" %(STORAGE_API_BASE_URL, user.id, host.id)
-            # print 'url=', url
-            # host_obj = {"host_key": host.host_key, "user_id": user.id, "tenant_id": user.id}
-            # resp = requests.post(url, data=host_obj)
-            # if resp.status_code > 300:
-            #     return Response({'msg': 'failed to post stoarge server.'}, status=500)
-            # return Response({'host_key': hk}, status=200)
             return Response({'action': 'add host', 'host_key': hk, 'msg': 'host exists!'}, status=200)
 
 
@@ -197,12 +169,11 @@ class AccessTokenView(Endpoint):
     def get(self, request):
         # print reques
         authorization = request.META['HTTP_AUTHORIZATION']
-        token = authorization.split(" ")[1]
         headers = {'Authorization': authorization}
         url = settings.OAUTH_SERVER + "/api/0/access_token"
         r = requests.get(url, headers=headers)
         if r.status_code != 200:
-            return Response({'ret': 'false'}) #invalid access token
+            return Response({'ret': 'false'})
         return Response({'ret': 'true'})
 
 

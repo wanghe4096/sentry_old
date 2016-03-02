@@ -9,8 +9,6 @@ from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
 from sentry.api.base import Endpoint
 import ast
-import datetime
-import re
 
 
 class SearchIndexEndpoint(Endpoint):
