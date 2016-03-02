@@ -23,7 +23,7 @@ class DashboardIndexEndpoint(Endpoint):
             o = {}
             o['id'] = q.id
             o['name'] = q.name
-            if len(q.layout) == 0:
+            if q.layout is None:
                 o['layout'] = None
             else:
                 o['layout'] = ast.literal_eval(q.layout)
