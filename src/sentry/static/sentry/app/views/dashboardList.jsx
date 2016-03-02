@@ -32,7 +32,7 @@ const AddBox = React.createClass({
       submit_ing:true
     });
     setTimeout(() => {
-      
+
       this.props.onClose();
     }, 3 * 1000);
   },
@@ -175,10 +175,9 @@ const DashboardList = React.createClass({
     });
   },
   renderBody() {
-    console.log(this.state);
     return this.state.list.map(({...prop},i) => {
 
-      const title = prop.title.toLocaleLowerCase().replace(/\s+/g,'');
+      const title = prop.name.toLocaleLowerCase().replace(/\s+/g,'');
       const desc = prop.desc.toLocaleLowerCase().replace(/\s+/g,'');
       const fulltext = title + desc;
       const text_filter = this.state.text_filter;

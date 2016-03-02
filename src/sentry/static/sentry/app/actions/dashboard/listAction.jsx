@@ -13,7 +13,7 @@ const ListAction = Reflux.createActions({
 // fetch list
 ListAction.fetch.listen(function() {
   var that = this;
-  new Client().request('/dashboard', {
+  new Client().request('/dashboard/', {
     success: function(data) {
       that.success(data);
     },
@@ -26,7 +26,7 @@ ListAction.fetch.listen(function() {
 // update item
 ListAction.update.listen(function(data) {
   var that = this;
-  new Client().request('/dashboard', {
+  new Client().request('/dashboard/', {
     type: 'POST',
     data: {
       'op': data.id ? 'update': 'create',

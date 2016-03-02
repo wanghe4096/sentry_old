@@ -9,7 +9,6 @@ const listStore = Reflux.createStore({
     return []
   },
   onFetchSuccess(items) {
-    console.log('items:',items);
     this.items = items;
     this.trigger(this.items);
   },
