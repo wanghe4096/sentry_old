@@ -77,12 +77,14 @@ from .endpoints.host_index import AccessTokenView
 from .endpoints.stream_timeseries_index import StreamTimeSeriesIndexEndpoint
 from .endpoints.dashboard_index import DashboardIndexEndpoint
 from .endpoints.visualization_index import VisualizationIndexEndpoint
+from .endpoints.visualization_details import VisualizationDetailsEndpoint
 from .endpoints.widget_index import WidgetIndexEndpoint
 from .endpoints.widget_details import WidgetDetailsEndpoint
 from .endpoints.search_index import SearchIndexEndpoint
 from .endpoints.search_details import SearchDetailsEndpoint
 from .endpoints.dashboard_details import DashboardDetailsEndpoint
 from .endpoints.indexes_index import IndexesIndexEndpoint
+from .endpoints.indexes_details import IndexesDetailsEndpoint
 urlpatterns = patterns(
     '',
     #  loginsight
@@ -101,12 +103,14 @@ urlpatterns = patterns(
     url(r'^dashboard/$', DashboardIndexEndpoint.as_view(), name='sentry-log-dashboard'),
     url(r'^dashboard/(?P<dashboard_id>[^\/]+)/$', DashboardDetailsEndpoint.as_view(), name='sentry-log-dashboard-details'),
     url(r'^visualization/$', VisualizationIndexEndpoint.as_view(), name='sentry-log-visualization'),
+    url(r'^visualization/(?P<visualization_id>[^\/]+)/$', VisualizationDetailsEndpoint.as_view(), name='sentry-log-visualization-details'),
+
     url(r'^widget/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
     url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetDetailsEndpoint.as_view(), name='sentry-log-widget-details'),
     url(r'^search/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
     url(r'^search/(?P<search_id>[^\/]+)/$', SearchDetailsEndpoint.as_view(), name='sentry-log-search-details'),
     url(r'^indexes/$', IndexesIndexEndpoint.as_view(), name='sentry-log-indexes'),
-    # url(r'^indexes/(?P<index_id>[^\/]+)/$', SearchDetailsEndpoint.as_view(), name='sentry-log-index-details'),
+    url(r'^indexes/(?P<index_id>[^\/]+)/$', IndexesDetailsEndpoint.as_view(), name='sentry-log-index-details'),
 
     # Auth
     url(r'^auth/$',

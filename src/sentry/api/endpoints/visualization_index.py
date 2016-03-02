@@ -27,7 +27,9 @@ class VisualizationIndexEndpoint(Endpoint):
             o['name'] = q.name
             o['created_at'] = q.created_at
             o['updated_at'] = q.updated_at
+            o['layout'] = q.layout
             o['is_fav'] = q.is_fav
+            o['desc'] = q.desc
             dashboard_list.append(o)
         return Response(dashboard_list)
 
@@ -39,6 +41,8 @@ class VisualizationIndexEndpoint(Endpoint):
                                     created_at=datetime.datetime.now(),
                                     updated_at=datetime.datetime.now(),
                                     is_fav=data['is_fav'],
+                                    layout=data['layout'],
+                                    desc=data['desc'],
                                     user=request.user)
         if visualization:
             return Response(data, status=200)

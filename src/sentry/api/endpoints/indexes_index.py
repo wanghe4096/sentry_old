@@ -26,6 +26,7 @@ class IndexesIndexEndpoint(Endpoint):
             o['name'] = q.name
             o['type'] = q.type
             o['dsn'] = q.dsn
+            o['desc'] = q.desc
             o['created_at'] = q.created_at
             o['updated_at'] = q.updated_at
             indexes_list.append(o)
@@ -40,6 +41,7 @@ class IndexesIndexEndpoint(Endpoint):
                                          updated_at=datetime.datetime.now(),
                                          type=data['type'],
                                          dsn=data['dsn'],
+                                         desc=data['desc'],
                                          user=request.user)
         if indexes:
             return Response(data, status=200)

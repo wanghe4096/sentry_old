@@ -50,24 +50,24 @@ class SearchIndexEndpoint(Endpoint):
                               user=request.user)
         return Response(status=200)
 
-    def put(self, request, search_id, *args, **kwargs):
-        data = request.DATA
-        if len(data) == 0:
-            return Response(status=400)
-        try:
-            search_obj = Search.objects.get(id=search_id)
-        except ObjectDoesNotExist:
-            search_obj = None
-        search_obj.update(id=int(search_id),
-                          name=data.get('name', ''),
-                          last_timestamp=datetime.datetime.now(),
-                          query=data.get('query', ''),
-                          time_range=data['time_range'],
-                          config=data.get('config', '')
-                          )
-        return Response(data)
-
-    def delete(self, request, search_id, *args, **kwargs):
-        search = Search.objects.get(id=search_id, user_id=request.user.id)
-        search.delete()
-        return Response(status=200)
+    # def put(self, request, search_id, *args, **kwargs):
+    #     data = request.DATA
+    #     if len(data) == 0:
+    #         return Response(status=400)
+    #     try:
+    #         search_obj = Search.objects.get(id=search_id)
+    #     except ObjectDoesNotExist:
+    #         search_obj = None
+    #     search_obj.update(id=int(search_id),
+    #                       name=data.get('name', ''),
+    #                       last_timestamp=datetime.datetime.now(),
+    #                       query=data.get('query', ''),
+    #                       time_range=data['time_range'],
+    #                       config=data.get('config', '')
+    #                       )
+    #     return Response(data)
+    #
+    # def delete(self, request, search_id, *args, **kwargs):
+    #     search = Search.objects.get(id=search_id, user_id=request.user.id)
+    #     search.delete()
+    #     return Response(status=200)

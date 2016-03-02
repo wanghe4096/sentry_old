@@ -17,6 +17,7 @@ class Visaulization(models.Model):
     created_at = models.DateTimeField(default=datetime.datetime.now(), null=True)
     updated_at = models.DateTimeField(default=datetime.datetime.now(), null=True)
     is_fav = models.BooleanField(default=False)
+    layout = models.CharField(max_length=512, null=True)
     user = models.ForeignKey(User)
 
     class Meta:

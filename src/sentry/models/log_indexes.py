@@ -17,6 +17,7 @@ class Indexes(models.Model):
     dsn = models.CharField(max_length=512, null=True)
     created_at = models.DateTimeField(default=datetime.datetime.now(), null=True)
     updated_at = models.DateTimeField(default=datetime.datetime.now(), null=True)
+    desc = models.CharField(max_length=512, null=True)
     user = models.ForeignKey(User)
 
     class Meta:
