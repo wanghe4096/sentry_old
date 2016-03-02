@@ -8,6 +8,7 @@ from sentry.models.log_search import Search
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
 from sentry.api.base import Endpoint
+import ast
 import datetime
 import re
 
@@ -28,7 +29,10 @@ class SearchIndexEndpoint(Endpoint):
                 obj['create_timestamp'] = e.create_timestamp
                 obj['last_timestamp'] = e.last_timestamp
                 obj['query'] = e.query
-                obj['time_range'] = e.time_range
+                if e.time_range is None:
+                    obj['time_range'] = None
+                else:
+                    obj['time_range'] = ast.literal_eval(e.time_range)
                 obj['config'] = e.config
                 search_list.append(obj)
             return Response(search_list, status=200)
@@ -47,6 +51,7 @@ class SearchIndexEndpoint(Endpoint):
         Search.objects.create(name=data['name'],
                               query=data.get('query', ''),
                               config=data.get('config', ''),
+                              time_range=data['time_range'],
                               user=request.user)
         return Response(status=200)
 
