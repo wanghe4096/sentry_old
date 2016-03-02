@@ -27,12 +27,17 @@ class VisualizationDetailsEndpoint(Endpoint):
         except ObjectDoesNotExist:
             return Response(status=400, data={'msg': 'visualization does not exist!'})
         if visualization:
+            layout = None
+            if visualization.layout is None:
+                layout = None
+            else:
+                layout = ast.literal_eval(visualization.layout)
             return Response({'name': visualization.name,
                              'desc': visualization.desc,
                              'is_fav': visualization.is_fav,
                              'created_at': visualization.created_at,
                              'updated_at': visualization.updated_at,
-                             'layout': ast.literal_eval(visualization.layout)}, status=200)
+                             'layout': layout}, status=200)
         else:
             return Response(status=400)
 
