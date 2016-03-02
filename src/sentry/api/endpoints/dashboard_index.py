@@ -23,7 +23,10 @@ class DashboardIndexEndpoint(Endpoint):
             o = {}
             o['id'] = q.id
             o['name'] = q.name
-            o['layout'] = ast.literal_eval(q.layout)
+            if len(q.layout) == 0:
+                o['layout'] = '{}'
+            else:
+                o['layout'] = ast.literal_eval(q.layout)
             o['created_at'] = q.created_at
             o['updated_at'] = q.updated_at
             o['is_fav'] = q.is_fav
