@@ -27,7 +27,10 @@ class VisualizationIndexEndpoint(Endpoint):
             o['name'] = q.name
             o['created_at'] = q.created_at
             o['updated_at'] = q.updated_at
-            o['layout'] = q.layout
+            if q.layout is None:
+                o['layout'] = None
+            else:
+                o['layout'] = ast.literal_eval(q.layout)
             o['is_fav'] = q.is_fav
             o['desc'] = q.desc
             dashboard_list.append(o)

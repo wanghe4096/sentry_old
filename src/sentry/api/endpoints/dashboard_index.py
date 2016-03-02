@@ -42,10 +42,11 @@ class DashboardIndexEndpoint(Endpoint):
         dashboard = LogInsightDashboard.objects.create(name=data['name'],
                                                        created_at=datetime.datetime.now(),
                                                        updated_at=datetime.datetime.now(),
-                                                       desc=data['desc'],
-                                                       layout=data['layout'],
-                                                       is_fav=data['is_fav'],
+                                                       desc=data.get('desc', ''),
+                                                       layout=data.get('layout', None),
+                                                       is_fav=data.get('is_fav', False),
                                                        user_id=request.user.id)
+
         if dashboard:
             return Response(data, status=200)
         else:
