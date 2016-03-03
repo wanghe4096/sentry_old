@@ -29,7 +29,7 @@ FieldAction.fetch.listen(function(query,timeRange,options = {}) {
       name:mockNameList[_i],
       // field_key:'xxxxx',
       // counts:[],
-      type:['string','number'][_.random(0,1)],
+      field_type:['string','number'][_.random(0,1)],
       default_selected:!!_.random(0,1)
     });
     _i++;

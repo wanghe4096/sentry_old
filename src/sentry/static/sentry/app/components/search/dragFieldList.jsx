@@ -17,7 +17,7 @@ const _FieldItem = React.createClass({
   },
   render() {
 
-    let filedTypeIcon = this.props.type;
+    let filedTypeIcon = this.props.field_type;
     if(/timestamp/i.test(this.props.name)){
       filedTypeIcon = 'time';
     }
@@ -36,9 +36,13 @@ const _FieldItem = React.createClass({
 
 const FieldItem = DragSource(props => props.type, {
   beginDrag(props) {
+    console.log('xxx');
     return {
       name: props.name
     };
+  },
+  endDrag(props, monitor, component) {
+    console.log('end drag:',props);
   }
 }, (connect,monitor) => ({
     isDragging: monitor.isDragging(),

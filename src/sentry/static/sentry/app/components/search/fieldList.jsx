@@ -11,7 +11,7 @@ const FieldItem = React.createClass({
     console.log(e.target.checked)
   },
   render() {
-    let filedTypeIcon = this.props.type;
+    let filedTypeIcon = this.props.field_type;
     if(/timestamp/i.test(this.props.name)){
       filedTypeIcon = 'time';
     }
