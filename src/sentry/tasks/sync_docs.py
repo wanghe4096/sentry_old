@@ -42,14 +42,12 @@ def sync_docs():
                 )
             ],
         })
-    logger.info(platform_list)
     platform_list.sort(key=lambda x: x['name'])
 
     options.set('sentry:docs', {'platforms': platform_list})
 
     for platform_id, platform_data in data['platforms'].iteritems():
         for integration_id, integration in platform_data.iteritems():
-            logger.info(integration)
             sync_integration_docs(platform_id, integration_id, integration['details'])
 
 
@@ -66,11 +64,9 @@ def sync_integration_docs(platform_id, integration_id, path):
 
     data = session.get(BASE_URL.format(path)).json()
     key = get_integration_id(platform_id, integration_id)
-    logger.info('key=' + key)
     options.set('sentry:docs:{}'.format(key), {
         'id': key,
         'name': data['name'],
         'html': data['body'],
         'link': data['doc_link'],
     })
-    logger.info(data['body'])
