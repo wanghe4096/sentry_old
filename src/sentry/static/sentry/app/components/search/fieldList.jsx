@@ -45,14 +45,14 @@ const FieldList = React.createClass({
 
   filterHandler(e) {
     this.setState({
-      filter: e.target.value.replace(/\s+/g, '')
+      filter: e.target.value.toLocaleLowerCase().replace(/\s+/g, '')
     });
   },
 
   renderBody() {
     return this.state.list.map((data,i) => {
       const reg = new RegExp(this.state.filter);
-      if(this.state.filter && !reg.test(data.name)) {
+      if(this.state.filter && !reg.test(data.name.toLocaleLowerCase())) {
         return false;
       }
       return (<FieldItem key={i} {...data} />)
