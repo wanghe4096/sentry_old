@@ -32,13 +32,12 @@ class DashboardIndexEndpoint(Endpoint):
             o['updated_at'] = q.updated_at
             o['is_fav'] = q.is_fav
             dashboard_list.append(o)
-        return Response(dashboard_list)
+        return Response(data=dashboard_list, status=200)
 
     def post(self, request, *args, **kwargs):
         data = request.DATA
-        print(request.META)
         if len(data) == 0:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'no request parameters'})
         dashboard = LogInsightDashboard.objects.create(name=data['name'],
                                                        created_at=datetime.datetime.now(),
                                                        updated_at=datetime.datetime.now(),
@@ -51,10 +50,3 @@ class DashboardIndexEndpoint(Endpoint):
             return Response(data, status=200)
         else:
             return Response(status=500)
-
-if __name__ == "__main__":
-    from django.test.client import Client
-    c = Client()
-    c.login(username="admin@loginsight.cn", password="123")
-    response = c.get("/api/0/dashboard/")
-    print response.body

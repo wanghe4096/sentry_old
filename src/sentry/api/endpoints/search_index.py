@@ -49,4 +49,4 @@ class SearchIndexEndpoint(Endpoint):
                               time_range=data.get('time_range', None),
                               desc=data.get('desc', None),
                               user=request.user)
-        return Response(status=200)
+        return Response(status=200, data={'msg': 'ok'})

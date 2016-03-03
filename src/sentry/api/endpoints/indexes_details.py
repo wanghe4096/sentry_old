@@ -33,12 +33,12 @@ class IndexesDetailsEndpoint(Endpoint):
                              'created_at': index.created_at,
                              'updated_at': index.updated_at}, status=200)
         else:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'Index does not exist'})
 
     def put(self, request, index_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'no request parameters'})
         if index_id:
             indexes = Indexes.objects.filter(id=index_id, user=request.user)
             if not indexes:
@@ -48,12 +48,12 @@ class IndexesDetailsEndpoint(Endpoint):
                            updated_at=datetime.datetime.now(),
                            type=data.get('type', None),
                            dsn=data.get('dsn', None))
-            return Response(status=200)
-        return Response(status=400)
+            return Response(status=200, data={'msg': 'ok'})
+        return Response(status=400, data={'msg': 'failed'})
 
     def delete(self, request, index_id, *args, **kwargs):
         index = Indexes.objects.get(id=index_id, user=request.user)
         if index:
             index.delete()
-            return Response(status=200)
-        return Response(status=400)
+            return Response(status=200, data={'msg': 'ok'})
+        return Response(status=400, data={'msg': 'failed'})

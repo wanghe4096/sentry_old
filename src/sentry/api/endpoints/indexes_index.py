@@ -34,7 +34,7 @@ class IndexesIndexEndpoint(Endpoint):
     def post(self, request, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'no request parameters'})
         indexes = Indexes.objects.create(name=data['name'],
                                          created_at=datetime.datetime.now(),
                                          updated_at=datetime.datetime.now(),
@@ -45,4 +45,4 @@ class IndexesIndexEndpoint(Endpoint):
         if indexes:
             return Response(data, status=200)
         else:
-            return Response(status=500)
+            return Response(status=400, data={'msg': 'failed'})

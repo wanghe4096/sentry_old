@@ -39,12 +39,12 @@ class VisualizationDetailsEndpoint(Endpoint):
                              'updated_at': visualization.updated_at,
                              'layout': layout}, status=200)
         else:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'failed'})
 
     def put(self, request, visualization_id, *args, **kwargs):
         data = request.DATA
         if len(data) == 0:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'no request parameters'})
         if visualization_id:
             visualization = Visaulization.objects.filter(id=visualization_id, user=request.user)
             if not visualization:
@@ -54,12 +54,12 @@ class VisualizationDetailsEndpoint(Endpoint):
                                  updated_at=datetime.datetime.now(),
                                  is_fav=data.get('is_fav', None),
                                  layout=data.get('layout', None))
-            return Response(status=200)
-        return Response(status=400)
+            return Response(status=200, data={'msg': 'ok'})
+        return Response(status=400, data={'msg': 'failed'})
 
     def delete(self, request, visualization_id, *args, **kwargs):
         visualization = Visaulization.objects.get(id=visualization_id, user=request.user)
         if visualization:
             visualization.delete()
-            return Response(status=200)
-        return Response(status=400)
+            return Response(status=200, data={'msg': 'ok'})
+        return Response(status=400, data={'msg': 'failed to delete visualization'})
