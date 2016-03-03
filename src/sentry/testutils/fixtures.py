@@ -33,8 +33,8 @@ class Fixtures(object):
 
     @fixture
     def user(self):
-        # return self.create_user('admin@localhost', is_superuser=True)
-        return self.create_user('admin@loginsight.cn', is_superuser=True)
+        return self.create_user('admin@localhost', is_superuser=True)
+        # return self.create_user('admin@loginsight.cn', is_superuser=True)
 
     @fixture
     def organization(self):

@@ -17,7 +17,7 @@ class TeamDetailsTest(APITestCase):
         })
         response = self.client.get(url)
         assert response.status_code == 200
-        assert response.data['id'] == str(team.id)
+        assert response.content['id'] == str(team.id)
 
 
 class TeamUpdateTest(APITestCase):
@@ -66,7 +66,7 @@ class TeamDeleteTest(APITestCase):
 
         team = Team.objects.get(id=team.id)
 
-        assert response.status_code == 204, response.data
+        assert response.status_code == 204, response.content
 
         assert team.status == TeamStatus.PENDING_DELETION
 

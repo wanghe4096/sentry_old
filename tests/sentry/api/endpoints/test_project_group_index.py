@@ -43,8 +43,8 @@ class GroupListTest(APITestCase):
             format='json',
         )
         assert response.status_code == 200
-        assert len(response.data) == 1
-        assert response.data[0]['id'] == str(group1.id)
+        assert len(response.content) == 1
+        assert response.content[0]['id'] == str(group1.id)
 
     def test_simple_pagination(self):
         now = timezone.now().replace(microsecond=0)
@@ -67,8 +67,8 @@ class GroupListTest(APITestCase):
             format='json',
         )
         assert response.status_code == 200
-        assert len(response.data) == 1
-        assert response.data[0]['id'] == str(group2.id)
+        assert len(response.content) == 1
+        assert response.content[0]['id'] == str(group2.id)
 
         links = self._parse_links(response['Link'])
 
@@ -78,8 +78,8 @@ class GroupListTest(APITestCase):
         print(links['next']['cursor'])
         response = self.client.get(links['next']['href'], format='json')
         assert response.status_code == 200
-        assert len(response.data) == 1
-        assert response.data[0]['id'] == str(group1.id)
+        assert len(response.content) == 1
+        assert response.content[0]['id'] == str(group1.id)
 
         links = self._parse_links(response['Link'])
 

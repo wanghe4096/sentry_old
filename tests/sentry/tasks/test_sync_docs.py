@@ -12,7 +12,7 @@ INDEX_JSON = """
   "platforms": {
     "go": {
       "_self": {
-        "doc_link": "https://docs.getsentry.com/hosted/clients/go/",
+        "doc_link": "https://docs.loginsight.cn/hosted/clients/go/",
         "name": "Go",
         "details": "go.json",
         "type": "language"
@@ -30,7 +30,7 @@ INDEX_JSON = """
 
 GO_JSON = """
 {
-  "doc_link": "https://docs.getsentry.com/hosted/clients/go/",
+  "doc_link": "https://docs.loginsight.cn/hosted/clients/go/",
   "name": "Go",
   "type": "language",
   "support_level": null,
@@ -54,7 +54,7 @@ class SyncDocsTest(TestCase):
     @mock.patch('sentry.tasks.sync_docs.sync_integration_docs')
     def test_simple(self, mock_sync_integration_docs):
         responses.add('GET',
-                      'https://docs.getsentry.com/hosted/_platforms/_index.json',
+                      'https://docs.loginsight.cn/hosted/_platforms/_index.json',
                       body=INDEX_JSON)
 
         sync_docs()
@@ -67,7 +67,7 @@ class SyncDocsTest(TestCase):
                     'integrations': [
                         {
                             'id': 'go',
-                            'link': 'https://docs.getsentry.com/hosted/clients/go/',
+                            'link': 'https://docs.loginsight.cn/hosted/clients/go/',
                             'name': 'Go',
                             'type': 'language'
                         },
@@ -93,7 +93,7 @@ class SyncIntegrationDocsTest(TestCase):
     @responses.activate
     def test_platform(self):
         responses.add('GET',
-                      'https://docs.getsentry.com/hosted/_platforms/go.json',
+                      'https://docs.loginsight.cn/hosted/_platforms/go.json',
                       body=GO_JSON)
 
         sync_integration_docs('go', '_self', 'go.json')
@@ -102,14 +102,14 @@ class SyncIntegrationDocsTest(TestCase):
         assert data == {
             'id': 'go',
             'html': 'foo bar',
-            'link': 'https://docs.getsentry.com/hosted/clients/go/',
+            'link': 'https://docs.loginsight.cn/hosted/clients/go/',
             'name': 'Go',
         }
 
     @responses.activate
     def test_integration(self):
         responses.add('GET',
-                      'https://docs.getsentry.com/hosted/_platforms/go/http.json',
+                      'https://docs.loginsight.cn/hosted/_platforms/go/http.json',
                       body=GO_HTTP_JSON)
 
         sync_integration_docs('go', 'http', 'go/http.json')
