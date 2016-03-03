@@ -1,6 +1,4 @@
 from __future__ import absolute_import
-
-from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth import login
 from django.core.urlresolvers import reverse
@@ -8,7 +6,6 @@ from django.db import transaction
 from django.http import HttpResponseRedirect
 from django.utils.translation import ugettext_lazy as _
 from django.views.decorators.cache import never_cache
-
 from sentry import features
 from sentry.models import AuthProvider, Organization
 from sentry.web.forms.accounts import AuthenticationForm, RegistrationForm
@@ -16,8 +13,6 @@ from sentry.web.frontend.base import BaseView
 from sentry.utils.auth import get_login_redirect
 from django.conf import settings
 from oauth2_provider.compat import urlencode
-
-from django.contrib.auth.models import User
 
 ERR_NO_SSO = _('The organization does not exist or does not have Single Sign-On enabled.')
 
@@ -109,7 +104,8 @@ class AuthLoginView(BaseView):
             'login_form': login_form,
             'register_form': register_form,
             'CAN_REGISTER': can_register,
-            'AUTHORIZE_LINK': '%s/?state=random_state_string&response_type=code&%s' % (settings.BASE_AUTHORIZE_LINK, urlencode({'client_id': settings.LOGINSIGHT_CLIENT_ID}) ),
+            'AUTHORIZE_LINK': '%s/?state=random_state_string&response_type=code&%s' % (settings.BASE_AUTHORIZE_LINK,
+                                                                                       urlencode({'client_id': settings.LOGINSIGHT_CLIENT_ID})),
         }
         return self.respond('sentry/login.html', context)
 
@@ -128,7 +124,6 @@ class AuthLoginView(BaseView):
             messages.add_message(request, messages.ERROR, ERR_NO_SSO)
 
         return HttpResponseRedirect(next_uri)
-
 
     @never_cache
     @transaction.atomic

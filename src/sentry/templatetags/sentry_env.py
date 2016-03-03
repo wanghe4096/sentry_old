@@ -18,10 +18,10 @@ class EnvNode(template.Node):
     def __init__(self, key, var_name):
         self.key = key
         self.var_name = var_name
+
     def render(self, context):
         context[self.var_name] = os.environ.get(self.key)
         return ''
-        # return os.environ.get(self.key)
 
 
 def test_env(parser, token):
@@ -45,6 +45,4 @@ def test_env(parser, token):
         raise template.TemplateSyntaxError(msg)
     return EnvNode(key[1:-1], var_name)
 
-
 register.tag('env', test_env)
-

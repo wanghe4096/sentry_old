@@ -8,6 +8,7 @@ import logging
 
 logger = logging.getLogger('sentry')
 
+
 class AuthProviderLoginView(BaseView):
     auth_required = False
 

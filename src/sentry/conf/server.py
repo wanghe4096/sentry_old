@@ -314,8 +314,6 @@ AUTHENTICATION_BACKENDS = (
 )
 
 
-
-
 SOCIAL_AUTH_USER_MODEL = AUTH_USER_MODEL = 'sentry.User'
 
 SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
@@ -341,8 +339,8 @@ TRELLO_API_SECRET = ''
 BITBUCKET_CONSUMER_KEY = ''
 BITBUCKET_CONSUMER_SECRET = ''
 
-LOGINSIGHT_CLIENT_ID=''
-LOGINSIGHT_CLIENT_SECRET=''
+LOGINSIGHT_CLIENT_ID = ''
+LOGINSIGHT_CLIENT_SECRET = ''
 
 MAILGUN_API_KEY = ''
 
@@ -426,9 +424,8 @@ def create_partitioned_queues(name):
     exchange = Exchange(name, type='direct')
     for num in range(1):
         CELERY_QUEUES.append(Queue(
-                '{0}-{1}'.format(name, num),
-                exchange=exchange,
-        ))
+            '{0}-{1}'.format(name, num),
+            exchange=exchange))
 
 create_partitioned_queues('counters')
 create_partitioned_queues('triggers')

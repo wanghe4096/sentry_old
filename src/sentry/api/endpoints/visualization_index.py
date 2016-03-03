@@ -41,12 +41,12 @@ class VisualizationIndexEndpoint(Endpoint):
         if len(data) == 0:
             return Response(status=400)
         visualization = Visaulization.objects.create(name=data['name'],
-                                    created_at=datetime.datetime.now(),
-                                    updated_at=datetime.datetime.now(),
-                                    is_fav=data['is_fav'],
-                                    layout=data['layout'],
-                                    desc=data['desc'],
-                                    user=request.user)
+                                                     created_at=datetime.datetime.now(),
+                                                     updated_at=datetime.datetime.now(),
+                                                     is_fav=data.get('is_fav', False),
+                                                     layout=data.get('layout', None),
+                                                     desc=data.get('desc', None),
+                                                     user=request.user)
         if visualization:
             return Response(data, status=200)
         else:

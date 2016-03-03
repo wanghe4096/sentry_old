@@ -6,7 +6,6 @@ __email__ = 'wangh@loginsight.cn'
 """
 from __future__ import absolute_import
 from rest_framework.response import Response
-from sentry.api.authentication import QuietBasicAuthentication
 from sentry.api.base import Endpoint
 from sentry.models.user import User
 from rest_framework import mixins

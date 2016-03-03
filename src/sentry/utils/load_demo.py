@@ -14,11 +14,9 @@ from random import randint
 
 from sentry import roles
 from sentry.app import tsdb, buffer
-from sentry.models import (
-    Activity, Broadcast, File, GroupMeta, Organization, OrganizationAccessRequest,
-    OrganizationMember, Project, Release, ReleaseFile, Team, User, UserReport, OrganizationMemberTeam
-)
-import time
+from sentry.models import (Activity, Broadcast, File, GroupMeta, Organization,
+                           OrganizationAccessRequest, OrganizationMember, Project,
+                           Release, ReleaseFile, Team, User, UserReport, OrganizationMemberTeam)
 from sentry.utils.samples import create_sample_event
 
 PLATFORMS = itertools.cycle([
@@ -119,18 +117,15 @@ def create_demo_sample(num_events=1, user_name="dummy@example.com", org_name='de
     dummy_user.set_password('123')
     dummy_user.save()
 
-
     mocks = (
         ('Massive Dynamic' + str(datetime.now()), ('Ludic Science',)),
-        ('Captain Planet'  + str(datetime.now()), ('Earth',)),
+        ('Captain Planet' + str(datetime.now()), ('Earth',)),
     )
-
     Broadcast.objects.create(
         title="Learn about Source Maps",
         message="Source maps are JSON files that contain information on how to map your transpiled source code back to their original source.",
         link="https://docs.getsentry.com/hosted/clients/javascript/sourcemaps/#uploading-source-maps-to-sentry",
     )
-
     if settings.SENTRY_SINGLE_ORGANIZATION:
         org = Organization.get_default()
     else:
@@ -138,7 +133,6 @@ def create_demo_sample(num_events=1, user_name="dummy@example.com", org_name='de
         org, _ = Organization.objects.get_or_create(
             name=org_name,
         )
-
     OrganizationMember.objects.get_or_create(
         user=dummy_user,
         organization=org,
@@ -163,27 +157,16 @@ def create_demo_sample(num_events=1, user_name="dummy@example.com", org_name='de
         )
 
         print('create organizationmemberteam ')
-        OrganizationMemberTeam.objects.create(
-                team=team,
-                organizationmember=dummy_member,
-                is_active=True,
-            )
-
+        OrganizationMemberTeam.objects.create(team=team,
+                                              organizationmember=dummy_member,
+                                              is_active=True)
         for project_name in project_names:
             print('  > Mocking project {}'.format(project_name))
-            project, _ = Project.objects.get_or_create(
-                team=team,
-                name=project_name,
-                defaults={
-                    'organization': org,
-                }
-            )
-
-            release = Release.objects.get_or_create(
-                version='4f38b65c62c4565aa94bba391ff8946922a8eed4',
-                project=project,
-            )[0]
-
+            project, _ = Project.objects.get_or_create(team=team,
+                                                       name=project_name,
+                                                       defaults={'organization': org})
+            release = Release.objects.get_or_create(version='4f38b65c62c4565aa94bba391ff8946922a8eed4',
+                                                    project=project)[0]
             ReleaseFile.objects.get_or_create(
                 project=project,
                 release=release,

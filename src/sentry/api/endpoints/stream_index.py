@@ -13,12 +13,9 @@ from sentry.api.bases.stream import StreamEndpoint
 from sentry.api.base import Endpoint
 from sentry.models.user import User
 from sentry.models.host_stream import Stream, Host
-from sentry.conf.server import *
+from django.conf import settings
 import requests
 import datetime
-
-# STORAGE_API_BASE_URL = "http://192.168.200.245:8080/api/v1"
-# STORAGE_API_BASE_URL = "http://192.168.70.144:8080/api/v1"
 
 
 class StreamIndexEndpoint(StreamEndpoint):
@@ -36,14 +33,13 @@ class StreamIndexEndpoint(StreamEndpoint):
         result = request.GET
         print 'result = ', result['host_id']
         if False:
-            url = "%s/u/%s/nodes/%s/streams" % (STORAGE_API_BASE_URL, request.user.id,  result['host_id'])
+            url = "%s/u/%s/nodes/%s/streams" % (settings.STORAGE_SERVER, request.user.id, result['host_id'])
             r = requests.get(url)
-            print r
             if r.status_code == 200:
                 resp = r.json()
                 stream_list = []
                 for stream in resp['stream_list']:
-                    stream_obj = {'id':'', 'stream_name': '', 'create_timestamp': '', 'last_timestamp': '', 'size': ''}
+                    stream_obj = {'id': '', 'stream_name': '', 'create_timestamp': '', 'last_timestamp': '', 'size': ''}
                     stream_id = stream[0]
                     stream_name = stream[1]
                     obj = stream[3]
@@ -59,7 +55,7 @@ class StreamIndexEndpoint(StreamEndpoint):
             print 'stream cnt=', len(streams)
             stream_list = []
             for stream in streams:
-                stream_obj = {'id':'', 'stream_name': '', 'create_timestamp': '', 'last_timestamp': '', 'size': ''}
+                stream_obj = {'id': '', 'stream_name': '', 'create_timestamp': '', 'last_timestamp': '', 'size': ''}
                 stream_id = stream.id
                 stream_name = stream.stream_name
                 stream_obj['id'] = stream_id
@@ -91,10 +87,10 @@ class LogAgentStreamEndpoint(Endpoint):
         if not host:
             return Response({'action': 'add stream', 'msg': 'Invalid host key'}, status=400)
         if not Stream.objects.filter(stream_key=data['stream_key']):
-            stream = Stream.objects.create(
+            Stream.objects.create(
                 stream_name=data['match_name'],
                 alias_name=data.get('alias_name', ''),
-                host= host,
+                host=host,
                 user=user,
                 stream_key=data['stream_key'],
                 create_timestamp=datetime.datetime.now(),
@@ -103,8 +99,3 @@ class LogAgentStreamEndpoint(Endpoint):
             return Response({'action': 'add stream', 'msg': 'ok'}, status=200)
         else:
             return Response({'action': 'add stream', 'msg': 'stream has exists!'}, status=200)
-
-        # stream = Stream(data)
-        # stream.save()
-        # return Response(status=200, data=stream)
-

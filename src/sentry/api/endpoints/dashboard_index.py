@@ -58,8 +58,3 @@ if __name__ == "__main__":
     c.login(username="admin@loginsight.cn", password="123")
     response = c.get("/api/0/dashboard/")
     print response.body
-
-
-
-
-

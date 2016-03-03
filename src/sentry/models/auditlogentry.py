@@ -63,7 +63,6 @@ class AuditLogEntryEvent(object):
     AGENT_HOST_ADD = 76
 
 
-
 class AuditLogEntry(Model):
     __core__ = False
 
@@ -75,8 +74,7 @@ class AuditLogEntry(Model):
     # if the entry was created via an api key
     actor_key = FlexibleForeignKey('sentry.ApiKey', null=True, blank=True)
     target_object = BoundedPositiveIntegerField(null=True)
-    target_user = FlexibleForeignKey('sentry.User', null=True, blank=True,
-                                    related_name='audit_targets')
+    target_user = FlexibleForeignKey('sentry.User', null=True, blank=True, related_name='audit_targets')
     event = BoundedPositiveIntegerField(choices=(
         # We emulate github a bit with event naming
         (AuditLogEntryEvent.MEMBER_INVITE, 'member.invite'),
@@ -239,4 +237,3 @@ class AuditLogEntry(Model):
         elif self.event == AuditLogEntryEvent.AGENT_HOST_ADD:
             return 'AGENT ADD host %s (%s)' % (self.data['label'], self.data['host'])
         return ''
-

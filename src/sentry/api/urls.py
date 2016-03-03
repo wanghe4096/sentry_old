@@ -100,17 +100,17 @@ urlpatterns = patterns(
     url(r'^agent/streams', LogAgentStreamEndpoint.as_view(), name='sentry-api-0-agent-streams'),
     url(r'^agent/hello', HelloToken.as_view(), name='hello-token'),
     url(r'^accesstoken', AccessTokenView.as_view(), name='access-token'),
-    url(r'^dashboard/$', DashboardIndexEndpoint.as_view(), name='sentry-log-dashboard'),
-    url(r'^dashboard/(?P<dashboard_id>[^\/]+)/$', DashboardDetailsEndpoint.as_view(), name='sentry-log-dashboard-details'),
+    url(r'^dashboard/$', DashboardIndexEndpoint.as_view(), name='sentry-api-0-log-dashboard'),
+    url(r'^dashboard/(?P<dashboard_id>[^\/]+)/$', DashboardDetailsEndpoint.as_view(), name='sentry-api-0-log-dashboard-details'),
     url(r'^visualization/$', VisualizationIndexEndpoint.as_view(), name='sentry-log-visualization'),
-    url(r'^visualization/(?P<visualization_id>[^\/]+)/$', VisualizationDetailsEndpoint.as_view(), name='sentry-log-visualization-details'),
+    url(r'^visualization/(?P<visualization_id>[^\/]+)/$', VisualizationDetailsEndpoint.as_view(), name='sentry-api-0-log-visualization-details'),
 
     url(r'^widget/$', WidgetIndexEndpoint.as_view(), name='sentry-log-widget'),
-    url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetDetailsEndpoint.as_view(), name='sentry-log-widget-details'),
+    url(r'^widget/(?P<widget_id>[^\/]+)/$', WidgetDetailsEndpoint.as_view(), name='sentry-api-0-log-widget-details'),
     url(r'^search/$', SearchIndexEndpoint.as_view(), name='sentry-log-search'),
-    url(r'^search/(?P<search_id>[^\/]+)/$', SearchDetailsEndpoint.as_view(), name='sentry-log-search-details'),
+    url(r'^search/(?P<search_id>[^\/]+)/$', SearchDetailsEndpoint.as_view(), name='sentry-api-0-log-search-details'),
     url(r'^indexes/$', IndexesIndexEndpoint.as_view(), name='sentry-log-indexes'),
-    url(r'^indexes/(?P<index_id>[^\/]+)/$', IndexesDetailsEndpoint.as_view(), name='sentry-log-index-details'),
+    url(r'^indexes/(?P<index_id>[^\/]+)/$', IndexesDetailsEndpoint.as_view(), name='sentry-api-0-log-index-details'),
 
     # Auth
     url(r'^auth/$',

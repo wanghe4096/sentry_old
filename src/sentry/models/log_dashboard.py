@@ -7,7 +7,6 @@ email_ : wangh@loginsight.cn
 from __future__ import unicode_literals
 from sentry.models.user import User
 from django.db import models
-import datetime
 
 
 class LogDashboard(models.Model):

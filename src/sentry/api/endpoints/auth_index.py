@@ -8,6 +8,7 @@ from sentry.api.authentication import QuietBasicAuthentication
 from sentry.api.base import Endpoint
 from sentry.api.serializers import serialize
 
+
 class AuthIndexEndpoint(Endpoint):
     """
     Manage session authentication
@@ -16,14 +17,8 @@ class AuthIndexEndpoint(Endpoint):
     authentication methods from JS endpoints by relying on internal sessions
     and simple HTTP authentication.
     """
-
     authentication_classes = [QuietBasicAuthentication]
-
     permission_classes = ()
-
-    # XXX: it's not quite clear if this should be documented or not at
-    # this time.
-    # doc_section = DocSection.ACCOUNTS
 
     def get(self, request):
         if not request.user.is_authenticated():
@@ -37,7 +32,6 @@ class AuthIndexEndpoint(Endpoint):
         """
         Authenticate a User
         ```````````````````
-
         This endpoint authenticates a user using the provided credentials
         through a regular HTTP basic auth system.  The response contains
         cookies that need to be sent with further requests that require
@@ -51,10 +45,8 @@ class AuthIndexEndpoint(Endpoint):
         """
         if not request.user.is_authenticated():
             return Response(status=400)
-
         # Must use the real request object that Django knows about
         login(request._request, request.user)
-
         return self.get(request)
 
     def delete(self, request, *args, **kwargs):
@@ -67,4 +59,3 @@ class AuthIndexEndpoint(Endpoint):
         logout(request._request)
         request.user = AnonymousUser()
         return Response(status=204)
-

@@ -18,7 +18,7 @@ class WidgetDetailsEndpoint(Endpoint):
         kwargs['widget_id'] = widget_id
         return (args, kwargs)
 
-    def get(self, request, widget_id, *args,  **kwargs):
+    def get(self, request, widget_id, *args, **kwargs):
         try:
             widget = LogWidget.objects.get(id=widget_id, user=request.user)
         except ObjectDoesNotExist:
@@ -41,11 +41,11 @@ class WidgetDetailsEndpoint(Endpoint):
                 widget = LogWidget.objects.filter(id=widget_id, user=request.user)
             except ObjectDoesNotExist:
                 return Response(status=400)
-            widget.update(title=data['title'],
-                          search=int(data['search_id']),
-                          x_axis=data['x_axis'],
-                          y_axis=data['y_axis'],
-                          chart_type=data['chart_type'])
+            widget.update(title=data.get('title', ''),
+                          search=data.get('search_id', None),
+                          x_axis=data.get('x_axis', None),
+                          y_axis=data.get('y_axis', None),
+                          chart_type=data.get('chart_type', None))
             return Response(data, status=200)
         return Response(status=400)
 
