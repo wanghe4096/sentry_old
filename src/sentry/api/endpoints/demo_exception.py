@@ -26,5 +26,5 @@ class DemoExceptionEndpoint(Endpoint):
     def post(self, request):
         org_member = OrganizationMember.objects.get(user_id=request.user.id)
         org = Organization.objects.get(id=org_member.organization_id)
-        load_demo.create_demo_sample(num_events=1, org_name=org.name, user_name=request.user.username)
+        load_demo.create_demo_sample(num_events=1, org_name=org.name, user_name=request.user.username, request=request)
         return Response({'msg': 'ok'})

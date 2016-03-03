@@ -152,6 +152,8 @@ SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 
 STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
 
+SEARCH_API_BASE_URL = 'http://192.168.1.70:8888'
+
 ##################
 # oauth client   #
 ##################

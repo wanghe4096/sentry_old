@@ -32,7 +32,7 @@ class LogfileIndexEndpoint(LogFileEndpoint):
         host_id = result.get('host_id', '0')
 
         url = "%s/u/%s/nodes/%s/streams/%s/files" % \
-              (settings.STORAGE_SERVER, request.user.id, host_id, result['stream_id'])
+              (settings.STORAGE_API_BASE_URL, request.user.id, host_id, result['stream_id'])
         start_time = time.clock()
         r = requests.get(url)
         end_time = time.clock()
