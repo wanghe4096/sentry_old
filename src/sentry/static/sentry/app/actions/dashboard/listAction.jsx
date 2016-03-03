@@ -27,7 +27,11 @@ ListAction.fetch.listen(function() {
 ListAction.update.listen(function(data) {
   // console.log('1111111:data.id', data.id, data.id ? 'PUT': 'POST');
   var that = this;
-  return new Client().request('/dashboard/', {
+  let url = '/dashboard/';
+  if( data.id ) {
+    url += data.id + '/'
+  }
+  return new Client().request(url, {
     method: data.id ? 'PUT': 'POST',
     data: data,
     success: function(data) {
