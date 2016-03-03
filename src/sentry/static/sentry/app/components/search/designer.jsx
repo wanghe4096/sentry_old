@@ -53,7 +53,7 @@ const _TagWrap = React.createClass({
     if (isActive) {
       className += 'active';
     } else if (canDrop) {
-      // className += ' can-drop'
+      className += ' can-drop'
     }
     return connectDropTarget(
       <div className={className}>
