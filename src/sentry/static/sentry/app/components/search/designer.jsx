@@ -29,9 +29,14 @@ const _TagWrap = React.createClass({
   },
   renderBody() {
     return this.props.data.map((data, i) => {
+      let displayName = data;
+      if(this.props.axis === 'y'){
+        displayName = 'Count(' + displayName + ')';
+      }
+
       return (
         <div className="tag-item" key={i} >
-          { data }
+          { displayName }
           <i
             onClick={() => this.onClickHandler(data)}
             className="remove-btn fa fa-close" />
@@ -117,6 +122,7 @@ const Designer = React.createClass({
                 accepts={['type']}
                 placeholder="Drag the field you want to analyze here"
                 data={this.state.y_axis}
+                axis="y"
                 onRemove={(fieldKey) => this.removeHandler('y',fieldKey) }
                 onDrop={(item) => this.handleDrop('y',item)} />
             </div>
@@ -126,6 +132,7 @@ const Designer = React.createClass({
                 accepts={['type']}
                 placeholder="Drag the field you want to group by here"
                 data={this.state.x_axis}
+                axis="x"
                 onRemove={(fieldKey) => this.removeHandler('x',fieldKey) }
                 onDrop={(item)=>this.handleDrop('x',item)} />
             </div>

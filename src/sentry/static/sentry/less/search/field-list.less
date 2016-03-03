@@ -1,8 +1,8 @@
-.fields_wrap{
+.fields_wrap {
     position: relative;
     width: 200px;
     border-right: 1px solid #eee;
-    &:after{
+    &:after {
         position: absolute;
         top: 0;
         bottom: 0;
@@ -37,7 +37,7 @@
         border-bottom: 1px solid #eee;
         &.active {
             .glyphicon {
-                color:#25A6F7;
+                color: #25A6F7;
             }
         }
         .input-group-addon {
@@ -79,10 +79,35 @@
     }
     .field-item {
         display: block;
-        padding: 3px 0 3px 20px;
-        margin-bottom:0;
+        padding: 3px 0 3px 3px;
+        margin-bottom: 0;
+        line-height: 24px;
+        &:hover {
+            background-color: #F2F2F2;
+        }
+        &:selected {
+            background-color: #B9DDFE;
+        }
         input {
-            margin-right: 5px;
+            vertical-align: middle;
+            margin:0 7px;
+        }
+        .field-type-icon {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin: 0 5px 0 5px;
+            vertical-align: middle;
+            background-size: cover;
+            &.ft-string {
+                background: url("http://192.168.1.81:8090/controller/images/dataTypes/text_gray.svg");
+            }
+            &.ft-number {
+                background: url("http://192.168.1.81:8090/controller/images/dataTypes/number_gray.svg");
+            }
+            &.ft-time {
+                background: url("http://192.168.1.81:8090/controller/images/dataTypes/time_gray.svg");
+            }
         }
         span {
             cursor: pointer;

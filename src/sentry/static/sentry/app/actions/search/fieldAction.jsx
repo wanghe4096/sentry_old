@@ -22,14 +22,15 @@ FieldAction.fetch.listen(function(query,timeRange,options = {}) {
   //   }
   // })
   let mockData = [];
+  let mockNameList = ["appName", "auth", "bytes", "class", "client_ip", "Host", "http_version", "ident", "log_timestamp", "logLevel", "logMessage", "nodeName", "rawrequest", "request", "response", "Source", "Source Type", "threadName", "tierName", "verb"];
   let _i = 0;
-  while( _i< 13 ) {
+  while( _i< 20 ) {
     mockData.push({
-      name:'xxxx'+_.random(3,30),
-      field_key:'xxxxx',
-      counts:[],
-      default_selected:!!_.random(0,1),
-      group:{}
+      name:mockNameList[_i],
+      // field_key:'xxxxx',
+      // counts:[],
+      type:['string','number'][_.random(0,1)],
+      default_selected:!!_.random(0,1)
     });
     _i++;
   }

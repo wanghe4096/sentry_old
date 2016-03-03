@@ -17,12 +17,17 @@ const _FieldItem = React.createClass({
   },
   render() {
 
+    let filedTypeIcon = this.props.type;
+    if(/timestamp/i.test(this.props.name)){
+      filedTypeIcon = 'time';
+    }
     const { isDragging, connectDragSource } = this.props;
 
     return connectDragSource(
       <label
        style={{ opacity: isDragging ? 0.5 : 1 }}
         className="field-item">
+        <i className={`field-type-icon ft-${filedTypeIcon}`} />
         <span>{this.props.name}</span>
       </label>
     )
@@ -59,7 +64,7 @@ const FieldList = React.createClass({
   },
   filterHandler(e) {
     this.setState({
-      filter: e.target.value.toLocaleLowerCase().replace(/\s+/g, '')
+      filter: e.target.value.replace(/\s+/gi, '')
     });
   },
   // arr: [
@@ -87,8 +92,8 @@ const FieldList = React.createClass({
   // ],
   renderBody() {
     return this.state.list.map((data,i) => {
-      const reg = new RegExp(this.state.filter);
-      if(this.state.filter && !reg.test(data.name.toLocaleLowerCase())) {
+      const reg = new RegExp(this.state.filter,'i');
+      if(this.state.filter && !reg.test(data.name)) {
         return false;
       }
       return (<FieldItem type="type" name={data.name} key={i} {...data} />)
@@ -111,19 +116,14 @@ const FieldList = React.createClass({
               placeholder="Field Filter"/>
           </div>
         </div>
-        <dl className="field-group-list">
-          <dt className="field-group-tit">Default Field<b>(23)</b>
-          </dt>
-          <dd className="field-group">
-            { this.renderBody() }
-          </dd>
-          <dt className="field-group-tit">Custom Field<b>(23)</b>
-          </dt>
-          <dd className="field-group">
-            <label className="field-item"><input type="checkbox"/>host</label>
-            <label className="field-item"><input type="checkbox"/>client_ip</label>
-          </dd>
-        </dl>
+        <div className="field-group-list">
+          <div className="field-group-item">
+            <div className="field-group-tit">Default Field<b>(23)</b></div>
+            <div className="field-group">
+              { this.renderBody() }
+            </div>
+          </div>
+        </div>
       </section>
     )
   }
