@@ -1,10 +1,10 @@
 import React from 'react';
 import Reflux from 'reflux';
 import _ from 'underscore';
-import DesignerStateStore from 'stores/search/designerStateStore';
+import DesignerStore from 'stores/search/designerStore';
 import DesignerStateAction from 'actions/search/designerStateAction';
 
-const groupedData = _.groupBy(DesignerStateStore.getChartTypes(), (d) => {
+const groupedData = _.groupBy(DesignerStore.getChartTypes(), (d) => {
   return d.group;
 });
 
@@ -27,11 +27,11 @@ const CTitem = React.createClass({
 
 const GraphsSelector = React.createClass({
   mixins: [
-    Reflux.listenTo(DesignerStateStore, 'onStateChange')
+    Reflux.listenTo(DesignerStore, 'onStateChange')
   ],
   getInitialState() {
     return {
-      active: DesignerStateStore.get('graphType')
+      active: DesignerStore.get('graphType')
     }
   },
   itemSelectHandler(type) {

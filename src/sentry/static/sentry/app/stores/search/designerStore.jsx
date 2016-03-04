@@ -39,7 +39,7 @@ const chartTypes = [
   }
 ];
 
-const DesignerStateStore = Reflux.createStore({
+const DesignerStore = Reflux.createStore({
   listenables:DesignerStateAction,
   data:{
     graphType: chartTypes[0].name,
@@ -49,11 +49,8 @@ const DesignerStateStore = Reflux.createStore({
   getInitialState() {
     return this.data;
   },
-  init() {
-    window.qw = this;
-  },
   get(field) {
-    return this.data[field]
+    return this.data[field];
   },
   getAxis(axis) {
     const stateKey = axis + '_axis';
@@ -73,4 +70,4 @@ const DesignerStateStore = Reflux.createStore({
   }
 });
 
-export default DesignerStateStore;
+export default DesignerStore;
