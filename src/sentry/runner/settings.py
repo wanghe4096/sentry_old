@@ -163,8 +163,8 @@ SEARCH_SERVER_API = 'http://192.168.200.245:8888'
 # oauth client   #
 ##################
 
-LOGINSIGHT_CLIENT_ID='L_Ja!V13e!8pWJpWP?PE-metmZ?S0;s!3XHgu;ok'
-LOGINSIGHT_CLIENT_SECRET=';RNXzm7rPjcx7!pyM;N.HYCt4:2JTv@HZ53FZIbwB_o4l-8dAEckaGaIgj_caTnqsjn9HHv3S.vJap5fo6etJQ!HQj0bwyaTcI4K46RPlw@yMFHTYcOvPNpdmUbfKg3D'
+LOGINSIGHT_CLIENT_ID='m_ebzj6lEzTABm3utcEQr0EOk9S_K7w@M2K4Rxn?'
+LOGINSIGHT_CLIENT_SECRET='U_f5Syw9jQq.Z5y=:oQxa0TL0a1T?0pB7V5LjA50F4g;2oZMYo=XzRs2jEkFHY!:GZP0iS_hmAY9c:2Y?qlm6aA1ofj2xmv5xD_EsQfFii-:LyAGMvmBVQzwMaX:D4qC'
 BASE_AUTHORIZE_LINK = 'http://localhost:8000/o/authorize'
 OAUTH_SERVER = "http://localhost:8000"
 TOKEN_URL = 'http://localhost:8000/o/token/'

@@ -74,13 +74,12 @@ class SearchResultEndpoint(Endpoint):
         q = request.GET.get('q', '')
         count = request.DATA.get('count', 50)
         offset = request.DATA.get('offset', 0)
-        query_json = parse_query(q)
-        print('query_json == ', query_json)
-        url = "%s/%s/%s/%s/?offset=%s&count=%s" % (settings.SEARCH_SERVER_API,
-                                                   request.user.username,
+        query_json = parse_query(str(q))
+        query = str(query_json).replace("'", "\"")
+        url = "%s/tenant/test/%s/search?q=%s&offset=%s&count=%s" % (settings.SEARCH_SERVER_API,
                                                    index_name,
-                                                   query_json,
+                                                   query,
                                                    offset,
                                                    count)
-        resp = requests.get(url)
-        return resp
+        resp = requests.get(str(url))
+        return Response(status=resp.status_code, data=resp.json())

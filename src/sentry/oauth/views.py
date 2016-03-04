@@ -41,12 +41,12 @@ class ConsumerExchangeView(FormView):
                 'token_url': settings.TOKEN_URL,
                 'redirect_url': request.build_absolute_uri(reverse('oauth-consumer-exchange'))
             }
-
             headers = {"Authorization": "Basic " + base64.b64encode(settings.LOGINSIGHT_CLIENT_ID + ":" + settings.LOGINSIGHT_CLIENT_SECRET)}
             data = {'code': request.GET['code'],
                     'redirect_uri': request.build_absolute_uri(reverse('oauth-consumer-exchange')),
                     'grant_type': 'authorization_code'}
-
+            print 'client_id == ', settings.LOGINSIGHT_CLIENT_ID
+            print 'TOKEN_URL === ', settings.TOKEN_URL
             resp = requests.post(settings.TOKEN_URL,
                                  data=data,
                                  headers=headers
@@ -57,6 +57,7 @@ class ConsumerExchangeView(FormView):
             headers = {"Authorization": token_type + " " + token}
 
             resp = requests.post(settings.OAUTH_SERVER + "/api/user_info", data={'token': token}, headers=headers)
+            print 'resp === ', resp.json()
             data = resp.json()[0]['fields']
             user_key = self.generate_user_key(data['username'], data['email'], data['password'])
             user = User(username=data['username'], email=data['email'])
