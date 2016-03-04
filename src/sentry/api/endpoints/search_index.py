@@ -7,7 +7,10 @@ email_ : wangh@loginsight.cn
 from sentry.models.log_search import Search
 from rest_framework.response import Response
 from django.core.exceptions import ObjectDoesNotExist
+from django.conf import settings
 from sentry.api.base import Endpoint
+from sentry.utils.query_parse import *
+import requests
 import ast
 
 
@@ -50,3 +53,34 @@ class SearchIndexEndpoint(Endpoint):
                               desc=data.get('desc', None),
                               user=request.user)
         return Response(status=200, data={'msg': 'ok'})
+
+
+
+"""
+获取查询结果的接口
+PARAM: index_name
+"""
+
+
+class SearchResultEndpoint(Endpoint):
+    permission_classes = []
+
+    def convert_args(self, request, index_name, *args, **kwargs):
+        kwargs['index_name'] = index_name
+        print 'index_name ---- ', index_name
+        return (args, kwargs)
+
+    def get(self, request, index_name):
+        q = request.GET.get('q', '')
+        count = request.DATA.get('count', 50)
+        offset = request.DATA.get('offset', 0)
+        query_json = parse_query(q)
+        print('query_json == ', query_json)
+        url = "%s/%s/%s/%s/?offset=%s&count=%s" % (settings.SEARCH_SERVER_API,
+                                                   request.user.username,
+                                                   index_name,
+                                                   query_json,
+                                                   offset,
+                                                   count)
+        resp = requests.get(url)
+        return resp

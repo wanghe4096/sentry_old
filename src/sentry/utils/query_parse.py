@@ -176,58 +176,62 @@ def parse_query(q):
         if (pair[0] == "search"):
             search_query = pair[1]
             json_query["search"] = parse_search_query(search_query)
-            pass
+            if json_query["search"] is None:
+                return {'error': 'parse error for search'}
 
         if (pair[0] == "filter"):
             filter_query = pair[1]
             json_query["filter"] = parse_filter_query(filter_query)
+            if json_query["filter"] is None:
+                return {'error': 'parse error for filter'}
             pass
 
         if (pair[0] == "group"):
             groupby_query = pair[1]
             json_query["group"] = parse_groupby_query(groupby_query)
+            if json_query['group'] is None:
+                return {'error': 'parse error for group'}
             pass
 
         if (pair[0] == "sort"):
             sort_query = pair[1]
             json_query["sort"] = parse_sort_query(sort_query)
+            if json_query["sort"] is None:
+                return {'error': 'parse error for sort'}
             pass
         pass
 
-    return json_query
+    return str(json_query).replace("'", "\"")
 
 
-def test_parse_search():
-    querys = [
-            "aaa & bb",
-            "aaa & bb & cc & dd",
-            "aaa | bb | cc | dd",
-            "aaa & bb | cc & dd",
-            "aaa | bb & cc | dd",
-            "(aaa & bb) | cc",
-            "aa & (bb | cc)",
-            "aa & (bb | cc & dd | ee)",
-            "aa & (bb | cc & dd | !ee)",
-            ]
-
-    for q in querys:
-
-        r = parse_search_query(q)
-        print "====================", q
-        print "====================", r
-        print "\n"
-
-
-if __name__ == "__main__":
-    test_parse_search()
-    for q in querys:
-        print '*' * 50
-        print "query: ", q
-        print "--------------", parse_query(q)
-        d = parse_query(q)
-        j = str(d).replace("'", "\"")
-        print 'j=', j
-        print "\n"
+# def test_parse_search():
+#       querys = [
+#             "aaa & bb",
+#             "aaa & bb & cc & dd",
+#             "aaa | bb | cc | dd",
+#             "aaa & bb | cc & dd",
+#             "aaa | bb & cc | dd",
+#             "(aaa & bb) | cc",
+#             "aa & (bb | cc)",
+#             "aa & (bb | cc & dd | ee)",
+#             "aa & (bb | cc & dd | !ee)",
+#             ]
+#
+#     for q in querys:
+#
+#         r = parse_search_query(q)
+#         print "====================", q
+#         print "====================", r
+#         print "\n"
+#
+#
+# if __name__ == "__main__":
+#     test_parse_search()
+#     for q in querys:
+#         print '*' * 50
+#         print "query: ", q
+#         print "--------------", parse_query(q)
+#         print "\n"
 
 
 """
