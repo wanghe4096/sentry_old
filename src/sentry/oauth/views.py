@@ -57,8 +57,6 @@ class ConsumerExchangeView(FormView):
             headers = {"Authorization": token_type + " " + token}
 
             resp = requests.post(settings.OAUTH_SERVER + "/api/user_info", data={'token': token}, headers=headers)
-            print 'resp === ', resp.json()
-            print 'user=====', request.user
             data = resp.json()[0]['fields']
             user_key = self.generate_user_key(data['username'], data['email'], data['password'])
             user = User(username=data['username'], email=data['email'])
@@ -71,27 +69,36 @@ class ConsumerExchangeView(FormView):
             if not User.objects.filter(username=data['username']):
                 if not User.objects.filter(email=data['email']):
                     user.save()
+            user = User.objects.get(username=data['username'])
             data = resp.json()[1]['fields']
-            # org_name = data['org_name']
-            print 'data === ', data
+            org_name = data['org_name']
+            # create organization
+
+            if len( Organization.objects.filter(name=org_name)) == 0:
+                org = Organization.objects.create(
+                    name=org_name,
+                    slug=org_name,
+                )
+
+                OrganizationMember.objects.create(
+                    organization=org,
+                    user=user,
+                    role=roles.get_top_dog().id,
+                )
+
             if request.user.is_authenticated():
                 # Do something for authenticated users.
                 return redirect('sentry-organization-home')
             else:
                 # Do something for anonymous users.
 
-                print 'username===', data['name']
-                print 'password===', data['password']
                 user = authenticate(username=data['name'], password=data['password'])
 
                 if user is None:
-                    print 'user === ', user
                     return redirect('sentry-login')
-                print 'login ----------'
                 login(request, user)
                 return HttpResponseRedirect(get_login_redirect(request))
         except KeyError:
-            print 'exception --------------'
             kwargs['noparams'] = True
 
         form_class = self.get_form_class()
