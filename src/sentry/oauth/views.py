@@ -7,7 +7,9 @@ from django.contrib.auth import login, authenticate
 from django.core.urlresolvers import reverse
 from sentry.utils.auth import get_login_redirect
 from django.shortcuts import redirect
-
+from sentry.models.organization import Organization
+from sentry.models.organizationmember import OrganizationMember
+from sentry import roles
 import base64
 import requests
 from .forms import ConsumerForm, ConsumerExchangeForm, AccessTokenDataForm
@@ -45,8 +47,6 @@ class ConsumerExchangeView(FormView):
             data = {'code': request.GET['code'],
                     'redirect_uri': request.build_absolute_uri(reverse('oauth-consumer-exchange')),
                     'grant_type': 'authorization_code'}
-            print 'client_id == ', settings.LOGINSIGHT_CLIENT_ID
-            print 'TOKEN_URL === ', settings.TOKEN_URL
             resp = requests.post(settings.TOKEN_URL,
                                  data=data,
                                  headers=headers
@@ -58,11 +58,11 @@ class ConsumerExchangeView(FormView):
 
             resp = requests.post(settings.OAUTH_SERVER + "/api/user_info", data={'token': token}, headers=headers)
             print 'resp === ', resp.json()
+            print 'user=====', request.user
             data = resp.json()[0]['fields']
             user_key = self.generate_user_key(data['username'], data['email'], data['password'])
             user = User(username=data['username'], email=data['email'])
-            user.set_password(data['password'])
-            # user.password = data['password']
+            user.password = data['password']
             user.userkey = user_key
             user.is_active = True
             user.is_managed = True
@@ -71,19 +71,27 @@ class ConsumerExchangeView(FormView):
             if not User.objects.filter(username=data['username']):
                 if not User.objects.filter(email=data['email']):
                     user.save()
+            data = resp.json()[1]['fields']
+            # org_name = data['org_name']
+            print 'data === ', data
             if request.user.is_authenticated():
                 # Do something for authenticated users.
                 return redirect('sentry-organization-home')
             else:
                 # Do something for anonymous users.
-                user = authenticate(username=data['username'], password=data['password'])
-                print data['username']
-                print data['password']
+
+                print 'username===', data['name']
+                print 'password===', data['password']
+                user = authenticate(username=data['name'], password=data['password'])
+
                 if user is None:
+                    print 'user === ', user
                     return redirect('sentry-login')
+                print 'login ----------'
                 login(request, user)
                 return HttpResponseRedirect(get_login_redirect(request))
         except KeyError:
+            print 'exception --------------'
             kwargs['noparams'] = True
 
         form_class = self.get_form_class()

@@ -67,7 +67,6 @@ class SearchResultEndpoint(Endpoint):
 
     def convert_args(self, request, index_name, *args, **kwargs):
         kwargs['index_name'] = index_name
-        print 'index_name ---- ', index_name
         return (args, kwargs)
 
     def get(self, request, index_name):
