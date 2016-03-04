@@ -177,27 +177,27 @@ def parse_query(q):
             search_query = pair[1]
             json_query["search"] = parse_search_query(search_query)
             if json_query["search"] is None:
-                return {'error': 'parse error for search'}
+                return None
 
         if (pair[0] == "filter"):
             filter_query = pair[1]
             json_query["filter"] = parse_filter_query(filter_query)
             if json_query["filter"] is None:
-                return {'error': 'parse error for filter'}
+                return None
             pass
 
         if (pair[0] == "group"):
             groupby_query = pair[1]
             json_query["group"] = parse_groupby_query(groupby_query)
             if json_query['group'] is None:
-                return {'error': 'parse error for group'}
+                return None
             pass
 
         if (pair[0] == "sort"):
             sort_query = pair[1]
             json_query["sort"] = parse_sort_query(sort_query)
             if json_query["sort"] is None:
-                return {'error': 'parse error for sort'}
+                return None
             pass
         pass
 
