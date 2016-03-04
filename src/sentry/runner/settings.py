@@ -150,15 +150,37 @@ SENTRY_DIGESTS = 'sentry.digests.backends.redis.RedisBackend'
 
 #loginsight storage server api url
 
+STORAGE_SERVER = 'http://192.168.200.245:8080'
+
 STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
+
+
+# loginsight search server api
+
+SEARCH_SERVER_API = 'http://192.168.200.245:8888'
 
 ##################
 # oauth client   #
 ##################
 
-LOGINSIGHT_CLIENT_ID='client_id'
-LOGINSIGHT_CLIENT_SECRET='client_secret'
+LOGINSIGHT_CLIENT_ID='L_Ja!V13e!8pWJpWP?PE-metmZ?S0;s!3XHgu;ok'
+LOGINSIGHT_CLIENT_SECRET=';RNXzm7rPjcx7!pyM;N.HYCt4:2JTv@HZ53FZIbwB_o4l-8dAEckaGaIgj_caTnqsjn9HHv3S.vJap5fo6etJQ!HQj0bwyaTcI4K46RPlw@yMFHTYcOvPNpdmUbfKg3D'
 BASE_AUTHORIZE_LINK = 'http://localhost:8000/o/authorize'
+OAUTH_SERVER = "http://localhost:8000"
+TOKEN_URL = 'http://localhost:8000/o/token/'
+
+####################
+# SENTRY TARANTOOL #
+####################
+
+SENTRY_TARANTOOL_OPTIONS = {
+        'hosts': {
+            0: {
+                'host': '127.0.0.1',
+                'port': '3301'
+            }
+        }
+}
 
 
 ################
