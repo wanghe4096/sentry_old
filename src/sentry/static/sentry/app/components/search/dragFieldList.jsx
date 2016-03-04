@@ -36,13 +36,12 @@ const _FieldItem = React.createClass({
 
 const FieldItem = DragSource(props => props.type, {
   beginDrag(props) {
-    console.log('xxx');
     return {
       name: props.name
     };
   },
   endDrag(props, monitor, component) {
-    console.log('end drag:',props);
+    
   }
 }, (connect,monitor) => ({
     isDragging: monitor.isDragging(),

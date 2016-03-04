@@ -7,6 +7,7 @@ import Designer from 'components/search/designer';
 import HTML5Backend from 'react-dnd-html5-backend';
 import { DragDropContext } from 'react-dnd';
 import {t} from 'app/locale';
+import GraphsSelector from 'components/search/graphsSelector';
 
 const css = require('css/search/designer.less');
 
@@ -41,42 +42,7 @@ const SearchVisualDesigner = React.createClass({
             <div className="s-container">
               <FieldList />
               <Designer />
-              <section className="type-selector">
-                <div className="section-head">
-                  <span className="tit">Graphs Selector</span>
-                </div>
-                <div className="t-group">
-                  <p className="group-tit">Visualize</p>
-                  <ul className="t-list-ul clearfix">
-                    <li className="t-item-li">
-                      <i className="glyphicon glyphicon-align-left" />
-                    </li>
-                    <li className="t-item-li">
-                      <i className="glyphicon glyphicon-align-left" />
-                    </li>
-                    <li className="t-item-li">
-                      <i className="glyphicon glyphicon-align-left" />
-                    </li>
-                    <li className="t-item-li">
-                      <i className="glyphicon glyphicon-align-left" />
-                    </li>
-                    <li className="t-item-li">
-                      <i className="glyphicon glyphicon-align-left" />
-                    </li>
-                  </ul>
-                </div>
-                <div className="t-group">
-                  <p className="group-tit">Timeseries Graphs</p>
-                  <ul className="t-list-ul clearfix">
-                    <li className="t-item-li">
-                      <i className="glyphicon glyphicon-align-left" />
-                    </li>
-                    <li className="t-item-li">
-                      <i className="glyphicon glyphicon-align-left" />
-                    </li>
-                  </ul>
-                </div>
-              </section>
+              <GraphsSelector />
             </div>
           </div>
         </div>

@@ -4,6 +4,9 @@ import _ from 'underscore';
 import AlertActions from 'actions/alertActions.jsx';
 import { DropTarget } from 'react-dnd';
 import {t} from 'app/locale';
+import PureRenderMixin from 'react-addons-pure-render-mixin';
+import DesignerStateStore from 'stores/search/designerStateStore';
+import DesignerStateAction from 'actions/search/designerStateAction';
 
 const css = require('css/search/component-designer.less');
 
@@ -82,12 +85,9 @@ const TagWrap = DropTarget(props => props.accepts ,{
  *
  */
 const Designer = React.createClass({
-  getInitialState() {
-    return {
-      x_axis:[],
-      y_axis:[]
-    }
-  },
+  mixins: [
+    Reflux.connect(DesignerStateStore)
+  ],
   componentWillMount() {
     css.use();
   },
@@ -95,21 +95,25 @@ const Designer = React.createClass({
     css.unuse();
   },
   handleDrop(axis,item) {
-    let data = {};
-    let stateKey = axis + '_axis';
+    // let data = {};
+    // let stateKey = axis + '_axis';
     // console.log(this.state[stateKey])
-    if(this.state[stateKey].indexOf(item.name) !== -1) {
-      AlertActions.addAlert(t('Only one field per axis is allowed.'), 'error');
-      return false;
-    }
-    data[stateKey] = _.uniq(this.state[stateKey].concat(item.name));
-    this.setState(data);
+    // if(this.state[stateKey].indexOf(item.name) !== -1) {
+    //   AlertActions.addAlert(t('Only one field per axis is allowed.'), 'error');
+    //   return false;
+    // }
+    const value = _.uniq(DesignerStateStore.getAxis(axis).concat(item.name));
+    DesignerStateAction.setAxisValue(axis,value);
+    // data[stateKey] = _.uniq(this.state[stateKey].concat(item.name));
+    // this.setState(data);
   },
   removeHandler(axis,fieldKey) {
-    let data = {};
-    let stateKey = axis + '_axis';
-    data[stateKey] = _.without(this.state[stateKey],fieldKey);
-    this.setState(data);
+    // let data = {};
+    // let stateKey = axis + '_axis';
+    // data[stateKey] = _.without(this.state[stateKey],fieldKey);
+    // this.setState(data);
+    const value = _.without(DesignerStateStore.getAxis(axis),fieldKey);
+    DesignerStateAction.setAxisValue(axis,value);
   },
   render() {
     return (
