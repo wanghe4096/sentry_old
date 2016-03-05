@@ -11,11 +11,14 @@ from sentry.models.organizationmember import OrganizationMember
 from sentry.models.organization import Organization
 from django.conf import settings
 from django.core.exceptions import ObjectDoesNotExist
+from sentry.utils.sourcetype import *
+
 import os
 
 
 class UploadIndexEndpoint(Endpoint):
     permission_classes = []
+    LOG_SAMPLE = ""
 
     def handle_upload_file(self, request, org, file):
         if file is None:
@@ -33,9 +36,19 @@ class UploadIndexEndpoint(Endpoint):
             os.makedirs(dest_path)
         dest_path = os.path.join(dest_path, file.name)
         destination = open(dest_path, 'wb+')
+        ret = None
+        chunks = []
+        i = 0
         for chunk in file.chunks():
             destination.write(chunk)
+            i = i + 1
+            if i != 20:
+                chunks.append(chunks)
         destination.close()
+        with open(dest_path, "r") as fd:
+            lines = fd.readlines(20)
+            a = try_to_detect_file_sourcetype(lines, "")
+            return a
 
     def get(self, request):
         pass
@@ -47,5 +60,6 @@ class UploadIndexEndpoint(Endpoint):
             org = Organization.objects.get(id=org_mem.organization_id)
         except ObjectDoesNotExist:
             return Response(status=200, data={'msg': 'Invalid user for organization'})
-        self.handle_upload_file(request, org.name, file)
-        return Response(status=200, data={'msg': 'ok'})
+        ret = self.handle_upload_file(request, org.name, file)
+        print 'ret === ', ret
+        return Response(status=200, data={'msg': 'ok', 'source_type': ret})

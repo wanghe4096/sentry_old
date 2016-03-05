@@ -59,7 +59,7 @@ const UploadModal = React.createClass({
       contentType: false,
       type: 'POST',
       success: function(data){
-        alert(data);
+        alert(data.toString());
       }
     });
     e.preventDefault()
