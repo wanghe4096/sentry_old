@@ -87,6 +87,8 @@ from .endpoints.dashboard_details import DashboardDetailsEndpoint
 from .endpoints.indexes_index import IndexesIndexEndpoint
 from .endpoints.indexes_details import IndexesDetailsEndpoint
 from .endpoints.indexes_fields_index import IndexesFieldsIndexEndpoint
+from .endpoints.upload_index import UploadIndexEndpoint
+
 urlpatterns = patterns(
     '',
     #  loginsight
@@ -114,6 +116,7 @@ urlpatterns = patterns(
     url(r'^indexes/$', IndexesIndexEndpoint.as_view(), name='sentry-log-indexes'),
     url(r'^indexes/(?P<index_id>[^\/]+)/$', IndexesDetailsEndpoint.as_view(), name='sentry-api-0-log-index-details'),
     url(r'^indexes/(?P<index_id>[^\/]+)/fields/$', IndexesFieldsIndexEndpoint.as_view(), name='sentry-api-0-log-index-fields'),
+    url(r'^upload/(?P<organization>[^\/]+)/$', UploadIndexEndpoint.as_view(), name='sentry-api-0-log-index-fields'),
 
     # Auth
     url(r'^auth/$',
