@@ -41,49 +41,12 @@ const UploadModal = React.createClass({
 
   onDrop: function (files) {
     console.log('Received : ', files);
-    //var req = request.post('http://localhost:8000/upload');
-    //files.forEach((file)=> {
-    //  req.attach(file.name, file);
-    //});
-    //req.end(function(){
-    //  console.log('ffffff')
-    //});
     this.setState({
       files: files
     });
 
     console.log(allFilesAccepted)
 
-    //if (files.length > 0) {
-    //  this.setState(this.getInitialState());
-    //}
-    //else{
-    //  files.map(function(file){
-    //    let filename = file.name;
-    //    let fname = filename.replace(/.+\./,"");
-    //  });
-    //  this.setState({options: fname});
-    //}
-
-    //var req = request.post('/upload');
-    //files.forEach((file)=> {
-    //  req.attach(file.name, file);
-    //});
-    //req.end(alert("123"));
-
-  //var formData = new FormData();
-  //  formData.append( 'file', files[0] );
-  //  $.ajax({
-  //    url: '/api/0/upload/',
-  //    type: 'POST',
-  //    cache: false,
-  //    data: formData,
-  //    processData: false,
-  //    contentType: false
-  //
-  //  }).done(function(res) {
-  //    alert("成功")
-  //  }).fail(function(res) {alert("失败")}
     const dataTransferItems = files.dataTransfer && files.dataTransfer.items ? files.dataTransfer.items : [];
     const allFilesAccepted = this.allFilesAccepted(Array.prototype.slice.call(dataTransferItems));
 
@@ -111,24 +74,6 @@ const UploadModal = React.createClass({
     };
 
     this.setState({now:30});
-
-    //if(window.FormData) {
-    //  var formData = new FormData();
-    //  // 建立一个upload表单项，值为上传的文件
-    //  formData.append('http://localhost:8000/upload', document.getElementById('file').files[0]);
-    //  var xhr = new XMLHttpRequest();
-    //  xhr.open('POST', $(this).attr('action'));
-    //  // 定义上传完成后的回调函数
-    //  xhr.onload = function () {
-    //    if (xhr.status === 200) {
-    //      console.log('上传成功');
-    //    } else {
-    //      console.log('出错了');
-    //    }
-    //  };
-    //  xhr.send(formData);
-    //}
-
 
   },
 

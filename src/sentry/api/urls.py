@@ -116,7 +116,7 @@ urlpatterns = patterns(
     url(r'^indexes/$', IndexesIndexEndpoint.as_view(), name='sentry-log-indexes'),
     url(r'^indexes/(?P<index_id>[^\/]+)/$', IndexesDetailsEndpoint.as_view(), name='sentry-api-0-log-index-details'),
     url(r'^indexes/(?P<index_id>[^\/]+)/fields/$', IndexesFieldsIndexEndpoint.as_view(), name='sentry-api-0-log-index-fields'),
-    url(r'^upload/(?P<organization>[^\/]+)/$', UploadIndexEndpoint.as_view(), name='sentry-api-0-log-index-fields'),
+    url(r'^upload/$', UploadIndexEndpoint.as_view(), name='sentry-api-0-log-index-fields'),
 
     # Auth
     url(r'^auth/$',
