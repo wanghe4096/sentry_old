@@ -4,8 +4,6 @@ author : wanghe
 company: LogInsight
 email_ : wangh@loginsight.cn
 """
-
-
 from __future__ import absolute_import
 from sentry.api.base import Endpoint
 from sentry.models.log_indexes import Indexes
@@ -13,6 +11,7 @@ from rest_framework.response import Response
 from django.conf import settings
 import datetime
 import requests
+
 
 class IndexesIndexEndpoint(Endpoint):
     permission_classes = []
@@ -36,8 +35,8 @@ class IndexesIndexEndpoint(Endpoint):
         data = request.DATA
         if len(data) == 0:
             return Response(status=400, data={'msg': 'no request parameters'})
-         url = "%s/tenant/test/%s/create?schema=key_format=r, value_format=QSQ," \
-                  " columns=(_id, user_id, movie_id, rating)" % (settings.SEARCH_SERVER_API, data['name'])
+        url = "%s/tenant/test/%s/create?schema=key_format=r, value_format=QSQ," \
+              " columns=(_id, user_id, movie_id, rating)" % (settings.SEARCH_SERVER_API, data['name'])
         resp = requests.get(url)
         if resp.status_code != 200:
             return Response(resp.status_code, data={'msg': 'failed'})
