@@ -159,6 +159,8 @@ STORAGE_API_BASE_URL = 'http://192.168.1.70:8080/api/v1'
 
 SEARCH_SERVER_API = 'http://192.168.200.245:8888'
 
+LOG_ROOT = "/Users//wanghe/temp_logdir/"
+
 ##################
 # oauth client   #
 ##################
