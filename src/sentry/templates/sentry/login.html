@@ -18,20 +18,6 @@
 
         <h3>登录到LogInsight</h3>
     </div>
-
-<ul class="nav nav-tabs auth-toggle">
-    <li{% if op == "login" %} class="active"{% endif %}>
-    <a href="#login" data-toggle="tab">{% trans "Login" %}</a>
-    </li>
-    {% if CAN_REGISTER %}
-    <li{% if op == "register" %} class="active"{% endif %}>
-    <a href="#register" data-toggle="tab">{% trans "Register" %}</a>
-    </li>
-    {% endif %}
-    <li{% if op == "sso" %} class="active"{% endif %}>
-    <a href="#sso" data-toggle="tab">{% trans "Single Sign-On" %}</a>
-    </li>
-</ul>
 <div class="tab-content login-body">
 
     <div class="tab-pane{% if op == "login" %} active{% endif %}" id="login">
@@ -50,145 +36,10 @@
             <button type="submit" class="btn btn-success">{% trans "Login" %}</button> <a class="pull-right" style="margin-top: 9px" href="{% url 'sentry-account-recover' %}">{% trans "Lost your password?" %}</a>
         </fieldset>
     </form>
-    <!--<div>-->
-    <!--<a href="{{AUTHORIZE_LINK}}" class="btn btn-default auth-btn auth-bitbucket"><span class="auth-icon"></span>LOGINSIGHT</a>-->
-    <!--</div>-->
+</div>
 </div>
 
-<div class="tab-pane{% if op == "sso" %} active{% endif %}" id="sso">
-<form class="form-stacked" method="post">
-    {% csrf_token %}
-
-    <input type="hidden" name="op" value="sso" />
-
-    <div class="control-group">
-        <div class="controls">
-            <label style="display: block">SSO URL</label>
-            <span style="padding: 7px 0; font-size: 15px">app.getsentry.com/</span> <input style="width: 240px; margin: 0 0 4px; padding: 5px 8px; display: inline" type="text" class="form-control" name="organization" placeholder="acme">
-            <p class="help-block">Enter your organization's ID and we'll get things started.</p>
-        </div>
-    </div>
-    <div class="form-actions" style="margin-top: 25px">
-        <button class="btn btn-primary">Sign in</button>
-    </div>
-</form>
-</div>
-
-</div>
-
-
-
-<!--baidu analyse-->
-<script>
-    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-    ga('create', 'UA-71035313-1', 'auto');
-    ga('send', 'pageview');
-
-</script>
-<script>
-    var _hmt = _hmt || [];
-    (function() {
-        var hm = document.createElement("script");
-        hm.src = "//hm.baidu.com/hm.js?1a2fead704d6f0d4a6e35987b2da75cf";
-        var s = document.getElementsByTagName("script")[0];
-        s.parentNode.insertBefore(hm, s);
-    })();
-</script>
 
 {% endblock %}
 
 {% block reactInit %}{% endblock %}
-
-
-
-<script type="text/javascript">
-
-
-    //    $(document).ready(function(){
-    //
-    //        function get_user_info(url, token){
-    //            $.ajax({
-    //                url: url,
-    //                type: 'POST',
-    //                crossDomain: true,
-    //                beforeSend: function(request){
-    //                    request.setRequestHeader("Authorization", "Bearer " + token);
-    //                },
-    //                data: {'token': token},
-    //                success: function(data, status, jqXHR){
-    //                    alert(data)
-    //                    return data
-    //                },
-    //                error: function(jqXHR) {
-    //                    var msg = "HTTP " + jqXHR.status;
-    //                    var br ="<\br>";
-    //                    if (jqXHR.status == 0){
-    //                        msg += br;
-    //                        msg += "You have to put protocol on your URL, i.e. '<b>http://</b>localhost:8000/api/hello'.";
-    //                    }
-    //                    alert("error=", msg)
-    //                    console.log("error=", msg);
-    //                }
-    //            });
-    //
-    //    }
-    //
-    //    $("#submit_btn").click(function(event){
-    //        event.preventDefault();
-    //        var token_url = $("#id_token_url").val();
-    //        var code = $("#id_code").val();
-    //        var redirect_url = $("#id_redirect_url").val();
-    //        var client_id = $("#id_client_id").val();
-    //        var client_secret = $("#id_client_secret").val();
-    //
-    //        var show_error = function(msg){
-    //            $("#id_error_msg").html(msg);
-    //            $("#id_alert").removeClass('hide');
-    //        };
-    //
-    //        if (!token_url) {
-    //            show_error('Please specify Token url');
-    //            return;
-    //        }
-    //        $.ajax({
-    //            url: token_url,
-    //            type: 'POST',
-    //            crossDomain: true,
-    //            data: { code: code, redirect_uri: redirect_url, grant_type: "authorization_code"},
-    //            beforeSend: function(request){
-    //                request.setRequestHeader("Authorization", "Basic " + btoa(client_id + ":" + client_secret));
-    //            },
-    //            success: function(data){
-    ////                alert(data.access_token)
-    //                $("#id_access_token").html(data.access_token);
-    //                $("#id_token_type").html(data.token_type);
-    //                $("#id_expires").html(data.expires_in);
-    //                $("#id_refresh").html(data.refresh_token);
-    //                msg = get_user_info("http://localhost:8000/api/user_info", data.access_token)
-    //                console.log('msg === ', msg)
-    ////                window.location = window.location.protocol + '//localhost:9000{%  url 'oauth-consumer-done' %}?' + $.param(data);
-    //                  window.location.href = "/auth/login"
-    //            },
-    //            error: function(data) {
-    //                var msg = data.responseText;
-    //                var br ="<\br>";
-    //                if (data.responseJSON && data.responseJSON['error'] == "invalid_grant"){
-    //                    msg += br;
-    //                    msg += "Authorization Code is expired. You have 60 seconds to complete this operation.";
-    //                    msg += br;
-    //                    msg += "If you are following the tutorial, you have to restart from \"Build an authorization link for your user\" step.";
-    //                }
-    //                show_error(msg);
-    //            }
-    //        });
-    //    });
-    //
-    //    $("#id_alert_close").click(function(event) {
-    //        $(this).parent().hide();
-    //    });
-    //    });
-</script>
