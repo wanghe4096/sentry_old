@@ -32,6 +32,11 @@
         &.active {
             background-color: #151718;
         }
+        &:hover {
+            .find-panel {
+                opacity: 1;
+            }
+        }
         .pane-head {
             background-color: #c0c0c0;
             color: #6a6a6a;
@@ -54,19 +59,97 @@
         .pane-body {
             position: absolute;
             top: 30px;
-            left: 10px;
-            right: 10px;
-            bottom: 10px;
+            left: 0;
+            right: 0;
+            bottom: 0;
             color: #d4d8c7;
-            overflow-y: auto;
+            overflow-y: scroll;
             .message {
                 // color: #9ecc4e;
-                font-size: 12px;
-                line-height: 16px;
+                font-size: 13px;
+                line-height: 1.6;
                 font-weight: 400;
+                padding: 10px 20px 10px 10px;
                 .highlight {
                     background-color: #ccc;
                     color: #333;
+                }
+            }
+            &::-webkit-scrollbar {
+                width: 8px;
+            }
+            &::-webkit-scrollbar-track {
+                background: #555;
+            }
+            &::-webkit-scrollbar-thumb {
+                border-radius: 5px;
+                background: #aaa;
+            }
+        }
+        .control-group {
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+            height: 40px;
+            width: 50px;
+            .fa {
+                position: absolute;
+                right: 0;
+                top: 0;
+                width: 40px;
+                height: 40px;
+                background-color: rgba(255, 255, 255, 0.5);
+                border-radius: 50%;
+                line-height: 40px;
+                text-align: center;
+                font-size: 18px;
+                color: #333;
+                cursor: pointer;
+                &:hover {
+                    background-color: #fff;
+                }
+            }
+            .split-column {}
+            .split-row {
+                opacity: 0;
+                transition: all 0.5s;
+            }
+            &:hover {
+                .split-row {
+                    opacity: 1;
+                    transform: translateX(-50px) rotate(-90deg);
+                }
+            }
+        }
+        .find-panel {
+            position: absolute;
+            top: 28px;
+            right: 20px;
+            padding: 0 10px 5px;
+            width: 200px;
+            background-color: rgba(255,255,255,.7);
+            border-bottom-right-radius: 3px;
+            border-bottom-left-radius: 3px;
+            transition: opacity 100ms;
+            opacity: 0;
+            .find-input {
+                padding: 0 10px;
+                height: 24px;
+                border: 1px solid #999;
+            }
+            .input-group-addon {
+                padding: 0 10px;
+                margin: 0;
+                height: 24px;
+                border-color: #999;
+                background: #eee;
+                .fa {
+                    padding: 5px;
+                    color: #777;
+                    cursor: pointer;
+                    &:hover {
+                        color: #333;
+                    }
                 }
             }
         }

@@ -7,7 +7,7 @@ import _ from 'underscore';
 const Pane = React.createClass({
   getDefaultProps() {
     return {
-      maxLen: 30
+      maxLen: 50
     }
   },
   getInitialState() {
@@ -43,25 +43,37 @@ const Pane = React.createClass({
         inBottom: bodyHeight + bodyScrollTop === messagesHeight
       })
     });
+
+    // $(this.refs.splitBtn).tooltip();
+  },
+  componentWillUpdate() {
+    const arrLen = this.state.arr.length;
+    if(arrLen > this.props.maxLen ) {
+      this.setState({
+        arr: this.state.arr.slice(1)
+      });
+    }
   },
   componentDidUpdate() {
     // 滚动条在最底部的时候才执行
     if(this.state.inBottom){
       $(this.refs.body).scrollTop(90000000);
     }
-    const arrLen = this.state.arr.length;
-    if(arrLen > this.props.maxLen ){
-      this.setState({
-        arr: this.state.arr.slice(1)
-      });
-    }
+
+  },
+  onFilterChange(e) {
+    this.setState({
+      grep: e.target.value
+    })
   },
   renderBody() {
+    // TODO 此处为了性能考虑，最好用 __html的方式，append 和 delete children[0]来实现
     window.xx = this;
     return this.state.arr.map((a, i) => {
 
       let text = a;
       if(this.state.grep) {
+        // TODO: 此处不应该用 i 模式 ，会导致 替换的文字被转成 输入的格式，如 输入mozila 时Mozilla 被替换为  mozilla
         const reg = new RegExp(this.state.grep, 'gi');
         text = a.replace(reg, (word) => {
           return '<a class="highlight">'+ this.state.grep +'</a>'
@@ -84,6 +96,22 @@ const Pane = React.createClass({
         <div className="pane-body" ref="body">
           <div className="message-list" ref="messages">
             { this.renderBody() }
+          </div>
+        </div>
+        <div className="control-group">
+          <i ref="splitBtn" className="split-column fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Vertically" />
+          <i className="split-row fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Horizontally" />
+        </div>
+        <div className="find-panel">
+          <div className="input-group input-group-sm">
+              <input
+                onChange={this.onFilterChange}
+                placeholder="Find"
+                className="find-input form-control" />
+              <div className="input-group-addon">
+                <i className="fa fa-chevron-up" />
+                <i className="fa fa-chevron-down" />
+              </div>
           </div>
         </div>
       </div>
