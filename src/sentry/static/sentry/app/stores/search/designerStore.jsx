@@ -3,37 +3,27 @@ import DesignerStateAction from 'actions/search/designerStateAction';
 
 const chartTypes = [
   {
-    name:'xxx1',
+    name:'line',
     icon:'xxxx.png',
     group:'Visualize'
   },
   {
-    name:'xxx2',
+    name:'bar',
     icon:'xxxx.png',
     group:'Visualize'
   },
   {
-    name:'xxx3',
+    name:'pie',
     icon:'xxxx.png',
     group:'Visualize'
   },
   {
-    name:'xxx4',
+    name:'area',
     icon:'xxxx.png',
     group:'Visualize'
   },
   {
-    name:'xxx5',
-    icon:'xxxx.png',
-    group:'Visualize'
-  },
-  {
-    name:'xxx6',
-    icon:'xxxx.png',
-    group:'Timeseries Graphs'
-  },
-  {
-    name:'xxx7',
+    name:'histogram',
     icon:'xxxx.png',
     group:'Timeseries Graphs'
   }
@@ -42,7 +32,8 @@ const chartTypes = [
 const DesignerStore = Reflux.createStore({
   listenables:DesignerStateAction,
   data:{
-    graphType: chartTypes[0].name,
+    // graphType: chartTypes[0].name,
+    graphType: 'area',
     x_axis: [],
     y_axis: []
   },
