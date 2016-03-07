@@ -53,6 +53,11 @@ const BorderMenu = createClass({
           path: 'dashboard',
           iconClassName: 'fa fa-dashboard',
           title: t('Search')
+        },
+        {
+          path: 'addlog',
+          iconClassName: 'fa fa-cloud-upload',
+          title: t('Add Log')
         }
       ]
     }

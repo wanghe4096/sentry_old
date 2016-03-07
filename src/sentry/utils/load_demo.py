@@ -18,6 +18,8 @@ from sentry.models import (Activity, Broadcast, File, GroupMeta, Organization,
                            OrganizationAccessRequest, OrganizationMember, Project,
                            Release, ReleaseFile, Team, User, UserReport, OrganizationMemberTeam)
 from sentry.utils.samples import create_sample_event
+from sentry.models.host_stream import Host
+import hashlib
 
 PLATFORMS = itertools.cycle([
     'ruby',
@@ -106,7 +108,14 @@ def create_sample_time_series(event):
         now = now - timedelta(hours=1)
 
 
-def create_demo_sample(num_events=1, user_name="dummy@example.com", org_name='default'):
+def generate_host_key(result):
+    m = hashlib.md5('x')
+    m.update(str(result))
+    host_key = m.hexdigest()
+    return host_key
+
+
+def create_demo_sample(num_events=1, user_name="dummy@example.com", org_name='default', request=None):
 
     dummy_user, _ = User.objects.get_or_create(
         username=user_name,
@@ -271,6 +280,16 @@ def create_demo_sample(num_events=1, user_name="dummy@example.com", org_name='de
     )
 
     create_system_time_series()
+
+    Host.objects.create(host_name='host_demo_' + str(datetime.now()),
+                        host_key=generate_host_key(datetime.now()),
+                        host_type='demo host',
+                        distver='1.0',
+                        system='linux',
+                        mac_addr='01-aa-32-33-44-fd',
+                        user_id=request.user.id,
+                        organization_id=org.id)
+
 
 
 if __name__ == '__main__':

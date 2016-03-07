@@ -36,13 +36,13 @@ class DashboardDetailsEndpoint(Endpoint):
                              'updated_at': dashboard.updated_at,
                              'layout': layout}, status=200)
         else:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'failed'})
 
     def put(self, request, dashboard_id, *args, **kwargs):
         data = request.DATA
         print(request.DATA)
         if len(data) == 0:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'no request parameters'})
         if dashboard_id:
             dashboard = LogInsightDashboard.objects.filter(id=dashboard_id, user=request.user)
             if not dashboard:
@@ -52,12 +52,12 @@ class DashboardDetailsEndpoint(Endpoint):
                              updated_at=datetime.datetime.now(),
                              is_fav=data.get('is_fav', False),
                              layout=data.get('layout', None))
-            return Response(status=200)
-        return Response(status=400)
+            return Response(status=200, data={'msg': 'ok'})
+        return Response(status=400, data={'msg': 'failed'})
 
     def delete(self, request, dashboard_id, *args, **kwargs):
         dashboard = LogInsightDashboard.objects.get(id=dashboard_id, user=request.user)
         if dashboard:
             dashboard.delete()
-            return Response(status=200)
-        return Response(status=400)
+            return Response(status=200, data={'msg': 'ok'})
+        return Response(status=400, data={'msg': 'dashboard does not exist'})

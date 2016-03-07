@@ -35,7 +35,7 @@ class SearchDetailsEndpoint(Endpoint):
                              'query': search.query,
                              'time_range': time_range}, status=200)
         else:
-            return Response(status=400)
+            return Response(status=400, data={'msg': 'failed'})
 
     def put(self, request, search_id, *args, **kwargs):
         data = request.DATA
@@ -59,5 +59,5 @@ class SearchDetailsEndpoint(Endpoint):
         search = Search.objects.get(id=search_id, user=request.user)
         if search:
             search.delete()
-            return Response(status=200)
-        return Response(status=400)
+            return Response(status=200, data={'msg': 'ok'})
+        return Response(status=400, data={'msg': 'do not exist search!'})

@@ -34,7 +34,7 @@ class LogEventIndexEndpoint(LogEventEndpoint):
         event_offset = result.get('event_offset', '0')
         file_id = result.get('file_id', '0')
         url = "%s/u/%s/nodes/%s/streams/%s/files/%s/content/?fid=%s&offset=%s&len=%s" \
-            % (settings.STORAGE_SERVER, request.user.id, host_id, stream_id, file_id, file_id, event_offset, event_count)
+            % (settings.STORAGE_API_BASE_URL, request.user.id, host_id, stream_id, file_id, file_id, event_offset, event_count)
         r = requests.get(url)
         if r.status_code == 200:
             resp = r.json()

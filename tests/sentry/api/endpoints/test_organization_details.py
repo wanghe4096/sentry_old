@@ -16,7 +16,7 @@ class OrganizationDetailsTest(APITestCase):
         })
         response = self.client.get(url)
         assert response.status_code == 200, response.content
-        assert response.data['id'] == str(org.id)
+        assert response.content['id'] == str(org.id)
 
 
 class OrganizationUpdateTest(APITestCase):
@@ -73,7 +73,7 @@ class OrganizationDeleteTest(APITestCase):
 
         org = Organization.objects.get(id=org.id)
 
-        assert response.status_code == 204, response.data
+        assert response.status_code == 204, response.content
 
         assert org.status == OrganizationStatus.PENDING_DELETION
 
@@ -116,4 +116,4 @@ class OrganizationDeleteTest(APITestCase):
         with self.settings(SENTRY_SINGLE_ORGANIZATION=True):
             response = self.client.delete(url)
 
-        assert response.status_code == 400, response.data
+        assert response.status_code == 400, response.content

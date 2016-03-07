@@ -7,7 +7,9 @@ from django.contrib.auth import login, authenticate
 from django.core.urlresolvers import reverse
 from sentry.utils.auth import get_login_redirect
 from django.shortcuts import redirect
-
+from sentry.models.organization import Organization
+from sentry.models.organizationmember import OrganizationMember
+from sentry import roles
 import base64
 import requests
 from .forms import ConsumerForm, ConsumerExchangeForm, AccessTokenDataForm
@@ -41,12 +43,10 @@ class ConsumerExchangeView(FormView):
                 'token_url': settings.TOKEN_URL,
                 'redirect_url': request.build_absolute_uri(reverse('oauth-consumer-exchange'))
             }
-
             headers = {"Authorization": "Basic " + base64.b64encode(settings.LOGINSIGHT_CLIENT_ID + ":" + settings.LOGINSIGHT_CLIENT_SECRET)}
             data = {'code': request.GET['code'],
                     'redirect_uri': request.build_absolute_uri(reverse('oauth-consumer-exchange')),
                     'grant_type': 'authorization_code'}
-
             resp = requests.post(settings.TOKEN_URL,
                                  data=data,
                                  headers=headers
@@ -60,8 +60,7 @@ class ConsumerExchangeView(FormView):
             data = resp.json()[0]['fields']
             user_key = self.generate_user_key(data['username'], data['email'], data['password'])
             user = User(username=data['username'], email=data['email'])
-            user.set_password(data['password'])
-            # user.password = data['password']
+            user.password = data['password']
             user.userkey = user_key
             user.is_active = True
             user.is_managed = True
@@ -70,14 +69,31 @@ class ConsumerExchangeView(FormView):
             if not User.objects.filter(username=data['username']):
                 if not User.objects.filter(email=data['email']):
                     user.save()
+            user = User.objects.get(username=data['username'])
+            data = resp.json()[1]['fields']
+            org_name = data['org_name']
+            # create organization
+
+            if len( Organization.objects.filter(name=org_name)) == 0:
+                org = Organization.objects.create(
+                    name=org_name,
+                    slug=org_name,
+                )
+
+                OrganizationMember.objects.create(
+                    organization=org,
+                    user=user,
+                    role=roles.get_top_dog().id,
+                )
+
             if request.user.is_authenticated():
                 # Do something for authenticated users.
                 return redirect('sentry-organization-home')
             else:
                 # Do something for anonymous users.
-                user = authenticate(username=data['username'], password=data['password'])
-                print data['username']
-                print data['password']
+
+                user = authenticate(username=data['name'], password=data['password'])
+
                 if user is None:
                     return redirect('sentry-login')
                 login(request, user)
