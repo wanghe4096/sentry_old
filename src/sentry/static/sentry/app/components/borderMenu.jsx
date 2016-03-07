@@ -58,6 +58,11 @@ const BorderMenu = createClass({
           path: 'addlog',
           iconClassName: 'fa fa-cloud-upload',
           title: t('Add Log')
+        },
+        {
+          path: 'live',
+          iconClassName: 'fa fa-columns',
+          title: t('Live Tail')
         }
       ]
     }
