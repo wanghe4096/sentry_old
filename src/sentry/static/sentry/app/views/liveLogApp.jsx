@@ -23,6 +23,7 @@ const LiveLogApp = React.createClass({
           </div>
           <div className="app-body">
             <Pane />
+            <Pane />
           </div>
         </div>
       </DocumentTitle>

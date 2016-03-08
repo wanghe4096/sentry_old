@@ -3,6 +3,35 @@ import Reflux from 'reflux';
 import DocumentTitle from 'react-document-title';
 import {t} from 'app/locale';
 import _ from 'underscore';
+import {Modal} from 'react-bootstrap';
+
+const PaneModal = React.createClass({
+  render() {
+    return (
+      <Modal show={true} keyboard={true} onHide={this.props.onHide} dialogClassName="custom-modal">
+        <Modal.Header closeButton={true}>
+          <Modal.Title>{t('linux配置')}</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <form onSubmit={this.submitHandler} className="form-horizontal">
+            <div className="box-content with-padding">
+              <div className="section">
+                <h4>安装LogInsight Linux的代理程序</h4>
+                <p>复制并粘贴下面的代码片段到你的终端上安装代理</p>
+                    <span className="code">
+                      wget http://loginsight.cn/loginsight/
+                    </span>
+              </div>
+              <div className="form-actions">
+                <a href="#" className="btn btn-primary ">完成</a>
+              </div>
+            </div>
+          </form>
+        </Modal.Body>
+      </Modal>
+    )
+  }
+});
 
 const Pane = React.createClass({
   getDefaultProps() {
@@ -14,7 +43,11 @@ const Pane = React.createClass({
     return {
       inBottom: true,
       grep:null,
-      arr: []
+      arr: [],
+      streamIds: ['name','xs'],
+      hostIds: [],
+      selectHostModal: false,
+      selectStreamModal: false
     }
   },
   componentWillMount() {
@@ -91,9 +124,88 @@ const Pane = React.createClass({
   render() {
     return (
       <div className="ll-pane active">
+        {
+          this.state.selectHostModal && (
+            <PaneModal
+              onHide={() => {
+                this.setState({
+                  selectHostModal: false
+                })
+              }} />
+          )
+        }
+        {
+          this.state.selectStreamModal && (
+            <PaneModal
+              onHide={() => {
+                this.setState({
+                  selectStreamModal: false
+                })
+              }} />
+          )
+        }
         <div className="pane-head">
-          <span className="pane-head">pane head</span>
+          <span className="pane-tit hide">pane head</span>
           <i className="close-btn fa fa-close" />
+          <div className="selector-wrap">
+            <div
+              onClick={() => {
+                this.setState({
+                  selectHostModal: true
+                })
+              }}
+              className="selector host-select">
+              <span className="t-key">
+                {t('Host')}:
+              </span>
+              {
+                this.state.hostIds.length ? (
+                  <span className="t-val">
+                    {this.state.hostIds[0]} ...
+                    {
+                      this.state.hostIds.length > 1 && (
+                          <sup>{this.state.hostIds.length}</sup>
+                      )
+                    }
+                    <i className="fa fa-chevron-down" />
+                  </span>
+                ):(
+                  <span className="t-val">
+                    All <i className="fa fa-chevron-down" />
+                  </span>
+                )
+              }
+            </div>
+            <div
+              onClick={() => {
+                this.setState({
+                  selectStreamModal: true
+                })
+              }}
+              className="selector stream-select">
+              <span className="t-key">
+                {t('Stream')}:
+              </span>
+              {
+                this.state.streamIds.length ? (
+                  <span className="t-val">
+                    {this.state.streamIds[0]} ...
+                    {
+                      this.state.streamIds.length > 1 && (
+                          <sup>{this.state.streamIds.length}</sup>
+                      )
+                    }
+                    <i className="fa fa-chevron-down" />
+                  </span>
+                ): (
+                  <span className="t-val">
+                    All <i className="fa fa-chevron-down" />
+                  </span>
+                )
+              }
+
+            </div>
+          </div>
         </div>
         <div className="pane-body" ref="body">
           <div className="message-list" ref="messages">
