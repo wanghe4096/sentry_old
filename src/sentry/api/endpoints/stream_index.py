@@ -84,34 +84,40 @@ class LogAgentStreamEndpoint(Endpoint):
         user = User.objects.get(id=user_id)
         if not user:
             return Response({'action': 'add stream', 'msg': 'Invalid user'}, status=400)
-        host = Host.objects.get(host_key=data['host_key'])
-        if not host:
-            return Response({'action': 'add stream', 'msg': 'Invalid host key'}, status=400)
-        if not Stream.objects.filter(stream_key=data['stream_key']):
-            Stream.objects.create(
-                stream_name=data['match_name'],
-                alias_name=data.get('alias_name', ''),
-                host=host,
-                user=user,
-                stream_key=data['stream_key'],
-                create_timestamp=datetime.datetime.now(),
-                modify_timestamp=datetime.datetime.now(),
-            )
-            return Response({'action': 'add stream', 'msg': 'ok'}, status=200)
-        else:
-            return Response({'action': 'add stream', 'msg': 'stream has exists!'}, status=200)
+        op = data.get('op','')
+        if op == "create":
+            host = Host.objects.get(host_key=data['host_key'])
+            if not host:
+                return Response({'action': 'add stream', 'msg': 'Invalid host key'}, status=400)
+            if not Stream.objects.filter(stream_key=data['stream_key']):
+                Stream.objects.create(
+                    stream_name=data['match_name'],
+                    alias_name=data.get('alias_name', ''),
+                    host=host,
+                    user=user,
+                    stream_key=data['stream_key'],
+                    create_timestamp=datetime.datetime.now(),
+                    modify_timestamp=datetime.datetime.now(),
+                )
+                return Response({'action': 'add stream', 'msg': 'ok'}, status=200)
+            else:
+                Stream.objects.filter.update(
+                    stream_name=data['match_name'],
+                    alias_name=data.get('alias_name', ''),
+                    host=host,
+                    user=user,
+                    stream_key=data['stream_key'],
+                    modify_timestamp=datetime.datetime.now(),
+                )
+                return Response({'action': 'update stream', 'msg': 'update ok'}, status=200)
 
-    def delete(self, request):
-        user_id = self.validate_accesstoken(request.META['HTTP_AUTHORIZATION'], request)
-        if user_id == self.INVALID_ACCESS_TOKEN:
-            return Response({'action': 'add stream', 'msg': 'Invalid access token'})
-        stream_key = request.DATA.get('stream_key', '')
-        host_key = request.DATA.get('host_key', '')
-        try:
-            host = Host.objects.get(host_key=host_key)
-            stream = Stream.objects.get(host_id=host.id, stream_key=stream_key)
-            stream.delete()
-            return Response({'action': 'delete stream', 'msg': 'ok'}, status=200)
-        except ObjectDoesNotExist:
-            return Response({'action': 'delete stream', 'msg': 'Invalid stream key'}, status=400)
-        return Response({'action':'delete stream', 'msg': 'failed'}, status=400)
+        if op == 'remove':
+            host_key = data.get('host_key', '')
+            stream_key = data.get('stream_key', '')
+            try:
+                host = Host.objects.get(host_key=host_key)
+                stream = Stream.objects.get(host_id=host.id, stream_key=stream_key)
+                stream.delete()
+                return Response({'action': 'remove stream', 'msg': 'ok'}, status=200)
+            except ObjectDoesNotExist:
+                return Response({'action': 'remove stream', 'msg': 'Does not exist stream key or host key'}, status=200)
