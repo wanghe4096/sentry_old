@@ -106,10 +106,10 @@ class LogAgentStreamEndpoint(Endpoint):
         if user_id == self.INVALID_ACCESS_TOKEN:
             return Response({'action': 'add stream', 'msg': 'Invalid access token'})
         stream_key = request.DATA.get('stream_key', '')
+        host_key = request.DATA.get('host_key', '')
         try:
-            stream = Stream.objects.get(stream_key=stream_key)
-            if not stream:
-                return Response({'action': 'delete stream', 'msg': 'Invalid stream key'})
+            host = Host.objects.get(host_key=host_key)
+            stream = Stream.objects.get(host_id=host.id, stream_key=stream_key)
             stream.delete()
             return Response({'action': 'delete stream', 'msg': 'ok'})
         except ObjectDoesNotExist:
