@@ -60,14 +60,14 @@ const ResultBody = React.createClass({
               className={'btn ' + (this.state.viewerType==='raw'?'btn-primary':'btn-default')}
               onClick={this.viewerTypeToggle}
               title="Raw">
-              <i className="glyphicon glyphicon-th-list" />
+              <i className="fa fa-th-list" />
             </a>
             <a
               className={'btn ' + (this.state.viewerType==='table'?'btn-primary':'btn-default')}
               onClick={this.viewerTypeToggle}
               title="Table"
               >
-              <i className="glyphicon glyphicon-th" />
+              <i className="fa fa-table" />
             </a>
           </div>
         </div>

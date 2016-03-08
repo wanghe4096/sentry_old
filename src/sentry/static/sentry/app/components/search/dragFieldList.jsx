@@ -2,6 +2,9 @@ import React,{PropTypes} from 'react';
 import Reflux from 'reflux';
 import {t} from 'app/locale';
 import { DragSource } from 'react-dnd';
+import FieldAction from 'actions/search/fieldAction';
+import FieldStore from 'stores/search/fieldStore';
+import SearchStore from 'stores/search/searchStore';
 const css = require('css/search/field-list.less');
 
 
@@ -14,13 +17,18 @@ const _FieldItem = React.createClass({
   },
   render() {
 
-    const { isDragging, connectDragSource, name } = this.props;
+    let filedTypeIcon = this.props.field_type;
+    if(/timestamp/i.test(this.props.name)){
+      filedTypeIcon = 'time';
+    }
+    const { isDragging, connectDragSource } = this.props;
 
     return connectDragSource(
       <label
        style={{ opacity: isDragging ? 0.5 : 1 }}
         className="field-item">
-        <span>{name}</span>
+        <i className={`field-type-icon ft-${filedTypeIcon}`} />
+        <span>{this.props.name}</span>
       </label>
     )
   }
@@ -31,6 +39,9 @@ const FieldItem = DragSource(props => props.type, {
     return {
       name: props.name
     };
+  },
+  endDrag(props, monitor, component) {
+    
   }
 }, (connect,monitor) => ({
     isDragging: monitor.isDragging(),
@@ -39,35 +50,58 @@ const FieldItem = DragSource(props => props.type, {
 
 
 const FieldList = React.createClass({
+  mixins: [
+    Reflux.connect(FieldStore,'list')
+  ],
+  getInitialState() {
+    return {
+      filter: ''
+    }
+  },
   componentWillMount() {
     css.use();
+    FieldAction.fetch(SearchStore.get('query'),SearchStore.get('timeRange'));
   },
   componentWillUnmount() {
     css.unuse();
   },
-  arr: [
-    'http_method',
-    'http_status',
-    'client',
-    'http_method',
-    'http_status',
-    'client',
-    'http_method',
-    'http_status',
-    'client',
-    'http_method',
-    'http_status',
-    'client',
-    'http_method',
-    'http_status',
-    'client',
-    'http_method',
-    'http_status',
-    'client',
-    'http_method',
-    'http_status',
-    'client',
-  ],
+  filterHandler(e) {
+    this.setState({
+      filter: e.target.value.replace(/\s+/gi, '')
+    });
+  },
+  // arr: [
+  //   'http_method',
+  //   'http_status',
+  //   'client',
+  //   'http_method',
+  //   'http_status',
+  //   'client',
+  //   'http_method',
+  //   'http_status',
+  //   'client',
+  //   'http_method',
+  //   'http_status',
+  //   'client',
+  //   'http_method',
+  //   'http_status',
+  //   'client',
+  //   'http_method',
+  //   'http_status',
+  //   'client',
+  //   'http_method',
+  //   'http_status',
+  //   'client',
+  // ],
+  renderBody() {
+    return this.state.list.map((data,i) => {
+      const reg = new RegExp(this.state.filter,'i');
+      if(this.state.filter && !reg.test(data.name)) {
+        return false;
+      }
+      return (<FieldItem type="type" name={data.name} key={i} {...data} />)
+    })
+  },
   render() {
     return (
       <section className="fields_wrap">
@@ -75,29 +109,24 @@ const FieldList = React.createClass({
           <span className="tit">Fields</span>
           <span className="fold-btn glyphicon glyphicon-menu-left"/>
         </div>
-        <div className="field-filter">
+        <div
+          className={`field-filter ${this.state.filter? 'active': ''}`}>
           <div className="input-group">
             <span className="glyphicon glyphicon-search input-group-addon"/>
-            <input className="form-control" placeholder="Field Filter"/>
+            <input
+              onChange={this.filterHandler}
+              className="form-control"
+              placeholder="Field Filter"/>
           </div>
         </div>
-        <dl className="field-group-list">
-          <dt className="field-group-tit">Default Field<b>(23)</b>
-          </dt>
-          <dd className="field-group">
-            {
-                this.arr.map((n,i) => {
-                  return <FieldItem key={i} type="type" name={n} />
-                })
-            }
-          </dd>
-          <dt className="field-group-tit">Custom Field<b>(23)</b>
-          </dt>
-          <dd className="field-group">
-            <label className="field-item"><input type="checkbox"/>host</label>
-            <label className="field-item"><input type="checkbox"/>client_ip</label>
-          </dd>
-        </dl>
+        <div className="field-group-list">
+          <div className="field-group-item">
+            <div className="field-group-tit">Default Field<b>(23)</b></div>
+            <div className="field-group">
+              { this.renderBody() }
+            </div>
+          </div>
+        </div>
       </section>
     )
   }

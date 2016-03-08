@@ -11,6 +11,11 @@ const FieldItem = React.createClass({
     console.log(e.target.checked)
   },
   render() {
+    let filedTypeIcon = this.props.field_type;
+    if(/timestamp/i.test(this.props.name)){
+      filedTypeIcon = 'time';
+    }
+    // console.log(this.props.type);
     return (
       <label className="field-item">
         <input
@@ -18,6 +23,7 @@ const FieldItem = React.createClass({
           disabled
           checked={ this.props.default_selected }
           onChange={this.onChangeHandler} />
+        <i className={`field-type-icon ft-${filedTypeIcon}`} />
         { this.props.name }
       </label>
     )
@@ -45,13 +51,13 @@ const FieldList = React.createClass({
 
   filterHandler(e) {
     this.setState({
-      filter: e.target.value.replace(/\s+/g, '')
+      filter: e.target.value.replace(/\s+/gi, '')
     });
   },
 
   renderBody() {
     return this.state.list.map((data,i) => {
-      const reg = new RegExp(this.state.filter);
+      const reg = new RegExp(this.state.filter,'i');
       if(this.state.filter && !reg.test(data.name)) {
         return false;
       }
