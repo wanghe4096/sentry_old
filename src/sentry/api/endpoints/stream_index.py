@@ -14,6 +14,7 @@ from sentry.api.base import Endpoint
 from sentry.models.user import User
 from sentry.models.host_stream import Stream, Host
 from django.conf import settings
+from django.core.exceptions import ObjectDoesNotExist
 import requests
 import datetime
 
@@ -99,3 +100,17 @@ class LogAgentStreamEndpoint(Endpoint):
             return Response({'action': 'add stream', 'msg': 'ok'}, status=200)
         else:
             return Response({'action': 'add stream', 'msg': 'stream has exists!'}, status=200)
+
+    def delete(self, request):
+        user_id = self.validate_accesstoken(request.META['HTTP_AUTHORIZATION'], request)
+        if user_id == self.INVALID_ACCESS_TOKEN:
+            return Response({'action': 'add stream', 'msg': 'Invalid access token'})
+        stream_key = request.DATA.get('stream_key', '')
+        try:
+            stream = Stream.objects.get(stream_key=stream_key)
+            if not stream:
+                return Response({'action': 'delete stream', 'msg': 'Invalid stream key'})
+            stream.delete()
+            return Response({'action': 'delete stream', 'msg': 'ok'})
+        except ObjectDoesNotExist:
+            return Response({'action': 'delete stream', 'msg': 'Invalid stream key'})
