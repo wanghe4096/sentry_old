@@ -84,7 +84,7 @@ class LogAgentStreamEndpoint(Endpoint):
         user = User.objects.get(id=user_id)
         if not user:
             return Response({'action': 'add stream', 'msg': 'Invalid user'}, status=400)
-        op = data.get('op','')
+        op = data.get('op', '')
         if op == "create":
             host = Host.objects.get(host_key=data['host_key'])
             if not host:
