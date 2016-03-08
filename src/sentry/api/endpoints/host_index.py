@@ -154,6 +154,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
                 distver=result['distver'],
                 last_time=str(datetime.datetime.now()),
                 create_time=str(datetime.datetime.now()),
+                mac_addr=result.get('mac_addr', ''),
                 user_id=user.id,
                 organization=org)
             return Response({'action': 'add host', 'host_key': hk, 'msg': 'ok'}, status=200)
