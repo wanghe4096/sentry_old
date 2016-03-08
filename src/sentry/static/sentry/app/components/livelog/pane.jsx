@@ -20,7 +20,7 @@ const Pane = React.createClass({
   componentWillMount() {
     let i = 0;
     let arr = [];
-    while(i<10){
+    while(i < 30){
       arr.push('17.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"');
       i++;
     }
@@ -33,7 +33,7 @@ const Pane = React.createClass({
       this.setState({
         arr:this.state.arr.concat(_.random(0,255)+'.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"')
       })
-    },500);
+    },2000);
 
     $(this.refs.body).scroll(() => {
       const messagesHeight = this.refs.messages.scrollHeight;
@@ -72,9 +72,11 @@ const Pane = React.createClass({
     return this.state.arr.map((a, i) => {
 
       let text = a;
+      const reg = new RegExp(this.state.grep, 'gi');
+      if(this.state.grep && !reg.test(text)){
+        return null;
+      }
       if(this.state.grep) {
-        // TODO: 此处不应该用 i 模式 ，会导致 替换的文字被转成 输入的格式，如 输入mozila 时Mozilla 被替换为  mozilla
-        const reg = new RegExp(this.state.grep, 'gi');
         text = a.replace(reg, (word) => {
           return '<a class="highlight">'+ this.state.grep +'</a>'
         });
@@ -102,13 +104,13 @@ const Pane = React.createClass({
           <i ref="splitBtn" className="split-column fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Vertically" />
           <i className="split-row fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Horizontally" />
         </div>
-        <div className="find-panel">
+        <div className="filter-panel">
           <div className="input-group input-group-sm">
               <input
                 onChange={this.onFilterChange}
-                placeholder="Find"
-                className="find-input form-control" />
-              <div className="input-group-addon">
+                placeholder="Filter"
+                className="grep-input form-control" />
+              <div className="input-group-addon hide">
                 <i className="fa fa-chevron-up" />
                 <i className="fa fa-chevron-down" />
               </div>
