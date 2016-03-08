@@ -52,8 +52,8 @@ import ExtractorEvents from 'views/extract/extractorEvents';
 import HomeApp from 'views/homeApp';
 import OrganizationStore from 'stores/organizationStore';
 import StreamTypeIndex from 'views/streamTypeIndex';
-import AddLogApp from 'views/addLogApp';                                                                                                                                                                                                                                      
-
+import AddLogApp from 'views/addLogApp';
+import LiveLogApp from 'views/liveLogApp';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -93,7 +93,7 @@ let routes = (
 
       <Route path="home" component={HomeApp}/>
 
-		  <Route path="addlog" component={AddLogApp}/>                                                                                                                                                                                                                            
+		  <Route path="addlog" component={AddLogApp}/>
 
 
       <Route path="storage" component={StorageApp}>
@@ -122,6 +122,8 @@ let routes = (
         <IndexRoute component={DashboardList} />
         <Route path=":dashboardId/" component={DashboardDetail} />
       </Route>
+
+      <Route path="live/" component={LiveLogApp} />
 
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams}/>

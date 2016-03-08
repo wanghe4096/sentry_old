@@ -68,8 +68,8 @@ from sentry.web.frontend.remove_project import RemoveProjectView
 from sentry.web.frontend.remove_team import RemoveTeamView
 from sentry.web.frontend.replay_event import ReplayEventView
 from sentry.web.frontend.team_settings import TeamSettingsView
-from sentry.oauth.views import ConsumerDoneView, ConsumerExchangeView, ConsumerView, ApiEndpoint, ApiClientView
-import sentry.oauth.api_v1
+from sentry.oauth.views import ConsumerExchangeView
+# import sentry.oauth.api_v1
 from django.views.generic import TemplateView
 
 
@@ -121,25 +121,12 @@ if settings.DEBUG:
 urlpatterns += patterns(
     '',
     url(
-        regex=r'^oauth/$',
-        view=TemplateView.as_view(template_name='example/home.html'),
-        name='oauth-home'
-    ),
-    url(
         regex=r'^accounts/login/$',
         view='django.contrib.auth.views.login',
         kwargs={'template_name': 'example/login.html'}
     ),
-    url(r'^oauth/consumer/$', ConsumerView.as_view(), name='oauth-consumer'),
     url(r'^oauth/consumer/exchange/$', ConsumerExchangeView.as_view(), name='oauth-consumer-exchange'),
-    url(r'^oauth/consumer/done/$', ConsumerDoneView.as_view(), name='oauth-consumer-done'),
-    url(r'^oauth/apiclient/$', ApiClientView.as_view(), name='api-client'),
-    url(r'^oauth/api/hello$', ApiEndpoint.as_view(), name='Hello'),
 
-    # # api v1
-    # url(r'^api/v1/system_info$', get_system_info, name="System Info"),
-    # url(r'^api/v1/applications$', applications_list, name="Application List"),
-    # url(r'^api/v1/applications/(?P<lookup>\w+)/$', applications_detail, name="Application Detail"),
 )
 
 urlpatterns += patterns(

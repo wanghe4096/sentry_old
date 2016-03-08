@@ -216,7 +216,6 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.messages.middleware.MessageMiddleware',
     'sentry.debug.middleware.DebugMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'oauth2_provider.middleware.OAuth2TokenMiddleware',
 )
 
 ROOT_URLCONF = 'sentry.conf.urls'
@@ -264,7 +263,6 @@ INSTALLED_APPS = (
     'sentry.plugins.sentry_useragents',
     'sentry.plugins.sentry_webhooks',
     'social_auth',
-    'oauth2_provider',
     'south',
     'sudo',
 )
@@ -309,7 +307,6 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.contrib.bitbucket.BitbucketBackend',
     'social_auth.backends.contrib.trello.TrelloBackend',
     'sentry.utils.auth.EmailAuthBackend',
-    'oauth2_provider.backends.OAuth2Backend',
 
 )
 

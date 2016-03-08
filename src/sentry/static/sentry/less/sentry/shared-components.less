@@ -2525,9 +2525,11 @@ ul.radio-inputs {
     -webkit-filter: ~"blur(3px) grayscale(25%)";
 }
 
-.modal-backdrop.in {
-    opacity: .5!important;
-    filter: alpha(opacity=50)!important;
+.modal-backdrop {
+  background-color: @gray-dark;
+  &.in{
+      opacity: .65!important;
+  }
 }
 
 .modal-container {
