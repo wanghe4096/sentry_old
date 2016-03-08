@@ -111,6 +111,7 @@ class LogAgentStreamEndpoint(Endpoint):
             host = Host.objects.get(host_key=host_key)
             stream = Stream.objects.get(host_id=host.id, stream_key=stream_key)
             stream.delete()
-            return Response({'action': 'delete stream', 'msg': 'ok'})
+            return Response({'action': 'delete stream', 'msg': 'ok'}, status=200)
         except ObjectDoesNotExist:
-            return Response({'action': 'delete stream', 'msg': 'Invalid stream key'})
+            return Response({'action': 'delete stream', 'msg': 'Invalid stream key'}, status=400)
+        return Response({'action':'delete stream', 'msg': 'failed'}, status=400)
