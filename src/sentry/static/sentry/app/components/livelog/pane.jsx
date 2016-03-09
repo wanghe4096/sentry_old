@@ -57,7 +57,12 @@ const Pane = React.createClass({
 
     // $(this.refs.splitBtn).tooltip();
   },
-  componentWillUpdate() {
+  componentWillUpdate(nextProps, nextState) {
+
+    if(nextState.streamIds !== this.state.streamIds) {
+      this.props.onChannelChange(nextState.streamIds);
+    }
+
     const arrLen = this.state.arr.length;
     if(arrLen > this.props.maxLen ) {
       this.setState({
