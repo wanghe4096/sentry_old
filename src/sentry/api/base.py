@@ -80,9 +80,9 @@ class Endpoint(APIView):
                 data = resp.json()[0]['fields']
                 # sync user
                 try:
-                    user = User.objects.get(id=user_id)
+                    user = User.objects.get(username=data['username'])
                 except ObjectDoesNotExist:
-                    User.objects.create(username=data['username'], password=data['password'], email=data['email'])
+                    User.objects.create(id=user_id, username=data['username'], password=data['password'], email=data['email'])
                 data = resp.json()[1]['fields']
                 org = Organization.objects.create(
                     name=data['org_name'],
