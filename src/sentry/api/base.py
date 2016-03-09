@@ -100,7 +100,7 @@ class Endpoint(APIView):
                         organization=org,
                         role=roles.get_top_dog().id,
                     )
-                
+
             return user_id
         return -1
 

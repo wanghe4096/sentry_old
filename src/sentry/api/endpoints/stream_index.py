@@ -101,7 +101,7 @@ class LogAgentStreamEndpoint(Endpoint):
                 )
                 return Response({'action': 'add stream', 'msg': 'ok'}, status=200)
             else:
-                Stream.objects.filter.update(
+                Stream.objects.filter(stream_key=data['stream_key']).update(
                     stream_name=data['match_name'],
                     alias_name=data.get('alias_name', ''),
                     host=host,
