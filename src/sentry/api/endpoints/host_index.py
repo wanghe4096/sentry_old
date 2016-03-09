@@ -149,15 +149,8 @@ class LogAgentHostIndexEndpoint(Endpoint):
         if not Host.objects.filter(host_key=hk):
             # http://192.168.200.245:8080/api/v1/u/1234/nodes/1
             # resp = requests.post(settings.STORAGE_SERVER)
-            url = "%s/u/%s/nodes/%s/" % (settings.STORAGE_API_BASE_URL, request.user.id, hk)
-            print 'url == ', url
-            host_obj = {"host_key": hk, "user_id": user_id, "tenant_id": org.id}
-            resp = requests.post(url, data=host_obj)
-            print 'code === ', resp.status_code
-            if resp.status_code > 300:
-                return Response({'msg': 'failed to post stoarge server.'}, status=500)
 
-            Host.objects.create(
+            host = Host.objects.create(
                 host_name=result['host_name'],
                 host_key=generate_host_key(result),
                 host_type=result['host_type'],
@@ -168,6 +161,14 @@ class LogAgentHostIndexEndpoint(Endpoint):
                 mac_addr=result.get('mac_addr', ''),
                 user_id=user.id,
                 organization=org)
+            url = "%s/u/%s/nodes/%s/" % (settings.STORAGE_API_BASE_URL, request.user.id, host.id)
+            print 'url == ', url
+            host_obj = {"host_key": hk, "user_id": user_id, "tenant_id": org.id}
+            resp = requests.post(url, data=host_obj)
+            print 'code === ', resp.status_code
+            if resp.status_code > 200:
+                host.delete()
+                return Response({'msg': 'failed to post stoarge server.'}, status=400)
             return Response({'action': 'add host', 'host_key': hk, 'msg': 'ok'}, status=200)
         else:
             return Response({'action': 'add host', 'host_key': hk, 'msg': 'host exists!'}, status=200)
