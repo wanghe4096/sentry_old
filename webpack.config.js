@@ -129,7 +129,8 @@ var config = {
       'mixins': path.join(__dirname, staticPrefix, 'app/mixins'),
       'app': path.join(__dirname, staticPrefix, 'app'),
       'css': path.join(__dirname, staticPrefix, 'less'),
-    },
+      'static': path.join(__dirname, staticPrefix) 
+   },
     modulesDirectories: [path.join(__dirname, staticPrefix), 'node_modules'],
     extensions: ['.jsx', '.js', '.json', '.ts', '']
   },
