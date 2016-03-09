@@ -126,6 +126,7 @@ install_requires = [
     'toronado>=0.0.4,<0.1.0',
     'urllib3>=1.11,<1.12',
     'rb>=1.3.0,<2.0.0',
+    'module',
 ]
 
 postgres_requires = [
