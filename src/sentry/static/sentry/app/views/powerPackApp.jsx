@@ -99,14 +99,14 @@ const PowerPackApp = React.createClass({
                   <ul>
                     <li>
                       <h2>日志搜索功能</h2>
-                      <span>实时搜索,快速定位问题</span>
+                      <span>实时搜索，快速定位问题</span>
                       <span className="pack-line"></span>
                     </li>
                     <li>
                     </li>
                     <li>
                       <ul>
-                        <li>强大的搜索分析功能,保存搜索结果;</li>
+                        <li>强大的搜索分析功能，保存搜索结果;</li>
                         <li>自动解析日志，字段值过滤;</li>
                         <li>将无序数据转化为有序。</li>
                       </ul>
@@ -127,7 +127,7 @@ const PowerPackApp = React.createClass({
                     <li>
                       <ul>
                         <li>让重要的东西只需一次点击;</li>
-                        <li>方便共享数据给同事、经理,甚至销售和市场部门;</li>
+                        <li>方便共享数据给同事、经理，甚至销售和市场部门;</li>
                       </ul>
                     </li>
                   </ul>
@@ -144,7 +144,7 @@ const PowerPackApp = React.createClass({
                   <ul>
                     <li>
                       <h2>数据可视化</h2>
-                      <span>数据清晰可见,一目了然</span>
+                      <span>数据清晰可见，一目了然</span>
                       <span className="pack-line"></span>
                     </li>
                     <li>
@@ -171,9 +171,9 @@ const PowerPackApp = React.createClass({
                     </li>
                     <li>
                       <ul>
-                        <li>Agent方式：实时采集,无数据丢失,一键安装,自动接入;</li>
+                        <li>Agent方式：实时采集，无数据丢失，一键安装，自动接入;</li>
                         <li>Syslog无代理方式：无需安装任何应用;</li>
-                        <li>编程语言支持：直接从应用内部发送日志,无需担心日志存储;</li>
+                        <li>编程语言支持：直接从应用内部发送日志，无需担心日志存储;</li>
                         <li>手工上传</li>
                       </ul>
                     </li>
@@ -197,8 +197,8 @@ const PowerPackApp = React.createClass({
                   <h3>普及版</h3>
                   <h1>免费</h1>
                   <ul>
-                    <li>可以存储数据及导出.</li>
-                    <li>可以搜索日志,定制仪表盘.</li>
+                    <li>可以存储数据及导出</li>
+                    <li>可以搜索日志，定制仪表盘</li>
                   </ul>
                   <a href="javascript:0;">
                     申请试用
@@ -211,9 +211,9 @@ const PowerPackApp = React.createClass({
                   <h3>专业版</h3>
                   <h1>待定</h1>
                   <ul>
-                    <li>可以存储数据及导出.</li>
-                    <li>可以搜索日志,定制仪表盘.</li>
-                    <li>可以实时告警.</li>
+                    <li>可以存储数据及导出</li>
+                    <li>可以搜索日志，定制仪表盘</li>
+                    <li>可以实时告警</li>
                   </ul>
                   <a href="javascript:0;">
                     申请试用
@@ -226,8 +226,8 @@ const PowerPackApp = React.createClass({
                   <h3>企业版</h3>
                   <h1>待定</h1>
                   <ul>
-                    <li>可以存储数据及导出.</li>
-                    <li>可以搜索日志,定制仪表盘.</li>
+                    <li>可以存储数据及导出</li>
+                    <li>可以搜索日志，定制仪表盘</li>
                     <li>可以实时告警</li>
                     <li>可以定制业务</li>
                   </ul>
