@@ -23,6 +23,7 @@ from sentry.models.organizationmember import OrganizationMember
 from sentry.utils.cursors import Cursor
 from sentry.utils.http import absolute_uri, is_valid_origin
 from sentry import roles
+from django.core.exceptions import ObjectDoesNotExist
 
 from .authentication import ApiKeyAuthentication, ProjectKeyAuthentication
 from .paginator import Paginator
@@ -78,9 +79,12 @@ class Endpoint(APIView):
                 print 'data = ', resp.json()
                 data = resp.json()[0]['fields']
                 # sync user
-                # user_key = self.generate_user_key(resp['username'], resp['email'], resp['password'])
-                user = User(id=user_id, username=data['username'], password=data['password'], email=data['email'])
-                user.save()
+                try:
+                    user = User.objects.get(id=user_id)
+                except ObjectDoesNotExist:
+                    user = User(id=user_id, username=data['username'], password=data['password'], email=data['email'])
+                    user.save()
+                    pass
                 data = resp.json()[1]['fields']
                 org = Organization.objects.create(
                     name=data['org_name'],

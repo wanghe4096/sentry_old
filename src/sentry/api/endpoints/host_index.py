@@ -18,6 +18,7 @@ from sentry.models.organization import Organization
 from sentry.models import (
     AuditLogEntryEvent, Host, User
 )
+from django.core.exceptions import ObjectDoesNotExist
 from sentry.api.base import Endpoint
 from sentry.utils.apidocs import scenario, attach_scenarios
 from django.conf import settings
@@ -138,7 +139,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
         # validate access token
         user_id = self.validate_accesstoken(request.META['HTTP_AUTHORIZATION'], request)
         if user_id == self.INVALID_ACCESS_TOKEN:
-            return Response({'msg': 'Invalid access token'})
+            return Response({'msg': 'Invalid access token'}, status=400)
 
         result = request.DATA
         user = User.objects.get(id=user_id)
