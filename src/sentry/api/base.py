@@ -81,15 +81,18 @@ class Endpoint(APIView):
                 # sync user
                 try:
                     user = User.objects.get(username=data['username'])
+                    return user.id
                 except ObjectDoesNotExist:
-                    User.objects.create(id=user_id, username=data['username'], password=data['password'], email=data['email'])
-                data = resp.json()[1]['fields']
+                    user = User.objects.create(id=user_id, username=data['username'], password=data['password'], email=data['email'])
+                    user_id = user.id
+                data1 = resp.json()[1]['fields']
+
                 try:
                     Organization.objects.get(name=data['org_name'])
                 except ObjectDoesNotExist:
                     org = Organization.objects.create(
-                        name=data['org_name'],
-                        slug=data['org_name'],
+                        name=data1['org_name'],
+                        slug=data1['org_name'],
                     )
 
                     OrganizationMember.objects.create(
@@ -97,7 +100,7 @@ class Endpoint(APIView):
                         organization=org,
                         role=roles.get_top_dog().id,
                     )
-
+                
             return user_id
         return -1
 

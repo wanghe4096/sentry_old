@@ -142,6 +142,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
             return Response({'msg': 'Invalid access token'}, status=400)
 
         result = request.DATA
+        print 'user_id === ', user_id
         user = User.objects.get(id=user_id)
         org_mem = OrganizationMember.objects.get(user=user)
         org = Organization.objects.get(id=org_mem.organization_id)
