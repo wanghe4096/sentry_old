@@ -20,7 +20,7 @@ const Pane = React.createClass({
       inBottom: true,
       grep:null,
       arr: [],
-      streamIds: ['name','xs'],
+      streamIds: [],
       selectStreamModal: false
     }
   },
@@ -81,7 +81,6 @@ const Pane = React.createClass({
   },
   renderBody() {
     // TODO 此处为了性能考虑，最好用 __html的方式，append 和 delete children[0]来实现
-    window.xx = this;
     return this.state.arr.map((a, i) => {
 
       let text = a;
@@ -143,7 +142,7 @@ const Pane = React.createClass({
                   </span>
                 ): (
                   <span className="t-val">
-                    All
+                    {t('please select ...')}
                   </span>
                 )
               }
@@ -152,9 +151,18 @@ const Pane = React.createClass({
           </div>
         </div>
         <div className="pane-body" ref="body">
-          <div className="message-list" ref="messages">
-            { this.renderBody() }
-          </div>
+          {
+            this.state.streamIds.length ? (
+              <div className="message-list" ref="messages">
+                { this.renderBody() }
+              </div>
+            ) : (
+              <div
+                className="body-empty-notice"
+                onClick={() => this.setState({ selectStreamModal:true }) }
+                >Select stream</div>
+            )
+          }
         </div>
         <div className="control-group">
           <i ref="splitBtn" className="split-column fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Vertically" />
