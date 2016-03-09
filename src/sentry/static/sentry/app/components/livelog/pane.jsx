@@ -8,11 +8,15 @@ import HostStore from 'stores/livelog/hostStore';
 import StreamAction from 'actions/livelog/streamAction';
 import StreamStore from 'stores/livelog/streamStore';
 import SelectStream from 'components/livelog/selectStream';
+import EventStore from 'stores/livelog/eventStore';
 
 const Pane = React.createClass({
+  mixins:[
+    Reflux.listenTo(EventStore, 'onEvent')
+  ],
   getDefaultProps() {
     return {
-      maxLen: 50
+      maxLen: 150
     }
   },
   getInitialState() {
@@ -24,24 +28,7 @@ const Pane = React.createClass({
       selectStreamModal: false
     }
   },
-  componentWillMount() {
-    let i = 0;
-    let arr = [];
-    while(i < 30){
-      arr.push('17.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"');
-      i++;
-    }
-    this.setState({
-      arr:arr
-    })
-  },
   componentDidMount() {
-    // setInterval(() => {
-    //   this.setState({
-    //     arr:this.state.arr.concat(_.random(0,255)+'.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"')
-    //   })
-    // },2000);
-
     $(this.refs.body).scroll(() => {
       const messagesHeight = this.refs.messages.scrollHeight;
       const bodyHeight = this.refs.body.clientHeight;
@@ -50,10 +37,13 @@ const Pane = React.createClass({
         inBottom: bodyHeight + bodyScrollTop === messagesHeight
       })
     });
-
-    // $(this.refs.splitBtn).tooltip();
   },
-  componentWillUpdate() {
+  componentWillUpdate(nextProps, nextState) {
+
+    if(nextState.streamIds !== this.state.streamIds) {
+      this.props.onChannelChange(nextState.streamIds);
+    }
+
     const arrLen = this.state.arr.length;
     if(arrLen > this.props.maxLen ) {
       this.setState({
@@ -68,16 +58,19 @@ const Pane = React.createClass({
     }
 
   },
+  onEvent(event) {
+    // TODO 此处应该为 obj 过滤只符合 StreamIds 的才会set到state.arr
+    this.setState({
+      arr: this.state.arr.concat(event)
+    })
+  },
   onFilterChange(e) {
     this.setState({
       grep: e.target.value
     })
   },
   onStreamChange(streamList) {
-    this.setState({
-      streamIds: streamList
-    })
-    // console.log('streamList:', streamList);
+    this.setState({ streamIds: streamList })
   },
   renderBody() {
     // TODO 此处为了性能考虑，最好用 __html的方式，append 和 delete children[0]来实现
@@ -95,8 +88,7 @@ const Pane = React.createClass({
       }
       text = i + ': ' + text;
       return(
-        <div className="message" dangerouslySetInnerHTML={{__html:text}} key={i}>
-        </div>
+        <div className="message" dangerouslySetInnerHTML={{__html:text}} key={i} />
       )
     });
   },
@@ -164,11 +156,11 @@ const Pane = React.createClass({
             )
           }
         </div>
-        <div className="control-group">
+        <div className="control-group hide">
           <i ref="splitBtn" className="split-column fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Vertically" />
           <i className="split-row fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Horizontally" />
         </div>
-        <div className="filter-panel">
+        <div className={`filter-panel ${this.state.streamIds.length?'':'hide'}`}>
           <div className="input-group input-group-sm">
               <input
                 onChange={this.onFilterChange}
