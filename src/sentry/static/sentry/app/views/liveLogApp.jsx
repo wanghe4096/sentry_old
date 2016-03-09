@@ -31,13 +31,6 @@ const LiveLogApp = React.createClass({
     this.pushstream.onmessage = this.onMessage;
     this.pushstream.onstatuschange = this.onStatusChange;
 
-    // this.pushstream.sendMessage('Name=Bob');
-
-    // demo
-    this.pushstream.addChannel('test1');
-    this.pushstream.connect();
-
-    // window.a = this.pushstream;
   },
 
   onMessage(eventMessage) {
@@ -64,10 +57,14 @@ const LiveLogApp = React.createClass({
     // console.log(channels);
   },
   updateChannel(channels) {
-    const removed = _.difference(this.channels, channels);
-    const added = _.difference(channels, this.channels);
-    console.log('removed:', removed);
-    console.log('added:', added);
+    if(this.channels.length && this.channels !== channels){
+      this.pushstream.removeAllChannels();
+    }
+    channels.map((cnl,i) => {
+      this.pushstream.addChannel(cnl);
+    });
+    this.pushstream.connect();
+
   },
   render() {
     return (

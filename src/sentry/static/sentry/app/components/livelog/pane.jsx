@@ -16,7 +16,7 @@ const Pane = React.createClass({
   ],
   getDefaultProps() {
     return {
-      maxLen: 50
+      maxLen: 150
     }
   },
   getInitialState() {
@@ -28,24 +28,7 @@ const Pane = React.createClass({
       selectStreamModal: false
     }
   },
-  componentWillMount() {
-    // let i = 0;
-    // let arr = [];
-    // while(i < 10){
-    //   arr.push('17.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"');
-    //   i++;
-    // }
-    // this.setState({
-    //   arr:arr
-    // })
-  },
   componentDidMount() {
-    // setInterval(() => {
-    //   this.setState({
-    //     arr:this.state.arr.concat(_.random(0,255)+'.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"')
-    //   })
-    // },2000);
-
     $(this.refs.body).scroll(() => {
       const messagesHeight = this.refs.messages.scrollHeight;
       const bodyHeight = this.refs.body.clientHeight;
@@ -54,8 +37,6 @@ const Pane = React.createClass({
         inBottom: bodyHeight + bodyScrollTop === messagesHeight
       })
     });
-
-    // $(this.refs.splitBtn).tooltip();
   },
   componentWillUpdate(nextProps, nextState) {
 
@@ -89,10 +70,7 @@ const Pane = React.createClass({
     })
   },
   onStreamChange(streamList) {
-    this.setState({
-      streamIds: streamList
-    })
-    // console.log('streamList:', streamList);
+    this.setState({ streamIds: streamList })
   },
   renderBody() {
     // TODO 此处为了性能考虑，最好用 __html的方式，append 和 delete children[0]来实现
@@ -110,8 +88,7 @@ const Pane = React.createClass({
       }
       text = i + ': ' + text;
       return(
-        <div className="message" dangerouslySetInnerHTML={{__html:text}} key={i}>
-        </div>
+        <div className="message" dangerouslySetInnerHTML={{__html:text}} key={i} />
       )
     });
   },
