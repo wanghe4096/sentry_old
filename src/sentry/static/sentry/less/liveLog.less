@@ -76,35 +76,36 @@
                     position: relative;
                     display: inline-block;
                     margin: 0 3px;
-                    padding: 0 0 0 6px;
+                    padding: 0 6px;
                     border-radius: 3px;
                     border: 1px solid #337ab7;
                     background-color: #25a6f7;
                     color: #fff;
                     line-height: 22px;
-                    sup {
-                        display: inline-block;
-                        position: absolute;
-                        right: -8px;
-                        top: -10px;
-                        width: 18px;
-                        height: 18px;
-                        border-radius: 50%;
-                        background-color: #e35141;
-                        line-height: 18px;
-                        text-align: center;
+                    &:hover {
+                        // background: #337ab7;
+                        background-color: #148FDC;
                     }
-                    .fa {
+                    .count {
+                        display: inline-block;
                         font-size: 12px;
                         line-height: 22px;
                         border-left: 1px solid #337ab7;
-                        padding: 0 7px;
+                        padding: 0 0 0 6px;
                         margin-left: 10px;
                         cursor: pointer;
-                        &:hover {
-                            background: #337ab7;
-                        }
                     }
+                    // .fa {
+                    //     font-size: 12px;
+                    //     line-height: 22px;
+                    //     border-left: 1px solid #337ab7;
+                    //     padding: 0 7px;
+                    //     margin-left: 10px;
+                    //     cursor: pointer;
+                    //     &:hover {
+                    //         background: #337ab7;
+                    //     }
+                    // }
                 }
             }
         }
@@ -203,6 +204,95 @@
                         color: #333;
                     }
                 }
+            }
+        }
+    }
+}
+.selector-modal {
+    .nav-stacked {
+        width: 170px;
+        float: left;
+    }
+    .tab-content {
+        margin-left: 180px;
+    }
+    .selected-stream {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        padding: 5px;
+        .sec-tit {
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .item-list {
+            margin: 0;
+            padding: 0;
+            li {
+                float: left;
+                margin: 0 10px;
+                font-size: 13px;
+            }
+        }
+    }
+    .selector-wrap {
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        margin-top: 20px;
+        .stream-list,
+        .host-group-list {
+            height: 300px;
+            overflow-y: auto;
+        }
+        .host-group-list {
+            width: 260px;
+            float: left;
+            margin: 0;
+            padding: 0;
+            background-color: #eee;
+        }
+        .host-group-item {
+            list-style: none;
+            margin: 15px 0 0;
+        }
+        .host-group-head {
+            padding: 0 10px;
+            margin-left: 0;
+            font-weight: bold;
+            font-size: 13px;
+        }
+        .host-list {
+            padding-left: 0;
+            font-size: 13px;
+        }
+        .host-item {
+            padding: 8px 20px;
+            cursor: pointer;
+            &.active {
+                color: #25a6f7;
+                font-weight: bold;
+                background-color: #fff;
+            }
+            .fa {
+                font-size: 12px;
+                margin-left: 5px;
+                font-weight: 500;
+            }
+        }
+        .stream-list {
+            margin-left: 260px;
+            background-color: #fff;
+        }
+        .stream-item {
+            padding-left: 20px;
+            padding: 3px 0 3px 20px;
+            font-size: 13px;
+            cursor: pointer;
+            &.selected {
+                color: #25a6f7;
+            }
+            .fa {
+                margin-right: 5px;
+                cursor: pointer;
             }
         }
     }

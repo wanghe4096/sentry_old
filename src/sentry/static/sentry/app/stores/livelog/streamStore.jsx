@@ -6,13 +6,17 @@
  */
 
 import Reflux from 'reflux';
-import StreamActions from 'actions/storage/streamAction';
+import StreamActions from 'actions/livelog/streamAction';
 import _ from 'underscore';
 
 const StreamStore = Reflux.createStore({
   listenables: StreamActions,
 
   items: [],
+
+  getInitialState() {
+      return this.items;
+  },
 
   init() {
 
