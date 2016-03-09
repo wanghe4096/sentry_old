@@ -9,12 +9,12 @@ const style = require('css/powerPack.less');
 const PowerPackApp = React.createClass({
   getInitialState() {
     return {
-      click: false
+      click: true
     }
   },
 
   handleClick() {
-    this.setState({click: !this.stateclick})
+    this.setState({click: !this.state.click})
   },
 
   componentWillMount() {
@@ -28,15 +28,14 @@ const PowerPackApp = React.createClass({
     return (
       <DocumentTitle title="PowerPack">
         <div className="po-pack">
+          {this.state.click?
           <div className="col-md-12">
-            {/*packheader*/}
-            <div className="pack-header text-center">
+            <div className="pack-header text-center hide">
               <span className="logo">
                 <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/logo-white.png`} alt="loginsight-logo"/>
                 <span>增强版</span>
               </span>
             </div>
-            {/*packnav*/}
             <div className="pack-nav clearfix">
               <div className="col-md-3 text-center">
                 <ul>
@@ -91,7 +90,6 @@ const PowerPackApp = React.createClass({
                 </ul>
               </div>
             </div>
-            {/*packcontent*/}
             <div className="pack-content">
               <div className="content-info clearfix">
                 <div className="col-md-7">
@@ -186,15 +184,61 @@ const PowerPackApp = React.createClass({
                 </div>
               </div>
             </div>
-            {/*packheader*/}
             <div className="pack-footer text-center">
               <a href="javascript:0" onClick={this.handleClick}>申请试用</a>
-                {this.state.click?
-                <p><i className="fa fa-check"></i>您的申请我们已收到,目前产品正在内测,完善后我们将第一时间联系您.</p>
-                :''
-                }
             </div>
           </div>
+          :
+          <div className="col-md-12">
+            <div className="pack-nav text-center">
+              <div className="col-sm-6 col-md-4 col-lg-4">
+                <div className="pack-version">
+                  <div className="price-color"></div>
+                  <h3>普及版</h3>
+                  <h1>免费</h1>
+                  <ul>
+                    <li>可以存储数据及导出.</li>
+                    <li>可以搜索日志,定制仪表盘.</li>
+                  </ul>
+                  <a href="javascript:0;">
+                    申请试用
+                  </a>
+                </div>
+              </div>
+              <div className="col-sm-6 col-md-4 col-lg-4">
+                <div className="pack-version">
+                  <div className="price-color price-info"></div>
+                  <h3>专业版</h3>
+                  <h1>待定</h1>
+                  <ul>
+                    <li>可以存储数据及导出.</li>
+                    <li>可以搜索日志,定制仪表盘.</li>
+                    <li>可以实时告警.</li>
+                  </ul>
+                  <a href="javascript:0;">
+                    申请试用
+                  </a>
+                </div>
+              </div>
+              <div className="col-sm-6 col-md-4 col-lg-4">
+                <div className="pack-version">
+                  <div className="price-color price-purple"></div>
+                  <h3>企业版</h3>
+                  <h1>待定</h1>
+                  <ul>
+                    <li>可以存储数据及导出.</li>
+                    <li>可以搜索日志,定制仪表盘.</li>
+                    <li>可以实时告警</li>
+                    <li>可以定制业务</li>
+                  </ul>
+                  <a href="javascript:0;">
+                    申请试用
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+          }
         </div>
       </DocumentTitle>
     )
@@ -202,3 +246,4 @@ const PowerPackApp = React.createClass({
 });
 
 export default PowerPackApp;
+
