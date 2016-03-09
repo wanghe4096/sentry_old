@@ -8,8 +8,12 @@ import HostStore from 'stores/livelog/hostStore';
 import StreamAction from 'actions/livelog/streamAction';
 import StreamStore from 'stores/livelog/streamStore';
 import SelectStream from 'components/livelog/selectStream';
+import EventStore from 'stores/livelog/eventStore';
 
 const Pane = React.createClass({
+  mixins:[
+    Reflux.listenTo(EventStore, 'onEvent')
+  ],
   getDefaultProps() {
     return {
       maxLen: 50
@@ -25,15 +29,15 @@ const Pane = React.createClass({
     }
   },
   componentWillMount() {
-    let i = 0;
-    let arr = [];
-    while(i < 30){
-      arr.push('17.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"');
-      i++;
-    }
-    this.setState({
-      arr:arr
-    })
+    // let i = 0;
+    // let arr = [];
+    // while(i < 10){
+    //   arr.push('17.235.36.254 - - [07/Mar/2016:06:34:57 +0000] "GET /logio.v4.js HTTP/1.1" 200 1799 "http://logio.org/" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.11; rv:46.0) Gecko/20100101 Firefox/46.0"');
+    //   i++;
+    // }
+    // this.setState({
+    //   arr:arr
+    // })
   },
   componentDidMount() {
     // setInterval(() => {
@@ -67,6 +71,12 @@ const Pane = React.createClass({
       $(this.refs.body).scrollTop(90000000);
     }
 
+  },
+  onEvent(event) {
+    // TODO 此处应该为 obj 过滤只符合 StreamIds 的才会set到state.arr
+    this.setState({
+      arr: this.state.arr.concat(event)
+    })
   },
   onFilterChange(e) {
     this.setState({

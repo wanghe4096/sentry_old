@@ -7,9 +7,13 @@ import HostAction from 'actions/livelog/hostAction';
 import HostStore from 'stores/livelog/hostStore';
 import StreamAction from 'actions/livelog/streamAction';
 import StreamStore from 'stores/livelog/streamStore';
+import EventAction from 'actions/livelog/eventAction';
 
 const style = require('css/liveLog.less');
 require('!script!static/js/pushstream.js');
+
+// TODO demo
+window.xx = EventAction;
 
 const LiveLogApp = React.createClass({
   componentWillMount() {
@@ -38,18 +42,10 @@ const LiveLogApp = React.createClass({
     if(!eventMessage){
       return false;
     }
-    let values;
-    try{
-        values = $.parseJSON(eventMessage);
-    } catch(e) {
-      console.log('on message parse err');
-    }
-    if (!values) {
-      return false
-    }
 
-    // let line = values.nick + ': ' + values.text.replace(/\\r/g, '\r').replace(/\\n/g, '\n');
-    console.log('onMessage:',values)
+    // TODO 日和知道当前消息是属于哪个 chanel
+    EventAction.send(eventMessage);
+    // eventMessage
   },
 
   onStatusChange(state) {
