@@ -152,7 +152,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
             url = "%s/u/%s/nodes/%s/" % (settings.STORAGE_SERVER, request.user.id, hk)
             host_obj = {"host_key": hk, "user_id": user_id, "tenant_id": org.id}
             resp = requests.post(url, data=host_obj)
-            print resp.json()
+            print 'code === ', resp.status_code
             if resp.status_code > 300:
                 return Response({'msg': 'failed to post stoarge server.'}, status=500)
 
