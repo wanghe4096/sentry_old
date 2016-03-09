@@ -84,24 +84,20 @@ class Endpoint(APIView):
                 except ObjectDoesNotExist:
                     User.objects.create(id=user_id, username=data['username'], password=data['password'], email=data['email'])
                 data = resp.json()[1]['fields']
-                org = Organization.objects.create(
-                    name=data['org_name'],
-                    slug=data['org_name'],
-                )
+                try:
+                    Organization.objects.get(name=data['org_name'])
+                except ObjectDoesNotExist:
+                    org = Organization.objects.create(
+                        name=data['org_name'],
+                        slug=data['org_name'],
+                    )
 
-                OrganizationMember.objects.create(
-                    user=user,
-                    organization=org,
-                    role=roles.get_top_dog().id,
-                )
-                #
-                # self.create_audit_entry(
-                #     request=request,
-                #     organization=org,
-                #     target_object=org.id,
-                #     event=AuditLogEntryEvent.ORG_ADD,
-                #     data=org.get_audit_log_data(),
-                # )
+                    OrganizationMember.objects.create(
+                        user=user,
+                        organization=org,
+                        role=roles.get_top_dog().id,
+                    )
+
             return user_id
         return -1
 
