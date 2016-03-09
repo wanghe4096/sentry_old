@@ -33,8 +33,8 @@ class StreamIndexEndpoint(StreamEndpoint):
         """
         result = request.GET
         print 'result = ', result['host_id']
-        if False:
-            url = "%s/u/%s/nodes/%s/streams" % (settings.STORAGE_SERVER, request.user.id, result['host_id'])
+        if True:
+            url = "%s/u/%s/nodes/%s/streams" % (settings.STORAGE_API_BASE_URL, request.user.id, result['host_id'])
             r = requests.get(url)
             if r.status_code == 200:
                 resp = r.json()
