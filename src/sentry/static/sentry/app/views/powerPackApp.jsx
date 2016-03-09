@@ -53,7 +53,7 @@ const PowerPackApp = React.createClass({
               <div className="col-md-3 text-center">
                 <ul>
                   <li>
-                    <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/po-dashboard.png`} alt="search"/>
+                    <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/po-dashboard.png`} alt="dashboard"/>
                   </li>
                   <li>
                     <span>仪表盘</span>
@@ -93,7 +93,7 @@ const PowerPackApp = React.createClass({
             <div className="pack-content">
               <div className="content-info clearfix">
                 <div className="col-md-7">
-                  <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/search-desc.png`} alt="dashboard"/>
+                  <img src={`${Sentry.ConfigStore.config.mediaUrl}/images/search-desc.png`} alt="search"/>
                 </div>
                 <div className="col-md-5">
                   <ul>

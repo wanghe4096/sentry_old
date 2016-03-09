@@ -44,21 +44,21 @@ const BorderMenu = createClass({
           iconClassName: 'fa fa-database',
           title: t('Log storage')
         },
-        {
-          path: 'search',
-          iconClassName: 'fa fa-search',
-          title: t('Search')
-        },
-        {
-          path: 'dashboard',
-          iconClassName: 'fa fa-dashboard',
-          title: t('Search')
-        },
-        {
-          path: 'addlog',
-          iconClassName: 'fa fa-cloud-upload',
-          title: t('Add Log')
-        },
+        //{
+        //  path: 'search',
+        //  iconClassName: 'fa fa-search',
+        //  title: t('Search')
+        //},
+        //{
+        //  path: 'dashboard',
+        //  iconClassName: 'fa fa-dashboard',
+        //  title: t('Search')
+        //},
+        //{
+        //  path: 'addlog',
+        //  iconClassName: 'fa fa-cloud-upload',
+        //  title: t('Add Log')
+        //},
         {
           path: 'live',
           iconClassName: 'fa fa-columns',
