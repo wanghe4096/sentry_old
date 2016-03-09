@@ -9,6 +9,10 @@ import StreamStore from 'stores/livelog/streamStore';
 import {Modal} from 'react-bootstrap';
 
 const SelectStream = React.createClass({
+  propTypes: {
+    onHide: React.PropTypes.func.isRequired,
+    onSubmit: React.PropTypes.func.isRequired
+  },
   mixins: [
     Reflux.connect(HostStore, 'hostList'),
     Reflux.connect(StreamStore, 'streamList')
@@ -49,15 +53,20 @@ const SelectStream = React.createClass({
     });
   },
 
+  onSubmit() {
+    this.props.onSubmit(this.state.selectedItems);
+    this.props.onHide()
+  },
+
   renderStream() {
     if(!this.state.activeHost) {
-      return (<div>please select host.</div>)
+      return (<div className="notice">please select host.</div>)
     }
 
     let streamList = this.state.streamList;
 
     if(!streamList.length){
-      return (<div>loading or not item</div>)
+      return (<div className="notice">loading or not item</div>)
     }else{
       return streamList.map((x, i) => {
         const isSelected = this.state.selectedItems.indexOf(x.stream_name) !== -1;
@@ -106,9 +115,6 @@ const SelectStream = React.createClass({
                               key={_i}
                               onClick={(e) => this.onSelectHost(d.host_id,e)}>
                               {d.host_name}
-                              {
-                                isActive && (<i className="fa fa-chevron-right"/>)
-                              }
                             </li>
                           )
                         })
@@ -138,7 +144,12 @@ const SelectStream = React.createClass({
               {
                 this.state.selectedItems.map((s,i) => {
                   return (
-                    <li key={i}>{s}</li>
+                    <li className="item" key={i}>
+                      {s}
+                      <i
+                        onClick={ (e) => this.onSelectStream(s,e) }
+                        className="fa fa-close" />
+                    </li>
                   )
                 })
               }
@@ -147,8 +158,12 @@ const SelectStream = React.createClass({
           { this.renderBody() }
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-sm btn-primary">Apply</button>
-          <button className="btn btn-sm btn-default">Cancel</button>
+          <button
+            onClick={this.onSubmit}
+            className="btn btn-sm btn-primary">Apply</button>
+          <button
+            onClick={this.props.onHide}
+            className="btn btn-sm btn-default">Cancel</button>
         </Modal.Footer>
       </Modal>
     )

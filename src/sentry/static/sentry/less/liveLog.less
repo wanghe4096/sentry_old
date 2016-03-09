@@ -227,10 +227,14 @@
         .item-list {
             margin: 0;
             padding: 0;
-            li {
+            .item {
                 float: left;
                 margin: 0 10px;
                 font-size: 13px;
+                .fa-close {
+                    font-size: 13px;
+                    padding: 3px;
+                }
             }
         }
     }
@@ -281,9 +285,12 @@
         .stream-list {
             margin-left: 260px;
             background-color: #fff;
+            .notice {
+                margin-top: 40%;
+                text-align: center;
+            }
         }
         .stream-item {
-            padding-left: 20px;
             padding: 3px 0 3px 20px;
             font-size: 13px;
             cursor: pointer;
@@ -291,7 +298,7 @@
                 color: #25a6f7;
             }
             .fa {
-                color:#333!important;
+                color: #333!important;
                 margin-right: 5px;
                 cursor: pointer;
             }

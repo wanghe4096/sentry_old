@@ -63,7 +63,7 @@ const Pane = React.createClass({
   },
   componentDidUpdate() {
     // 滚动条在最底部的时候才执行
-    if(this.state.inBottom){
+    if(this.state.inBottom) {
       $(this.refs.body).scrollTop(90000000);
     }
 
@@ -72,6 +72,12 @@ const Pane = React.createClass({
     this.setState({
       grep: e.target.value
     })
+  },
+  onStreamChange(streamList) {
+    this.setState({
+      streamIds: streamList
+    })
+    // console.log('streamList:', streamList);
   },
   renderBody() {
     // TODO 此处为了性能考虑，最好用 __html的方式，append 和 delete children[0]来实现
@@ -102,7 +108,8 @@ const Pane = React.createClass({
           this.state.selectStreamModal && (
             <SelectStream
               title={t('Select Stream')}
-              defaultItems={['default-stream-1','default-stream-2']}
+              defaultItems={this.state.streamIds}
+              onSubmit={this.onStreamChange}
               onHide={() => {
                 this.setState({
                   selectStreamModal: false
