@@ -117,6 +117,24 @@
             bottom: 0;
             color: #d4d8c7;
             overflow-y: scroll;
+            .body-empty-notice {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                margin-left: -100px;
+                margin-top: -20px;
+                text-align: center;
+                border: 20px;
+                width: 200px;
+                border: 1px solid #aaa;
+                line-height: 40px;
+                cursor: pointer;
+                transition: all 100ms;
+                &:hover{
+                    border-color: #ddd;
+                    font-weight: bold;
+                }
+            }
             .message {
                 // color: #9ecc4e;
                 font-size: 13px;

@@ -31,6 +31,7 @@ const LiveLogApp = React.createClass({
     this.pushstream.addChannel('test1');
     this.pushstream.connect();
 
+    // window.a = this.pushstream;
   },
 
   onMessage(eventMessage) {
