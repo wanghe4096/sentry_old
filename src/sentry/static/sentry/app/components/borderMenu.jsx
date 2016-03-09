@@ -63,6 +63,11 @@ const BorderMenu = createClass({
           path: 'live',
           iconClassName: 'fa fa-columns',
           title: t('Live Tail')
+        },
+        {
+          path: 'powerpack',
+          iconClassName: 'fa fa-rocket',
+          title: t('Powerpack')
         }
       ]
     }

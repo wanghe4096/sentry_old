@@ -1,0 +1,95 @@
+.po-pack{
+  width: 80%;
+  margin: auto;
+  font-size: 18px;
+  padding-left: 40px;
+    .pack-header {
+        line-height: 180px;
+        margin-top: 70px;
+        .logo{
+            color: #fff;
+            img{
+                height: 80px;
+                padding-right: 30px;
+            }
+            span{
+                display: inline-block;
+                border: 2px solid #fff;
+                line-height: 44px;
+                font-size: 28px;
+                border-radius: 10px;
+                padding: 0 30px
+            }
+        }
+    }
+    .pack-header,.pack-footer{
+        height: 180px;
+        background-image: -webkit-linear-gradient( -100deg, rgb(50,199,176) 0%, rgb(72,220,128) 100%);
+        background-image: -moz-linear-gradient( -100deg, rgb(50,199,176) 0%, rgb(72,220,128) 100%);
+        background-image: -ms-linear-gradient( -100deg, rgb(50,199,176) 0%, rgb(72,220,128) 100%);
+        background-image: linear-gradient( -100deg, rgb(50,199,176) 0%, rgb(72,220,128) 100%);
+        background-size: cover;
+    }
+    .pack-nav{
+      padding: 50px 0;
+      height: auto;
+        ul{
+          li{
+            span{
+              font-size: 22px;
+                line-height: 32px;
+              font-weight: bold;
+            }
+          }
+        }
+    }
+    .pack-content{
+      .content-info{
+        padding: 90px 0;
+        border-top: 1px solid #ccc;
+        li{
+          font-weight: bold;
+          h2{
+            padding: 30px 0 16px 0;
+            margin-bottom: 0;
+            color: #109ead;
+            +span{
+              font-size: 24px;
+            }
+          }
+          .pack-line{
+            display: inline-block;
+            width: 150px;
+            border-bottom: 1px solid #109ead;
+          }
+          ul{
+            color: #666;
+            padding-left: 24px;
+              li{
+                  list-style-type: disc;
+                  line-height: 40px;
+              }
+          }
+        }
+      }
+    }
+    .pack-footer{
+        margin-bottom: 100px;
+        color: #fff;
+        a{
+            color: #fff;
+            display: inline-block;
+            border: 2px solid #fff;
+            line-height: 44px;
+            font-size: 28px;
+            border-radius: 10px;
+            padding: 0 30px;
+            margin: 54px 0 10px 0;
+            transition: all 0.5s linear;
+            &:hover{
+                background-color: #fff;
+                color: #32c7b0;
+            }
+        }
+    }
+}
