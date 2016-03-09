@@ -156,11 +156,11 @@ const Pane = React.createClass({
             )
           }
         </div>
-        <div className="control-group">
+        <div className="control-group hide">
           <i ref="splitBtn" className="split-column fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Vertically" />
           <i className="split-row fa fa-columns" data-toggle="tooltip" data-placement="top" title="Split Pane Horizontally" />
         </div>
-        <div className="filter-panel">
+        <div className={`filter-panel ${this.state.streamIds.length?'':'hide'}`}>
           <div className="input-group input-group-sm">
               <input
                 onChange={this.onFilterChange}
