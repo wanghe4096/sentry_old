@@ -149,7 +149,7 @@ class LogAgentHostIndexEndpoint(Endpoint):
         if not Host.objects.filter(host_key=hk):
             # http://192.168.200.245:8080/api/v1/u/1234/nodes/1
             # resp = requests.post(settings.STORAGE_SERVER)
-            url = "%s/u/%s/nodes/%s/" % (settings.STORAGE_SERVER, request.user.id, result['host_key'])
+            url = "%s/u/%s/nodes/%s/" % (settings.STORAGE_SERVER, request.user.id, hk)
             host_obj = {"host_key": hk, "user_id": user_id, "tenant_id": org.id}
             resp = requests.post(url, data=host_obj)
             print resp.json()
