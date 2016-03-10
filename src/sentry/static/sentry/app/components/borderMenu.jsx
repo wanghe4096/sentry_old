@@ -65,6 +65,11 @@ const BorderMenu = createClass({
           title: t('Live Tail')
         },
         {
+          path: 'alert',
+          iconClassName: 'fa fa-bell-o',
+          title: t('Alerts')
+        },
+        {
           path: 'powerpack',
           iconClassName: 'glyphicon glyphicon-briefcase',
           title: t('Powerpack')
