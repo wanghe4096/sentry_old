@@ -68,10 +68,10 @@ const LiveLogApp = React.createClass({
   },
   render() {
     return (
-      <DocumentTitle title={t('Live Tail')}>
+      <DocumentTitle title="Live Tail">
         <div className="sub-app sa-livelog">
           <div className="livelog-header">
-            <h4 className="app-tit">Live Log</h4>
+            <h4 className="app-tit">{t('Live Log')}</h4>
           </div>
           <div className="app-body">
             <Pane onChannelChange={ this.onChannelChange }/>

@@ -26,7 +26,7 @@ const PowerPackApp = React.createClass({
   },
   render() {
     return (
-      <DocumentTitle title={t('PowerPack')}>
+      <DocumentTitle title="PowerPack">
         <div className="po-pack">
           {this.state.click?
           <div className="col-md-12">
