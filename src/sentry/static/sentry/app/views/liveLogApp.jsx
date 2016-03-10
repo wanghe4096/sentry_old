@@ -61,7 +61,7 @@ const LiveLogApp = React.createClass({
       this.pushstream.removeAllChannels();
     }
     channels.map((cnl,i) => {
-      this.pushstream.addChannel(cnl);
+      this.pushstream.addChannel(cnl.toString());
     });
     this.pushstream.connect();
     this.channels = channels;

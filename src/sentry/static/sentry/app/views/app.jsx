@@ -17,16 +17,17 @@ const App = React.createClass({
   },
 
   componentWillMount() {
-    this.api.request('/internal/health/', {
-      success: (data) => {
-        if (data && data.problems) {
-          data.problems.forEach(problem => {
-            AlertActions.addAlert(problem, 'error', 0);
-          });
-        }
-      },
-      error: () => {} // TODO: do something?
-    });
+    // TODO 此接口目前不通
+    // this.api.request('/internal/health/', {
+    //   success: (data) => {
+    //     if (data && data.problems) {
+    //       data.problems.forEach(problem => {
+    //         AlertActions.addAlert(problem, 'error', 0);
+    //       });
+    //     }
+    //   },
+    //   error: () => {} // TODO: do something?
+    // });
 
     ConfigStore.get('messages').forEach((msg) => {
       AlertActions.addAlert(msg.message, msg.level);

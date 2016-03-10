@@ -22,7 +22,7 @@ const Pane = React.createClass({
   getInitialState() {
     return {
       inBottom: true,
-      grep:null,
+      grep: null,
       arr: [],
       streamIds: [],
       selectStreamModal: false
