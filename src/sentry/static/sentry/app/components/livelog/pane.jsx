@@ -33,6 +33,7 @@ const Pane = React.createClass({
       const messagesHeight = this.refs.messages.scrollHeight;
       const bodyHeight = this.refs.body.clientHeight;
       const bodyScrollTop = this.refs.body.scrollTop;
+      console.log('scroll:',bodyHeight + bodyScrollTop === messagesHeight);
       this.setState({
         inBottom: bodyHeight + bodyScrollTop === messagesHeight
       })
@@ -86,7 +87,9 @@ const Pane = React.createClass({
           return '<a class="highlight">'+ this.state.grep +'</a>'
         });
       }
-      text = i + ': ' + text;
+      // console.log('length:',text.split(/\r\n/).length)
+      // text.replace(/\r\n/,'<br>');
+      // text = i + ': ' + text;
       return(
         <div className="message" dangerouslySetInnerHTML={{__html:text}} key={i} />
       )
