@@ -68,7 +68,7 @@ const LiveLogApp = React.createClass({
   },
   render() {
     return (
-      <DocumentTitle title="Live Tail">
+      <DocumentTitle title={t('Live Tail')}>
         <div className="sub-app sa-livelog">
           <div className="livelog-header">
             <h4 className="app-tit">Live Log</h4>
