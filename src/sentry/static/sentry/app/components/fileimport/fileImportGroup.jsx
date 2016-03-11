@@ -92,7 +92,7 @@ const FileImportGroup = React.createClass({
             <div className="card-body clearfix">
               <div className="add-log clearfix">
                 {/* agent */}
-                <div className="col-md-6 select-log-type">
+                <div className="col-md-6 select-log-type clearfix">
                   <div className="select-type-text">
                     <h3 className="select-type-name">{t('Agent方式')}</h3>
                     <ul>
@@ -127,7 +127,7 @@ const FileImportGroup = React.createClass({
                   </ul>
                 </div>
                 {/* syslog */}
-                <div className="col-md-6 select-log-type">
+                <div className="col-md-6 select-log-type clearfix">
                   <div className="select-type-text">
                     <h3 className="select-type-name">{t('Syslog无代理方式')}</h3>
                     <ul>
@@ -163,7 +163,7 @@ const FileImportGroup = React.createClass({
                   </div>
                 </div>
                 {/* language */}
-                <div className="col-md-12 select-log-type border-t-b">
+                <div className="col-md-12 select-log-type border-t-b clearfix">
                   <div className="select-type-text">
                     <h3 className="select-type-name">{t('编程语言支持')}</h3>
                     <ul>
@@ -229,7 +229,7 @@ const FileImportGroup = React.createClass({
                   </div>
                 </div>
                 {/* upload */}
-                <div className="col-md-6 select-log-type">
+                <div className="col-md-6 select-log-type clearfix">
                   <div className="select-type-text">
                     <h3 className="select-type-name">{t('手工方法')}</h3>
                     <ul>
