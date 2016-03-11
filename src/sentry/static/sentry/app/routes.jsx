@@ -52,7 +52,7 @@ import ExtractorEvents from 'views/extract/extractorEvents';
 import HomeApp from 'views/homeApp';
 import OrganizationStore from 'stores/organizationStore';
 import StreamTypeIndex from 'views/streamTypeIndex';
-import AddLogApp from 'views/addLogApp';
+import FileImportApp from 'views/fileImportApp';
 import LiveLogApp from 'views/liveLogApp';
 import PowerPackApp from 'views/powerPackApp';
 
@@ -94,7 +94,7 @@ let routes = (
 
       <Route path="home" component={HomeApp}/>
 
-		  <Route path="addlog" component={AddLogApp}/>
+		  <Route path="fileimport" component={FileImportApp}/>
 
 
       <Route path="storage" component={StorageApp}>
