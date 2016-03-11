@@ -28,17 +28,18 @@ const LiveLogApp = React.createClass({
       port: '8080',
       modes: "eventsource|stream"
     });
-    this.pushstream.onmessage = this.onMessage;
-    this.pushstream.onstatuschange = this.onStatusChange;
+    this.pushstream.parseMessage = this.onMessage;
+    // this.pushstream.onstatuschange = this.onStatusChange;
 
   },
 
   onMessage(eventMessage) {
-    if(!eventMessage){
+    if(!eventMessage) {
       return false;
     }
 
     // TODO 日和知道当前消息是属于哪个 chanel
+    
     EventAction.send(eventMessage);
     // eventMessage
   },
@@ -49,7 +50,7 @@ const LiveLogApp = React.createClass({
 
   componentWillUnmount() {
     style.unuse();
-    this.pushstream.removeAllChannels();
+      this.pushstream.removeAllChannels();
   },
   onChannelChange(channels) {
     let newChannels = _.uniq(this.channels.concat(channels));
@@ -61,7 +62,7 @@ const LiveLogApp = React.createClass({
       this.pushstream.removeAllChannels();
     }
     channels.map((cnl,i) => {
-      this.pushstream.addChannel(cnl);
+      this.pushstream.addChannel(cnl.toString());
     });
     this.pushstream.connect();
     this.channels = channels;

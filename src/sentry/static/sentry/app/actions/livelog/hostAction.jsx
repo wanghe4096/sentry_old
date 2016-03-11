@@ -21,30 +21,15 @@ const HostAction = Reflux.createActions({
 
 HostAction.fetch.listen(function () {
 
-  // TODO: mock data
-  const mockData = [];
-  let _i = 0;
-  while(_i < 10) {
-    mockData.push({
-      host_id: 'xxxx' + _.random(1,9999),
-      host_name: 'xxx2' + _.random(1,9999),
-      host_group: ['group1','group2','group3'][_.random(0,2)]
-    });
-    _i++;
-  }
-  setTimeout(() => {
-      this.success(mockData);
-  },300);
-
-  // var that = this;
-  // new Client().request('/hosts/', {
-  //   success: function (data) {
-  //     that.success(data);
-  //   },
-  //   error: function (e) {
-  //     that.failed(e);
-  //   }
-  // });
+  var that = this;
+  new Client().request('/hosts/', {
+    success: function (data) {
+      that.success(data);
+    },
+    error: function (e) {
+      that.failed(e);
+    }
+  });
 
 });
 

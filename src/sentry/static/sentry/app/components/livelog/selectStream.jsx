@@ -69,11 +69,11 @@ const SelectStream = React.createClass({
       return (<div className="notice">loading or not item</div>)
     }else{
       return streamList.map((x, i) => {
-        const isSelected = this.state.selectedItems.indexOf(x.stream_name) !== -1;
+        const isSelected = this.state.selectedItems.indexOf(x.id) !== -1;
         return (
           <li
             className={`stream-item ${isSelected ? 'selected' : ''}`}
-            onClick={(e) => this.onSelectStream(x.stream_name)}
+            onClick={(e) => this.onSelectStream(x.id)}
             key={i} >
             {
               isSelected ? (
@@ -82,7 +82,7 @@ const SelectStream = React.createClass({
                 <i className="fa fa-square-o" />
               )
             }
-            {x.stream_name}
+            { x.id }
           </li>
         )
       });
@@ -95,7 +95,7 @@ const SelectStream = React.createClass({
       return this.renderEmpty();
     }
 
-    const groupedHostData = _.groupBy(this.state.hostList,(d) => { return d.host_group });
+    const groupedHostData = _.groupBy(this.state.hostList,(d) => { return d.host_type });
 
     return (
       <div className="selector-wrap clearfix">
@@ -108,12 +108,12 @@ const SelectStream = React.createClass({
                     <ul className="host-list">
                       {
                         groupedHostData[k].map((d,_i) => {
-                          const isActive = this.state.activeHost === d.host_id ;
+                          const isActive = this.state.activeHost === d.id ;
                           return (
                             <li
                               className={`host-item ${isActive ? 'active' : ''}`}
                               key={_i}
-                              onClick={(e) => this.onSelectHost(d.host_id,e)}>
+                              onClick={(e) => this.onSelectHost(d.id,e)}>
                               {d.host_name}
                             </li>
                           )
