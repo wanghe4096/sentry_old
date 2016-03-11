@@ -908,6 +908,7 @@ msgstr "已添加"
 
 #: templates/sentry/organization-member-details.html:60
 #: templates/sentry/organization-member-settings.html:68
+#: static/sentry/app/views/extract/extractorApp.jsx:105
 msgid "Role"
 msgstr "角色"
 
@@ -1269,7 +1270,7 @@ msgstr "找不到环境变量(您是在使用内置的 LogInsight Web服务器�
 
 #: templates/sentry/admin/status/env.html:41
 #: templates/sentry/projects/manage.html:153
-#: static/sentry/app/views/projectSettings/index.jsx:82
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:265
 msgid "Configuration"
 msgstr "配置"
 
@@ -1391,6 +1392,7 @@ msgstr "用户"
 #: templates/sentry/admin/users/list.html:30 web/forms/__init__.py:41
 #: web/forms/accounts.py:257 web/forms/add_project.py:14
 #: web/forms/add_team.py:13
+#: static/sentry/app/components/fileimport/rslogModal.jsx:135
 msgid "Name"
 msgstr "名称"
 
@@ -1430,7 +1432,7 @@ msgid "Settings"
 msgstr "设置"
 
 #: templates/sentry/bases/admin.html:10
-#: static/sentry/app/components/storage/hostList.jsx:55
+#: static/sentry/app/components/streamType/hostList.jsx:59
 msgid "System"
 msgstr "系统"
 
@@ -2543,7 +2545,7 @@ msgstr "了解如何集成用户事故报告"
 msgid "Assigned to me"
 msgstr "指派给我"
 
-#: static/sentry/app/views/organizationDetails.jsx:116
+#: static/sentry/app/views/organizationDetails.jsx:112
 msgid "The organization you were looking for was not found."
 msgstr "您要查找的组织未找到。"
 
@@ -2953,11 +2955,11 @@ msgstr "加入团队"
 msgid "Request Access"
 msgstr "请求访问"
 
-#: static/sentry/app/views/storage/streamList.jsx:55
+#: static/sentry/app/components/streamType/streamTypeList.jsx:52
 msgid "Latest Updated"
 msgstr "最近更新"
 
-#: static/sentry/app/views/storage/streamList.jsx:56
+#: static/sentry/app/components/streamType/streamTypeList.jsx:53
 msgid "Created Time"
 msgstr "创建时间"
 
@@ -2965,7 +2967,7 @@ msgstr "创建时间"
 msgid "No data available."
 msgstr "无可用数据。"
 
-#: static/sentry/app/components/storage/hostList.jsx:91
+#: static/sentry/app/components/storage/hostList.jsx:116
 msgid "Host List"
 msgstr "节点"
 
@@ -2977,11 +2979,11 @@ msgstr "添加节点"
 msgid "Total Host:"
 msgstr "所有节点"
 
-#: static/sentry/app/components/storage/hostStat.jsx:24
+#: static/sentry/app/components/streamType/hostStat.jsx:24
 msgid "Total Stream:"
 msgstr "所有流"
 
-#: static/sentry/app/components/storage/fileList.jsx:59
+#: static/sentry/app/components/streamType/fileList.jsx:62
 msgid "ID"
 msgstr "ID"
 
@@ -3704,11 +3706,11 @@ msgstr "问题"
 msgid "log storage"
 msgstr "日志存储"
 
-#: static/sentry/app/views/app.jsx:52
+#: static/sentry/app/views/app.jsx:48
 msgid "Getting a list of all of your organizations."
 msgstr "获取组织列表"
 
-#: static/sentry/app/views/organizationDetails.jsx:107
+#: static/sentry/app/views/organizationDetails.jsx:103
 msgid "Loading data for your organization."
 msgstr "加载组织数据"
 
@@ -3720,7 +3722,7 @@ msgstr "趋势问题"
 msgid "SDK install wizard"
 msgstr "SDK接入向导"
 
-#: static/sentry/app/components/storage/hostList.jsx:95
+#: static/sentry/app/components/storage/hostList.jsx:120
 msgid "DEMO: add Host"
 msgstr "DEMO：添加节点"
 
@@ -3741,38 +3743,568 @@ msgstr "这个团队中还没有任何项目，请创建你的第一个项目"
 msgid "add project"
 msgstr "添加项目"
 
-#: static/sentry/app/components/storage/fileList.jsx:60
+#: static/sentry/app/components/streamType/fileList.jsx:63
 msgid "Size"
 msgstr "大小"
 
-#: static/sentry/app/components/storage/fileList.jsx:63
+#: static/sentry/app/components/streamType/fileList.jsx:66
 msgid "Path"
 msgstr "路径"
 
-#: static/sentry/app/views/storage/streamList.jsx:54
+#: static/sentry/app/components/streamType/streamTypeList.jsx:51
 msgid "Stream ID"
 msgstr "流ID"
 
-#: static/sentry/app/views/storage/streamList.jsx:102
+#: static/sentry/app/components/storage/streamList.jsx:124
 msgid "Stream List"
 msgstr "流列表"
 
-#: static/sentry/app/components/storage/hostList.jsx:51
+#: static/sentry/app/components/streamType/hostList.jsx:57
 msgid "Host ID"
 msgstr "节点ID"
 
-#: static/sentry/app/components/storage/hostList.jsx:52
+#: static/sentry/app/components/streamType/hostList.jsx:58
 msgid "Distver"
 msgstr "版本号"
 
-#: static/sentry/app/components/storage/hostList.jsx:53
+#: static/sentry/app/components/storage/hostList.jsx:54
 msgid "Host Key"
 msgstr "节点Key"
 
-#: static/sentry/app/components/storage/hostList.jsx:54
+#: static/sentry/app/components/storage/hostList.jsx:55
 msgid "Host Type"
 msgstr "节点类型"
 
-#: static/sentry/app/components/storage/fileList.jsx:124
+#: static/sentry/app/components/streamType/fileList.jsx:148
 msgid "File List"
 msgstr "文件列表"
+
+#: static/sentry/app/components/borderMenu.jsx:35
+msgid "Home"
+msgstr ""
+
+#: static/sentry/app/components/borderMenu.jsx:45
+msgid "Log storage"
+msgstr ""
+
+#: static/sentry/app/views/fileImportApp.jsx:34
+msgid "File Import"
+msgstr ""
+
+#: static/sentry/app/components/borderMenu.jsx:65
+msgid "Live Tail"
+msgstr ""
+
+#: static/sentry/app/components/borderMenu.jsx:70
+msgid "Powerpack"
+msgstr ""
+
+#: static/sentry/app/views/searchVisualDesigner.jsx:27
+msgid "Back to List"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:180
+msgid "Log Structure"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractIndex.jsx:30
+msgid "Group"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractIndex.jsx:33
+msgid "Stream Type"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractIndex.jsx:36
+msgid "Fav"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:151
+msgid "Load initial Data failed"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:243
+msgid "Saved!"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:260
+msgid "Runing"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:261
+msgid "Run"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:265
+msgid "Auto Extract"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:268
+msgid "Save Role"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:270
+msgid "Load history"
+msgstr ""
+
+#: static/sentry/app/views/extract/extractorApp.jsx:277
+msgid "Show history"
+msgstr ""
+
+#: static/sentry/app/views/streamTypeIndex.jsx:92
+msgid "StreamType Manage"
+msgstr ""
+
+#: static/sentry/app/views/liveLogApp.jsx:74
+msgid "Live Log"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:37
+msgid "增强版"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:49
+msgid "搜索分析"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:54
+msgid "强大的搜索分析功能，快速定位问题"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:66
+msgid "仪表盘"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:71
+msgid "快速创建各种统计视图，以及个性化仪表盘"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:83
+msgid "可视化"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:88
+msgid "数据一目了然，放大数据价值"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:100
+msgid "上传日志"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:105
+msgid "Rsyslog接入，更方便。Agent接入，功能更强大。"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:120
+msgid "日志搜索功能"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:123
+msgid "实时搜索，快速定位问题"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:132
+msgid "强大的搜索分析功能，保存搜索结果;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:135
+msgid "自动解析日志，字段值过滤;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:138
+msgid "将无序数据转化为有序。"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:150
+msgid "自定义仪表盘"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:153
+msgid "多样化数据展示方式"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:162
+msgid "让重要的东西只需一次点击;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:165
+msgid "方便共享数据给同事、经理，甚至销售和市场部门;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:183
+msgid "数据可视化"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:186
+msgid "数据清晰可见，一目了然"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:195
+msgid "放大数据价值;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:198
+msgid "实现多种数据对比;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:201
+msgid "用户快速得到大量信息。"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:213
+msgid "多种日志上传方式"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:216
+msgid "简单易用、支持所有常用语言"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:225
+msgid "Agent方式：实时采集，无数据丢失，一键安装，自动接入;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:228
+msgid "Syslog无代理方式：无需安装任何应用;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:231
+msgid "编程语言支持：直接从应用内部发送日志，无需担心日志存储;"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:234
+msgid "手工上传"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:325
+msgid "申请试用"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:258
+msgid "普及版"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:261
+msgid "免费"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:312
+msgid "可以存储数据及导出"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:315
+msgid "可以搜索日志，定制仪表盘"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:280
+msgid "专业版"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:308
+msgid "待定"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:318
+msgid "可以实时告警"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:305
+msgid "企业版"
+msgstr ""
+
+#: static/sentry/app/views/powerPackApp.jsx:321
+msgid "可以定制业务"
+msgstr ""
+
+#: static/sentry/app/components/streamType/fileList.jsx:128
+msgid "Sorry, not found."
+msgstr ""
+
+#: static/sentry/app/components/storage/hostList.jsx:95
+msgid "Sorry, no host match your account."
+msgstr ""
+
+#: static/sentry/app/components/search/header.jsx:18
+msgid "Search"
+msgstr ""
+
+#: static/sentry/app/components/dashboard/detailHeader.jsx:29
+msgid "Back to Dashboard"
+msgstr ""
+
+#: static/sentry/app/components/extract/streamTypeList.jsx:43
+msgid "Structure"
+msgstr ""
+
+#: static/sentry/app/components/extract/streamTypeList.jsx:44
+msgid "Reg"
+msgstr ""
+
+#: static/sentry/app/components/extract/streamTypeList.jsx:45
+msgid "Groker"
+msgstr ""
+
+#: static/sentry/app/components/extract/timeRange.jsx:60
+msgid " To "
+msgstr ""
+
+#: static/sentry/app/components/extract/timeRange.jsx:73
+msgid "Time range"
+msgstr ""
+
+#: static/sentry/app/components/extract/timeRange.jsx:84
+msgid "Done"
+msgstr ""
+
+#: static/sentry/app/components/extract/eventList.jsx:131
+msgid "Matched events"
+msgstr ""
+
+#: static/sentry/app/components/extract/templateEditor.jsx:78
+msgid "Please enter Extractor Role or Run"
+msgstr ""
+
+#: static/sentry/app/components/extract/structureTemplateList.jsx:69
+msgid "Structure template list"
+msgstr ""
+
+#: static/sentry/app/components/streamType/streamTypeList.jsx:192
+msgid "hosts"
+msgstr ""
+
+#: static/sentry/app/components/streamType/streamTypeList.jsx:195
+msgid "hostGroup"
+msgstr ""
+
+#: static/sentry/app/components/streamType/streamTypeList.jsx:198
+msgid "extract"
+msgstr ""
+
+#: static/sentry/app/components/streamType/hostList.jsx:60
+msgid "Extract"
+msgstr ""
+
+#: static/sentry/app/components/streamType/hostList.jsx:99
+msgid "Sorry, no streamtype match your account."
+msgstr ""
+
+#: static/sentry/app/components/streamType/hostList.jsx:127
+msgid "StreamType"
+msgstr ""
+
+#: static/sentry/app/components/streamType/hostList.jsx:131
+msgid "delete"
+msgstr ""
+
+#: static/sentry/app/components/streamType/hostList.jsx:136
+msgid "edit"
+msgstr ""
+
+#: static/sentry/app/components/streamType/hostList.jsx:141
+msgid "add streamtype"
+msgstr ""
+
+#: static/sentry/app/components/streamType/hostStat.jsx:17
+msgid "Total Streamtype:"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:97
+msgid "Agent mode"
+msgstr "Agent方式"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:99
+msgid "Real-time acquisition"
+msgstr "实时采集"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:100
+msgid "No data loss"
+msgstr "无数据丢失"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:101
+msgid "A key installation, automatic access"
+msgstr "一键安装，自动接入"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:132
+msgid "Syslog agentless mode"
+msgstr "Syslog无代理方式"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:134
+msgid "No need to install any application"
+msgstr "无需安装任何应用"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:135
+msgid " Easy to configure"
+msgstr "容易配置"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:168
+msgid "Programming Language Support"
+msgstr "编程语言支持"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:170
+msgid "Send log directly from within the application"
+msgstr "直接从应用内部发送日志"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:171
+msgid "No need to worry about storing the logs"
+msgstr "无需担心日志存储"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:234
+msgid "Manual Method"
+msgstr "手工方法"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:236
+msgid "Manual upload test experience"
+msgstr "手工上传测试体验"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:237
+msgid "HTTP"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:245
+msgid "upload"
+msgstr "上传"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:269
+msgid "Configuration is successful"
+msgstr "配置成功"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:275
+msgid "Start Search"
+msgstr "开始搜索"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:277
+msgid "See Search document"
+msgstr "查看搜索文档"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:286
+msgid "Add more data"
+msgstr "添加更多数据"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:288
+msgid "See Adding data document."
+msgstr "查看添加数据文档"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:297
+msgid "Build Dashboards"
+msgstr "构建仪表盘"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:299
+msgid "See build dashboards document."
+msgstr "查看仪表盘文档"
+
+#: static/sentry/app/components/fileimport/fileImportGroup.jsx:305
+msgid "Back"
+msgstr "返回"
+
+#: static/sentry/app/components/livelog/pane.jsx:101
+msgid "Select Stream"
+msgstr ""
+
+#: static/sentry/app/components/livelog/pane.jsx:123
+msgid "Stream Filter"
+msgstr ""
+
+#: static/sentry/app/components/livelog/pane.jsx:137
+msgid "please select ..."
+msgstr ""
+
+#: static/sentry/app/components/fileimport/linuxModal.jsx:34
+msgid "Linux Config"
+msgstr "Linux配置"
+
+#: static/sentry/app/components/fileimport/linuxModal.jsx:40
+msgid "安装LogInsight linux的代理程序"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/windowsModal.jsx:41
+msgid "复制并粘贴下面的代码片段到你的终端上安装代理"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/linuxModal.jsx:43
+msgid "wget http://loginsight.cn/loginsight/linux"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/windowsModal.jsx:49
+msgid "copy"
+msgstr "复制"
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:213
+msgid "手动上传"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:348
+msgid "输入您的主机名 ..."
+msgstr ""
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:349
+msgid "设置您的host名称"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:350
+msgid "* 设置您的主机名,方便搜索."
+msgstr ""
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:363
+msgid "索引"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:394
+msgid "输入您的索引名称"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:395
+msgid "索引名称"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/uploadModal.jsx:396
+msgid "* 输入您要创建的索引名称."
+msgstr ""
+
+#: static/sentry/app/components/fileimport/windowsModal.jsx:34
+msgid "Windows Config"
+msgstr "WindowsRslog配置"
+
+#: static/sentry/app/components/fileimport/rslogModal.jsx:123
+msgid "Rslog Config"
+msgstr "Rslog配置"
+
+#: static/sentry/app/components/fileimport/rslogModal.jsx:129
+msgid "Config Rslog"
+msgstr "配置Rslog"
+
+#: static/sentry/app/components/fileimport/rslogModal.jsx:134
+msgid "rslog name..."
+msgstr "rslog名称"
+
+#: static/sentry/app/components/fileimport/rslogModal.jsx:136
+msgid "* At least two characters."
+msgstr "* 至少两个字符"
+
+#: static/sentry/app/components/fileimport/rslogModal.jsx:148
+msgid "IP Address..."
+msgstr "Ip地址..."
+
+#: static/sentry/app/components/fileimport/rslogModal.jsx:149
+msgid "Ip Address"
+msgstr "Ip地址"
+
+#: static/sentry/app/components/fileimport/rslogModal.jsx:150
+msgid "* Ip Address."
+msgstr "* Ip地址."
+
+#: static/sentry/app/components/livelog/selectStream.jsx:142
+msgid "selected items"
+msgstr ""
+
+#: static/sentry/app/components/fileimport/linuxModal.jsx:41
+msgid "Installation LogInsight linux agent"
+msgstr "安装LogInsight Linux的代理程序"
+
+#: static/sentry/app/components/fileimport/windowsModal.jsx:42
+msgid ""
+"Copy and paste the following code snippet into your terminal to install "
+"the agent"
+msgstr "复制并粘贴下面的代码片段到你的终端上安装代理"
+
+#: static/sentry/app/components/fileimport/windowsModal.jsx:40
+msgid "Installation LogInsight windows agent"
+msgstr "安装LogInsight Windows的代理程序"

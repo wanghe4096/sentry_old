@@ -210,15 +210,15 @@ const UploadModal = React.createClass({
       return (
         <Modal show={true} keyboard={true} onHide={this.props.onHide} dialogClassName="custom-modal">
           <Modal.Header closeButton={true}>
-            <Modal.Title>{t('手动上传')}</Modal.Title>
+            <Modal.Title>{t('Manual Upload')}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
             <form onSubmit={this.submitHandler} className="form-horizontal">
               <div className="box-content p-l-r-md">
                 <div className="section">
-                  <h4>选择来源</h4>
+                  <h4>{t('Select Source')}</h4>
                   <p>
-                    选定的文件
+                    {t('Selected Files')}
                     {
                       this.state.files ?
                         <span>
@@ -242,7 +242,7 @@ const UploadModal = React.createClass({
                             <i className="fa fa-cloud-upload"></i>
                           </div>
                           <div className="dropzone-text">
-                            <h2>将您的数据文件拖到这儿</h2>
+                            <h2>{t('Drop your data file here')}</h2>
                           </div>
                         </div>
                       </div>
@@ -250,11 +250,13 @@ const UploadModal = React.createClass({
                     <progress id="uploadprogress" min="0" max="100" value="0">0</progress>
                   </Dropzone>
 
-                  <span className="max-filesize text-center">最大文件上载大小为500 Mb</span>
+                  <span className="max-filesize text-center">
+                    {t('The maximum file upload size is 500 Mb')}
+                  </span>
                   <ProgressBar bsStyle="success" now={this.state.now} label="%(percent)s%" />
                 </div>
                 <div className="section no-border clearfix">
-                  <h4>日志类型</h4>
+                  <h4>{t('SourceType')}</h4>
                   <div className="col-md-4">
                     <Input type="select" placeholder="select" onChange={this.onInputChange} value={this.state.options} className="form-control select-height">
                       <option value="log">log</option>
@@ -271,8 +273,8 @@ const UploadModal = React.createClass({
                       <tr>
                         <th></th>
                         <th></th>
-                        <th>时间</th>
-                        <th>日志信息</th>
+                        <th>{t('Time')}</th>
+                        <th>{t('Message')}</th>
                       </tr>
                     </thead>
                     <tbody>
@@ -294,7 +296,7 @@ const UploadModal = React.createClass({
                             </span>
                             <ul>
                               <li>
-                                <span>timestamp =</span>
+                                <span>{t('timestamp')} =</span>
                                 <span>none</span>
                               </li>
                             </ul>
@@ -319,7 +321,7 @@ const UploadModal = React.createClass({
                             </span>
                             <ul>
                               <li>
-                                <span>timestamp =</span>
+                                <span>{t('timestamp')} =</span>
                                 <span>none</span>
                               </li>
                             </ul>
@@ -331,7 +333,7 @@ const UploadModal = React.createClass({
                 </div>
                 {/*settings*/}
                 <div className="section no-border clearfix">
-                  <h4>设置</h4>
+                  <h4>{t('Settings')}</h4>
                   {/*index list*/}
 
 
@@ -345,9 +347,9 @@ const UploadModal = React.createClass({
                         type="text"
                         name="hostName"
                         value={this.state.hostName}
-                        placeholder={t('输入您的主机名 ...')}
-                        label={t('设置您的host名称')}
-                        help={t('* 设置您的主机名,方便搜索.')}
+                        placeholder={t('Your host name ...')}
+                        label={t('Set your host name')}
+                        help={t('* Set your host name to facilitate search.')}
                         //hasFeedback
                         autoFocus
                         //disabled={inSaving}
@@ -360,7 +362,7 @@ const UploadModal = React.createClass({
                     <li>
                       <div className="form-group">
                         <label className="control-label">
-                          <span>{t('索引')}*</span>
+                          <span>{t('Index')}*</span>
                         </label>
                         <div className="col-xs-12">
                           <select

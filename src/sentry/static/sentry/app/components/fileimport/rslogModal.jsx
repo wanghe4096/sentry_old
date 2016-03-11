@@ -126,8 +126,8 @@ const RslogModal = React.createClass({
             <form onSubmit={this.submitHandler}>
               <div className="box-content with-padding">
                 <div>
-                  <h4>{t('Config Rslog')}</h4>
-                  <p>{('填写以下信息')}</p>
+                  <h4>{t('Rslog Config')}</h4>
+                  <p>{('Fill in the following information')}</p>
                   <Input
                     type="text"
                     value={this.state.rslogName}
@@ -142,12 +142,12 @@ const RslogModal = React.createClass({
                     labelClassName="label-class"
                     onChange={this.handleRslogName}
                   />
-                  <Input
+                <Input
                     type="text"
                     value={this.state.ipAddress}
-                    placeholder={t('IP Address...')}
+                    placeholder={t('IP Address')}
                     label={t('Ip Address')}
-                    help={t('* Ip Address.')}
+                    help={t('* Enter the IP address.')}
                     hasFeedback
                     ref="input"
                     disabled={inSaving}

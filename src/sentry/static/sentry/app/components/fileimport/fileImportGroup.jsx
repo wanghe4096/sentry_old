@@ -94,11 +94,11 @@ const FileImportGroup = React.createClass({
                 {/* agent */}
                 <div className="col-md-6 select-log-type clearfix">
                   <div className="select-type-text">
-                    <h3 className="select-type-name">{t('Agent方式')}</h3>
+                    <h3 className="select-type-name">{t('Agent mode')}</h3>
                     <ul>
-                      <li>{t('实时采集')}</li>
-                      <li>{t('无数据丢失')}</li>
-                      <li>{t('一键安装，自动接入')}</li>
+                      <li>{t('Real-time acquisition')}</li>
+                      <li>{t('No data loss')}</li>
+                      <li>{t('A key installation, automatic access')}</li>
                     </ul>
                   </div>
                   <ul className="select-type-icon">
@@ -129,10 +129,10 @@ const FileImportGroup = React.createClass({
                 {/* syslog */}
                 <div className="col-md-6 select-log-type clearfix">
                   <div className="select-type-text">
-                    <h3 className="select-type-name">{t('Syslog无代理方式')}</h3>
+                    <h3 className="select-type-name">{t('Syslog agentless mode')}</h3>
                     <ul>
-                      <li>{t('无需安装任何应用')}</li>
-                      <li>{t('容易配置')}</li>
+                      <li>{t('No need to install any application')}</li>
+                      <li>{t(' Easy to configure')}</li>
                     </ul>
                   </div>
                   <div className="select-type-icon">
@@ -165,10 +165,10 @@ const FileImportGroup = React.createClass({
                 {/* language */}
                 <div className="col-md-12 select-log-type border-t-b clearfix">
                   <div className="select-type-text">
-                    <h3 className="select-type-name">{t('编程语言支持')}</h3>
+                    <h3 className="select-type-name">{t('Programming Language Support')}</h3>
                     <ul>
-                      <li>{t('直接从应用内部发送日志')}</li>
-                      <li>{t('无需担心日志存储')}</li>
+                      <li>{t('Send log directly from within the application')}</li>
+                      <li>{t('No need to worry about storing the logs')}</li>
                     </ul>
                   </div>
                   <div className="select-type-icon">
@@ -231,9 +231,9 @@ const FileImportGroup = React.createClass({
                 {/* upload */}
                 <div className="col-md-6 select-log-type clearfix">
                   <div className="select-type-text">
-                    <h3 className="select-type-name">{t('手工方法')}</h3>
+                    <h3 className="select-type-name">{t('Manual Method')}</h3>
                     <ul>
-                      <li>{t('手工方法')}手工上传测试体验</li>
+                      <li>{t('Manual upload test experience')}</li>
                       <li>{t('HTTP')}</li>
                     </ul>
                   </div>
@@ -242,7 +242,7 @@ const FileImportGroup = React.createClass({
                       <div className="icon-circle-setup">
                         <i className="fa fa-upload"></i>
                       </div>
-                      <div className="icon-text">{t('上传')}</div>
+                      <div className="icon-text">{t('upload')}</div>
                     </MenuItem>
                     {this.state.showUploadModal && (
                       <UploadModal
@@ -262,18 +262,20 @@ const FileImportGroup = React.createClass({
               {/* config result */}
               <div className="hide box">
                 <div className="box-header">
-                  <h3>{t('配置结果')}</h3>
+                  <h3>{t('Configuration')}</h3>
                 </div>
                 <div className="box-content with-padding">
                   <div className="section">
-                    <h4>{t('配置成功')}</h4>
+                    <h4>{t('Configuration is successful')}</h4>
                     <div className="success-option start-searching">
                       <a className="btn btn-success-page success-option-icon" href="javascript:;">
                         <i className="fa fa-search"></i>
                       </a>
                       <p>
-                        <span>{t('开始搜索')}</span>
-                        <a href="javascript:;" className="external" target="_blank"> {t('查看搜索教程。')}</a>
+                        <span>{t('Start Search')}</span>
+                        <a href="javascript:;" className="external" target="_blank">
+                          {t('See Search document')}
+                        </a>
                       </p>
                     </div>
                     <div className="success-option add-more-data">
@@ -281,9 +283,9 @@ const FileImportGroup = React.createClass({
                         <i className="fa fa-plus"></i>
                       </a>
                       <p>
-                        {t('添加更多数据')}
+                        {t('Add more data')}
                         <a href="javascript:;" className="external" target="_blank">
-                          {t('查看添加数据教程。')}
+                          {t('See Adding data document.')}
                         </a>
                       </p>
                     </div>
@@ -292,15 +294,15 @@ const FileImportGroup = React.createClass({
                         <i className="fa fa-th-large"></i>
                       </a>
                       <p>
-                        {t('构建仪表板')}
+                        {t('Build Dashboards')}
                         <a href="/zh-CN/help?location=learnmore.dashboards" className="external" target="_blank">
-                          {t('查看构建仪表板教程。')}
+                          {t('See build dashboards document.')}
                         </a>
                       </p>
                     </div>
                   </div>
                   <div className="form-actions">
-                    <a href="#" className="btn btn-primary">{t('返回')}</a>
+                    <a href="#" className="btn btn-primary">{t('Back')}</a>
                   </div>
                 </div>
               </div>

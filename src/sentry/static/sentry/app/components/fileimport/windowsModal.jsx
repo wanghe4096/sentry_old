@@ -37,10 +37,12 @@ const WindowsModal = React.createClass({
             <form onSubmit={this.submitHandler} className="form-horizontal">
               <div className="box-content with-padding">
                 <div className="section">
-                  <h4>{t('安装LogInsight Windows的代理程序')}</h4>
-                  <p>{t('复制并粘贴下面的代码片段到你的终端上安装代理')}</p>
+                  <h4>{t('Installation LogInsight windows agent')}</h4>
+                  <p>
+                    {t('Copy and paste the following code snippet into your terminal to install the agent')}
+                  </p>
                   <span className="code">
-                    {t('wget http://loginsight.cn/loginsight/windows')}
+                    wget http://loginsight.cn/loginsight/windows
                   </span>
                   <ReactZeroClipboard text={this.props.code}>
                     <a className="copy">

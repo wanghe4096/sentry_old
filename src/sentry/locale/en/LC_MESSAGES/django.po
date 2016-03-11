@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-01-15 11:19+0800\n"
+"POT-Creation-Date: 2016-03-11 12:00+0800\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -103,295 +103,295 @@ msgstr ""
 msgid "You must be authenticated to link accounts."
 msgstr ""
 
-#: conf/server.py:99
+#: conf/server.py:101
 msgid "Afrikaans"
 msgstr ""
 
-#: conf/server.py:100
+#: conf/server.py:102
 msgid "Arabic"
 msgstr ""
 
-#: conf/server.py:101
+#: conf/server.py:103
 msgid "Azerbaijani"
 msgstr ""
 
-#: conf/server.py:102
+#: conf/server.py:104
 msgid "Bulgarian"
 msgstr ""
 
-#: conf/server.py:103
+#: conf/server.py:105
 msgid "Belarusian"
 msgstr ""
 
-#: conf/server.py:104
+#: conf/server.py:106
 msgid "Bengali"
 msgstr ""
 
-#: conf/server.py:105
+#: conf/server.py:107
 msgid "Breton"
 msgstr ""
 
-#: conf/server.py:106
+#: conf/server.py:108
 msgid "Bosnian"
 msgstr ""
 
-#: conf/server.py:107
+#: conf/server.py:109
 msgid "Catalan"
 msgstr ""
 
-#: conf/server.py:108
+#: conf/server.py:110
 msgid "Czech"
 msgstr ""
 
-#: conf/server.py:109
+#: conf/server.py:111
 msgid "Welsh"
 msgstr ""
 
-#: conf/server.py:110
+#: conf/server.py:112
 msgid "Danish"
 msgstr ""
 
-#: conf/server.py:111
+#: conf/server.py:113
 msgid "German"
 msgstr ""
 
-#: conf/server.py:112
+#: conf/server.py:114
 msgid "Greek"
 msgstr ""
 
-#: conf/server.py:113
+#: conf/server.py:115
 msgid "English"
 msgstr ""
 
-#: conf/server.py:114
+#: conf/server.py:116
 msgid "Esperanto"
 msgstr ""
 
-#: conf/server.py:115
+#: conf/server.py:117
 msgid "Spanish"
 msgstr ""
 
-#: conf/server.py:116
+#: conf/server.py:118
 msgid "Estonian"
 msgstr ""
 
-#: conf/server.py:117
+#: conf/server.py:119
 msgid "Basque"
 msgstr ""
 
-#: conf/server.py:118
+#: conf/server.py:120
 msgid "Persian"
 msgstr ""
 
-#: conf/server.py:119
+#: conf/server.py:121
 msgid "Finnish"
 msgstr ""
 
-#: conf/server.py:120
+#: conf/server.py:122
 msgid "French"
 msgstr ""
 
-#: conf/server.py:121
+#: conf/server.py:123
 msgid "Irish"
 msgstr ""
 
-#: conf/server.py:122
+#: conf/server.py:124
 msgid "Galician"
 msgstr ""
 
-#: conf/server.py:123
+#: conf/server.py:125
 msgid "Hebrew"
 msgstr ""
 
-#: conf/server.py:124
+#: conf/server.py:126
 msgid "Hindi"
 msgstr ""
 
-#: conf/server.py:125
+#: conf/server.py:127
 msgid "Croatian"
 msgstr ""
 
-#: conf/server.py:126
+#: conf/server.py:128
 msgid "Hungarian"
 msgstr ""
 
-#: conf/server.py:127
+#: conf/server.py:129
 msgid "Interlingua"
 msgstr ""
 
-#: conf/server.py:128
+#: conf/server.py:130
 msgid "Indonesian"
 msgstr ""
 
-#: conf/server.py:129
+#: conf/server.py:131
 msgid "Icelandic"
 msgstr ""
 
-#: conf/server.py:130
+#: conf/server.py:132
 msgid "Italian"
 msgstr ""
 
-#: conf/server.py:131
+#: conf/server.py:133
 msgid "Japanese"
 msgstr ""
 
-#: conf/server.py:132
+#: conf/server.py:134
 msgid "Georgian"
 msgstr ""
 
-#: conf/server.py:133
+#: conf/server.py:135
 msgid "Kazakh"
 msgstr ""
 
-#: conf/server.py:134
+#: conf/server.py:136
 msgid "Khmer"
 msgstr ""
 
-#: conf/server.py:135
+#: conf/server.py:137
 msgid "Kannada"
 msgstr ""
 
-#: conf/server.py:136
+#: conf/server.py:138
 msgid "Korean"
 msgstr ""
 
-#: conf/server.py:137
+#: conf/server.py:139
 msgid "Luxembourgish"
 msgstr ""
 
-#: conf/server.py:138
+#: conf/server.py:140
 msgid "Lithuanian"
 msgstr ""
 
-#: conf/server.py:139
+#: conf/server.py:141
 msgid "Latvian"
 msgstr ""
 
-#: conf/server.py:140
+#: conf/server.py:142
 msgid "Macedonian"
 msgstr ""
 
-#: conf/server.py:141
+#: conf/server.py:143
 msgid "Malayalam"
 msgstr ""
 
-#: conf/server.py:142
+#: conf/server.py:144
 msgid "Mongolian"
 msgstr ""
 
-#: conf/server.py:143
+#: conf/server.py:145
 msgid "Burmese"
 msgstr ""
 
-#: conf/server.py:144
+#: conf/server.py:146
 msgid "Norwegian Bokmal"
 msgstr ""
 
-#: conf/server.py:145
+#: conf/server.py:147
 msgid "Nepali"
 msgstr ""
 
-#: conf/server.py:146
+#: conf/server.py:148
 msgid "Dutch"
 msgstr ""
 
-#: conf/server.py:147
+#: conf/server.py:149
 msgid "Norwegian Nynorsk"
 msgstr ""
 
-#: conf/server.py:148
+#: conf/server.py:150
 msgid "Ossetic"
 msgstr ""
 
-#: conf/server.py:149
+#: conf/server.py:151
 msgid "Punjabi"
 msgstr ""
 
-#: conf/server.py:150
+#: conf/server.py:152
 msgid "Polish"
 msgstr ""
 
-#: conf/server.py:151
+#: conf/server.py:153
 msgid "Portuguese"
 msgstr ""
 
-#: conf/server.py:152
+#: conf/server.py:154
 msgid "Brazilian Portuguese"
 msgstr ""
 
-#: conf/server.py:153
+#: conf/server.py:155
 msgid "Romanian"
 msgstr ""
 
-#: conf/server.py:154
+#: conf/server.py:156
 msgid "Russian"
 msgstr ""
 
-#: conf/server.py:155
+#: conf/server.py:157
 msgid "Slovak"
 msgstr ""
 
-#: conf/server.py:156
+#: conf/server.py:158
 msgid "Slovenian"
 msgstr ""
 
-#: conf/server.py:157
+#: conf/server.py:159
 msgid "Albanian"
 msgstr ""
 
-#: conf/server.py:158
+#: conf/server.py:160
 msgid "Serbian"
 msgstr ""
 
-#: conf/server.py:159
+#: conf/server.py:161
 msgid "Swedish"
 msgstr ""
 
-#: conf/server.py:160
+#: conf/server.py:162
 msgid "Swahili"
 msgstr ""
 
-#: conf/server.py:161
+#: conf/server.py:163
 msgid "Tamil"
 msgstr ""
 
-#: conf/server.py:162
+#: conf/server.py:164
 msgid "Telugu"
 msgstr ""
 
-#: conf/server.py:163
+#: conf/server.py:165
 msgid "Thai"
 msgstr ""
 
-#: conf/server.py:164
+#: conf/server.py:166
 msgid "Turkish"
 msgstr ""
 
-#: conf/server.py:165
+#: conf/server.py:167
 msgid "Tatar"
 msgstr ""
 
-#: conf/server.py:166
+#: conf/server.py:168
 msgid "Udmurt"
 msgstr ""
 
-#: conf/server.py:167
+#: conf/server.py:169
 msgid "Ukrainian"
 msgstr ""
 
-#: conf/server.py:168
+#: conf/server.py:170
 msgid "Urdu"
 msgstr ""
 
-#: conf/server.py:169
+#: conf/server.py:171
 msgid "Vietnamese"
 msgstr ""
 
-#: conf/server.py:170
+#: conf/server.py:172
 msgid "Simplified Chinese"
 msgstr ""
 
-#: conf/server.py:171
+#: conf/server.py:173
 msgid "Traditional Chinese"
 msgstr ""
 
@@ -653,7 +653,7 @@ msgstr ""
 #: templates/sentry/auth-confirm-identity.html:33
 #: templates/sentry/auth-link-login.html:7
 #: templates/sentry/auth-link-login.html:31 templates/sentry/login.html:7
-#: templates/sentry/login.html.py:34
+#: templates/sentry/login.html.py:36
 #: templates/sentry/organization-login.html:10
 #: templates/sentry/organization-login.html:49
 #: templates/sentry/bases/organization-login.html:7
@@ -663,7 +663,7 @@ msgid "Login"
 msgstr ""
 
 #: templates/sentry/auth-confirm-identity.html:34
-#: templates/sentry/auth-link-login.html:31 templates/sentry/login.html:34
+#: templates/sentry/auth-link-login.html:31 templates/sentry/login.html:36
 #: templates/sentry/organization-login.html:50
 #: templates/sentry/bases/organization-login.html:54
 msgid "Lost your password?"
@@ -751,21 +751,21 @@ msgstr ""
 msgid "Sign out"
 msgstr ""
 
-#: templates/sentry/layout.html:117 templates/sentry/layout.html.py:213
+#: templates/sentry/layout.html:117 templates/sentry/layout.html.py:220
 msgid "Docs"
 msgstr ""
 
-#: templates/sentry/layout.html:209 templates/sentry/bases/admin.html:7
+#: templates/sentry/layout.html:216 templates/sentry/bases/admin.html:7
 #: web/forms/__init__.py:54
 msgid "Admin"
 msgstr ""
 
-#: templates/sentry/layout.html:212
+#: templates/sentry/layout.html:219
 #: templates/sentry/project-release-tracking.html:117
 msgid "API"
 msgstr ""
 
-#: templates/sentry/layout.html:214
+#: templates/sentry/layout.html:221
 msgid "Contribute"
 msgstr ""
 
@@ -2088,7 +2088,7 @@ msgid ""
 "Either you are not a member of the given organization or it does not exist."
 msgstr ""
 
-#: web/frontend/auth_login.py:18
+#: web/frontend/auth_login.py:17
 msgid ""
 "The organization does not exist or does not have Single Sign-On enabled."
 msgstr ""
