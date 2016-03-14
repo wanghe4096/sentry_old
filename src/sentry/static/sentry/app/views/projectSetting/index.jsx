@@ -3,7 +3,7 @@ import React from 'react';
 const PSIndex = React.createClass({
   render() {
     return (
-      <div className="col-md-10">
+      <div>
         <h2>Project Settings</h2>
         <form className="form-stacked" action="" method="post" id="project_settings">
           <div className="box">

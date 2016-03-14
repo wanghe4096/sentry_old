@@ -57,6 +57,12 @@ import LiveLogApp from 'views/liveLogApp';
 import PowerPackApp from 'views/powerPackApp';
 import PSIndex from 'views/projectSetting';
 import PSNotifications from 'views/projectSetting/notifications';
+import PSRules from 'views/projectSetting/rules';
+import PSTags from 'views/projectSetting/tags';
+import PSIssueTracking from 'views/projectSetting/issueTracking';
+import PSReleaseTracking from 'views/projectSetting/releaseTracking';
+import PSKeys from 'views/projectSetting/keys';
+import PSPlugins from 'views/projectSetting/plugins';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -146,6 +152,14 @@ let routes = (
           <Route path="settings/" component={ProjectSettings}>
             <Route path="r-index/" component={PSIndex} />
             <Route path="r-notifications/" component={PSNotifications} />
+            <Route path="r-rules/" component={PSRules} />
+            <Route path="r-tags/" component={PSTags} />
+            <Route path="r-issue-tracking/" component={PSIssueTracking} />
+            <Route path="r-release-tracking/" component={PSReleaseTracking} />
+            <Route path="r-keys/" component={PSKeys} />
+            <Route path="r-plugins/" component={PSPlugins} />
+
+
             <Route path="install/" component={ProjectInstall}>
               <IndexRoute component={ProjectInstallOverview}/>
               <Route path=":platform/" component={ProjectInstallPlatform}/>

@@ -3,7 +3,7 @@ import React from 'react';
 const PSNotifications = React.createClass({
   render() {
     return (
-      <div className="col-md-10">
+      <div>
         <h2>Notifications</h2>
         <form action="" method="POST" className="form-stacked">
           <div className="box">
