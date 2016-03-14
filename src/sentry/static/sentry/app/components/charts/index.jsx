@@ -1,4 +1,5 @@
 import React from 'react';
+import _ from 'underscore';
 import Highcharts from 'highcharts';
 import LineChart from 'components/charts/line';
 import AreaChart from 'components/charts/area';
@@ -14,7 +15,14 @@ const Charts = React.createClass({
     data: React.PropTypes.object.isRequired,
   },
   render() {
-    switch(this.props.graphType) {
+    let graphType = this.props.graphType;
+
+    if(this.props.mock) {
+      const avalibleGraphs = ['line','area','time series','histogram','pie'];
+      graphType = avalibleGraphs[_.random(0, avalibleGraphs.length-1)]
+    }
+
+    switch(graphType) {
       case 'line':
         return (<LineChart {...this.props} />)
         break;

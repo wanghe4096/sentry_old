@@ -6,6 +6,7 @@ import {Link,IndexLink} from 'react-router';
 import PureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
 import DocumentTitle from 'react-document-title';
 import ReactGridLayout from 'react-grid-layout';
+import Charts from 'components/charts';
 
 const WidthProvider = ReactGridLayout.WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(ReactGridLayout.Responsive);
@@ -44,7 +45,7 @@ const SearchVisualIndex = React.createClass({
   },
 
   onBreakpointChange(breakpoint) {
-    console.log(breakpoint);
+    // console.log(breakpoint);
     this.setState({currentBreakpoint: breakpoint});
   },
 
@@ -84,8 +85,12 @@ const SearchVisualIndex = React.createClass({
             </div>
           </div>
           <div className="panel-body">
-            Panel content /
-            {i}
+            <Charts
+              graphType = {'mock'}
+              x_axis = {[]}
+              y_axis = {[]}
+              mock={true}
+              data = {{}} />
           </div>
         </div>
       );

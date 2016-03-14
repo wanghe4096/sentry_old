@@ -7,6 +7,7 @@ import PureRenderMixin from 'react/lib/ReactComponentWithPureRenderMixin';
 import DocumentTitle from 'react-document-title';
 import ReactGridLayout from 'react-grid-layout';
 import DetailHeader from 'components/dashboard/detailHeader';
+import Charts from 'components/charts';
 
 const WidthProvider = ReactGridLayout.WidthProvider;
 const ResponsiveReactGridLayout = WidthProvider(ReactGridLayout.Responsive);
@@ -52,7 +53,7 @@ const DashboardDetail = React.createClass({
   },
 
   onBreakpointChange(breakpoint) {
-    console.log(breakpoint);
+    // console.log(breakpoint);
     this.setState({currentBreakpoint: breakpoint});
   },
 
@@ -89,8 +90,12 @@ const DashboardDetail = React.createClass({
             </div>
           </div>
           <div className="panel-body">
-            Panel content /
-            {i}
+            <Charts
+              graphType = {'mock'}
+              x_axis = {[]}
+              y_axis = {[]}
+              mock={true}
+              data = {{}} />
           </div>
         </div>
       );
