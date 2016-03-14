@@ -8,11 +8,6 @@ const chartTypes = [
     group:'Visualize'
   },
   {
-    name:'bar',
-    icon:'xxxx.png',
-    group:'Visualize'
-  },
-  {
     name:'pie',
     icon:'xxxx.png',
     group:'Visualize'
@@ -22,11 +17,20 @@ const chartTypes = [
     icon:'xxxx.png',
     group:'Visualize'
   },
+
+
+
+
+  {
+    name:'time series',
+    icon:'xxxx.png',
+    group:'Timeseries Graphs'
+  },
   {
     name:'histogram',
     icon:'xxxx.png',
     group:'Timeseries Graphs'
-  }
+  },
 ];
 
 const DesignerStore = Reflux.createStore({

@@ -2,6 +2,9 @@ import React from 'react';
 import Highcharts from 'highcharts';
 import LineChart from 'components/charts/line';
 import AreaChart from 'components/charts/area';
+import TimeSeries from 'components/charts/timeSeries';
+import Histogram from 'components/charts/histogram';
+import PieChart  from 'components/charts/pie';
 
 const Charts = React.createClass({
   propTypes: {
@@ -18,7 +21,14 @@ const Charts = React.createClass({
       case 'area':
         return (<AreaChart {...this.props} />)
         break;
-      case 'x':
+      case 'time series':
+        return (<TimeSeries {...this.props} />)
+        break;
+      case 'histogram':
+        return (<Histogram {...this.props} />)
+        break;
+      case 'pie':
+        return (<PieChart {...this.props} />)
         break;
       default:
         return (<div>undefined graphType</div>)
