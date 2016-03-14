@@ -1,6 +1,6 @@
 import React from 'react';
 
-const ProjectSettingIndex = React.createClass({
+const PSIndex = React.createClass({
   render() {
     return (
       <div className="col-md-10">
@@ -285,4 +285,4 @@ const ProjectSettingIndex = React.createClass({
   }
 });
 
-export default ProjectSettingIndex;
+export default PSIndex;

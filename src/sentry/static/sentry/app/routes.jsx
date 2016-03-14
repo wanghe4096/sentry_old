@@ -55,7 +55,8 @@ import StreamTypeIndex from 'views/streamTypeIndex';
 import FileImportApp from 'views/fileImportApp';
 import LiveLogApp from 'views/liveLogApp';
 import PowerPackApp from 'views/powerPackApp';
-import ProjectSettingIndex from 'views/projectSetting';
+import PSIndex from 'views/projectSetting';
+import PSNotifications from 'views/projectSetting/notifications';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -143,7 +144,8 @@ let routes = (
           </Route>
 
           <Route path="settings/" component={ProjectSettings}>
-            <Route path="r-index/" component={ProjectSettingIndex} />
+            <Route path="r-index/" component={PSIndex} />
+            <Route path="r-notifications/" component={PSNotifications} />
             <Route path="install/" component={ProjectInstall}>
               <IndexRoute component={ProjectInstallOverview}/>
               <Route path=":platform/" component={ProjectInstallPlatform}/>
