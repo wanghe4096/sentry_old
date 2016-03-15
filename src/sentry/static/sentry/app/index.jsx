@@ -30,6 +30,9 @@ jQuery.ajaxSetup({
     if (!csrfSafeMethod(settings.type) && !this.crossDomain) {
       xhr.setRequestHeader('X-CSRFToken', csrftoken);
     }
+  },
+  error: function() {
+    console.log('error1:',arguments);
   }
 });
 
@@ -62,24 +65,22 @@ App.prototype = {
     let routes = require('./routes');
     ReactDOM.render(
       React.createElement(Router.Router, {history: Sentry.createHistory()}, routes),
-      document.getElementById('blk_router')
+      document.body
     );
 
   }
 };
 
-
 // these get exported to a global variable, which is important as its the only
 // way we can call into scoped objects
-export default {
-  App: App,
-  jQuery: jQuery,
-  moment: require('moment'),
-  Raven: require('raven-js'),
-  React: require('react'),
-  ReactDOM: require('react-dom'),
-  Router: require('react-router'),
-  Sentry: {
+  window.App = App;
+  window.jQuery = jQuery;
+  window.moment = require('moment');
+  window.Raven = require('raven-js');
+  window.React = require('react');
+  window.ReactDOM = require('react-dom');
+  window.Router = require('react-router');
+  window.Sentry = {
     api: require('./api'),
     //routes: require('./routes'),
     createHistory: require('history/lib/createBrowserHistory'),
@@ -104,6 +105,16 @@ export default {
     TimeSince: require('./components/timeSince'),
     BorderMenu: require('./components/borderMenu'),
     ApiClient: Client
-  }
-};
+  };
 
+
+
+new Client().request('/react/', {
+  success : function(data) {
+    // console.log(111);
+    // console.log('data:',data)
+
+    window.Sentry.ConfigStore.loadInitialData(data);
+    new App();
+  }
+})

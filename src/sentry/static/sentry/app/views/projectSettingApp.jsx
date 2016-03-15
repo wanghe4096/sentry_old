@@ -125,6 +125,11 @@ const ProjectSettings = React.createClass({
                 {t('Client Keys')}
               </Link>
             </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/install/`} activeClassName="active">
+                {t('Access')}
+              </Link>
+            </li>
           </ul>
           <h6 className="nav-header">{t('Integrations')}</h6>
           <ul className="nav nav-stacked">
