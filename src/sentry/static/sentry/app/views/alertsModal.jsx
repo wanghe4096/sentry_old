@@ -32,6 +32,22 @@ const AlertsModal = React.createClass({
     style.unuse();
   },
   render() {
+    const innerSelect = (
+      <Input type="select" className="noborder-l-radius" placeholder="select">
+        <option value="minute">{t('minute')}</option>
+        <option value="hour">{t('hour')}</option>
+        <option value="day">{t('day')}</option>
+        <option value="week">{t('week')}</option>
+      </Input>
+    );
+
+    const innerSelectDirection = (
+      <Input type="select" className="noborder-l-radius" placeholder={t('方向')}>
+        <option value="equal">{t('高于')}</option>
+        <option value="under">{t('低于')}</option>
+      </Input>
+    );
+
     return (
       <Modal show={true} keyboard={true} onHide={this.props.onHide}>
         <Modal.Header closeButton={true}>
@@ -112,97 +128,39 @@ const AlertsModal = React.createClass({
                                                      </span>;
                             case "change":  return <span>
                                                         在设定的时间范围内，如果指定字段出现了新的值，则告警。（默认不统计没有指定字段的event）
-                                                        <Input label={t('时间范围')} help={t('查询所选时间之前的数据')} wrapperClassName="wrapper">
-                                                          <Row>
-                                                            <Col xs={6}>
-                                                              <input type="text" className="form-control" placeholder="val" />
-                                                            </Col>
-                                                            <Col xs={6}>
-                                                              <Input type="select" className="noborder-l-radius" placeholder="select">
-                                                                <option value="minute">{t('minute')}</option>
-                                                                <option value="hour">{t('hour')}</option>
-                                                                <option value="day">{t('day')}</option>
-                                                                <option value="week">{t('week')}</option>
-                                                              </Input>
-                                                            </Col>
-                                                          </Row>
-                                                        </Input>
+                                                        <Input label={t('时间范围')} help={t('查询所选时间之前的数据')} type="text" addonAfter={innerSelect} />
                                                         <Input type="text" label={t('设定需要监控的字段')} placeholder={t('keywords')} />
                                                      </span>;
                             case "frequency":  return <span>
                                                         在设定的时间范围内必须出现设定的event数目，否则触发告警。
                                                         <Input label={t('设定时间范围及事件数')} wrapperClassName="wrapper">
                                                           <Row>
-                                                            <Col xs={5}>
-                                                              <input type="text" className="form-control col-xs-11" placeholder="val" />
-                                                              <span>条</span>
+                                                            <Col xs={6}>
+                                                              <input type="text" className="form-control col-xs-10" placeholder="event number" />
+                                                              <span className="p-l-sm">条</span>
                                                             </Col>
-                                                            <Col xs={4}>
-                                                              <input type="text" className="form-control" placeholder="val" />
-                                                            </Col>
-                                                            <Col xs={3}>
-                                                              <Input type="select" className="noborder-l-radius" placeholder="select">
-                                                                <option value="minute">{t('minute')}</option>
-                                                                <option value="hour">{t('hour')}</option>
-                                                                <option value="day">{t('day')}</option>
-                                                                <option value="week">{t('week')}</option>
-                                                              </Input>
+                                                            <Col xs={6}>
+                                                              <Input placeholder="val"  type="text" addonAfter={innerSelect} />
                                                             </Col>
                                                           </Row>
                                                         </Input>
                                                      </span>;
                             case "spike":  return <span>
                                                         比较从现在和前一个周期范围内，运行查询之间的差异值，不到则告警。
-                                                        <Input label={t('时间范围')} wrapperClassName="wrapper">
-                                                          <Row>
-                                                            <Col xs={6}>
-                                                              <input type="text" className="form-control" placeholder="val" />
-                                                            </Col>
-                                                            <Col xs={6}>
-                                                              <Input type="select" className="noborder-l-radius" placeholder="select">
-                                                                <option value="minute">{t('minute')}</option>
-                                                                <option value="hour">{t('hour')}</option>
-                                                                <option value="day">{t('day')}</option>
-                                                                <option value="week">{t('week')}</option>
-                                                              </Input>
-                                                            </Col>
-                                                          </Row>
-                                                        </Input>
-                                                        <Input label={t('比较')} wrapperClassName="wrapper">
-                                                          <Row>
-                                                            <Col xs={6}>
-                                                              <input type="text" className="form-control" placeholder="val" />
-                                                            </Col>
-                                                            <Col xs={6}>
-                                                              <Input type="select" className="noborder-l-radius" placeholder="select">
-                                                                <option value="minute">{t('minute')}</option>
-                                                                <option value="hour">{t('hour')}</option>
-                                                                <option value="day">{t('day')}</option>
-                                                                <option value="week">{t('week')}</option>
-                                                              </Input>
-                                                            </Col>
-                                                          </Row>
-                                                        </Input>
+                                                        <Input label={t('时间范围')} placeholder="val"  type="text" addonAfter={innerSelect} />
+                                                        <Input label={t('比较')} placeholder="val"  type="text" addonAfter={innerSelect} />
                                                         <Input type="text" label={t('设定告警值')} placeholder={t('val')} />
                                                      </span>;
                             case "flatline":  return <span>
                                                         在设定的时间范围内,出现的event超过设定值，则触发告警。
                                                         <Input label={t('设定时间范围及事件数')} wrapperClassName="wrapper">
                                                           <Row>
-                                                            <Col xs={5}>
-                                                              <input type="text" className="form-control col-xs-11" placeholder="val" />
-                                                              <span>条</span>
+                                                            <Col xs={6}>
+                                                              <input type="text" className="form-control col-xs-10" placeholder="event number" />
+                                                              <span className="p-l-sm">条</span>
                                                             </Col>
-                                                            <Col xs={4}>
-                                                              <input type="text" className="form-control" placeholder="val" />
-                                                            </Col>
-                                                            <Col xs={3}>
-                                                              <Input type="select" className="noborder-l-radius" placeholder="select">
-                                                                <option value="minute">{t('minute')}</option>
-                                                                <option value="hour">{t('hour')}</option>
-                                                                <option value="day">{t('day')}</option>
-                                                                <option value="week">{t('week')}</option>
-                                                              </Input>
+                                                            <Col xs={6}>
+                                                              <Input placeholder="val"  type="text" addonAfter={innerSelect} />
                                                             </Col>
                                                           </Row>
                                                         </Input>
@@ -215,30 +173,14 @@ const AlertsModal = React.createClass({
                                                         在设定的时间范围内值高于或者低于一个设定的值，否则触发告警。
                                                         <Input label={t('设定时间范围，字段，条件')} wrapperClassName="wrapper">
                                                           <Row>
-                                                            <Col xs={4} className="no-p-l-r">
-                                                              <Col xs={6}>
-                                                                <Input type="text" placeholder={t('val')} />
-                                                              </Col>
-                                                              <Col xs={6} className="no-p-l-r">
-                                                                <Input type="select" className="noborder-l-radius" placeholder="select">
-                                                                  <option value="minute">{t('minute')}</option>
-                                                                  <option value="hour">{t('hour')}</option>
-                                                                  <option value="day">{t('day')}</option>
-                                                                  <option value="week">{t('week')}</option>
-                                                                </Input>
-                                                              </Col>
+                                                            <Col xs={4}>
+                                                              <Input placeholder="val"  type="text" addonAfter={innerSelect} />
                                                             </Col>
-                                                            <Col xs={3}>
+                                                            <Col xs={3} className="no-p-l-r">
                                                               <input type="text" className="form-control" placeholder={t('keywords')} />
                                                             </Col>
-                                                            <Col xs={2} className="no-p-l-r">
-                                                              <Input type="select" className="noborder-l-radius" placeholder={t('方向')}>
-                                                                <option value="equal">{t('高于')}</option>
-、                                                                    <option value="under">{t('低于')}</option>
-                                                              </Input>
-                                                            </Col>
-                                                            <Col xs={3}>
-                                                              <input type="text" className="form-control" placeholder="val" />
+                                                            <Col xs={5}>
+                                                              <Input placeholder="val"  type="text" addonBefore={innerSelectDirection} />
                                                             </Col>
                                                           </Row>
                                                         </Input>
@@ -251,19 +193,7 @@ const AlertsModal = React.createClass({
                   <div className="form-group clearfix">
                     <label className="col-xs-2 control-label">{t('执行频率')}</label>
                     <span className="col-xs-10">
-                      <Row>
-                        <Col xs={6}>
-                          <input type="text" className="form-control" placeholder="val" />
-                        </Col>
-                        <Col xs={6}>
-                          <Input type="select" className="noborder-l-radius" placeholder="select">
-                            <option value="minute">{t('minute')}</option>
-                            <option value="hour">{t('hour')}</option>
-                            <option value="day">{t('day')}</option>
-                            <option value="week">{t('week')}</option>
-                          </Input>
-                        </Col>
-                      </Row>
+                      <Input type="text" addonAfter={innerSelect} />
                     </span>
                   </div>
 
