@@ -65,6 +65,7 @@ import StreamTypeIndex from 'views/streamTypeIndex';
 import FileImportApp from 'views/fileImportApp';
 import LiveLogApp from 'views/liveLogApp';
 import PowerPackApp from 'views/powerPackApp';
+import AlertsApp from 'views/alertsApp';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -137,6 +138,8 @@ let routes = (
       <Route path="live/" component={LiveLogApp} />
 
       <Route path="powerpack/" component={PowerPackApp} />
+
+      <Route path="alert/" component={AlertsApp} />
 
       <Route path="events" component={EventsIndex}>
         <IndexRoute component={OrganizationTeams}/>
