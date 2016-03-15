@@ -8,17 +8,6 @@
     input.form-control{
         display: inline-block;
     }
-    // .alert-main{
-    //     display: -webkit-flex;
-    //     display: flex;
-    //     .alert-title{
-    //         width: 80px;
-    //     }
-    //     .alert-input {
-    //       -webkit-flex: 1;
-    //               flex: 1;
-    //     }
-    // }
     .alert-option{
         cursor: pointer;
         i{
@@ -26,16 +15,107 @@
         }
     }
     .other-option{
-        padding-left: 0;
         li{
-            padding-left: 40px;
-            >label{
-                float: left;
-                width: 40px;
-                margin-left: -40px;
-                font-size: 22px;
-                line-height: 40px;
+            display: -webkit-flex;
+            display: flex;
+            .fa{
+                -webkit-flex: none;
+                  flex: none;
+                 width: 30px;
+                 padding-top: 15px;
+            }
+            .col-md-12{
+                -webkit-flex: 1;
+                  flex: 1;
             }
         }
+    }
+}
+
+.alert-list{
+    font-size: 12px;
+    display: -webkit-flex;
+    display: flex;
+    .alert-check{
+        -webkit-flex: none;
+          flex: none;
+         width: 30px;
+         input[type="checkbox"]{
+             margin-left: 0;
+             margin-top: 0;
+         }
+    }
+    .alert-action {
+        -webkit-flex: 1;
+          flex: 1;
+      a{
+          display: block;
+          margin-right: 20px;
+          color: #999;
+          i{
+              width: 1.25em;
+          }
+          &:hover{
+              color: #31A4EF;
+          }
+      }
+      a.alert-delete{
+          &:hover{
+              color: #E35141;
+          }
+      }
+    }
+    .alert-name{
+        -webkit-flex: 1;
+          flex: 1;
+    }
+    .alert-search{
+        -webkit-flex: 1;
+          flex: 1;
+    }
+    .alert-desc{
+        -webkit-flex: 1;
+          flex: 1;
+    }
+    .alert-infomation{
+        -webkit-flex: 1;
+          flex: 1;
+        .checkbox{
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+    }
+}
+
+.alert-header{
+    height: 30px;
+    color: #999;
+    font-weight: bold;
+}
+
+.text-short{
+    overflow: hidden;
+    max-width: 100%;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.p-l-md{
+    padding-left: 15px;
+}
+
+ul{
+    .alert-list{
+        border-top: 1px solid #EFEFEF;
+    }
+    .alert-list:nth-child(even){
+        background-color: #f6f6f6;
+    }
+}
+
+
+.alert-type{
+    span{
+        font-size: 90%;
     }
 }
