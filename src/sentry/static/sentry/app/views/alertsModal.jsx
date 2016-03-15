@@ -31,22 +31,42 @@ const AlertsModal = React.createClass({
   componentWillUnmount() {
     style.unuse();
   },
-  render() {
-    const innerSelect = (
+
+  innerSelect (data) {
+    return (
       <Input type="select" className="noborder-l-radius" placeholder="select">
         <option value="minute">{t('minute')}</option>
         <option value="hour">{t('hour')}</option>
         <option value="day">{t('day')}</option>
         <option value="week">{t('week')}</option>
       </Input>
-    );
+    )
+  },
 
-    const innerSelectDirection = (
+  innerDirection (data) {
+    return (
       <Input type="select" className="noborder-l-radius" placeholder={t('方向')}>
         <option value="equal">{t('高于')}</option>
         <option value="under">{t('低于')}</option>
       </Input>
-    );
+    )
+  },
+  render() {
+    // const innerSelect = (
+    //   <Input type="select" className="noborder-l-radius" placeholder="select">
+    //     <option value="minute">{t('minute')}</option>
+    //     <option value="hour">{t('hour')}</option>
+    //     <option value="day">{t('day')}</option>
+    //     <option value="week">{t('week')}</option>
+    //   </Input>
+    // );
+    //
+    // const innerSelectDirection = (
+    //   <Input type="select" className="noborder-l-radius" placeholder={t('方向')}>
+    //     <option value="equal">{t('高于')}</option>
+    //     <option value="under">{t('低于')}</option>
+    //   </Input>
+    // );
 
     return (
       <Modal show={true} keyboard={true} onHide={this.props.onHide}>
@@ -128,7 +148,7 @@ const AlertsModal = React.createClass({
                                                      </span>;
                             case "change":  return <span>
                                                         在设定的时间范围内，如果指定字段出现了新的值，则告警。（默认不统计没有指定字段的event）
-                                                        <Input label={t('时间范围')} help={t('查询所选时间之前的数据')} type="text" addonAfter={innerSelect} />
+                                                        <Input label={t('时间范围')} help={t('查询所选时间之前的数据')} type="text" addonAfter={this.innerSelect('')} />
                                                         <Input type="text" label={t('设定需要监控的字段')} placeholder={t('keywords')} />
                                                      </span>;
                             case "frequency":  return <span>
@@ -140,15 +160,15 @@ const AlertsModal = React.createClass({
                                                               <span className="p-l-sm">条</span>
                                                             </Col>
                                                             <Col xs={6}>
-                                                              <Input placeholder="val"  type="text" addonAfter={innerSelect} />
+                                                              <Input placeholder="val"  type="text" addonAfter={this.innerSelect('')} />
                                                             </Col>
                                                           </Row>
                                                         </Input>
                                                      </span>;
                             case "spike":  return <span>
                                                         比较从现在和前一个周期范围内，运行查询之间的差异值，不到则告警。
-                                                        <Input label={t('时间范围')} placeholder="val"  type="text" addonAfter={innerSelect} />
-                                                        <Input label={t('比较')} placeholder="val"  type="text" addonAfter={innerSelect} />
+                                                        <Input label={t('时间范围')} placeholder="val"  type="text" addonAfter={this.innerSelect('')} />
+                                                        <Input label={t('比较')} placeholder="val"  type="text" addonAfter={this.innerSelect('')} />
                                                         <Input type="text" label={t('设定告警值')} placeholder={t('val')} />
                                                      </span>;
                             case "flatline":  return <span>
@@ -160,7 +180,7 @@ const AlertsModal = React.createClass({
                                                               <span className="p-l-sm">条</span>
                                                             </Col>
                                                             <Col xs={6}>
-                                                              <Input placeholder="val"  type="text" addonAfter={innerSelect} />
+                                                              <Input placeholder="val"  type="text" addonAfter={this.innerSelect('')} />
                                                             </Col>
                                                           </Row>
                                                         </Input>
@@ -174,13 +194,13 @@ const AlertsModal = React.createClass({
                                                         <Input label={t('设定时间范围，字段，条件')} wrapperClassName="wrapper">
                                                           <Row>
                                                             <Col xs={4}>
-                                                              <Input placeholder="val"  type="text" addonAfter={innerSelect} />
+                                                              <Input placeholder="val"  type="text" addonAfter={this.innerSelect('')} />
                                                             </Col>
                                                             <Col xs={3} className="no-p-l-r">
                                                               <input type="text" className="form-control" placeholder={t('keywords')} />
                                                             </Col>
                                                             <Col xs={5}>
-                                                              <Input placeholder="val"  type="text" addonBefore={innerSelectDirection} />
+                                                              <Input placeholder="val"  type="text" addonBefore={this.innerDirection('xxxx1')} />
                                                             </Col>
                                                           </Row>
                                                         </Input>
@@ -193,7 +213,7 @@ const AlertsModal = React.createClass({
                   <div className="form-group clearfix">
                     <label className="col-xs-2 control-label">{t('执行频率')}</label>
                     <span className="col-xs-10">
-                      <Input type="text" addonAfter={innerSelect} />
+                      <Input type="text" addonAfter={this.innerSelect('')} />
                     </span>
                   </div>
 
