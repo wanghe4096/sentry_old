@@ -26,7 +26,17 @@ import ProjectInstall from 'views/projectInstall';
 import ProjectInstallOverview from 'views/projectInstall/overview';
 import ProjectInstallPlatform from 'views/projectInstall/platform';
 import ProjectReleases from 'views/projectReleases';
-import ProjectSettings from 'views/projectSettings';
+// projects settings
+import ProjectSettings from 'views/projectSettingApp';
+import PSIndex from 'views/projectSetting/index';
+import PSNotifications from 'views/projectSetting/notifications';
+import PSRules from 'views/projectSetting/rules';
+import PSTags from 'views/projectSetting/tags';
+import PSIssueTracking from 'views/projectSetting/issueTracking';
+import PSReleaseTracking from 'views/projectSetting/releaseTracking';
+import PSKeys from 'views/projectSetting/keys';
+import PSPlugins from 'views/projectSetting/plugins';
+
 import ReleaseAllEvents from 'views/releaseAllEvents';
 import ReleaseArtifacts from 'views/releaseArtifacts';
 import ReleaseDetails from 'views/releaseDetails';
@@ -55,14 +65,6 @@ import StreamTypeIndex from 'views/streamTypeIndex';
 import FileImportApp from 'views/fileImportApp';
 import LiveLogApp from 'views/liveLogApp';
 import PowerPackApp from 'views/powerPackApp';
-import PSIndex from 'views/projectSetting';
-import PSNotifications from 'views/projectSetting/notifications';
-import PSRules from 'views/projectSetting/rules';
-import PSTags from 'views/projectSetting/tags';
-import PSIssueTracking from 'views/projectSetting/issueTracking';
-import PSReleaseTracking from 'views/projectSetting/releaseTracking';
-import PSKeys from 'views/projectSetting/keys';
-import PSPlugins from 'views/projectSetting/plugins';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -150,14 +152,14 @@ let routes = (
           </Route>
 
           <Route path="settings/" component={ProjectSettings}>
-            <Route path="r-index/" component={PSIndex} />
-            <Route path="r-notifications/" component={PSNotifications} />
-            <Route path="r-rules/" component={PSRules} />
-            <Route path="r-tags/" component={PSTags} />
-            <Route path="r-issue-tracking/" component={PSIssueTracking} />
-            <Route path="r-release-tracking/" component={PSReleaseTracking} />
-            <Route path="r-keys/" component={PSKeys} />
-            <Route path="r-plugins/" component={PSPlugins} />
+            <IndexRoute component={PSIndex} />
+            <Route path="notifications/" component={PSNotifications} />
+            <Route path="rules/" component={PSRules} />
+            <Route path="tags/" component={PSTags} />
+            <Route path="issue-tracking/" component={PSIssueTracking} />
+            <Route path="release-tracking/" component={PSReleaseTracking} />
+            <Route path="keys/" component={PSKeys} />
+            <Route path="plugins/" component={PSPlugins} />
 
 
             <Route path="install/" component={ProjectInstall}>

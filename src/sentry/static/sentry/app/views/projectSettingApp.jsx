@@ -1,11 +1,12 @@
 import React from 'react';
 
-import ApiMixin from '../../mixins/apiMixin';
-import ConfigStore from '../../stores/configStore';
-import ListLink from '../../components/listLink';
-import LoadingError from '../../components/loadingError';
-import LoadingIndicator from '../../components/loadingIndicator';
-import {t} from '../../locale';
+import ApiMixin from '../mixins/apiMixin';
+import {Link, IndexLink} from 'react-router';
+import ConfigStore from 'stores/configStore';
+import ListLink from 'components/listLink';
+import LoadingError from 'components/loadingError';
+import LoadingIndicator from 'components/loadingIndicator';
+import {t} from '../locale';
 
 const ProjectSettings = React.createClass({
   propTypes: {
@@ -73,7 +74,7 @@ const ProjectSettings = React.createClass({
 
     let urlPrefix = ConfigStore.get('urlPrefix');
     let {orgId, projectId} = this.props.params;
-    let settingsUrlRoot = `${urlPrefix}/${orgId}/events/${projectId}/settings`;
+    let settingsUrlRoot = `/${orgId}/events/${projectId}/settings`;
     let project = this.state.project;
 
     return (
@@ -81,20 +82,52 @@ const ProjectSettings = React.createClass({
         <div className="col-md-2">
           <h6 className="nav-header">{t('Configuration')}</h6>
           <ul className="nav nav-stacked">
-            <li><a href={`${settingsUrlRoot}/`}>{t('Project Settings')}</a></li>
-            <li><a href={`${settingsUrlRoot}/notifications/`}>{t('Notifications')}</a></li>
-            <li><a href={`${settingsUrlRoot}/rules/`}>{t('Rules')}</a></li>
-            <li><a href={`${settingsUrlRoot}/tags/`}>{t('Tags')}</a></li>
-            <li><a href={`${settingsUrlRoot}/issue-tracking/`}>{t('Issue Tracking')}</a></li>
-            <li><a href={`${settingsUrlRoot}/release-tracking/`}>{t('Release Tracking')}</a></li>
+            <li>
+              <IndexLink to={`${settingsUrlRoot}/`} activeClassName="active">
+                {t('Project Settings')}
+              </IndexLink>
+            </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/notifications/`} activeClassName="active">
+                {t('Notifications')}
+              </Link>
+            </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/rules/`} activeClassName="active">
+                {t('Rules')}
+              </Link>
+            </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/tags/`} activeClassName="active">
+                {t('Tags')}
+              </Link>
+            </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/issue-tracking/`} activeClassName="active">
+                {t('Issue Tracking')}
+              </Link>
+            </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/release-tracking/`} activeClassName="active">
+                {t('Release Tracking')}
+              </Link>
+            </li>
           </ul>
           <h6 className="nav-header">{t('Setup')}</h6>
           <ul className="nav nav-stacked">
-            <li><a href={`${settingsUrlRoot}/keys/`}>{t('Client Keys')}</a></li>
+            <li>
+              <Link to={`${settingsUrlRoot}/keys/`} activeClassName="active">
+                {t('Client Keys')}
+              </Link>
+            </li>
           </ul>
           <h6 className="nav-header">{t('Integrations')}</h6>
           <ul className="nav nav-stacked">
-            <li><a href={`${settingsUrlRoot}/plugins/`}>{t('All Integrations')}</a></li>
+            <li>
+              <Link to={`${settingsUrlRoot}/plugins/`} activeClassName="active">
+                {t('All Integrations')}
+              </Link>
+            </li>
             {project.activePlugins.map((plugin) => {
               return <li><a href={`${settingsUrlRoot}/plugins/${plugin.id}/`}>{plugin.name}</a></li>;
             })}
