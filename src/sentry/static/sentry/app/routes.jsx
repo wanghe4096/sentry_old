@@ -36,6 +36,7 @@ import PSIssueTracking from 'views/projectSetting/issueTracking';
 import PSReleaseTracking from 'views/projectSetting/releaseTracking';
 import PSKeys from 'views/projectSetting/keys';
 import PSPlugins from 'views/projectSetting/plugins';
+import PSQuotas from 'views/projectSetting/quotas';
 
 import ReleaseAllEvents from 'views/releaseAllEvents';
 import ReleaseArtifacts from 'views/releaseArtifacts';
@@ -160,7 +161,7 @@ let routes = (
             <Route path="release-tracking/" component={PSReleaseTracking} />
             <Route path="keys/" component={PSKeys} />
             <Route path="plugins/" component={PSPlugins} />
-
+            <Route path="quotas/" component={PSQuotas} />
 
             <Route path="install/" component={ProjectInstall}>
               <IndexRoute component={ProjectInstallOverview}/>

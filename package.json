@@ -59,6 +59,7 @@
     "react-helmet": "^2.3.1",
     "react-lazy-load": "2.0.1",
     "react-router": "1.0.0",
+    "react-select": "^1.0.0-beta11",
     "react-sticky": "3.0.0",
     "react-zeroclipboard": "^3.0.0",
     "redial": "^0.4.1",

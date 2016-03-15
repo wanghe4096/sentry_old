@@ -93,6 +93,11 @@ const ProjectSettings = React.createClass({
               </Link>
             </li>
             <li>
+              <Link to={`${settingsUrlRoot}/quotas/`} activeClassName="active">
+                {t('Rate Limits')}
+              </Link>
+            </li>
+            <li>
               <Link to={`${settingsUrlRoot}/rules/`} activeClassName="active">
                 {t('Rules')}
               </Link>
