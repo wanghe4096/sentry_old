@@ -55,26 +55,20 @@ const BorderMenu = createClass({
         //  title: t('Search')
         // },
         {
-<<<<<<< HEAD
          path: 'fileimport',
          iconClassName: 'fa fa-cloud-upload',
          title: t('File Import')
-=======
-         path: 'addlog',
-         iconClassName: 'fa fa-cloud-upload',
-         title: t('Add Log')
->>>>>>> t/alert
         },
         {
           path: 'live',
           iconClassName: 'fa fa-columns',
           title: t('Live Tail')
         },
-        {
-          path: 'alert',
-          iconClassName: 'fa fa-bell-o',
-          title: t('Alerts')
-        },
+        // {
+        //   path: 'alert',
+        //   iconClassName: 'fa fa-bell-o',
+        //   title: t('Alerts')
+        // },
         {
           path: 'powerpack',
           iconClassName: 'glyphicon glyphicon-briefcase',
