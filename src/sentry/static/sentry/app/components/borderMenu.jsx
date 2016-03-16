@@ -156,11 +156,19 @@ const BorderMenu = createClass({
                   <Link
                     to={'/' + org.slug + '/kb/streamtype/'}
                     onClick={()=>{ this.setState({folded: true}); }}
-                  >事件类型管理</Link></li>
+                  >事件类型管理
+                  </Link>
+                </li>
                 <li><a href="#">项目管理/我参与的项目</a></li>
                 <li><a href="#">Tag管理</a></li>
                 <li><a href="#">账号设置</a></li>
-                <li><a href="#">告警规则管理</a></li>
+                <li>
+                  <Link
+                    to={'/' + org.slug + '/alert/'}
+                    onClick={()=>{ this.setState({folded: true}); }}
+                  >告警规则管理
+                  </Link>
+                </li>
                 <li><a href="#">主页设置</a></li>
                 <li><a href="#">数据源管理（个人）</a></li>
               </ul>
