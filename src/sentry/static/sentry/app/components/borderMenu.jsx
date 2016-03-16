@@ -136,6 +136,7 @@ const BorderMenu = createClass({
 
     let org = this.context.organization || OrganizationStore.items[0];
     let menuClass = " bt-menu-open";
+    let urlPrefix = ConfigStore.get('urlPrefix');
 
     return (
       <div className="leftbar clearfix">
@@ -159,9 +160,23 @@ const BorderMenu = createClass({
                   >事件类型管理
                   </Link>
                 </li>
-                <li><a href="#">项目管理/我参与的项目</a></li>
+                <li>
+                  <Link
+                    to={'/' + org.slug + '/events/'}
+                    onClick={()=>{ this.setState({folded: true}); }}
+                  >项目管理/我参与的项目
+                  </Link>
+                </li>
+                {/*
                 <li><a href="#">Tag管理</a></li>
-                <li><a href="#">账号设置</a></li>
+                */}
+                <li>
+                  <Link
+                    to={'/account/settings/'}
+                    onClick={()=>{ this.setState({folded: true}); }}
+                  >账号设置
+                  </Link>
+                </li>
                 <li>
                   <Link
                     to={'/' + org.slug + '/alert/'}
@@ -170,13 +185,21 @@ const BorderMenu = createClass({
                   </Link>
                 </li>
                 <li><a href="#">主页设置</a></li>
-                <li><a href="#">数据源管理（个人）</a></li>
+                <li>
+                  <Link
+                    to={'/' + org.slug + '/storage/'}
+                    onClick={()=>{ this.setState({folded: true}); }}
+                  >数据源管理（个人）
+                  </Link>
+                </li>
               </ul>
               <ul>
+                {/*
                 <li><a href="#" className="fa fa-dashboard"/></li>
                 <li><a href="#" className="fa fa-refresh">+</a></li>
                 <li><a href="#" className="fa fa-lock"/></li>
-                <li><a href="#" className="fa fa-sign-out"/></li>
+                */}
+                <li><a href={urlPrefix + '/auth/logout/'} className="fa fa-sign-out"/></li>
               </ul>
             </nav>
           </div>
