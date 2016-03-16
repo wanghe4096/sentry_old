@@ -138,7 +138,7 @@ const BorderMenu = createClass({
           <div className="op-thumb">
             <nav id="bt-menu" className={`bt-menu ${this.state.folded ? '':'bt-menu-open'}`} ref="menu">
               <a className="bt-menu-trigger" onClick={this.foldHandler}>
-                <img src={`${Sentry.ConfigStore.config.mediaUrl}images/org-logo-normal.png`}
+                <img src={`/_static/sentry/images/org-logo-normal.png`}
                      className="op-avatar"/>
                 <div className="username-info">
                   <div>{this.state.user.name}</div>
