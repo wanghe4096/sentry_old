@@ -113,7 +113,7 @@ new Client().request('/react/', {
   success : function(data) {
     // console.log(111);
     // console.log('data:',data)
-
+    // data.mediaUrl = '/_static/'; 
     window.Sentry.ConfigStore.loadInitialData(data);
     new App();
   }
