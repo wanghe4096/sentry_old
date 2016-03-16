@@ -43,11 +43,14 @@ const SetHomeApp = React.createClass({
             </div>
             <div className="sub-content">
               <h6>选择您简要作为首页显示的内容，默认为您设定的仪表盘。</h6>
-                <ul className="home-getstart-nav text-center">
+                <ul className="home-getstart-nav text-center set-home">
                   <li>
                     <a href="javascript:;">
                       <i className="fa fa-bug"/>错误管理
                     </a>
+                    <div className="set-check">
+                      <i className="fa fa-check"></i>
+                    </div>
                   </li>
                   <li>
                     <a onClick={this.addDemo}>
@@ -56,17 +59,7 @@ const SetHomeApp = React.createClass({
                   </li>
                   <li>
                     <a href="javascript:;">
-                      <i className="fa fa-cloud-upload"/>添加数据
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
                       <i className="fa fa-columns"/>实时日志
-                    </a>
-                  </li>
-                  <li>
-                    <a href="javascript:;">
-                      <i className="fa fa-bell-o"/>告警管理
                     </a>
                   </li>
                 </ul>
