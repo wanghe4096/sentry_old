@@ -8,7 +8,6 @@ import {t} from '../../locale';
 const ProjectHeader = React.createClass({
   render() {
     let navSection = this.props.activeSection;
-    let urlPrefix = ConfigStore.get('urlPrefix');
     let project = this.props.project;
     let org = this.props.organization;
     let access = new Set(org.access);
@@ -36,9 +35,9 @@ const ProjectHeader = React.createClass({
                 </li>
                 {access.has('project:write') &&
                   <li className={navSection == 'settings' ? 'active' : ''}>
-                    <a href={urlPrefix + `/${org.slug}/events/${project.slug}/settings/`}>
+                    <Link to={`/${org.slug}/events/${project.slug}/settings/`}>
                       {t('Settings')}
-                    </a>
+                    </Link>
                   </li>
                 }
                 <li className={navSection == 'install' ? 'active' : ''}>

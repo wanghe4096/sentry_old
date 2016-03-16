@@ -1,45 +1,26 @@
-{% extends "sentry/bases/auth.html" %}
-{% load sentry_assets %}
-
-{% load crispy_forms_tags %}
 {% load i18n %}
-
-{% block title %}{% trans "Login" %} | {{ block.super }}{% endblock %}
-
-{% block header %}
-{% endblock %}
-{% block bordermenu %}{% endblock %}
-
-{% block auth_main %}
-
+{% load sentry_api %}
+{% load crispy_forms_tags %}
 
 <div class="align-center">
-        <img src="{% asset_url "sentry" "images/logo.png" %}" class="org-avatar">
-
-        <h3>登录到LogInsight</h3>
-    </div>
+    <h3>Login</h3>
+</div>
 <div class="tab-content login-body">
+    <div class="tab-pane{% if op == " login " %} active{% endif %}" id="login">
+        <form class="form-stacked" action="" method="post" autocomplete="off">
+            {% csrf_token %}
+            <input type="hidden" name="op" value="login" />
+            {{ login_form|as_crispy_errors }}
 
-    <div class="tab-pane{% if op == "login" %} active{% endif %}" id="login">
-    <form class="form-stacked" action="" method="post" autocomplete="off">
-        {% csrf_token %}
-
-        <input type="hidden" name="op" value="login" />
-
-        {{ login_form|as_crispy_errors }}
-
-        {% for field in login_form %}
-        {{ field|as_crispy_field }}
-        {% endfor %}
-
-        <fieldset class="form-actions">
-            <button type="submit" class="btn btn-success">{% trans "Login" %}</button> <a class="pull-right" style="margin-top: 9px" href="{% url 'sentry-account-recover' %}">{% trans "Lost your password?" %}</a>
-        </fieldset>
-    </form>
+            {% for field in login_form %}
+            {{ field|as_crispy_field }}
+            {% endfor %}
+            <fieldset class="form-actions">
+                <button type="submit" class="btn btn-success">{% trans "Login" %}</button>
+                <a class="pull-right" style="margin-top: 9px" href="/account/recover/">
+                    {% trans "Lost your password?" %}
+                </a>
+            </fieldset>
+        </form>
+    </div>
 </div>
-</div>
-
-
-{% endblock %}
-
-{% block reactInit %}{% endblock %}

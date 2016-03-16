@@ -22,12 +22,8 @@ const Footer = React.createClass({
       <footer>
         <div className="container">
           <div className="pull-right">
-            <a href={config.urlPrefix + '/api/'}>{t('API')}</a>
-            <a href={config.urlPrefix + '/docs/'}>{t('Docs')}</a>
-            <a href="https://github.com/getsentry/sentry">{t('Contribute')}</a>
-          </div>
-          <div className="version pull-left">
-            Sentry {config.version.current}
+            <a href={'http://loginsight.cn/api/'}>{t('API')}</a>
+            <a href={'http://loginsight.cn/docs/'}>{t('Docs')}</a>
           </div>
           <a href="/" className="icon-sentry-logo"></a>
           {this.state.hooks}
@@ -38,4 +34,3 @@ const Footer = React.createClass({
 });
 
 export default Footer;
-

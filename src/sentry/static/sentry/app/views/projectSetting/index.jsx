@@ -1,4 +1,5 @@
 import React from 'react';
+import {t} from '../../locale';
 
 const PSIndex = React.createClass({
   render() {
@@ -102,7 +103,6 @@ const PSIndex = React.createClass({
                   Auto resolve
                 </label>
                 <div className="controls ">
-                  <div className="slider" id="id_resolve_age-slider"></div>
                   <input
                     className="rangeinput form-control"
                     id="id_resolve_age"
@@ -181,9 +181,7 @@ const PSIndex = React.createClass({
             </div>
             <div className="box-content with-padding">
               <p>
-                Configure origin URLs which LogInsight should accept
-                events from. This is used for communication with clients like
-                <a href="https://github.com/getsentry/raven-js">raven-js</a>.
+                {t('Configure origin URLs which LogInsight should acceptevents from. This is used for communication with clients like raven-js.')}
                 <br /> This will restrict requests based on the
                 <code>Origin</code> and
                 <code>Referer</code> headers.
@@ -264,13 +262,10 @@ const PSIndex = React.createClass({
             </div>
             <div className="box-content with-padding">
               <p className="clearfix">
-                <a href="/test11/events/hello/settings/remove/"
-                  className="btn btn-danger pull-right">
+                <span className="btn btn-danger pull-right">
                   Remove Project
-                </a>
-                Remove the
-                <strong>hello</strong> project and all related data.
-                <br /> Careful, this action cannot be undone.
+                </span>
+                Remove the <strong>hello</strong> project and all related data.Careful, this action cannot be undone.
               </p>
             </div>
           </div>

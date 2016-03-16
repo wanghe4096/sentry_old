@@ -22,7 +22,7 @@ const ProjectTable = React.createClass({
     let projectTotals = this.props.projectTotals;
     let orgTotal = this.props.orgTotal;
     let org = this.props.organization;
-    let urlPrefix = ConfigStore.get('urlPrefix') + '/' + org.slug;
+    let urlPrefix = '/' + org.slug;
 
     if (!projectTotals) {
       return <div/>;

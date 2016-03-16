@@ -36,6 +36,7 @@ import PSIssueTracking from 'views/projectSetting/issueTracking';
 import PSReleaseTracking from 'views/projectSetting/releaseTracking';
 import PSKeys from 'views/projectSetting/keys';
 import PSPlugins from 'views/projectSetting/plugins';
+import PSQuotas from 'views/projectSetting/quotas';
 
 import ReleaseAllEvents from 'views/releaseAllEvents';
 import ReleaseArtifacts from 'views/releaseArtifacts';
@@ -81,12 +82,12 @@ let routes = (
 
     <IndexRedirect to={defaultOrg.slug}/>
 
-    <Redirect from="/events" to={defaultOrg.slug + '/events'}/>
-    <Redirect from="/storage" to={defaultOrg.slug + '/storage'}/>
-    <Redirect from="/search" to={defaultOrg.slug+'/search'}/>
-    <Redirect from="/dashboard" to={defaultOrg.slug+'/dashboard'}/>
-    <Redirect from="/home" to={defaultOrg.slug + '/home'}/>
-    <Redirect from="/streamtype" to={defaultOrg.slug + '/streamtype'}/>
+    <Redirect from="/events" to={defaultOrg.slug + '/events/'} />
+    <Redirect from="/storage" to={defaultOrg.slug + '/storage/'} />
+    <Redirect from="/search" to={defaultOrg.slug+'/search/'} />
+    <Redirect from="/dashboard" to={defaultOrg.slug+'/dashboard/'} />
+    <Redirect from="/home" to={defaultOrg.slug + '/home/'} />
+    <Redirect from="/streamtype" to={defaultOrg.slug + '/streamtype/'} />
 
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/"/>
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails}/>
@@ -101,19 +102,18 @@ let routes = (
       }
       <Route path="/organizations/:orgId/stats/" component={OrganizationStats}/>
 
-      <IndexRedirect to="home"/>
+      <IndexRedirect to="home/"/>
 
-      <Route path="home" component={HomeApp}/>
+      <Route path="home/" component={HomeApp}/>
 
-		  <Route path="fileimport" component={FileImportApp}/>
+		  <Route path="fileimport/" component={FileImportApp}/>
 
-
-      <Route path="storage" component={StorageApp}>
+      <Route path="storage/" component={StorageApp}>
         <IndexRoute component={StorageIndex}/>
         <Route path="preview/:logId" component={LogPreview}/>
       </Route>
 
-      <Route path="extract" component={ExtractApp}>
+      <Route path="extract/" component={ExtractApp}>
         <IndexRoute component={ExtractIndex}/>
         <Route path=":streamId/:action" component={ExtractorApp}>
           <IndexRoute component={ExtractorEvents}/>
@@ -141,7 +141,8 @@ let routes = (
 
       <Route path="alert/" component={AlertsApp} />
 
-      <Route path="events" component={EventsIndex}>
+      <Route path="events/" component={EventsIndex}>
+
         <IndexRoute component={OrganizationTeams}/>
         <Route path=":projectId/" component={ProjectDetails}>
           <IndexRoute component={Stream}/>
@@ -163,7 +164,7 @@ let routes = (
             <Route path="release-tracking/" component={PSReleaseTracking} />
             <Route path="keys/" component={PSKeys} />
             <Route path="plugins/" component={PSPlugins} />
-
+            <Route path="quotas/" component={PSQuotas} />
 
             <Route path="install/" component={ProjectInstall}>
               <IndexRoute component={ProjectInstallOverview}/>
