@@ -32,7 +32,7 @@ const PowerPackApp = React.createClass({
           <div className="col-md-12">
             <div className="pack-header text-center hide">
               <span className="logo">
-                <img src={`${Sentry.ConfigStore.config.mediaUrl}images/logo-white.png`} />
+                <img src={`/_static/sentry/images/logo-white.png`} />
                 <span>
                   {t('增强版')}
                 </span>
@@ -42,7 +42,7 @@ const PowerPackApp = React.createClass({
               <div className="col-md-3 text-center">
                 <ul>
                   <li>
-                    <img src={`${Sentry.ConfigStore.config.mediaUrl}images/po-search.png`} />
+                    <img src={`/_static/sentry/images/po-search.png`} />
                   </li>
                   <li>
                     <span>
@@ -59,7 +59,7 @@ const PowerPackApp = React.createClass({
               <div className="col-md-3 text-center">
                 <ul>
                   <li>
-                    <img src={`${Sentry.ConfigStore.config.mediaUrl}images/po-dashboard.png`} />
+                    <img src={`/_static/sentry/images/po-dashboard.png`} />
                   </li>
                   <li>
                     <span>
@@ -76,7 +76,7 @@ const PowerPackApp = React.createClass({
               <div className="col-md-3 text-center">
                 <ul>
                   <li>
-                    <img src={`${Sentry.ConfigStore.config.mediaUrl}images/po-visual.png`} />
+                    <img src={`/_static/sentry/images/po-visual.png`} />
                   </li>
                   <li>
                     <span>
@@ -93,7 +93,7 @@ const PowerPackApp = React.createClass({
               <div className="col-md-3 text-center">
                 <ul>
                   <li>
-                    <img src={`${Sentry.ConfigStore.config.mediaUrl}images/po-addlog.png`} />
+                    <img src={`/_static/sentry/images/po-addlog.png`} />
                   </li>
                   <li>
                     <span>
@@ -111,7 +111,7 @@ const PowerPackApp = React.createClass({
             <div className="pack-content">
               <div className="content-info clearfix">
                 <div className="col-md-7">
-                  <img src={`${Sentry.ConfigStore.config.mediaUrl}images/search-desc.png`} />
+                  <img src={`/_static/sentry/images/search-desc.png`} />
                 </div>
                 <div className="col-md-5">
                   <ul>
@@ -169,12 +169,12 @@ const PowerPackApp = React.createClass({
                   </ul>
                 </div>
                 <div className="col-md-7">
-                  <img src={`${Sentry.ConfigStore.config.mediaUrl}images/visual-desc.png`} />
+                  <img src={`/_static/sentry/images/visual-desc.png`} />
                 </div>
               </div>
               <div className="content-info clearfix">
                 <div className="col-md-7">
-                  <img src={`${Sentry.ConfigStore.config.mediaUrl}images/search-desc.png`} />
+                  <img src={`/_static/sentry/images/search-desc.png`} />
                 </div>
                 <div className="col-md-5">
                   <ul>
@@ -238,7 +238,7 @@ const PowerPackApp = React.createClass({
                   </ul>
                 </div>
                 <div className="col-md-7">
-                  <img src={`${Sentry.ConfigStore.config.mediaUrl}images/visual-desc.png`} />
+                  <img src={`/_static/sentry/images/visual-desc.png`} />
                 </div>
               </div>
             </div>

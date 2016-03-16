@@ -89,7 +89,13 @@ export class Client {
         'Accept': 'application/json; charset=utf-8'
       },
       success: this.wrapCallback(id, options.success),
-      error: this.wrapCallback(id, options.error),
+      error: this.wrapCallback(id, function(event,xhr,options,exc) {
+        if(event.status === 401) {
+          window.location.href = '/auth/login/'
+          return;
+        }
+        options.error && options.error();
+      }),
       complete: this.wrapCallback(id, options.complete, true)
     }));
 
@@ -235,4 +241,3 @@ export class Client {
     }, options);
   }
 }
-

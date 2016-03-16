@@ -72,7 +72,7 @@ const ProjectSettings = React.createClass({
     else if (this.state.error)
       return <LoadingError onRetry={this.fetchData} />;
 
-    let urlPrefix = ConfigStore.get('urlPrefix');
+    let urlPrefix = '/';
     let {orgId, projectId} = this.props.params;
     let settingsUrlRoot = `/${orgId}/events/${projectId}/settings`;
     let project = this.state.project;
@@ -90,6 +90,11 @@ const ProjectSettings = React.createClass({
             <li>
               <Link to={`${settingsUrlRoot}/notifications/`} activeClassName="active">
                 {t('Notifications')}
+              </Link>
+            </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/quotas/`} activeClassName="active">
+                {t('Rate Limits')}
               </Link>
             </li>
             <li>
@@ -118,6 +123,11 @@ const ProjectSettings = React.createClass({
             <li>
               <Link to={`${settingsUrlRoot}/keys/`} activeClassName="active">
                 {t('Client Keys')}
+              </Link>
+            </li>
+            <li>
+              <Link to={`${settingsUrlRoot}/install/`} activeClassName="active">
+                {t('Access')}
               </Link>
             </li>
           </ul>
