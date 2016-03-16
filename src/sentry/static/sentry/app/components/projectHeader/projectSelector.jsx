@@ -120,7 +120,7 @@ const ProjectSelector = React.createClass({
     if (this.context.location) {
       return {to: path};
     } else {
-      return {href: ConfigStore.get('urlPrefix') + path};
+      return {href: '/' + path};
     }
   },
 

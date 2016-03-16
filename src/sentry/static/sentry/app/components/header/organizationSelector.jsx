@@ -30,7 +30,6 @@ const OrganizationSelector = React.createClass({
       return null;
     }
 
-    let urlPrefix = ConfigStore.get('urlPrefix');
     let features = ConfigStore.get('features');
 
     return (

@@ -50,7 +50,7 @@ const ExpandedTeamList = React.createClass({
 
   urlPrefix() {
     let org = this.props.organization;
-    return ConfigStore.get('urlPrefix') + '/organizations/' + org.slug;
+    return '/organizations/' + org.slug;
   },
 
   renderTeamNode(team, urlPrefix) {

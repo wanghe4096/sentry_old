@@ -92,7 +92,7 @@ const OrganizationTeams = React.createClass({
     let access = this.getAccess();
     let features = this.getFeatures();
     let org = this.getOrganization();
-    let urlPrefix = ConfigStore.get('urlPrefix') + '/organizations/' + org.slug;
+    let urlPrefix = '/organizations/' + org.slug;
 
     let activeNav = this.state.activeNav;
     let allTeams = this.state.teamList;

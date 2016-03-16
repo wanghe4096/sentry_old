@@ -72,7 +72,7 @@ const ProjectSettings = React.createClass({
     else if (this.state.error)
       return <LoadingError onRetry={this.fetchData} />;
 
-    let urlPrefix = ConfigStore.get('urlPrefix');
+    let urlPrefix = '/';
     let {orgId, projectId} = this.props.params;
     let settingsUrlRoot = `/${orgId}/events/${projectId}/settings`;
     let project = this.state.project;
