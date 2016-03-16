@@ -39,7 +39,7 @@ const AlertsApp = React.createClass({
         <div className="sub-app alerts">
           <div className="container">
             <div className="sub-header">
-              <h5 className="pull-left">告警</h5>
+              <h5 className="pull-left">{t('Alert')}</h5>
               <a href="javascript:;" className="pull-right new-alert" onClick={this.alertsPage}>
                 <i className="fa fa-plus"></i>
                 {t('新建告警规则')}

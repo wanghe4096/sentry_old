@@ -66,6 +66,7 @@ import FileImportApp from 'views/fileImportApp';
 import LiveLogApp from 'views/liveLogApp';
 import PowerPackApp from 'views/powerPackApp';
 import AlertsApp from 'views/alertsApp';
+import SetHomeApp from 'views/setHomeApp';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -104,6 +105,8 @@ let routes = (
       <IndexRedirect to="home"/>
 
       <Route path="home" component={HomeApp}/>
+
+      <Route path="homeset/" component={SetHomeApp} />
 
 		  <Route path="fileimport" component={FileImportApp}/>
 

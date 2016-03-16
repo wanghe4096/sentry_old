@@ -184,7 +184,13 @@ const BorderMenu = createClass({
                   >告警规则管理
                   </Link>
                 </li>
-                <li><a href="#">主页设置</a></li>
+                <li>
+                  <Link
+                    to={'/' + org.slug + '/homeset/'}
+                    onClick={()=>{ this.setState({folded: true}); }}
+                  >主页设置
+                  </Link>
+                </li>
                 <li>
                   <Link
                     to={'/' + org.slug + '/storage/'}
