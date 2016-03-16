@@ -48,9 +48,11 @@ const SetHomeApp = React.createClass({
                     <a href="javascript:;">
                       <i className="fa fa-bug"/>错误管理
                     </a>
+                    {/*
                     <div className="set-check">
                       <i className="fa fa-check"></i>
                     </div>
+                    */}
                   </li>
                   <li>
                     <a onClick={this.addDemo}>
@@ -63,6 +65,18 @@ const SetHomeApp = React.createClass({
                     </a>
                   </li>
                 </ul>
+                <div>
+                  <div className="col-md-3"></div>
+                  <div className="col-md-6 clearfix">
+                    <Input type="select" label={t('选择你即将要设置为首页的仪表盘')} className="select-height" placeholder="select dashboard">
+                      <option value="dashboard1">{t('dashboard1')}</option>
+                      <option value="dashboard2">{t('dashboard2')}</option>
+                      <option value="dashboard3">{t('dashboard3')}</option>
+                      <option value="dashboard4">{t('dashboard4')}</option>
+                    </Input>
+                  </div>
+                  <div className="col-md-3"></div>
+                </div>
                 <div className="homeset-save">
                   <button className="btn btn-success">点击更改</button>
                 </div>

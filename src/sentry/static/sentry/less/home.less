@@ -153,6 +153,11 @@
       color: #999;
     }
 
+    &:focus,&:active {
+        border-color: #65a637;
+        outline: none;
+    }
+
     .icon-chart {
 
       .fa {
@@ -168,24 +173,55 @@
 
 .homeset-save{
     text-align: center;
-    padding-top: 5em;
+    padding-top: 10em;
     button{
         padding: 8px 60px;
     }
 }
 
-.set-home{
+.set-homemodal{
     li{
         position: relative;
+        display: inline-block;
+        margin: 0 8px 8px;
+        a{
+            display: block;
+            text-align: left;
+            min-width: 130px;
+            padding: 8px 16px;
+            color: #65a637;;
+            background-color: rgba(100, 160, 50, .1);
+            border-radius: 3px;
+
+            &:hover {
+              background-color: #65a637;
+              text-decoration: none;
+              color: #ffffff;
+
+              i {
+                color: #ffffff;
+                opacity: .6;
+                filter: alpha(opacity=60);
+              }
+          }
+
+            i{
+                font-size: 14px;
+                margin-right: 5px;
+                color: #65a637;
+            }
+        }
         .set-check{
             position: absolute;
             width: 100%;
             height: 100%;
             top: 0;
-            line-height: 120px;
-            font-size: 66px;
+            font-size: 18px;
             color: #65A637;
             background-color: rgba(255, 255, 255, .5);
+            i{
+                padding: 10px 4px 0 0;
+            }
         }
     }
 }
