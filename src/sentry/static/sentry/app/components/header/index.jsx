@@ -19,7 +19,9 @@ const Header = React.createClass({
     return (
       <header>
         <div className="container">
+          {/*
           <SearchTextInput />
+          */}
           {/*
           <div className="col-md-2">
             <SearchTextInput />
