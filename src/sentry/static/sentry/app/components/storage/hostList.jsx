@@ -92,7 +92,7 @@ const HostList = React.createClass({
       return (
         <div className="box empty-stream">
           <span className="icon icon-exclamation"/>
-          <p>{t('Sorry, no host match your account.')}</p>
+          <p>{t('no host match your account.')}</p>
         </div>
       );
     } else {
@@ -104,22 +104,12 @@ const HostList = React.createClass({
     }
   },
 
-  addHostHandler() {
-    HostAction.add();
-  },
-
   render() {
 
     return (
       <div className="list-wrap host-list">
         <div className="list-head">
           <h5>{t('Host List')}</h5>
-
-          <button className="btn btn-sm btn-default" onClick={this.addHostHandler}>
-            <span className="glyphicon glyphicon-plus"></span>
-            {t('DEMO: add Host')}
-          </button>
-
         </div>
         <ul>
           {this.renderBody()}

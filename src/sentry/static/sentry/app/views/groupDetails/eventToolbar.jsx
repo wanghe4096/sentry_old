@@ -78,7 +78,7 @@ let GroupEventToolbar  = React.createClass({
         <h4>Event {evt.eventID}</h4>
         <span>
           <DateTime date={evt.dateCreated} />
-          <a href={jsonUrl} target="_blank" className="json-link">JSON &#40;<FileSize bytes={evt.size} />&#41;</a>
+          <a href={jsonUrl} target="_blank" className="hide json-link">JSON &#40;<FileSize bytes={evt.size} />&#41;</a>
         </span>
       </div>
     );

@@ -13,9 +13,10 @@ const RequestActions = React.createClass({
       project.slug + '/issues/' + group.id
     );
 
+    // TODO: 此处需要做 react 化
     return (
       <a href={urlPrefix + '/events/' + evt.id + '/replay/'}
-         className="btn btn-sm btn-default">{t('Replay Request')}</a>
+         className="hide btn btn-sm btn-default">{t('Replay Request')}</a>
     );
   }
 });

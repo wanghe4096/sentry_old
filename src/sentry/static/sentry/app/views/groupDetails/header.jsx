@@ -103,7 +103,7 @@ const GroupHeader = React.createClass({
               <span className="message">{group.culprit}</span>
               {group.logger &&
                 <span className="event-annotation">
-                  <Link to={`/${orgId}/${projectId}/`} query={{query: 'logger:' + group.logger}}>
+                  <Link to={`/${orgId}/events/${projectId}/`} query={{query: 'logger:' + group.logger}}>
                     {group.logger}
                   </Link>
                 </span>
@@ -124,14 +124,14 @@ const GroupHeader = React.createClass({
               </div>
               <div className="col-xs-4 count align-right">
                 <h6 className="nav-header">{t('Events')}</h6>
-                <Link to={`/${orgId}/${projectId}/issues/${groupId}/events/`}>
+                <Link to={`/${orgId}/events/${projectId}/issues/${groupId}/events/`}>
                   <Count className="count" value={group.count} />
                 </Link>
               </div>
               <div className="col-xs-4 count align-right">
                 <h6 className="nav-header">{t('Users')}</h6>
                 {userCount !== 0 ?
-                  <Link to={`/${orgId}/${projectId}/issues/${groupId}/tags/user/`}>
+                  <Link to={`/${orgId}/events/${projectId}/issues/${groupId}/tags/user/`}>
                     <Count className="count" value={userCount} />
                   </Link>
                 :
@@ -152,7 +152,7 @@ const GroupHeader = React.createClass({
         </div>
         <ul className="nav nav-tabs">
           <ListLink to={`/${orgId}/events/${projectId}/issues/${groupId}/`} isActive={function (to) {
-            let rootGroupPath = `/${orgId}/${projectId}/issues/${groupId}/`;
+            let rootGroupPath = `/${orgId}/events/${projectId}/issues/${groupId}/`;
             let pathname = this.context.location.pathname;
 
             // Because react-router 1.0 removes router.isActive(route)
