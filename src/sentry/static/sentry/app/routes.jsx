@@ -69,6 +69,8 @@ import PowerPackApp from 'views/powerPackApp';
 import AlertsApp from 'views/alertsApp';
 import SetHomeApp from 'views/setHomeApp';
 
+import SassIndex from 'views/sassIndex'
+
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
   if (lastChar !== '/') {
@@ -76,24 +78,26 @@ function appendTrailingSlash(nextState, replaceState) {
   }
 }
 
-const defaultOrg = OrganizationStore.items[0];
+// const defaultOrg = OrganizationStore.items[0];
 
 let routes = (
   <Route path="/" component={App}>
 
-    <IndexRedirect to={defaultOrg.slug}/>
+    {
+      // <IndexRedirect to={defaultOrg.slug}/>
+      // <Redirect from="/events" to={defaultOrg.slug + '/events/'} />
+      // <Redirect from="/storage" to={defaultOrg.slug + '/storage/'} />
+      // <Redirect from="/search" to={defaultOrg.slug+'/search/'} />
+      // <Redirect from="/dashboard" to={defaultOrg.slug+'/dashboard/'} />
+      // <Redirect from="/home" to={defaultOrg.slug + '/home/'} />
+      // <Redirect from="/streamtype" to={defaultOrg.slug + '/streamtype/'} />
+    }
 
-    <Redirect from="/events" to={defaultOrg.slug + '/events/'} />
-    <Redirect from="/storage" to={defaultOrg.slug + '/storage/'} />
-    <Redirect from="/search" to={defaultOrg.slug+'/search/'} />
-    <Redirect from="/dashboard" to={defaultOrg.slug+'/dashboard/'} />
-    <Redirect from="/home" to={defaultOrg.slug + '/home/'} />
-    <Redirect from="/streamtype" to={defaultOrg.slug + '/streamtype/'} />
-
+    <IndexRoute component={SassIndex} />
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/"/>
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails}/>
 
-    <Route path="/:orgId/" component={OrganizationDetails}>
+    <Route path="/:orgId/" component={OrganizationDetails} >
       {
         //<IndexRoute component={OrganizationTeams} />
         //<Route path="/organizations/:orgId/issues/assigned/" component={MyIssuesAssignedToMe} />

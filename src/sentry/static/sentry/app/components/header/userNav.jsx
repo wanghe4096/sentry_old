@@ -30,7 +30,7 @@ const UserNav = React.createClass({
     let urlPrefix = ConfigStore.get('urlPrefix');
     let user = ConfigStore.get('user');
     let org = this.getOrganization();
-
+    
     if (!user) {
       // TODO
       return null;

@@ -838,6 +838,17 @@ SENTRY_DISALLOWED_IPS = (
     '255.255.255.255/32',
 )
 
+# ALLOW HOST
+ALLOWED_HOSTS = [
+    'li.io',  # Allow domain and subdomains
+    # '.example.com.',  # Also allow FQDN and subdomains
+    'loginsight.io',
+    'localhost',
+    '127.0.0.1',
+    '192.168.200.120',
+]
+
+
 # Fields which managed users cannot change via Sentry UI. Username and password
 # cannot be changed by managed users. Optionally include 'email' and
 # 'name' in SENTRY_MANAGED_USER_FIELDS.
