@@ -1,6 +1,7 @@
 import React from 'react';
 import Reflux from 'reflux';
 import OrganizationStore from 'stores/organizationStore';
+import ConfigStore from 'stores/configStore';
 
 const SassIndex = React.createClass({
   mixins:[
@@ -9,6 +10,7 @@ const SassIndex = React.createClass({
   render() {
 
     console.log('orgList:',this.state.orgList);
+    console.log('user:',ConfigStore.get('user'));
 
     return (
       <div>
