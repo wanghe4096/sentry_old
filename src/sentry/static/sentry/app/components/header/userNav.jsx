@@ -26,8 +26,6 @@ const UserNav = React.createClass({
   },
 
   render() {
-
-    let urlPrefix = ConfigStore.get('urlPrefix');
     let user = ConfigStore.get('user');
     let org = this.getOrganization();
 
@@ -45,13 +43,13 @@ const UserNav = React.createClass({
           topLevelClasses={this.props.className}
           menuClasses="dropdown-menu-right"
           title={title}>
-        <MenuItem href={urlPrefix + '/account/settings/'}>{t('Account')}</MenuItem>
+        <MenuItem to={'/account/settings/'}>{t('Account')}</MenuItem>
         <li>
           <Link
-            to={`/organizations/${org.slug}/stats/`}>{t('Stats')}
+            to={`/${org.slug}/manage/stats/`}>{t('Stats')}
           </Link>
         </li>
-        <MenuItem href={urlPrefix + '/auth/logout/'}>{t('Sign out')}</MenuItem>
+        <MenuItem to={'/auth/logout/'}>{t('Sign out')}</MenuItem>
       </DropdownLink>
     );
   }
