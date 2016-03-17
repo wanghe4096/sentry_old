@@ -97,7 +97,6 @@ let routes = (
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/"/>
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails}/>
 
-    <Route path="/organizations/:orgId/stats/" component={OrganizationStats}/>
     <Route path="/organizations/new/" component={AddOrganization}/>
 
     <Route path="/:orgId/" component={OrganizationDetails} >
@@ -112,6 +111,11 @@ let routes = (
       <IndexRedirect to="home/"/>
 
       <Route path="home/" component={HomeApp}/>
+
+      <Route path="manage/" component={BlockView} >
+        // <Route path="stats/" component={OrganizationStats}/>
+        <IndexRoute component={OrganizationStats}/>
+      </Route>
 
       <Route path="homeset/" component={SetHomeApp} />
 
