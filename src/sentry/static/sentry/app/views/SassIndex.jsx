@@ -13,6 +13,24 @@ const SassIndex = React.createClass({
     Reflux.connect(OrganizationStore, 'orgList')
   ],
 
+  getInitialState() {
+    return {
+      org: ''
+    }
+  },
+
+  handleOrg(e) {
+    this.setState({
+      org: e.target.value
+    });
+  },
+
+  renderOrgList() {
+    return this.state.orgList.map((org) => (
+      <option key={org.slug} value={org.slug}>{org.name}</option>
+    ));
+  },
+
   render() {
     let org = this.context.organization || OrganizationStore.items[0];
 
@@ -32,7 +50,7 @@ const SassIndex = React.createClass({
             <div className="btn-config">
               <Link
                 className="btn btn-xs btn-default"
-                to={`/${org.slug}/manage`}
+                to={`/${org.slug}/account/settings`}
               >
                 <i className="fa fa-cog"></i>
               </Link>
@@ -41,15 +59,21 @@ const SassIndex = React.createClass({
         </div>
         <div className="org-body col-md-12">
           <form onSubmit={this.submitHandler}>
-            <Input type="select" label={t('Select your organization')} placeholder="select" className="select-height">
-              <option value="select">organization1</option>
-              <option value="other">organization2</option>
-            </Input>
-            
+            <div className="form-group">
+              <select
+                className="form-control select-height"
+                value={this.state.org}
+                onChange={this.handleOrg}>
+                {this.renderOrgList()}
+              </select>
+            </div>
             <div className="form-group form-actions text-right">
-              <button type="submit" className="btn btn-sm btn-logo">
-                 Login to LogInsight
-              </button>
+              <Link
+                className="btn btn-sm btn-logo"
+                to={`/${org.slug}`}
+              >
+                <small>Login to LogInsight</small>
+              </Link>
             </div>
             <div className="org-footer">
                 <div className="text-center">
