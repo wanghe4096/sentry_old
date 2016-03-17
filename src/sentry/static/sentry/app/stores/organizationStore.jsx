@@ -1,8 +1,10 @@
 import Reflux from 'reflux';
 
 const OrganizationStore = Reflux.createStore({
-  init() {
-    this.items = [];
+  items: [],
+
+  getInitialState() {
+    return this.items;
   },
 
   get(slug) {
@@ -24,4 +26,3 @@ const OrganizationStore = Reflux.createStore({
 });
 
 export default OrganizationStore;
-
