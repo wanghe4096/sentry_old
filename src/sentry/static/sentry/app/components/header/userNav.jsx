@@ -18,7 +18,7 @@ const UserNav = React.createClass({
 
   getOrganizationStatsEndpoint() {
      let params = this.props.params;
-     return '/organizations/' + params.orgId + '/stats/';
+     return params.orgId + '/manage/stats/';
   },
 
   shouldComponentUpdate(nextProps, nextState) {
@@ -30,7 +30,7 @@ const UserNav = React.createClass({
     let urlPrefix = ConfigStore.get('urlPrefix');
     let user = ConfigStore.get('user');
     let org = this.getOrganization();
-    
+
     if (!user) {
       // TODO
       return null;

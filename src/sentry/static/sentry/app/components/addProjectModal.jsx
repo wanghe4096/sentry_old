@@ -166,7 +166,7 @@ const ProjectModal = React.createClass({
                   onChange={this.handleTeam}>
                   {this.renderTeamList()}
                 </select>
-                <span className="help-block">The team controls who has access to this project.</span>
+                <span className="help-block">{t('The team controls who has access to this project.')}</span>
               </div>
             </div>
 

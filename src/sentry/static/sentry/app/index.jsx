@@ -65,7 +65,7 @@ App.prototype = {
     let routes = require('./routes');
     ReactDOM.render(
       React.createElement(Router.Router, {history: Sentry.createHistory()}, routes),
-      document.body
+      document.getElementById('app-body')
     );
 
   }
@@ -113,7 +113,7 @@ new Client().request('/react/', {
   success : function(data) {
     // console.log(111);
     // console.log('data:',data)
-    // data.mediaUrl = '/_static/'; 
+    // data.mediaUrl = '/_static/';
     window.Sentry.ConfigStore.loadInitialData(data);
     new App();
   }

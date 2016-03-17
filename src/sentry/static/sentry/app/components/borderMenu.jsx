@@ -70,6 +70,11 @@ const BorderMenu = createClass({
         //   title: t('Alerts')
         // },
         {
+          path: 'manage',
+          iconClassName: 'fa fa-cog',
+          title: t('Organization Manage')
+        },
+        {
           path: 'powerpack',
           iconClassName: 'glyphicon glyphicon-briefcase',
           title: t('Powerpack')
