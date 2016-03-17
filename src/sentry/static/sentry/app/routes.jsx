@@ -68,7 +68,7 @@ import LiveLogApp from 'views/liveLogApp';
 import PowerPackApp from 'views/powerPackApp';
 import AlertsApp from 'views/alertsApp';
 import SetHomeApp from 'views/setHomeApp';
-
+import AddOrganization from 'views/addOrganization';
 import SassIndex from 'views/sassIndex'
 
 function appendTrailingSlash(nextState, replaceState) {
@@ -97,6 +97,9 @@ let routes = (
     <Redirect from="/share/group/:shareId/" to="/share/issue/:shareId/"/>
     <Route path="/share/issue/:shareId/" component={SharedGroupDetails}/>
 
+    <Route path="/organizations/:orgId/stats/" component={OrganizationStats}/>
+    <Route path="/organizations/new/" component={AddOrganization}/>
+
     <Route path="/:orgId/" component={OrganizationDetails} >
       {
         //<IndexRoute component={OrganizationTeams} />
@@ -105,7 +108,6 @@ let routes = (
         //<Route path="/organizations/:orgId/issues/history/" component={MyIssuesViewed} />
         //<Route path="/organizations/:orgId/rate-limits/" component={OrganizationRateLimits} />
       }
-      <Route path="/organizations/:orgId/stats/" component={OrganizationStats}/>
 
       <IndexRedirect to="home/"/>
 
