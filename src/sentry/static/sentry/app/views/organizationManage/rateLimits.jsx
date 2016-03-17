@@ -3,7 +3,6 @@ import React from 'react';
 
 import ApiMixin from '../../mixins/apiMixin';
 import IndicatorStore from '../../stores/indicatorStore';
-import OrganizationHomeContainer from '../../components/organizations/homeContainer';
 import OrganizationState from '../../mixins/organizationState';
 import {t} from '../../locale';
 
@@ -156,20 +155,18 @@ const OrganizationRateLimits = React.createClass({
     let maxRate = org.quota.maxRate;
 
     return (
-      <OrganizationHomeContainer>
-        <div className="box">
-          <div className="box-header">
-            <h3>Rate Limits</h3>
-          </div>
-          <div className="box-content with-padding">
-            {maxRate !== 0 ?
-              <RateLimitEditor organization={org} />
-            :
-              <p>There are no rate limits configured for your organization.</p>
-            }
-          </div>
+      <div className="box">
+        <div className="box-header">
+          <h3>Rate Limits</h3>
         </div>
-      </OrganizationHomeContainer>
+        <div className="box-content with-padding">
+          {maxRate !== 0 ?
+            <RateLimitEditor organization={org} />
+          :
+            <p>There are no rate limits configured for your organization.</p>
+          }
+        </div>
+      </div>
     );
   },
 });

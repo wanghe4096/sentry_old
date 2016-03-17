@@ -17,8 +17,6 @@ import MyIssuesAssignedToMe from 'views/myIssues/assignedToMe';
 import MyIssuesBookmarked from 'views/myIssues/bookmarked';
 import MyIssuesViewed from 'views/myIssues/viewed';
 import OrganizationDetails from 'views/organizationDetails';
-import OrganizationRateLimits from 'views/organizationRateLimits';
-import OrganizationStats from 'views/organizationStats';
 import OrganizationTeams from 'views/organizationTeams';
 import ProjectDashboard from 'views/projectDashboard';
 import ProjectDetails from 'views/projectDetails';
@@ -69,7 +67,16 @@ import PowerPackApp from 'views/powerPackApp';
 import AlertsApp from 'views/alertsApp';
 import SetHomeApp from 'views/setHomeApp';
 import AddOrganization from 'views/addOrganization';
-import SassIndex from 'views/sassIndex'
+import SassIndex from 'views/sassIndex';
+// Organization Manage
+import OrgManageLayout from 'views/orgManageLayout';
+import OrganizationStats from 'views/organizationManage/stats';
+import OrganizationSetting from 'views/organizationManage/settings';
+import OrganizationRateLimits from 'views/organizationManage/rateLimits';
+import OrganizationMembers from 'views/organizationManage/members';
+import OrganizationApiKeys from 'views/organizationManage/apiKeys';
+import OrganizationAuditLog from 'views/organizationManage/auditLog';
+import OrganizationAuth from 'views/organizationManage/auth';
 
 function appendTrailingSlash(nextState, replaceState) {
   let lastChar = nextState.location.pathname.slice(-1);
@@ -112,9 +119,15 @@ let routes = (
 
       <Route path="home/" component={HomeApp}/>
 
-      <Route path="manage/" component={BlockView} >
-        // <Route path="stats/" component={OrganizationStats}/>
-        <IndexRoute component={OrganizationStats}/>
+      <Route path="manage/" component={OrgManageLayout} >
+        <IndexRoute component={OrganizationStats} />
+        <Route path="stats/" component={OrganizationStats} />
+        <Route path="members/" component={OrganizationMembers} />
+        <Route path="auth/" component={OrganizationAuth} />
+        <Route path="audit-log/" component={OrganizationAuditLog} />
+        <Route path="api-keys/" component={OrganizationApiKeys} />
+        <Route path="rate-limits/" component={OrganizationRateLimits} />
+        <Route path="settings/" component={OrganizationSetting} />
       </Route>
 
       <Route path="homeset/" component={SetHomeApp} />

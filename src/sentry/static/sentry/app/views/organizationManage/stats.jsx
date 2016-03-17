@@ -4,10 +4,9 @@ import ApiMixin from '../../mixins/apiMixin';
 import FlotChart from '../../components/flotChart';
 import LoadingError from '../../components/loadingError';
 import LoadingIndicator from '../../components/loadingIndicator';
-import OrganizationHomeContainer from '../../components/organizations/homeContainer';
 import OrganizationState from '../../mixins/organizationState';
 
-import ProjectTable from './projectTable';
+import ProjectTable from './stats-projectTable';
 import {t} from '../../locale';
 
 const OrganizationStats = React.createClass({
@@ -274,7 +273,7 @@ const OrganizationStats = React.createClass({
 
   render() {
     return (
-      <OrganizationHomeContainer>
+      <div>
         <h3>{t('Stats')}</h3>
         <div className="row">
           <div className="col-md-9">
@@ -324,7 +323,7 @@ const OrganizationStats = React.createClass({
             )}
           </div>
         </div>
-      </OrganizationHomeContainer>
+      </div>
     );
   }
 });
