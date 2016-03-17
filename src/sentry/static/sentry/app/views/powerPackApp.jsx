@@ -119,9 +119,9 @@ const PowerPackApp = React.createClass({
                       <h2>
                         {t('日志搜索功能')}
                       </h2>
-                      <span>
+                      <h3>
                         {t('实时搜索，快速定位问题')}
-                      </span>
+                      </h3>
                       <span className="pack-line"></span>
                     </li>
                     <li>
@@ -149,9 +149,9 @@ const PowerPackApp = React.createClass({
                       <h2>
                         {t('自定义仪表盘')}
                       </h2>
-                      <span>
+                      <h3>
                         {t('多样化数据展示方式')}
-                      </span>
+                      </h3>
                       <span className="pack-line"></span>
                     </li>
                     <li>
@@ -182,9 +182,9 @@ const PowerPackApp = React.createClass({
                       <h2>
                         {t('数据可视化')}
                       </h2>
-                      <span>
+                      <h3>
                         {t('数据清晰可见，一目了然')}
-                      </span>
+                      </h3>
                       <span className="pack-line"></span>
                     </li>
                     <li>
@@ -212,9 +212,9 @@ const PowerPackApp = React.createClass({
                       <h2>
                         {t('多种日志上传方式')}
                       </h2>
-                      <span>
+                      <h3>
                         {t('简单易用、支持所有常用语言')}
-                      </span>
+                      </h3>
                       <span className="pack-line"></span>
                     </li>
                     <li>
