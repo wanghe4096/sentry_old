@@ -152,6 +152,7 @@ const BorderMenu = createClass({
                 </div>
               </a>
               <ul>
+                {/*
                 <li><a href="#">定义抽取规则</a></li>
                 <li>
                   <Link
@@ -160,6 +161,7 @@ const BorderMenu = createClass({
                   >事件类型管理
                   </Link>
                 </li>
+                */}
                 <li>
                   <Link
                     to={'/' + org.slug + '/events/'}
@@ -179,16 +181,17 @@ const BorderMenu = createClass({
                 </li>
                 <li>
                   <Link
-                    to={'/' + org.slug + '/alert/'}
-                    onClick={()=>{ this.setState({folded: true}); }}
-                  >告警规则管理
-                  </Link>
-                </li>
-                <li>
-                  <Link
                     to={'/' + org.slug + '/homeset/'}
                     onClick={()=>{ this.setState({folded: true}); }}
                   >主页设置
+                  </Link>
+                </li>
+                {/*
+                <li>
+                  <Link
+                    to={'/' + org.slug + '/alert/'}
+                    onClick={()=>{ this.setState({folded: true}); }}
+                  >告警规则管理
                   </Link>
                 </li>
                 <li>
@@ -198,6 +201,7 @@ const BorderMenu = createClass({
                   >数据源管理（个人）
                   </Link>
                 </li>
+                */}
               </ul>
               <ul>
                 {/*
