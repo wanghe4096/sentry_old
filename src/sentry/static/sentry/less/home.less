@@ -8,7 +8,7 @@
     padding: 0 20px;
     //margin-top: -50px;
     border-bottom: 1px solid #ccc;
-    height: 250px;
+    // height: 250px;
     transition: transform 500ms;
     &.ani-fold {
       transform: translateY(-270px);
@@ -62,7 +62,7 @@
   .toggle {
     position: absolute;
     right: 288px;
-    bottom: -36px;
+    // bottom: -36px;
     padding: 10px 24px;
     font-size: 12px;
     line-height: 1;
@@ -169,6 +169,14 @@
   &.ani-fold {
     transform: translateY(-270px);
   }
+}
+
+@media (max-width: 400px) {
+    .home-dashboard-empty {
+        a{
+            padding: 0;
+        }
+    }
 }
 
 .homeset-save{
