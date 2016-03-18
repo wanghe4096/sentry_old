@@ -56,12 +56,12 @@ const BorderMenu = createClass({
         // },
         {
          path: 'fileimport',
-         iconClassName: 'fa fa-cloud-upload',
+         iconClassName: 'fa fa-plug',
          title: t('File Import')
         },
         {
           path: 'live',
-          iconClassName: 'fa fa-columns',
+          iconClassName: 'fa fa-terminal',
           title: t('Live Tail')
         },
         // {
