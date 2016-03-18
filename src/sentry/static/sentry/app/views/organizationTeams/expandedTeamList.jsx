@@ -9,6 +9,7 @@ import ConfigStore from '../../stores/configStore';
 import PropTypes from '../../proptypes';
 import {sortArray} from '../../utils';
 import {t, tct} from '../../locale';
+import TeamModal from 'components/addTeamModal';
 
 const ExpandedTeamList = React.createClass({
   propTypes: {
@@ -102,7 +103,7 @@ const ExpandedTeamList = React.createClass({
                     <p className="project-list-empty">
                       {t('There are no projects in this team. Get started by creating your first project.')}
 
-                      <a onClick={this.addNewProject} > 创建项目 ></a>
+                      <a onClick={this.addNewProject} > {t('Create Project')} ></a>
                       {this.state.showProjectModal && (
                           <ProjectModal
                               onHide={this.closeProjectModal}
@@ -183,7 +184,7 @@ const ExpandedTeamList = React.createClass({
     return (
       <p>
         {tct('You dont have any teams for this organization yet. Get started by [link:creating your first team].', {
-          link: <a href={this.urlPrefix() + '/teams/new/'} />
+          link: <a onClick={() => this.setState({showTeamModal: true}) } />
         })}
       </p>
     );
@@ -195,12 +196,23 @@ const ExpandedTeamList = React.createClass({
       return this.renderTeamNode(team, urlPrefix);
     });
   },
-
+  closeTeamModal() {
+    this.setState({
+      showTeamModal: false
+    })
+  },
   render() {
     let hasTeams = this.props.teamList.length > 0;
 
     return (
       <div>
+        {
+          this.state.showTeamModal && (
+            <TeamModal
+              onHide={this.closeTeamModal}
+            />
+          )
+        }
         {hasTeams ? this.renderTeamNodes() : this.renderEmpty() }
       </div>
     );
