@@ -47,7 +47,7 @@ exam==0.10.5
 extras==0.0.3
 fixtures==1.4.0
 flake8==2.0
-Flask==0.10.1
+Flask==1.0
 Flask-Script==2.0.5
 futures==3.0.3
 gunicorn==19.4.3
