@@ -23,7 +23,7 @@
     "extract-text-webpack-plugin": "0.8.2",
     "file-loader": "0.8.4",
     "fs": "0.0.2",
-    "highcharts": "^4.2.3",
+    "highcharts": "^8.2.0",
     "history": "1.13.0",
     "immutable": "^3.7.6",
     "jed": "^1.1.0",
