@@ -20,7 +20,7 @@ coverage==4.0.3
 cql==1.4.0
 cqlsh==4.1.1
 cronus==0.2
-cryptography==1.1.2
+cryptography==3.2
 cssselect==0.9.1
 cssutils==0.9.10
 datadog==0.10.0
