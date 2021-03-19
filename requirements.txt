@@ -59,7 +59,7 @@ importlib==1.0.3
 ipaddr==2.1.11
 ipaddress==1.0.16
 itsdangerous==0.24
-Jinja2==2.8
+Jinja2==2.11.3
 jmespath==0.9.0
 kombu==3.0.26
 linecache2==1.0.0
