@@ -103,7 +103,7 @@ redis==2.10.5
 requests==2.7.0
 requests-oauthlib==0.6.0
 responses==0.5.0
-rsa==3.2.3
+rsa==4.1
 -e git+https://github.com/getsentry/sentry-auth-github.git@0e8b604f2b0f4a293948bee81ed98666fb2ceda0#egg=sentry_auth_github-master
 setproctitle==1.1.9
 sh==1.11
