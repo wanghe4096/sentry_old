@@ -79,7 +79,7 @@ pep8==1.7.0
 petname==1.7
 progressbar==2.3
 psycopg2==2.5.5
-py==1.4.31
+py==1.10.0
 pyasn1==0.1.9
 pycparser==2.14
 pyflakes==1.0.0
